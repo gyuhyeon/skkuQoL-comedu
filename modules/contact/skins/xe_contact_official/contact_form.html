@@ -1,0 +1,55 @@
+<script>
+	jQuery(function($){
+		$('#formComponents input:text').css('width','260px');
+
+		$('#formComponents input[class=\'tel\']').css('width','80px');
+
+		if($('input.tel').length>0){
+			$('input.tel').each(function(index,value){
+				$(this).css('margin-right','2px');
+			});
+		}
+
+		$('form#form_contact').submit(function(){
+			// add phone number together
+			if($('input.tel').length>0){
+				var phone_number = "";
+				$('input.tel').each(function(index,value){
+					
+					phone_number += $(this).attr('value') + " ";
+				});
+				$('input.tel').last().attr('value',phone_number);
+			}
+		});
+	});
+</script>
+
+<input type="hidden" name="mid" value="{$mid}" />
+<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+<div id="contact_form">
+	<div class="formTitle">
+		<p class="text-required">
+			Fields are required<img src="img/bg-star-required.gif">
+		</p>
+	</div>
+	<div id="formComponents">
+		<dl cond="$form_extra_keys" loop="$form_extra_keys => $key, $val" id="form_keys_{$key}">
+		<dt><label>{htmlspecialchars($val->name)}:</label><!--@if($val->is_required=='Y')--><img src="img/bg-star-required.gif"><!--@end--></dt>
+		<dd><fieldset><div>{$val->getFormHTML()}</div></fieldset></dd>
+		</dl>
+		<dl class="mandatory_field">
+		<dt><label>Subject:</label><img src="img/bg-star-required.gif"></dt>
+		<dd><input class="text" type="text" name="Subject"></dd>
+		</dl>
+
+		<dl class="mandatory_field">
+		<dt><label>Email:</label><img src="img/bg-star-required.gif"></dt>
+		<dd><input class="text" type="text" name="Email"></dd>
+		</dl>
+		<dl class="comment_textarea">
+		<dt><label>Question and Comment:</label><img src="img/bg-star-required.gif"></dt>
+		<dd><fieldset><div><textarea class="textarea" name="Comment"></textarea></div></fieldset></dd>
+		</dl>		
+	</div>
+</div>
+<p class="send"><input type="submit" value="Send"></p>

@@ -1,0 +1,16 @@
+<include target="_header.html" />
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<div id="success_form">
+	<div id="mail_content">
+		<ul>
+			<li loop="$mail_content => $title, $val"><strong class="mail_var_title"><block cond="$mail_title[$title]">{$mail_title[$title]}:</block></strong>{nl2br(htmlspecialchars($val))}</li>
+		</ul>
+	</div>
+	<div id="link_back_contact"><a href="{getUrl('','mid',$module_info->mid)}">Go Back</a></div>
+</div>
+
+<include target="_footer.html" />

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+    <customrules>
+    </customrules>
+    <fields>
+		<field name="Subject" required="true" length="1:250"  />
+		<field name="Email" required="true" length="1:200" rule="email" />
+		<field name="Comment" required="true" />
+    </fields>
+</ruleset>

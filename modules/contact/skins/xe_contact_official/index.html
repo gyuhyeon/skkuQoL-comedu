@@ -1,0 +1,22 @@
+<include target="_header.html" />
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form action="./" method="post" ruleset="sendMail" id="form_contact" >
+<input type="hidden" name="act" value="procContactSendEmail" />
+<input type="hidden" name="enable_terms" value="N" />
+	<div cond="$module_info->enable_terms == 'Y'" id="terms">
+		<input type="hidden" name="enable_terms" value="Y" />
+		<div class="termsTitle"><h3>Terms of Use Agreement</h3></div>
+		<div id="terms-main">
+			{$module_info->content}
+		</div>
+		<div id="agree_check"><input type="checkbox" id="checkbox" name="check_agree"><label for="checkbox">{$module_info->mcontent}</label></div>
+	</div>
+	<include target="contact_form.html" />
+</form>
+
+<include target="_footer.html" />
+

@@ -1,0 +1,76 @@
+<include target="./header.html" />
+<form action="./" method="get" onsubmit="return doChangeCategory(this);" id="fo_list">
+	<table class="x_table x_table-striped x_table-hover">
+		<caption>
+			<strong>Total {number_format($total_count)}, Page {number_format($page)}/{number_format($total_page)}</strong>
+		</caption>
+		<thead>
+			<tr>
+				<th scope="col">{$lang->no}</th>
+				<th scope="col">
+					<input type="hidden" name="module" value="{$module}" />
+					<input type="hidden" name="act" value="{$act}" />
+					<select name="module_category_srl" style="width:auto;margin:0">
+						<option value="">{$lang->module_category}</option>
+						<option value="0" selected="selected"|cond="$module_category_srl==='0'">{$lang->not_exists}</option>
+						<option loop="$module_category => $key, $val" value="{$key}" selected="selected"|cond="$module_category_srl==$key">{$val->title}</option>
+						<option value="">&hellip;</option>
+						<option value="-1">{$lang->cmd_management}</option>
+					</select>
+					<input type="submit" name="go_button" id="go_button" value="GO" class="x_btn" />
+				</th>
+				<th scope="col">{$lang->mid}</th>
+				<th scope="col">{$lang->browser_title}</th>
+				<th scope="col">{$lang->regdate}</th>
+				<th scope="col">{$lang->cmd_edit}</th>
+				<th scope="col"><input type="checkbox" title="Check All" /></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr loop="$contact_list => $no, $val">
+				<td>{$no}</td>
+				<td>
+					<!--@if(!$val->module_category_srl)-->
+						<!--@if($val->site_srl)-->
+						{$lang->virtual_site}
+						<!--@else-->
+						{$lang->not_exists}
+						<!--@end-->
+					<!--@else-->
+						{$module_category[$val->module_category_srl]->title}
+					<!--@end-->
+				</td>
+				<td>{htmlspecialchars($val->mid)}</td>
+				<td><a href="{getSiteUrl($val->domain,'','mid',$val->mid)}" target="_blank">{$val->browser_title}</a></td>
+				<td>{zdate($val->regdate,"Y-m-d")}</td>
+				<td>
+					<a href="{getUrl('act','dispContactAdminContactInfo','module_srl',$val->module_srl)}" class="x_icon-cog" title="{$lang->cmd_setup}">{$lang->cmd_setup}</a>
+					<a href="{getUrl('','module','module','act','dispModuleAdminCopyModule','module_srl',$val->module_srl)}" onclick="popopen(this.href);return false;" class="x_icon-plus" title="{$lang->cmd_copy}">{$lang->cmd_copy}</a>
+					<a href="{getUrl('act','dispContactAdminDeleteContact','module_srl', $val->module_srl)}" class="x_icon-remove" title="{$lang->cmd_delete}">{$lang->cmd_delete}</a>
+				</td>
+				<td><input type="checkbox" name="cart" value="{$val->module_srl}" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="x_clearfix">
+		<span class="x_pull-right x_btn-group">
+			<a href="{getUrl('act','dispContactAdminInsertContact','module_srl','')}" class="x_btn x_btn-inverse">{$lang->cmd_make}</a>
+			<a href="{getUrl('','module','module','act','dispModuleAdminModuleSetup')}" onclick="doCartSetup(this.href); return false;" class="x_btn">{$lang->cmd_setup}</a>
+			<a href="{getUrl('','module','module','act','dispModuleAdminModuleAdditionSetup')}" onclick="doCartSetup(this.href); return false;" class="x_btn">{$lang->cmd_addition_setup}</a>
+		</span>
+	</div>
+</form>
+<form action="./" method="get" class="search" style="margin-top:-36px">
+	<input type="hidden" name="module" value="{$module}" />
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="vid" value="{$vid}" />
+	<input type="hidden" name="act" value="dispContactAdminContent" />
+	<fieldset>
+		<input type="text" name="s_mid" value="{$s_mid}" title="{$lang->mid}" placeholder="{$lang->mid}" style="width:100px" />
+		<span class="x_input-append">
+			<input type="text" name="s_browser_title" value="{$s_browser_title}" title="{$lang->browser_title}" placeholder="{$lang->browser_title}" style="width:100px" />
+			<input type="submit" value="{$lang->cmd_search}" class="x_btn x_btn-inverse" />
+			<a href="{getUrl('s_mid','','s_browser_title','','page','')}" class="x_btn">{$lang->cmd_cancel}</a>
+		</span>
+	</fieldset>
+</form>

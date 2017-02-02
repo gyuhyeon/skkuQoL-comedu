@@ -1,0 +1,9 @@
+<load target="css/contact.css" />
+
+<div class="contact_us">
+    <div class="contactHeader">
+		<div cond="$module_info->mid" class="contactTitle">
+			<h2 class="contactTitleText">CONTACT US</h2>
+			<a cond="$is_logged && $logged_info->is_admin == 'Y'" class="setup" href="{getUrl('act','dispContactAdminContactInfo')}">{$lang->cmd_setup}</a>
+		</div>
+    </div>

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="contact">
+		<value xml:lang="ko"><![CDATA[Contact Us]]></value>
+		<value xml:lang="en"><![CDATA[Contact Us]]></value>
+		<value xml:lang="zh-CN"><![CDATA[Contact Us]]></value>
+		<value xml:lang="tr"><![CDATA[Bize Ulaşın]]></value>
+	</item>
+	<item name="contact_management">
+		<value xml:lang="ko"><![CDATA[Contact Us 관리]]></value>
+		<value xml:lang="en"><![CDATA[Contact Us Management]]></value>
+		<value xml:lang="zh-CN"><![CDATA[Contact Us 管理]]></value>
+		<value xml:lang="tr"><![CDATA[Bize Ulaşın Yönetimi]]></value>
+	</item>
+	<item name="about_contact">
+		<value xml:lang="ko"><![CDATA[이 모듈은 Contact Us 페이지를 생성하거나 관리하는데 사용됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[This module is for creating and managing Contact Us pages.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[此模块用于搭建和管理 Contact Us页面.]]></value>
+		<value xml:lang="tr"><![CDATA[Bu modül, bize ulaşın sayfalarını oluşturmak ve yönetmek içindir]]></value>
+	</item>
+	<item name="cmd_contact_list">
+		<value xml:lang="ko"><![CDATA[Contact Us 목록]]></value>
+		<value xml:lang="en"><![CDATA[Contact Us List]]></value>
+		<value xml:lang="zh-CN"><![CDATA[Contact Us 列表]]></value>
+		<value xml:lang="tr"><![CDATA[Bize Ulaşın Listesi]]></value>
+	</item>
+	<item name="cmd_create_contact">
+		<value xml:lang="ko"><![CDATA[Contact Us 생성]]></value>
+		<value xml:lang="en"><![CDATA[Create a new Contact Us]]></value>
+		<value xml:lang="zh-CN"><![CDATA[新建 Contact Us]]></value>
+		<value xml:lang="tr"><![CDATA[Bize Ulaşın Oluştur]]></value>
+	</item>
+	<item name="cmd_contact_info">
+		<value xml:lang="ko"><![CDATA[Contact Us 정보]]></value>
+		<value xml:lang="en"><![CDATA[Contact Us Info]]></value>
+		<value xml:lang="zh-CN"><![CDATA[Contact Us 信息]]></value>
+		<value xml:lang="tr"><![CDATA[İletişim Info]]></value>
+	</item>
+	<item name="cmd_form_components">
+		<value xml:lang="ko"><![CDATA[사용자정의]]></value>
+		<value xml:lang="en"><![CDATA[Form Extra Components]]></value>
+		<value xml:lang="zh-CN"><![CDATA[表单附加组件]]></value>
+		<value xml:lang="tr"><![CDATA[form ekstra bileşenler]]></value>
+	</item>
+	<item name="cmd_agreement">
+		<value xml:lang="ko"><![CDATA[약관]]></value>
+		<value xml:lang="en"><![CDATA[Agreement Term]]></value>
+		<value xml:lang="zh-CN"><![CDATA[协议条款]]></value>
+		<value xml:lang="tr"><![CDATA[Lisans]]></value>
+	</item>
+	<item name="form_comps">
+		<value xml:lang="ko"><![CDATA[form 요소추가]]></value>
+		<value xml:lang="en"><![CDATA[Form Extra Components]]></value>
+		<value xml:lang="zh-CN"><![CDATA[表单附加组件]]></value>
+		<value xml:lang="tr"><![CDATA[Form Ekstra Bileşenler]]></value>
+	</item>
+	<item name="eid">
+		<value xml:lang="ko"><![CDATA[컴포넌트 ID]]></value>
+		<value xml:lang="en"><![CDATA[Form Component ID]]></value>
+		<value xml:lang="zh-CN"><![CDATA[组件ID]]></value>
+		<value xml:lang="tr"><![CDATA[ Bileşen ID’si]]></value>
+	</item>
+	<item name="input_type">
+		<value xml:lang="ko"><![CDATA[컴포넌트 종류]]></value>
+		<value xml:lang="en"><![CDATA[Input Type]]></value>
+		<value xml:lang="zh-CN"><![CDATA[组件类别]]></value>
+		<value xml:lang="tr"><![CDATA[Bileşen Tipleri]]></value>
+	</item>
+	<item name="enable_terms">
+		<value xml:lang="ko"><![CDATA[약관(라이센스) 표시여부]]></value>
+		<value xml:lang="en"><![CDATA[Enable Term]]></value>
+		<value xml:lang="zh-CN"><![CDATA[使用协议条款]]></value>
+		<value xml:lang="tr"><![CDATA[Gösterilip gösterilmeyeceğini Lisans]]></value>
+	</item>
+	<item name="about_enable_terms">
+		<value xml:lang="ko"><![CDATA[체크하시면 화면에 약관 내용이 표시됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[If checked, an agreement term will be enabled.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[在页面中使用协议条款.]]></value>
+		<value xml:lang="tr"><![CDATA[Seçerseniz, anlaşma uygulamaya konacaktır.]]></value>
+	</item>
+	<item name="admin_mail">
+		<value xml:lang="ko"><![CDATA[관리자 e-mail]]></value>
+		<value xml:lang="en"><![CDATA[Administrator's Mail]]></value>
+		<value xml:lang="zh-CN"><![CDATA[管理者邮箱]]></value>
+		<value xml:lang="tr"><![CDATA[Yönetici E-Postası]]></value>
+	</item>
+	<item name="about_admin_mail">
+		<value xml:lang="ko"><![CDATA[여러개의 관리자 e-mail을 사용할려면 콤마(,)를 추가하시면 됩니다.ex:aaa@aa.com,bb@bb.com]]></value>
+		<value xml:lang="en"><![CDATA[Multiple mails can be sent with commas(,).]]></value>
+		<value xml:lang="zh-CN"><![CDATA[多个邮箱地址可用逗号（，）分开.]]></value>
+		<value xml:lang="tr"><![CDATA[Birden fazla e-postayı ( , ) işareti yardımıyla gönderebilirsiniz]]></value>
+	</item>
+	<item name="components_count">
+		<value xml:lang="ko"><![CDATA[form에 포함된 컴포넌트 수]]></value>
+		<value xml:lang="en"><![CDATA[Form Components]]></value>
+		<value xml:lang="zh-CN"><![CDATA[表单组件]]></value>
+		<value xml:lang="tr"><![CDATA[Forma Dahil Olan Bileşenler]]></value>
+	</item>
+	<item name="interval">
+		<value xml:lang="ko"><![CDATA[스펨메일 필터]]></value>
+		<value xml:lang="en"><![CDATA[Interval for spam filtering]]></value>
+		<value xml:lang="zh-CN"><![CDATA[垃圾邮件过滤]]></value>
+		<value xml:lang="tr"><![CDATA[Spam E-Posta Filtresi]]></value>
+	</item>
+	<item name="about_interval">
+		<value xml:lang="ko"><![CDATA[설정된 시간 이후에 다음 메일을 보낼 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[All mails within the assigned time will be blocked.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[所有邮件在指定的时间内都被过滤.]]></value>
+		<value xml:lang="tr"><![CDATA[Ayarlanan zamandan sonra e-posta gönderebilirsiniz]]></value>
+	</item>
+	<item name="msg_alert_limited_by_config_mail">
+		<value xml:lang="ko"><![CDATA[%s분 이내 연속으로 메일을 발송 할 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Sending an email within %s minute is not allowed.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[FAQ]]></value>
+		<value xml:lang="tr"><![CDATA[SSS]]></value>
+	</item>
+	<item name="msg_terms_of_license_agreement">
+		<value xml:lang="ko"><![CDATA[이용약관을 읽어보고 동의하셔야 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[You haven't read and agree to the terms of the license agreement.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[You haven't read and agree to the terms of the license agreement.]]></value>
+		<value xml:lang="tr"><![CDATA[You haven't read and agree to the terms of the license agreement.]]></value>
+	</item>
+	<item name="msg_email_send_successfully">
+		<value xml:lang="ko"><![CDATA[메일을 발송했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[An email has been sent successfully.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[An email has been sent successfully.]]></value>
+		<value xml:lang="tr"><![CDATA[An email has been sent successfully.]]></value>
+	</item>
+	<item name="msg_logged_can_send_mail">
+		<value xml:lang="ko"><![CDATA[메일을 보내려면 로그인해야 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Only logged user can send an email]]></value>
+		<value xml:lang="zh-CN"><![CDATA[Only logged user can send an email]]></value>
+		<value xml:lang="tr"><![CDATA[Only logged user can send an email]]></value>
+	</item>
+	<item name="cmd_up">
+		<value xml:lang="ko"><![CDATA[위로 이동]]></value>
+		<value xml:lang="en"><![CDATA[Up]]></value>
+		<value xml:lang="zh-CN"><![CDATA[上移]]></value>
+		<value xml:lang="tr"><![CDATA[Yukarı]]></value>
+	</item>
+	<item name="cmd_down">
+		<value xml:lang="ko"><![CDATA[아래로 이동]]></value>
+		<value xml:lang="en"><![CDATA[Down]]></value>
+		<value xml:lang="zh-CN"><![CDATA[下移]]></value>
+		<value xml:lang="tr"><![CDATA[Aşağı]]></value>
+	</item>
+	<item name="component_name">
+		<value xml:lang="ko"><![CDATA[확장변수 이름]]></value>
+		<value xml:lang="en"><![CDATA[Form Component Name]]></value>
+		<value xml:lang="zh-CN"><![CDATA[组件名称]]></value>
+		<value xml:lang="tr"><![CDATA[Form Bileşenlerinin İsmi]]></value>
+	</item>
+	<item name="msg_do_set_admin_mail">
+		<value xml:lang="ko"><![CDATA[수신 대상이 설정되지 않아 수행 할 수 없습니다. 관리자에게 문의하세요.]]></value>
+		<value xml:lang="en"><![CDATA[The recipient is not set. Please contact your administrator.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[The recipient is not set. Please contact your administrator.]]></value>
+		<value xml:lang="tr"><![CDATA[The recipient is not set. Please contact your administrator.]]></value>
+	</item>
+</lang>

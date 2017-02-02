@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions>
+		<permission action="dispContactAdminContactInfo" target="manager" />
+		<permission action="dispContactAdminFormComps" target="manager" />
+        <permission action="dispContactAdminContactAdditionSetup" target="manager" />
+        <permission action="dispContactAdminContactAgreement" target="manager" />
+		<permission action="procContactAdminInsertContact" target="manager" />
+		<permission action="procContactAdminInsertTerm" target="manager" />
+		
+		<permission action="procContactSendEmail"/>
+    </permissions>
+    <actions>
+		<action name="dispContactAdminContent" type="view" standalone="true" admin_index="true" />
+		<action name="dispContactAdminContactInfo" type="view" standalone="true" />
+		<action name="dispContactAdminInsertContact" type="view" standalone="true" setup_index="true" />
+		<action name="dispContactAdminDeleteContact" type="view" standalone="true" />
+	    <action name="dispContactAdminFormComps" type="view" standalone="true" />
+        <action name="dispContactAdminContactAdditionSetup" type="view" standalone="true" />
+        <action name="dispContactAdminContactAgreement" type="view" standalone="true" />
+        <action name="dispContactContent" type="view" index="true" />
+		<action name="dispCompleteSendMail" type="view" />
+
+		<action name="procContactAdminInsertContact" type="controller" standalone="true" ruleset="insertContact"/>
+        <action name="procContactAdminInsertExtraVar" type="controller" standalone="true" ruleset="insertExtraVar"/>
+		<action name="procContactAdminDeleteExtraVar" type="controller" standalone="true" />
+		<action name="procContactAdminDeleteContact" type="controller" standalone="true" ruleset="deleteContact"/>
+		<action name="procContactAdminInsertTerm" type="controller" standalone="true" ruleset="insertTerm"/>
+		<action name="procContactSendEmail" type="controller" />
+
+    </actions>
+</module>

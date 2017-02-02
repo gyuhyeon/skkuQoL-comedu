@@ -1,0 +1,104 @@
+<load target="js/contact_admin.js" />
+<include target="header.html" />
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form action="./" method="post" ruleset="insertContact" id="fo_insert_contact" enctype="multipart/form-data" class="x_form-horizontal">
+	<input type="hidden" name="act" value="procContactAdminInsertContact" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+	<input cond="$mid || $module_srl" type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+	<input cond="$logged_info->is_admin!='Y'" type="hidden" name="contact_name" value="{$module_info->mid}" />
+	<div class="x_control-group" cond="$logged_info->is_admin=='Y'">
+		<label class="x_control-label" for="contact_name">{$lang->mid}</label>
+		<div class="x_controls">
+			<input type="text" name="contact_name" id="contact_name" value="{$module_info->mid}" />
+			<a href="#about_mid" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_mid" class="x_help-block" hidden>{$lang->about_mid}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="module_category_srl">{$lang->module_category}</label>
+		<div class="x_controls">
+			<select name="module_category_srl" id="module_category_srl">
+				<option value="0">{$lang->notuse}</option>
+				<option loop="$module_category => $key,$val" value="{$key}" selected="selected"|cond="$module_info->module_category_srl==$key">{$val->title}</option>
+			</select>
+			<a href="#about_module_category" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_module_category" class="x_help-block" hidden>{$lang->about_module_category}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="lang_browser_title">{$lang->browser_title}</label>
+		<div class="x_controls">
+			<input type="text" name="browser_title" id="browser_title" class="lang_code" value="<!--@if(strpos($module_info->browser_title, '$user_lang->') === false)-->{$module_info->browser_title}<!--@else-->{htmlspecialchars($module_info->browser_title)}<!--@end-->" />
+			<a href="#about_browser_title" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_browser_title" class="x_help-block" hidden>{$lang->about_browser_title}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
+		<div class="x_controls">
+			<select name="layout_srl" id="layout_srl">
+				<option value="0">{$lang->notuse}</option>
+				<option loop="$layout_list => $key, $val" value="{$val->layout_srl}" selected="selected"|cond="$module_info->layout_srl==$val->layout_srl">{$val->title} ({$val->layout})</option>
+			</select>
+			<a href="#about_layout" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_layout" class="x_help-block" hidden>{$lang->about_layout}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="skin">{$lang->skin}</label>
+		<div class="x_controls">
+			<select name="skin" id="skin">
+				<option loop="$skin_list => $key,$val" value="{$key}" selected="selected"|cond="$module_info->skin==$key ||(!$module_info->skin && $key=='xe_board')" >{$val->title}</option>
+			</select>
+			<a href="#about_skin" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_skin" class="x_help-block" hidden>{$lang->about_skin}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="enable_terms">{$lang->enable_terms}</label>
+		<div class="x_controls">
+			<label for="enable_terms" class="x_inline">
+				<input type="checkbox" name="enable_terms" id="enable_terms" value="Y" checked="checked"|cond="$module_info->enable_terms=='Y' || !$module_info->module_srl" />
+				{nl2br($lang->about_enable_terms)}
+			</label>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="admin_mail">{$lang->admin_mail}</label>
+		<div class="x_controls">
+			<input type="text" name="admin_mail" id="admin_mail" value="{$module_info->admin_mail}" />
+			<a href="#about_admin_mail" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_admin_mail" class="x_help-block" hidden>{$lang->about_admin_mail}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="interval">{$lang->interval}</label>
+		<div class="x_controls">
+			<input type="number" name="interval" id="interval" value="{$module_info->interval}" /> {$lang->unit_min}
+			<a href="#about_interval" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_interval" class="x_help-block" hidden>{$lang->about_interval}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label">{$lang->grant}</label>
+		<div class="x_controls">
+			<label for="grant_to_all" class="x_inline"><input type="radio" name="send_grant_all" id="grant_to_all" value="Y" checked="checked"|cond="$module_info->send_grant_all== 'Y'" /> {$lang->grant_to_all}</label>
+			<label for="grant_to_login_user" class="x_inline"><input type="radio" name="send_grant_all" id="grant_to_login_user" value="N" checked="checked"|cond="$module_info->send_grant_all!= 'Y'" /> {$lang->grant_to_login_user}</label>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="description">{$lang->description}</label>
+		<div class="x_controls">
+			<textarea name="description" id="description" rows="4" cols="42" style="vertical-align:top">{$module_info->description}</textarea>
+			<a href="#about_description" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="about_description" class="x_help-block" hidden>{$lang->about_description}</p>
+		</div>
+	</div>
+	<div class="btnArea">
+		<a href="{getUrl('act','dispContactAdminContent','module_srl','')}" class="x_btn x_pull-left">{$lang->cmd_back}</a>
+		<span><input type="submit" value="{$lang->cmd_registration}" class="x_btn x_btn-primary" /></span>
+	</div>
+</form>

@@ -1,0 +1,9 @@
+<load target="css/mboard.css" />
+
+<div class="bd">
+<!--@if($oDocument->isExists())-->
+	<include target="read.html" />
+<!--@else-->
+	<include target="_list.html" />
+<!--@end-->
+</div>

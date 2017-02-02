@@ -1,0 +1,18 @@
+<include target="header.html" />
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form action="./" method="post" id="fo_contact_term_write" ruleset="insertTerm">
+	<input type="hidden" name="act" value="procContactAdminInsertTerm" />
+	<input type="hidden" name="contact_name" value="{$module_info->mid}" />
+	<input type="hidden" name="term" value="{$termText}" />
+	<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+	<div style="margin:10px 0">
+		<label class="x_inline" for="agree_text">Agree Text:</label>
+		<input type="text" name="agree_text" id="agree_text" value="{$module_info->mcontent}" style="margin:0" />
+	</div>
+	{$editor_content}
+	<div class="btnArea">
+		<input type="submit" value="{$lang->cmd_registration}" class="x_btn x_btn-primary" />
+	</div>
+</form>
