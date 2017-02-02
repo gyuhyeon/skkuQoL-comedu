@@ -1,0 +1,110 @@
+<!--// 목록형 출력 -->
+<!--@if($widget_info->markup_type=="list")-->
+
+<ul class="widgetGalleryA widgetGalleryA{$widget_info->cols_list_count}">
+{@$_idx=0}
+    <!--@foreach($widget_info->content_items as $key => $item)-->
+    <li class="Clayout_Gallery Clayout_Gallery{$_idx} filter_li">
+		<div class="Clayout_Gallery_div">
+			<div class="Clayout_Gallery_in">
+			<!--@foreach($widget_info->option_view_arr as $k => $v)-->
+				<!--@if($v=='thumbnail')-->
+                <a href="{$item->getLink()}" class="thumb" target="_blank"|cond="$widget_info->new_window">
+                    <!--@if($item->getThumbnail())-->
+                        <img src="{$item->getThumbnail()}" class="filter_img" />
+                    <!--@else-->
+                        <span class="imgNone">{$lang->none_image}</span>
+                    <!--@end-->
+					<div class="count_voted"><span><i class="xi-heart"></i><block cond="$item->getVotedCount()">{$item->getVotedCount()}</block><block cond="!$item->getVotedCount()">0</block></span><span class="comment"><i class="xi-message"></i><block cond="$item->getCommentCount()">{$item->getCommentCount()}</block><block cond="!$item->getCommentCount()">0</block></span></div>
+                </a>
+				<!--@else if($v=='title')-->
+				<a href="{$item->getLink()}" class="title_Gallery_list" target="_blank"|cond="$widget_info->new_window">{$item->getTitle($widget_info->subject_cut_size)}</a>
+				<!--@end-->
+			<!--@end-->
+			</div>
+		</div>
+    </li>
+    {@$_idx++}
+    <!--@end-->
+</ul>
+
+<!--@if($widget_info->page_count > 1 && $widget_info->list_count<$_idx)-->
+<ul class="widgetNavigator">
+    <li><button type="button" class="prev" title="{$lang->cmd_prev}" onclick="content_widget_prev(jQuery(this).parents('ul.widgetNavigator').prev('ul.widgetGalleryA'),{$widget_info->list_count})"><span>{$lang->cmd_prev}</span></button></li>
+    <li><button type="button" class="next" title="{$lang->cmd_next}" onclick="content_widget_next(jQuery(this).parents('ul.widgetNavigator').prev('ul.widgetGalleryA'),{$widget_info->list_count})"><span>{$lang->cmd_next}</span></button></li>
+</ul>
+<!--@end-->
+
+<!--// 테이블형 출력 -->
+<!--@else-->
+
+<ul class="widgetGalleryA widgetGalleryA{$widget_info->cols_list_count}">
+{@$_idx=0}
+    <!--@foreach($widget_info->content_items as $key => $item)-->
+    <li class="Clayout_Gallery Clayout_Gallery{$_idx}">
+		<div class="Clayout_Gallery_div">
+			<div class="Clayout_Gallery_in">
+			<!--@foreach($widget_info->option_view_arr as $k => $v)-->
+				<!--@if($v=='thumbnail')-->
+                <a href="{$item->getLink()}" class="thumb" target="_blank"|cond="$widget_info->new_window">
+                    <!--@if($item->getThumbnail())-->
+                        <img src="{$item->getThumbnail()}"/>
+                    <!--@else-->
+                        <span class="imgNone">{$lang->none_image}</span>
+                    <!--@end-->
+                </a>
+				<!--@else if($v=='title')-->
+				<div class="Gallery_over">
+					<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window">{$item->getTitle($widget_info->subject_cut_size)}</a>
+					<p class="Clayout_Gallery_p">
+						<a href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window">{$item->getContent()}</a>
+					</p>
+				</div>
+				<!--@end-->
+			<!--@end-->
+			</div>
+		</div>
+    </li>
+    {@$_idx++}
+    <!--@end-->
+</ul>
+
+<!--@if($widget_info->page_count > 1 && $widget_info->list_count<$_idx)-->
+<ul class="widgetNavigator">
+    <li><button type="button" class="prev" title="{$lang->cmd_prev}" onclick="content_widget_prev(jQuery(this).parents('ul.widgetNavigator').prev('ul.widgetGalleryA'),{$widget_info->list_count})"><span>{$lang->cmd_prev}</span></button></li>
+    <li><button type="button" class="next" title="{$lang->cmd_next}" onclick="content_widget_next(jQuery(this).parents('ul.widgetNavigator').prev('ul.widgetGalleryA'),{$widget_info->list_count})"><span>{$lang->cmd_next}</span></button></li>
+</ul>
+<!--@end-->
+<script>
+
+
+jQuery(function($){
+	$('.Clayout_Gallery').hover(
+	  function () {
+		 
+		$(this).find(".Gallery_over").animate({
+		height : '100%'
+		}, 300);
+		$(this).find(".title").animate({
+		paddingTop : 15
+		}, 300);
+	}, 
+	  function () {
+	 $(this).find(".Gallery_over").animate({
+		height : 28
+		}, 200);
+
+		$(this).find(".title").animate({
+		paddingTop : 5
+		}, 200);
+	  }
+	);
+
+	
+});
+
+
+
+</script>
+
+ <!--@end-->

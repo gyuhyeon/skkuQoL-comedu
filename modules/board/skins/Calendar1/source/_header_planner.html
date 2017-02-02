@@ -1,0 +1,46 @@
+    <div class="planner_control">
+		<!--@if(($pOption == 'M' || $pOption == null) && $ind_weekly_base <= 0)-->
+			<div class="planner_this">
+				<!--//    <span>{$pYear} / {$pMonth}&nbsp;&nbsp;({$pYear+2333})</span><!--//숫자형식으로 년월 표시-->
+				<span>{$pMon}&nbsp;{$pYear}</span><!--//영문형식으로 년월 표시-->
+			</div>
+		<!--@else-->
+			<div class="planner_this_week">
+				<div <!--@if(!$ind_mobile)-->style ="float:left;"<!--@else-->style ="float:right;"<!--@end--> >{date('Y/m/j', $dispStart_stamp)." ~ ".date('Y/m/j', $dispEnd_stamp)}</div>
+				<div <!--@if(!$ind_mobile)-->style ="float:right;"<!--@else-->style ="float:left;"<!--@end--> >
+				<a style="float:left;" href="{$linkpath}&amp;pOption_2={$pOption_2}&amp;pYear={$dispStartYY}&amp;pMonth={$dispStartMM}&amp;pDay={$dispStartDD-7}"><span class="month_button" title="previous week"><</span></a>
+				<a style="float:left;" href="{$linkpath}&amp;pOption_2={$pOption_2}&amp;pYear={$todayYY}&amp;pMonth={$todayMM}&amp;pDay={$todayDD}"><span class="month_button" title="this week">T-W</span></a>
+				<a style="float:left;" href="{$linkpath}&amp;pOption_2={$pOption_2}&amp;pYear={$dispStartYY}&amp;pMonth={$dispStartMM}&amp;pDay={$dispStartDD+7}"><span class="month_button" title="next week">></span></a>
+				</div>
+			</div>
+		<!--@end-->
+
+        <div class="planner_navigation">
+			<form style="float:left; margin-right:5px;" name = "fm_select_year">
+			<select style ="height:17px; margin:0; padding:0; font-size:11px;" name="selectyear" onchange="document.location.href='{$linkpath}&amp;pYear=' + this.options[this.selectedIndex].value +'&amp;pMonth={$pMonth}'">
+			<option value='{$pYear}'>{$pYear}</option>
+			<!--@for($j=$todayYY+10; $j>=$todayYY-5; $j--)-->
+				<option value='{$j}'>{$j}</option>")
+			<!--@end-->
+			</select></form>
+			<a style="float:left;" href="{$linkpath}&amp;pYear={$pYear}&amp;pMonth={$pMonth-1}"><span class="month_button" title="previous month"><</span></a>
+			<!--@if(!$ind_mobile)-->
+				<!--@for($i=1; $i < 13; $i++)-->
+					<a style="float:left;" href="{$linkpath}&amp;pYear={$pYear}&amp;pMonth={$i}"><span class="month_button<!--@if($pMonth == $i)-->_on<!--@end-->" title="{$i} {$lang->unit_month}" >{$i}</span></a>
+				<!--@end-->
+			<!--@else-->
+				<a style="float:left;" href="{$linkpath}&amp;pYear={$todayYY}&amp;pMonth={$todayMM}"><span class="month_button" title="this month">T-Mon</span></a>
+			<!--@endif-->
+			<a style="float:left;" href="{$linkpath}&amp;pYear={$pYear}&amp;pMonth={$pMonth+1}"><span class="month_button" title="next month">></span></a>
+			<!--@if($module_info->display_country_select != 'N')-->
+				<span style="float:left;">&nbsp;</span>
+				<form style="float:left;" name = "fm_holiday_cnt">
+				<select style ="height:17px; margin:0; padding:0; font-size:11px;" name="selectcountry" onchange="document.location.href='{getUrl('pGanjioption',1,'pHoliday_cnt','')}&amp;pHoliday_cnt=' + this.options[this.selectedIndex].value">
+				<option value='{$holiday_country_code}'>{$holiday_country_name}</option>
+				<!--@foreach($holiday_cnt_arr as $cnt_key => $cnt_val)-->
+					<option value='{$cnt_key}'>{$cnt_val}</option>
+				<!--@end-->
+				</select></form>
+			<!--@endif-->
+        </div>
+    </div>

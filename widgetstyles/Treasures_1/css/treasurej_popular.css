@@ -1,0 +1,33 @@
+@charset "utf-8";
+.newClear:after{content:' '; display:block; clear:both; font-size:0; width:0; height:0; visibility:hidden; line-height:0}
+* html .newClear,:first-child+html .newClear{zoom:1}
+
+.tabr_items ul{margin:0; padding:0; list-style:none}
+.tabr_items li{float:left; margin:0; padding:0; background:#e9e9e9; font:bold 12px Arial, '돋움'}
+.tabr_items li a{display:block; margin:0; padding:10px 0 8px 0; border-bottom:3px solid #4c4c4d; text-align:center; color:#000; text-decoration:none; cursor:pointer}
+.tabr_items li.r0{border-radius:5px 0 0 0}
+.tabr_items li.r2{border-radius:0 5px 0 0}
+.tabr_items a:hover{text-decoration:none}
+.tabr_items li a.tabr_active{background-color:#4c4c4d; border-radius:5px 5px 0 0; color:#fefefe}
+
+.tabr_inner{position:relative}
+.tabr_content{display:none}
+.tabr_active{display:block !important}
+.tabr_inner a{text-decoration:none; cursor:pointer}
+.tabr_inner a:hover{text-decoration:none}
+.tabr_inner ul{margin:0; padding:0; list-style:none}
+.tabr_inner li{margin:0; padding:20px 0; border-top:1px dashed #ddd}
+.tabr_inner li:first-child{border-top:none}
+.tabr_inner li p{margin:0; padding:0; line-height:1.4; font-family:Arial, '굴림'; font-size:12px}
+.tabr_inner li p.tabr_thumb{float:left; margin:0 10px 0 2px}
+.tabr_inner li p.tabr_thumb img{margin:0; padding:0; border:4px solid #fff; *border:4px solid #f5f5f5; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:0 0 4px rgba(0, 0, 0, 0.8); -moz-box-shadow:0 0 4px rgba(0, 0, 0, 0.8); -webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.8)}
+.tabr_inner li p.tabr_thumb span.noimg{margin:0; padding:0; border:4px solid white; *border:4px solid #f5f5f5; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:0 0 4px rgba(0, 0, 0, 0.8); -moz-box-shadow:0 0 4px rgba(0, 0, 0, 0.8); -webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.8); display:block; text-align:center}
+.tabr_inner li p.tabr_thumb span.noimgtext{margin:38% 0 0 0; padding:0; display:block; font-size:11px; color:#999}
+.tabr_inner li a:hover p.tabr_thumb img,
+.tabr_inner li a:hover p.tabr_thumb span.noimg{border:4px solid #efefef; box-shadow:0 0 4px rgba(0, 0, 0, 0.5); -moz-box-shadow:0 0 4px rgba(0, 0, 0, 0.5); -webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.5)}
+.tabr_inner li p.text_title{margin-bottom:5px; font-weight:bold; color:#666}
+.tabr_inner li p.text_content{color:#999}
+.tabr_inner li p.text_date{color:#4c4c4d; font-style:italic}
+.tabr_inner li p.tabr_text span.text_content2{color:#999}
+.tabr_inner li p.tabr_text span.text_date2{color:#666}
+.tabr_inner li a:hover p, .tabr_inner li a:hover p.tabr_text span{color:#000 !important}

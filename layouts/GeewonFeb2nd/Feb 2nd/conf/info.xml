@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+    <title xml:lang="ko">phiz Mobile M</title>
+    <title xml:lang="en">phiz Mobile M</title>
+    <description xml:lang="ko">
+        phiz Mobile M
+        Author : phiz
+    </description>
+    <description xml:lang="en">
+        phiz Mobile M
+        Author : phiz
+    </description>
+    <version>1.8.1</version>
+    <date>2016-06-15</date>
+    <link>http://phiz.kr/</link>
+
+    <author email_address="phiz@phiz.kr" link="http://phiz.kr/">
+        <name xml:lang="ko">phiz</name>
+        <name xml:lang="en">phiz</name>
+    </author>
+    <extra_vars>
+	<group>
+	<title xml:lang="ko">일반 설정</title>
+	<title xml:lang="en">General Settings</title>
+	<var name="layoutThemes" type="select">
+		<title xml:lang="ko">레이아웃 테마</title>
+		<title xml:lang="en">Layout themes</title>
+		<options value="phizThemes">
+			<title xml:lang="ko">phiz Mobile Themes</title>
+			<title xml:lang="en">phiz Mobile Themes</title>
+		</options>
+		</var>
+	<var name="menu_type" type="radio">
+			<title xml:lang="ko">메뉴 아이콘 위치</title>
+			<title xml:lang="en">menu icon position</title>
+				<description xml:lang="ko">"메뉴 아이콘의 위치를 지정합니다.</description>
+			<options value="one_left">
+				<title xml:lang="ko">왼쪽</title>
+				<title xml:lang="en">left</title>
+			</options>
+      <options value="one_right">
+				<title xml:lang="ko">오른쪽</title>
+				<title xml:lang="en">right</title>
+			</options>
+		</var>
+	<var name="colorThemes" type="select">
+				<title xml:lang="ko">색상테마</title>
+				<description xml:lang="ko">사이트의 색상테마를 지정합니다.</description>
+				<options value="red">
+					<title xml:lang="ko">빨간색</title>
+					<title xml:lang="en">red</title>
+				</options>
+				<options value="pink">
+					<title xml:lang="ko">핑크색</title>
+					<title xml:lang="en">pink</title>
+				</options>
+				<options value="purple">
+					<title xml:lang="ko">보라색</title>
+					<title xml:lang="en">purple</title>
+				</options>
+				<options value="deeppurple">
+					<title xml:lang="ko">진보라색</title>
+					<title xml:lang="en">deep purple</title>
+				</options>
+				<options value="indigo">
+					<title xml:lang="ko">남색(indigo)</title>
+					<title xml:lang="en">indigo</title>
+				</options>
+				<options value="blue">
+					<title xml:lang="ko">파란색</title>
+					<title xml:lang="en">blue</title>
+				</options>
+				<options value="lightblue">
+					<title xml:lang="ko">라이트블루</title>
+					<title xml:lang="en">light blue</title>
+				</options>
+				<options value="cyan">
+					<title xml:lang="ko">시안</title>
+					<title xml:lang="en">cyan</title>
+				</options>
+				<options value="teal">
+					<title xml:lang="ko">틸</title>
+					<title xml:lang="en">teal</title>
+				</options>
+				<options value="green">
+					<title xml:lang="ko">녹색</title>
+					<title xml:lang="en">green</title>
+				</options>
+				<options value="lightgreen">
+					<title xml:lang="ko">라이트 그린</title>
+					<title xml:lang="en">light green</title>
+				</options>
+				<options value="lime">
+					<title xml:lang="ko">라임</title>
+					<title xml:lang="en">lime</title>
+				</options>
+				<options value="yellow">
+					<title xml:lang="ko">노란색</title>
+					<title xml:lang="en">yellow</title>
+				</options>
+				<options value="amber">
+					<title xml:lang="ko">호박색(amber)</title>
+					<title xml:lang="en">amber</title>
+				</options>
+				<options value="orange">
+					<title xml:lang="ko">오렌지색</title>
+					<title xml:lang="en">orange</title>
+				</options>
+				<options value="deeporange">
+					<title xml:lang="ko">진한 오렌지색</title>
+					<title xml:lang="en">deep orange</title>
+				</options>
+				<options value="brown">
+					<title xml:lang="ko">갈색</title>
+					<title xml:lang="en">brown</title>
+				</options>
+				<options value="grey">
+					<title xml:lang="ko">회색</title>
+					<title xml:lang="en">grey</title>
+				</options>
+				<options value="bluegrey">
+					<title xml:lang="ko">블루 그레이</title>
+					<title xml:lang="en">blue grey</title>
+				</options>
+				<options value="black">
+					<title xml:lang="ko">검은색</title>
+					<title xml:lang="en">black</title>
+				</options>
+				<options value="white">
+					<title xml:lang="ko">흰색</title>
+					<title xml:lang="en">white</title>
+				</options>
+				</var>
+		<var name="logo_image" type="image">
+			<title xml:lang="ko">로고이미지</title>
+			<title xml:lang="en">Logo image</title>
+			<description xml:lang="ko">레이아웃의 상단에 표시될 로고이미지를 입력하세요. (세로 높이는 40px 이내.)</description>
+			<description xml:lang="en">Please input a logo image which will be displayed on the top of layout. (the image with a transparent background, 40px height is recommended.)</description>
+		</var>
+	<var name="logo_text" type="text">
+			<title xml:lang="ko">로고 글자</title>
+			<title xml:lang="en">Logo text</title>
+		</var>
+			<var name="brandColor" type="select">
+				<title xml:lang="ko">로고 글자 색상</title>
+				<description xml:lang="ko">로고의 텍스트 색상을 지정합니다.</description>
+				<options value="red">
+					<title xml:lang="ko">빨간색</title>
+					<title xml:lang="en">red</title>
+				</options>
+				<options value="pink">
+					<title xml:lang="ko">핑크색</title>
+					<title xml:lang="en">pink</title>
+				</options>
+				<options value="purple">
+					<title xml:lang="ko">보라색</title>
+					<title xml:lang="en">purple</title>
+				</options>
+				<options value="deeppurple">
+					<title xml:lang="ko">진보라색</title>
+					<title xml:lang="en">deep purple</title>
+				</options>
+				<options value="indigo">
+					<title xml:lang="ko">남색(indigo)</title>
+					<title xml:lang="en">indigo</title>
+				</options>
+				<options value="blue">
+					<title xml:lang="ko">파란색</title>
+					<title xml:lang="en">blue</title>
+				</options>
+				<options value="lightblue">
+					<title xml:lang="ko">라이트블루</title>
+					<title xml:lang="en">light blue</title>
+				</options>
+				<options value="cyan">
+					<title xml:lang="ko">시안</title>
+					<title xml:lang="en">cyan</title>
+				</options>
+				<options value="teal">
+					<title xml:lang="ko">틸</title>
+					<title xml:lang="en">teal</title>
+				</options>
+				<options value="green">
+					<title xml:lang="ko">녹색</title>
+					<title xml:lang="en">green</title>
+				</options>
+				<options value="lightgreen">
+					<title xml:lang="ko">라이트 그린</title>
+					<title xml:lang="en">light green</title>
+				</options>
+				<options value="lime">
+					<title xml:lang="ko">라임</title>
+					<title xml:lang="en">lime</title>
+				</options>
+				<options value="yellow">
+					<title xml:lang="ko">노란색</title>
+					<title xml:lang="en">yellow</title>
+				</options>
+				<options value="amber">
+					<title xml:lang="ko">호박색(amber)</title>
+					<title xml:lang="en">amber</title>
+				</options>
+				<options value="orange">
+					<title xml:lang="ko">오렌지색</title>
+					<title xml:lang="en">orange</title>
+				</options>
+				<options value="deeporange">
+					<title xml:lang="ko">진한 오렌지색</title>
+					<title xml:lang="en">deep orange</title>
+				</options>
+				<options value="brown">
+					<title xml:lang="ko">갈색</title>
+					<title xml:lang="en">brown</title>
+				</options>
+				<options value="grey">
+					<title xml:lang="ko">회색</title>
+					<title xml:lang="en">grey</title>
+				</options>
+				<options value="bluegrey">
+					<title xml:lang="ko">블루 그레이</title>
+					<title xml:lang="en">blue grey</title>
+				</options>
+				<options value="black">
+					<title xml:lang="ko">검은색</title>
+					<title xml:lang="en">black</title>
+				</options>
+				<options value="white">
+					<title xml:lang="ko">흰색</title>
+					<title xml:lang="en">white</title>
+				</options>
+				<options value="customBrandColor">
+					<title xml:lang="ko">사용자 지정색</title>
+					<title xml:lang="en">custom color</title>
+				</options>
+				</var>
+		<var name="brandTextColor" type="text">
+			<title xml:lang="ko">로고 글자색</title>
+			<title xml:lang="en">Color of logo</title>
+			<description xml:lang="ko">텍스트로고 지정색.(예:#ff0000)</description>
+			<description xml:lang="en">Color of logo.</description>
+		</var>
+	<var name="menu_fixed" type="radio">
+			<title xml:lang="ko">메뉴바 상단 고정</title>
+			<title xml:lang="en">menu type</title>
+				<description xml:lang="ko">"예"를 선택할 경우 메뉴바가 상단에 고정됩니다.</description>
+			<options value="yes">
+				<title xml:lang="ko">예</title>
+				<title xml:lang="en">yes</title>
+			</options>
+			<options value="no">
+				<title xml:lang="ko">아니오</title>
+				<title xml:lang="en">no</title>
+			</options>
+		</var>
+	<var name="sub_menu" type="radio">
+			<title xml:lang="ko">메뉴바 상위메뉴 클릭시 하위메뉴 열림</title>
+			<title xml:lang="en">menu type</title>
+				<description xml:lang="ko">"예"를 선택할 경우 하위 메뉴가 있을때 상위메뉴는 링크연결이 안되고 하위메뉴가 펼쳐집니다. "아니오"를 선택시 하위메뉴 유무와 관계없이 상위메뉴에 링크를 연결할 수 있습니다.</description>
+			<options value="yes">
+				<title xml:lang="ko">예</title>
+				<title xml:lang="en">yes</title>
+			</options>
+			<options value="no">
+				<title xml:lang="ko">아니오</title>
+				<title xml:lang="en">no</title>
+			</options>
+		</var>
+		<var name="index_url" type="text">
+			<title xml:lang="ko">홈 페이지 URL</title>
+			<title xml:lang="en">Homepage URL</title>
+			<description xml:lang="ko">로고를 클릭시에 이동할 홈 페이지 URL을 입력해 주세요.</description>
+			<description xml:lang="en">Please input the URL to redirect when user clicks the logo.</description>
+		</var>
+		<var name="footer_copyright" type="textarea">
+			<title xml:lang="ko">footer 카피라이트</title>
+			<title xml:lang="en">Copyright of footer</title>
+			<description xml:lang="ko">footer 카피라이트.작성안하면 출력안합니다.</description>
+			<description xml:lang="en">Copyright of footer</description>
+		</var>
+    <var name="footer_custom" type="radio">
+  			<title xml:lang="ko">커스텀 푸터</title>
+  			<title xml:lang="en">custom footer</title>
+  				<description xml:lang="ko">따로 작성된 푸터를 적용합니다.</description>
+          <options value="no">
+            <title xml:lang="ko">아니오</title>
+            <title xml:lang="en">no</title>
+          </options>
+        <options value="yes">
+  				<title xml:lang="ko">예</title>
+  				<title xml:lang="en">yes</title>
+  			</options>
+  		</var>
+      <var name="goto_top" type="radio">
+          <title xml:lang="ko">상단 이동 아이콘</title>
+          <title xml:lang="en">Goto top icon</title>
+            <description xml:lang="ko">상단 이동 아이콘 출력여부.</description>
+            <options value="yes">
+              <title xml:lang="ko">예</title>
+              <title xml:lang="en">yes</title>
+            </options>
+            <options value="no">
+              <title xml:lang="ko">아니오</title>
+              <title xml:lang="en">no</title>
+            </options>
+        </var>
+	</group>
+	</extra_vars>
+    <menus>
+        <menu name="main_menu" maxdepth="3" default="true">
+            <title xml:lang="ko">상단 메뉴</title>
+            <title xml:lang="en">Top menu</title>
+        </menu>
+    </menus>
+</layout>

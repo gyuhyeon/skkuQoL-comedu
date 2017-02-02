@@ -1,0 +1,7 @@
+
+<block cond="Mobile::isMobileCheckByAgent()">
+ <include target="mobile.html" />
+</block>
+<block cond="!Mobile::isMobileCheckByAgent()">
+  <include target="pc.html" />
+</block>

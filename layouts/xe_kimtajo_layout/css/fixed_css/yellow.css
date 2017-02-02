@@ -1,0 +1,44 @@
+.visual.sub .sub_title h1:after{background-color:#F9A825;}
+.footer{border-bottom:3px solid #F9A825;}
+.footer .bottom a:active{color:#F9A825}
+.gnb>ul .depth2:after{background-color:#F9A825}
+.body.fixed-width .lnb>ul>li.on a{color:#F9A825}
+.body.fixed-width .lnb ul ul li.on a{color:#F9A825}
+.body.fixed-width .lnb ul ul a:active{color:#F9A825}
+.body.fixed-width .lnb>ul>li.on>ul>li.on a{color:#F9A825}
+.body.fixed-width .lnb ul ul li.on a{color:#F9A825}
+
+.gnb>ul .depth2 a:hover,.gnb>ul .depth2 a:active,.gnb>ul .depth2 a:focus,.gnb>ul .depth2>li.on>a {color:#FDD835}
+.btn_top:hover{background-color:#FDD835;}
+.gnb>ul>li>a,.gnb>ul>li>a:hover,.gnb>ul>li>a:focus,.gnb>ul>li>a:focus,.gnb>ul>li.on>a{color:#FDD835}
+.footer .site_map > ul ul a:hover,
+.footer .site_map > ul ul a:focus,
+.footer .site_map > ul ul a:active{color:#FDD835}
+.footer .bottom a:hover,
+.footer .bottom a:focus,
+.footer .bottom a:active{color:#FDD835}
+.header>.side>ul .ly a:hover{color:#FDD835;}
+.btn_item:hover,
+.btn_item:active
+.btn_item:focus{background-color:#FDD835;color:#fff}
+
+.popup_btn{background-color: #FDD835;}
+
+/* main_content */
+.main_content .noti{color:#F9A825;}
+.main_content .main2 .ico:hover,
+.main_content .main2 .ico:active,
+.main_content .main2 .ico:focus{background-color:#F9A825}
+.main_content .main2 p a:hover,
+.main_content .main2 p a:active,
+.main_content .main2 p a:focus{color:#F9A825;border-bottom:1px solid #F9A825}
+
+
+.main_content .main3 .fe_box a:hover{color:#F9A825}
+.main_content .main3 .fe_box.on{background-color:#F9A825}
+
+.main_content .main4 .ico{background-color:#F9A825;}
+
+@media all and (max-width: 479px) {
+    .main_content .main3 li .fe_box { background-color:#F9A825; }
+}

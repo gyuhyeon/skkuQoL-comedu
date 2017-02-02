@@ -1,0 +1,205 @@
+@charset "utf-8";
+/* PlannerXE123 White*/
+
+/* Planner123 */
+html {overflow-y: scroll;} 
+.planner123 {width:99%; padding:4px;}
+.planner123, .planner123 button, .planner123 table {font-family:Georgia,나눔고딕,NanumGothic,돋움,Dotum, Arial, Helvetica,sans-serif; line-height:normal; font-size:12px;}
+.planner123 {color:#000000; background:none;}
+.planner123 .boardHeader {color:#000000;}
+.planner123 a {text-decoration:none; color:black;}
+.planner123 a:hover,
+.planner123 a:active,
+.planner123 a:focus {text-decoration:underline;}
+.planner123 .strong {font-weight:bold;}
+.planner123 .planner_navigation {display:inline; padding-top:4px;}
+.planner123 .planner_navigation img {border:none; margin:0; padding:0;}
+.planner123 .planner_navigation select {width:auto;}
+.planner123 .category_navigation{clear:both;}
+.planner123 .client_time {text-align:center;}
+.planner123 .past_day {cursor:no-drop; opacity:0.5; filter:alpha(opacity=50);}
+.planner123 .diff_month {opacity:0.5; filter:alpha(opacity=50);}
+.planner123 button.button2
+	{text-decoration:none !important;display:inline-block;*display:inline;*zoom:1;padding:0 12px;margin:0;
+	font-family:inherit;font-size:12px;line-height:24px;height:24px;color:#333333;text-align:center;
+	text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);vertical-align:top;cursor:pointer;overflow:visible;
+	background-color:#f5f5f5;*background-color:#e6e6e6;background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:linear-gradient(#ffffff, #e6e6e6);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);border:1px solid #bbbbbb;border-color:#e6e6e6 #e6e6e6 #bfbfbf;
+	border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);border-bottom-color:#a2a2a2;border-radius:4px;
+	box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)}
+.planner123 button.button3, .weekPlanNavigation button.button3
+	{text-decoration:none !important;display:inline-block;*display:inline;*zoom:1;padding:0 0px;margin:0; width:auto;
+	font-family:inherit;font-size:12px;color:#333333;text-align:center;
+	text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);vertical-align:top;cursor:pointer;overflow:visible;
+	background-color:#f5f5f5;*background-color:#e6e6e6;background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:linear-gradient(#ffffff, #e6e6e6);background-repeat:repeat-x;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);border:1px solid #bbbbbb;border-color:#e6e6e6 #e6e6e6 #bfbfbf;
+	border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);border-bottom-color:#a2a2a2;border-radius:4px;
+	box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)}
+.planner123 button:focus, .planner123 button:hover, .planner123 select:hover, .month_button:hover, .month_button:focus 
+	{background-image:-webkit-linear-gradient(top, #e6e6e6, #e6e6e6);background-image:-o-linear-gradient(top, #e6e6e6, #e6e6e6);
+	background-image:linear-gradient(#e6e6e6, #e6e6e6);}
+
+.schedule_view {border-bottom: 1px solid #ffffff; cursor:pointer; min-height:14px; padding:1px 2px 0px; margin:0px 0px; 
+		border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; word-break:break-all; display:block; 
+		vertical-align:middle; text-align:center;}
+.schedule_view a {text-decoration:none; color:black;}
+.schedule_view a:hover,
+.schedule_view a:active,
+.schedule_view a:focus {text-decoration:underline;}
+.schedule_view img {border:none; vertical-align:middle;}
+.complete {color:#000000; text-decoration:line-through;}
+
+.planner_control {clear:both; width:100%; background:transparent; *zoom:1; height:30px;}
+.planner_control:after {clear:both; display:block;}
+.planner_this {float:left; color:#008000; font: bold 24px Georgia; margin-top:-4px;}
+.planner_this_week {width:320px; float:left; color:#008000; font: bold 18px Georgia;}
+.planner_navigation {float:right;}
+.month_button,.month_button_on, .planner123 select {display:inline-block; font-size:12px; font-weight:normal; 
+	color:#000000; background-color:#e6e6e6; padding:1px 4px 1px 4px; border:1px solid #aaa; border-radius: 3px; cursor:pointer;
+	background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:linear-gradient(#ffffff, #e6e6e6);/* for IE 10*/
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);}
+.month_button_on {color:#ffffff; background-color:#000000;
+	background-image:-moz-linear-gradient(top, #ffffff, #000000);
+	background-image:-webkit-linear-gradient(top, #ffffff, #000000);
+	background-image:linear-gradient(#ffffff, #000000);/* for IE 10*/
+	background-image:-o-linear-gradient(top, #ffffff, #000000);}
+
+/* Planner123 - (calendar) */
+.planner_calendar {clear:both; width:100%; border-collapse:collapse; table-layout:fixed;}
+.planner_calendar thead th {padding:0; border-spacing:0; border:1px solid #ccc; height:27px; text-align:center; 
+	background: url(../images/calendar/tablehd_bg.png) repeat-x;}
+.planner_calendar tbody tr {text-align:left;}
+.planner_calendar td {padding:0; border-spacing:0; border:1px solid #ccc; height:90px; vertical-align:top;}
+.planner_calendar_inner {margin:0; padding:0; width:100%; min-height:80px; display:block;}
+.planner_calendar_inner ul {vertical-align:top; text-align:left; border:none;}
+.planner_calendar li {height:auto; padding:0px; list-style-type:none;}
+.planner_calendar .holiday {color:#ff0000;}
+.planner_calendar .offday {/* background-color: #f5f5f5; */}
+.planner_calendar .saturday {color:#0000ff;}
+.planner_calendar .weekday {color:#303030;}
+.planner_calendar .week_no {font-weight: normal;font-size: 12px;}
+.planner_calendar .lunar {color:#b03060; font-weight: normal;font-size: 12px;}
+.planner_calendar .ganji {color:#b03060; font-weight: normal;font-size: 12px;}
+.planner_calendar .islamic {color:#0000cd; font-weight: normal; font-size: 12px;}
+.planner_calendar .seasons24 {color:#0000ff; font-size: 12px;}
+.planner_calendar .memorial {color:#008b8b; font-weight: normal; padding-top:1px;}
+.planner_calendar .small {font-size:0.9em;}
+.planner_calendar .font_big {font-size:15px;}
+.planner_calendar tbody .today_bg {background:#CDE6AC; border:medium solid; border-color:#58792E;}
+.planner_calendar tbody .today_date_bg {background:#CDE6AC;}
+.planner_calendar .droppable-hover  {background:#CDE6AC;}
+.planner_calendar .inside {overflow:hidden; vertical-align:top; float:left;}
+.planner_calendar .inside_end {overflow:hidden; vertical-align:top; float:left;}
+.planner_calendar tr td.hover { background-color: #DDFFFA; }
+.planner_calendar .date_div {padding-left:2px;}
+.planner_calendar .link_allow {display:block; overflow:hidden;}
+.planner_calendar .link_allow:hover { background-color: #52FBF9; opacity:1; filter:alpha(opacity=100); }
+.planner_calendar .holiday_topline { display:none; }
+.planner_calendar .holiday_bottomline { display:inline; }
+.planner_calendar .memday_topline { display:none; }
+.planner_calendar .memday_bottomline { display:inline; }
+/* .planner_calendar .schedule_bottom {border-bottom:1px solid #ffffff;} */
+
+/* Planner123 - (list) */
+.planner_list {clear:both; width:100%; border-collapse:collapse; empty-cells:show; table-layout:fixed;}
+.planner_list thead th {padding:0; border-spacing:0; border:1px solid #ccc; height:27px; text-align:center; 
+	background: url(../images/calendar/tablehd_bg.png) repeat-x; }
+.planner_list tbody tr {text-align:left;}
+.planner_list tr:hover {background:#f5f5f5;}
+.planner_list td {padding:0; border-spacing:0; border:1px solid #ccc; min-height:30px; vertical-align:top;  line-height:1.2em;}
+.planner_list td img {margin:0; padding:0; _vertical-align:top;}
+.planner_list .plan {margin:0; padding:5px;}
+.planner_list .plan span {margin:0; padding:0;}
+.planner_list td ul {margin:0; padding:0; vertical-align:middle; text-align:center;}
+.planner_list td li {width:auto; height:auto; padding:0; list-style-type:none;}
+.planner_list .date_label {width:auto; height:25px; padding-left:5px; margin-top:2px; list-style-type:none; text-align:left;}
+.planner_list .date_label2{width:auto; height:20px; padding-left:5px; margin-top:2px; list-style-type:none; text-align:right;}
+.planner_list td .bline {border-bottom:0px solid #ccc;}
+.planner_list .week_one {background:#fffacd;}
+.planner_list .holiday {color:#ff0000;}
+.planner_list .offday {background-color: #f5f5f5;}
+.planner_list .saturday {color:#0000ff;}
+.planner_list .weekday {color:#303030;}
+.planner_list .lunar {color:#b03060;}
+.planner_list .ganji {color:#b03060;}
+.planner_list .islamic {color:#0000cd;}
+.planner_list .strong {font-weight:bold;}
+.planner_list .seasons24 {color:#0000ff;}
+.planner_list .memorial {color:#008b8b; padding:5px; vertical-align:middle;}
+.planner_list .small {font-size:0.9em;}
+.planner_list .font_big {font-size:14px;}
+.planner_list .today_bgcolor {background:none; border:medium solid; border-color:#58792E;}
+.planner_list .today_border {border:medium solid; border-color:#58792E;}
+.planner_list .clear_line {clear:both;}
+.planner_list .schedule_bottom {border-bottom:1px solid #ffffff;}
+.planner_list .date_div {padding-left:2px;;}
+.planner_list .link_allow {display: block; height:20px;}
+.planner_list .link_allow:hover { background-color: #52FBF9; opacity:1; filter:alpha(opacity=100); }
+
+/* Planner123 - (Week plan) */
+.weekPlan {margin-left:4px; float:left; background:#CDE6AC;}
+.weekPlan .epigram {width:94%; padding-left:8px; color:brown;}
+.weekPlanNavigation {position:relative;  width:95%; height:25px; margin-left:3%; margin-bottom:-15px; z-index:10;}
+.weekPlanNavigation button {position:absolute; top:0; font-size:14px; font-family:verdana; padding:0; cursor:pointer;}
+.weekPlanNavigation button.prevWeek {left:0; width:25px; font-size:14px;}
+.weekPlanNavigation button.prevDay {left:25px; width:20px; font-size:14px;}
+.weekPlanNavigation button.nextWeek {right:0; width:25px; font-size:14px;}
+.weekPlanNavigation button.nextDay {right:25px; width:20px; font-size:14px;}
+.weekPlanNavigation button.Today {right:50px; font-size:14px;}
+.weekPlanNavigation .week_title {clear:both; color:brown; font: bold 16px Georgia; padding-left:20%;}
+
+/* Planner123 - (Weekly time table) */
+.Timetable_div {width:100%; line-height:1.0; font-size:12px; margin-top:20px;}
+.Timetable_div .holiday {color:#ff0000; font-weight:bold; padding-left:5px;}
+.Timetable_div .saturday {color:#0000ff; font-weight:bold; padding-left:5px;}
+.Timetable_div .weekday {color:#303030; font-weight:bold; padding-left:5px;}
+.Timetable_div .underline {padding:0; margin:0; height:16px; border:0; border-bottom:1px; border-color:#808080; border-style:dotted; }
+.Timetable_div .right {float:right;}
+.Timetable_div .left {float:left;}
+.Timetable_div .header_table {border-collapse:collapse; border:1px solid #000000;}
+.Timetable_div .header_table_tr {}
+.Timetable_div .header_table th {
+    background:#c1ffc1; /* for non-css3 browsers */
+    background:-webkit-gradient(linear, left top, left bottom, from(#c1ffc1), to(#6191ff)); /* for webkit browsers */
+    background:-moz-linear-gradient(top, #c1ffc1, #6191ff); /* for firefox 3.6+ */
+	background:-ms-linear-gradient(#c1ffc1, #6191ff); /* for IE9-10 */
+	-ms-filter:progid:DXImageTransform.Microsoft.gradient(GradientType='0',startColorstr='#c1ffc1', endColorstr='#6191ff'); /* IE8 */	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType='0', startColorStr='#c1ffc1', endColorStr='#6191ff'); /* for IE6-7*/
+	}
+.Timetable_div .header_table th {padding:0; border-spacing:0; height:20px; 
+	border:1px solid #808080; text-align: left; font-weight:normal;}
+.Timetable_div .label_table {border-collapse:collapse; border:1px solid #000000;}
+.Timetable_div .label_td {height:60px; border:1px solid #000000;}
+.Timetable_div .label {width:120px; overflow:hidden; height:16px; text-align:left;}
+.Timetable_div .contenttable_bg,
+.Timetable_div .contenttable_bg td,
+.Timetable_div .contenttable_table {border-collapse:collapse; border:1px solid #808080;}
+.Timetable_div .content_td {height:60px; border:1px solid #000000;}
+.Timetable_div .content {overflow:hidden; height:16px; text-align:left;}
+.Timetable_div .of_hidden {overflow:hidden;}
+.Timetable_div .today_bg_color {background-color:#fffec5;}
+.Timetable_div .today_content_border,
+.Timetable_div .today_label_border {padding-top:1px; border:2px solid #FF0000;}
+.Timetable_div .now_bg_color {background-color:#fffec5;}
+.Timetable_div .tt_date_label {height:14px; overflow:hidden;word-break: break-all;}
+
+/* XEicon custom */
+.planner123 .xi-1-5x, .boardInformation .xi-1-5x{font-size: 22px; color:#777777;}
+.planner123 .xi, .boardInformation .xi
+	{color:#777777; background-color:#e6e6e6; padding:1px 3px 1px 3px; border:1px solid #aaa; border-radius: 3px; cursor:pointer;
+	background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image:linear-gradient(#ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);}
+.planner123 .xi:focus, .planner123 .xi:hover, .boardInformation .xi:focus, .boardInformation .xi:hover 
+	{background-image:-webkit-linear-gradient(top, #e6e6e6, #e6e6e6);
+	background-image:linear-gradient(#e6e6e6, #e6e6e6);
+	background-image:-o-linear-gradient(top, #e6e6e6, #e6e6e6);}

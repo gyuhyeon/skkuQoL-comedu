@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout version="0.2">
+    <title>Xenon HS</title>
+    <description>심플한 통합형 모바일 레이아웃, Xenon HS.</description>
+    <version>0.1.0</version>
+    <date>2015-01-21</date>
+    <link>http://atde.kr/</link>
+
+    <author email_address="hyung778@gmail.com" link="http://lina.atde.kr/">
+        <name>LI-NA</name>
+    </author>
+	
+    <extra_vars>
+		<group>
+			<title>헤더 영역 설정</title>
+            <var name="logo_img" type="image">
+            	<title>상단 로고</title>
+            	<description>높이 22px에 최적화되어있습니다. 선명한 로고를 위해 높이 44px 이상의 이미지를 첨부해주세요.</description>
+			</var>
+			<var name="logo_text" type="text">
+            	<title>상단 텍스트</title>
+            	<description>로고와 같이 입력하면 같이 출력됩니다.</description>
+			</var>
+		</group>
+		<group>
+			<title>메인 메뉴 설정</title>
+			<var name="mmenu_classes_themes" type="radio">
+				<title>메뉴 위치</title>
+            	<options value="mm-white">
+					<title>흰색 (기본값)</title>
+				</options>
+				<options value="mm-black">
+					<title>검정</title>
+				</options>
+				<options value="mm-light">
+					<title>밝게</title>
+				</options>
+				<options value="mm-dark">
+					<title>어둡게</title>
+				</options>
+			</var>
+			<var name="mmenu_classes_effect" type="radio">
+				<title>줌 효과</title>
+            	<options value="">
+					<title>사용 안함 (기본값)</title>
+				</options>
+				<options value="mm-zoom-menu mm-zoom-panels">
+					<title>사용</title>
+				</options>
+			</var>
+			<var name="mmenu_counters" type="radio">
+				<title>하위 메뉴 카운터</title>
+            	<options value="true">
+					<title>사용 (기본값)</title>
+				</options>
+				<options value="false">
+					<title>사용 안함</title>
+				</options>
+			</var>
+			<var name="mmenu_zposition" type="radio">
+				<title>메뉴 깊이</title>
+            	<options value="front">
+					<title>앞 (기본값)</title>
+				</options>
+				<options value="next">
+					<title>중간</title>
+				</options>
+				<options value="">
+					<title>뒤</title>
+				</options>
+			</var>
+			<var name="mmenu_position" type="radio">
+				<title>메뉴 위치</title>
+				<description>상단과 하단은 메뉴 깊이가 앞일때만 동작합니다. 그런데 왼쪽 오른쪽 말고는 어떻게 되도 책임 안집니다. 저도 안해봤어요.</description>
+            	<options value="left">
+					<title>왼쪽 (기본값)</title>
+				</options>
+				<options value="right">
+					<title>오른쪽</title>
+				</options>
+				<options value="top">
+					<title>상단</title>
+				</options>
+				<options value="bottom">
+					<title>하단</title>
+				</options>
+			</var>
+			<var name="mmenu_slidingSubmenus" type="radio">
+				<title>하위 메뉴 형태</title>
+            	<options value="true">
+					<title>슬라이딩 (기본값)</title>
+				</options>
+				<options value="false">
+					<title>아레로 펼치기</title>
+				</options>
+			</var>
+			<var name="mmenu_drag_open" type="radio">
+				<title>드래그 오픈</title>
+            	<options value="true">
+					<title>사용 (기본값)</title>
+				</options>
+				<options value="false">
+					<title>사용 안함</title>
+				</options>
+			</var>
+			<var name="mmenu_footer" type="radio">
+				<title>메뉴 푸터</title>
+				<description>메뉴를 열면 하단에 보일 문구를 설정합니다.</description>
+            	<options value="false">
+					<title>사용 안함 (기본값)</title>
+				</options>
+				<options value="true">
+					<title>사용</title>
+				</options>
+			</var>
+			<var name="mmenu_footer_text" type="text">
+            	<title>메뉴 푸터 문구</title>
+            	<description>메뉴 푸터를 사용하지 않으면 출력되지 않습니다.</description>
+			</var>
+		</group>
+		<group>
+			<title>컨텐츠 영역 설정</title>
+            <var name="content_style" type="radio">
+				<title>본문 영역 스타일</title>
+				<description>XE 위젯으로 사용하는 경우, 위젯 페이지에서 내부 여백을 5~10px로 설정하시기 바랍니다.</description>
+            	<options value="xewiget">
+					<title>XE 위젯</title>
+				</options>
+				<options value="page">
+					<title>일반 페이지 및 게시판</title>
+				</options>
+				<options value="none">
+					<title>스타일 사용 안함 (본문 여백 없음)</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title>푸터 영역 설정</title>
+			<var name="footer_menu" type="radio">
+				<title>도구 메뉴</title>
+				<description>로그인, PC보기 등 모바일에서 필요한 버튼을 모아둔 메뉴입니다.</description>
+            	<options value="ture">
+					<title>사용 (기본값)</title>
+				</options>
+				<options value="false">
+					<title>사용 안함</title>
+				</options>
+			</var>
+			<var name="footer_text" type="text">
+				<title>최하단 텍스트</title>
+			</var>
+		</group>
+		<group>
+			<title>커스터마이즈</title>
+			<var name="member_background_type" type="radio">
+				<title>회원 영역 배경</title>
+            	<options value="hanbumson">
+					<title>Hanbumson™ (기본값, 추천)</title>
+				</options>
+				<options value="color">
+					<title>색상코드</title>
+				</options>
+				<options value="image">
+					<title>사용자 이미지</title>
+				</options>
+			</var>
+			<var name="member_background_color" type="text">
+				<title>회원 영역 배경 색상</title>
+				<description>색상코드 (#fff, rgba(255,255,255,1)) 등을 입력하세요.</description>
+			</var>
+			<var name="member_background_image" type="image">
+				<title>회원 영역 배경 이미지</title>
+				<description>높이 160px에 최적화됨.</description>
+			</var>
+			<var name="css_load" type="radio">
+				<title>CSS 로딩</title>
+				<description>압축 CSS는 main.min.css, 개발자용은 main.css 입니다.</description>
+            	<options value="min">
+					<title>압축 CSS 로딩 (기본값)</title>
+				</options>
+				<options value="developer">
+					<title>개발자용 CSS 로딩</title>
+				</options>
+			</var>
+			<var name="temp" type="text">
+				<title>다른건 아직 못만들었어여 ㅠㅠ</title>
+				<description>흑흑 공모전이 이리 짧았다니...</description>
+			</var>
+		</group>
+    </extra_vars>
+    <menus>
+        <menu name="main_menu" maxdepth="3" default="true">
+            <title>메인 메뉴</title>
+        </menu>
+    </menus>
+</layout>

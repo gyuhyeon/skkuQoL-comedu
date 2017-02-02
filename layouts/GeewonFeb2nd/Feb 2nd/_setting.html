@@ -1,0 +1,29 @@
+{@
+  $layout_info->layoutThemes = 'phizThemes';
+  if(!$layout_info->menu_type) $layout_info->menu_type = 'one_left';
+  if($layout_info->menu_type == 'one_left') $menu_pos = 'menu-left';
+  if($layout_info->menu_type == 'one_right') $menu_pos = 'menu-right';
+}
+<!--@if($layout_info->brandColor == 'customBrandColor')-->
+<style>
+a.customBrandColor, a:hover.customBrandColor {color: {$layout_info->brandTextColor} }
+</style>
+<!--@end-->
+
+<block cond="$layout_info->sub_menu == 'yes'">
+<style>
+.mm-vertical .mm-listview > li > .mm-next, .mm-listview > li.mm-vertical > .mm-next {width:100%}
+</style>
+</block>
+<script>
+jQuery(function($){
+	$('html').addClass('{$layout_info->colorThemes}');
+});
+<!--@if($layout_info->menu_fixed == 'yes')-->
+jQuery(function($){
+  $('.header').addClass('fixed');
+  $('.content').addClass('fixed-padding');
+  $('.btn-top').addClass('btn-top-45');
+});
+ <!--@end-->
+</script>

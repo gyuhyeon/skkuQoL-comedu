@@ -1,0 +1,74 @@
+{@
+Context::addHtmlHeader('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">');
+Context::addHtmlHeader('<meta name="format-detection" content="telephone=no" />');
+Context::addHtmlHeader('<meta name="apple-mobile-web-app-capable" content="yes" />');
+Context::addHtmlHeader('<meta name="mobile-web-app-capable" content="yes" />');
+}
+<!--// css -->
+<load target="fonts/font-awesome/css/font-awesome.min.css" />
+<load target="css/jquery.mmenu.all.css" />
+<load target="css/phiz.global.css" index="10" />
+<load target="css/phiz.mlayout.css" index="20" />
+<!--// js -->
+<!--@if(__XE_VERSION__ < '1.7.6')-->
+<load target="../../common/css/xe.min.css" index="-100000" />
+<load target="../../common/css/mobile.min.css" index="-100000" />
+<load target="../../common/js/jquery.min.js" index="-100006" />
+<load target="../../common/js/x.min.js" index="-100000" />
+<load target="../../common/js/xe.min.js" index="-100000" />
+<!--@end-->
+<load target="js/jquery.mmenu.min.all.js" />
+
+<include target="_setting.html" />
+<div id="page" class="page">
+    <div id="header" class="header w500<!--@if($layout_info->menu_fixed == 'yes')--> Fixed<!--@end-->">
+	     <a id="hamburger" class="{$menu_pos}" href="#{$menu_pos}"><span></span></a>
+	      <!--@if($layout_info->logo_image)--><a class="mlogo" href="{$layout_info->index_url}"><img src="{$layout_info->logo_image}" alt="{$layout_info->logo_text}"|cond="$layout_info->logo_text" alt="logo"|cond="!$layout_info->logo_text" /></a><!--@else--><a class="mlogo <!--@if($layout_info->brandColor !== 'customBrandColor')-->{$layout_info->brandColor} text-w500<!--@else--> customBrandColor<!--@end-->" href="{$layout_info->index_url}">{$layout_info->logo_text}</a><!--@end-->
+    </div>
+	<!--// 컨텐츠 시작 -->
+<div class="content" id="content">
+	{$content}
+</div>
+<include target="./footer.html" cond="$layout_info->footer_copyright" />
+<include target="./footer_custom.html" cond="$layout_info->footer_custom == 'yes'" />
+
+  <p cond="$layout_info->footer_custom == 'yes'" id="back-top">
+    <a href="#top"><span></span></a>
+  </p>
+
+<nav id="{$menu_pos}">
+<div>
+	<block cond="!$is_logged">
+	<div class="nrow member-menu">
+		<div class="col s6 text-center"><a href="{getUrl('act','dispMemberLoginForm')}"><i class="fa fa-key"></i>&nbsp;{$lang->cmd_login}</a></div>
+		<div class="col s6 text-center"><a href="{getUrl('act','dispMemberSignUpForm')}"><i class="fa fa-sign-in"></i>&nbsp;{$lang->cmd_signup}</a></div>
+	</div>
+	</block>
+	<ul>
+	<block cond="$is_logged">
+		<li class="member-view"><span class="text-center"><i class="fa fa-user"></i>&nbsp;{$logged_info->nick_name}님</span>
+			<ul>
+				<li><a href="{getUrl('act','dispMemberLogout')}"><i class="fa fa-sign-out"></i>&nbsp;{$lang->cmd_logout}</a></li>
+				<!--@if($logged_info->is_admin=="Y" && !$site_module_info->site_srl)-->
+				<li><a href="{getUrl('','module','admin')}"><i class="fa fa-cog"></i>&nbsp;{$lang->cmd_management}</a></li>
+				<!--@end-->
+				<li><a href="{getUrl('act','dispMemberInfo','member_srl','')}"><i class="fa fa-info-circle"></i>&nbsp;{$lang->cmd_view_member_info}</a></li>
+				<li cond="count($lang_supported)>1"><a href="{getUrl('act','dispModuleChangeLang','oldact',$act)}">LANG</a></li>
+			</ul>
+		</li>
+		</block>
+
+		<li loop="$main_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']"><a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+			<ul cond="$val1['list']">
+				<li loop="$val1['list']=>$key2,$val2" class="active"|cond="$val2['selected']"><a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+					<ul cond="$val2['list']">
+						<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']"><a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li id="viewpc"><a href="{getUrl('m',0)}"><i class="fa fa-desktop"></i>&nbsp;PC화면으로 보기</a></li>
+	</ul>
+</div>
+</nav>
+</div>

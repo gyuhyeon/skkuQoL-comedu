@@ -1,0 +1,17 @@
+<query id="getDocumentsForPlanner_weekplan" action="select">
+    <tables>
+        <table name="documents" />
+    </tables>
+    <columns>
+        <column name="documents.*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="documents.module_srl" var="module_srl" />
+        <condition operation="equal" column="documents.member_srl" var="var_member_srl" pipe="and" />
+		<condition operation="equal" column="documents.title" var="title" pipe="and" />
+ 	    <group pipe="and">
+			<condition operation="equal" column="documents.extra_vars" var="extra_vars" />
+			<condition operation="equal" column="documents.extra_vars" var="extra_vars_serial"  pipe="or" />
+        </group>
+    </conditions>
+</query>

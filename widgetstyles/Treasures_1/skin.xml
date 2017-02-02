@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">Treasurej 탭형식 인기글,최근글,최근댓글 위젯스킨 라운드탭</title>
+	<description xml:lang="ko">탭형식으로 인기글과 최근글,최근댓글을 출력합니다.</description>
+	<version>1.1</version>
+	<date>2013-05-24</date>
+	<link>http://cameron.co.kr</link>
+	<author email_address="a@cameron.co.kr" link="http://cameron.co.kr">
+		<name xml:lang="ko">Treasurej</name>
+	</author>
+</skin>

@@ -1,0 +1,10 @@
+/* full display */
+body, #contentBody, .body {color : #000000; background : #FFFFFF;}
+#header, #footer, #columnLeft, .boardInformation, .header, .lnb {display:none; padding:0px;}
+
+#top, #menu, .columnLeft, .bloozLeft, .bread-crumb, .bread-left, .boardInformation, .header, .lnb, .e1, .fixed .ec #body .e1 {display:none;}
+#columnRight, .columnRight, #bloozLayout .bloozRight, .content, .body, .fixed .ec #body #content{background: #FFFFFF; width:100%; padding:0px; border:none;}
+
+.planner123 .planner_navigation, .buttonRight, .boardSearchForm {display:none;}
+.planner_calendar tbody .today_bg { background:{$day_bgcolor}; border:1px solid #ccc;}
+.planner_calendar tbody .today_date_bg { background:{$day_bgcolor};}

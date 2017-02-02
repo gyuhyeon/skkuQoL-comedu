@@ -1,0 +1,88 @@
+<include target="_setting.html" />
+
+<!--// 레이아웃 영역 시작 -->
+<div class="layout">
+	<div class="headerBar" id="headerBar">
+    	<a href="#menu" id="menuBtnA"><div class="menuButton"><div class="lines-button"><span class="lines"></span></div></div></a>
+        <div class="logo" cond="$ly->logo_img || $ly->logo_text"><a href="{getUrl('')}"><img src="{$ly->logo_img}" alt="Logo" cond="$ly->logo_img"/>{$ly->logo_text}</a></div>
+		<div class="logo" cond="!$ly->logo_img && !$ly->logo_text">Xenon HS</div>
+        <a href="#search" class="searchButton"><span class="xe-icon xe-magnifier"></span></a>
+        <form class="searchForm" action="{getUrl('')}" method="get">
+        	<input type="hidden" name="vid" value="{$vid}" />
+            <input type="hidden" name="mid" value="{$mid}" />
+            <input type="hidden" name="act" value="IS" />
+            <input type="hidden" name="search_target" value="title_content" />
+            <input type="hidden" name="where" value="document" />
+        	<div class="searchInput"><input type="search" class="searchInput" name="is_keyword"  value="{$is_keyword}" placeholder="Input Keyword" /></div>
+            <button class="searchBtn" type="submit"><span class="xe-icon xe-magnifier"></span></button>
+        </form>
+    </div>
+    <!--// 헤더 종료 -->
+    
+    <div class="contentArea">
+    	<!--Content Start-->
+        {$content}
+        <!--Content End-->
+    </div>
+    <!--// 컨텐츠 영역 종료-->
+    
+    <div class="footerBar">
+    	<ul class="menuBar" cond="$ly->footer_menu != 'false'">
+        	<block cond="!$is_logged">
+        	<li><a href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+            <li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+            </block>
+            <block cond="$is_logged">
+            <li><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+            <li><a href="{getUrl('act','dispMemberInfo')}">{$lang->member_info}</a></li>
+            </block>
+            <li><a href="{getUrl('act','dispModuleChangeLang')}">{$lang_supported[$lang_type]}</a></li>
+            <li><a href="{getUrl('m','0')}">PC</a></li>
+        </ul>
+    	<div>{$ly->footer_text}</div>
+    </div>
+    <!--// 푸터 영역 종료 -->
+</div>
+
+<!-- 메인 메뉴 영역 시작 -->
+<div id="menu" class="menuArea">
+    <ul>
+        <li loop="$main_menu->list=>$key1,$val1" cond="$val1['link']" class="mm-selected"|cond="$val1['selected']">
+            <a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+            <ul cond="$val1['list']">
+                <li loop="$val1['list']=>$key2,$val2" cond="$val2['link']" class="mm-selected"|cond="$val2['selected']">
+                    <a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+                    <ul cond="$val2['list']">
+                        <li loop="$val2['list']=>$key3,$val3" cond="$val3['link']" class="mm-selected"|cond="$val3['selected']">
+                            <a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--// mmenu 호환을 위해 유저 영역을 자바스크립트로 처리-->
+<div class="userArea">
+<block cond="!$is_logged"> <!--// 비회원 -->
+    <div class="profileImage"><span><span class="xe-icon xe-user"></span></span></div>
+    <div class="nickName">비회원</div>
+    <div class="groupList">우측 상단 버튼으로 로그인이 가능합니다.</div>
+    <div class="memberBtn">
+    	<a href="{getUrl('act','dispMemberLoginForm')}"><span class="xe-icon xe-user-lock"></span></a>
+        <a href="{getUrl('act','dispMemberSignUpForm')}"><span class="xe-icon xe-user-plus"></span></a>
+    </div>
+</block>
+
+<block cond="$is_logged"> <!--// 회원 -->
+    <div class="profileImage" cond="$logged_info->profile_image->src"><div style="background-image:url({$logged_info->profile_image->src});"></div></div>
+    <div class="profileImage" cond="!$logged_info->profile_image->src"><span><span class="xe-icon xe-user"></span></span></div>
+    <div class="nickName">{$logged_info->nick_name}</div>
+    {@ $count = 0;}
+    <div class="groupList"><span loop="$logged_info->group_list=>$key,$val"><!--@if($count != 0)--> / <!--@end-->{$val}{@ $count ++;}</span></div>
+    <div class="memberBtn">
+    	<a href="{getUrl('act','dispMemberLogout')}"><span class="xe-icon xe-esc"></span></a>
+        <a href="{getUrl('act','dispMemberInfo')}"><span class="xe-icon xe-user-info"></span></a>
+    </div>
+</block>
+</div>

@@ -1,0 +1,135 @@
+<query id="getDocumentsForPlanner_own" action="select">
+    <tables>
+        <table name="documents" />
+       <table name="document_extra_vars" alias="extra_vars_t1" type="left join" >
+            <conditions>
+                <condition operation="equal" column="extra_vars_t1.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t1.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t1.var_idx" default="1" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_t2" type="left join">
+            <conditions>
+                <condition operation="equal" column="extra_vars_t2.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t2.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t2.var_idx" default="2" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_t5" type="left join">
+            <conditions>
+                <condition operation="equal" column="extra_vars_t5.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t5.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t5.var_idx" default="5" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_t6" type="left join">
+            <conditions>
+                <condition operation="equal" column="extra_vars_t6.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t6.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t6.var_idx" default="6" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_t7" type="left join">
+            <conditions>
+                <condition operation="equal" column="extra_vars_t7.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t7.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t7.var_idx" default="7" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_t8" type="left join">
+            <conditions>
+                <condition operation="equal" column="extra_vars_t8.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_t8.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_t8.var_idx" default="8" pipe="and" />
+            </conditions>
+        </table>
+        <table name="document_extra_vars" alias="extra_vars_search" type="left join" >
+             <conditions>
+                <condition operation="equal" column="extra_vars_search.module_srl" default="documents.module_srl" />
+                <condition operation="equal" column="extra_vars_search.document_srl" default="documents.document_srl" pipe="and" />
+                <condition operation="equal" column="extra_vars_search.var_idx" var="var_search_extra_idx" default="8" pipe="and" />
+            </conditions>
+        </table>
+    </tables>
+
+    <columns>
+        <column name="documents.*" />
+        <column name="extra_vars_t1.value" alias="extra_value_start"/>
+		<column name="extra_vars_t2.value" alias="extra_value_end"/>
+		<column name="extra_vars_t7.value" alias="extra_value_time"/>
+		<column name="extra_vars_t8.value" alias="extra_value_group"/>
+    </columns>
+
+    <conditions>
+	    <condition operation="notin" column="documents.module_srl" var="var_0" default="0" />
+        <condition operation="in" column="documents.module_srl" var="module_srl" filter="number" pipe="and" />
+
+	    <condition operation="equal" column="extra_vars_t1.module_srl" default="documents.module_srl" pipe="and" />
+        <condition operation="equal" column="extra_vars_t1.document_srl" default="documents.document_srl" pipe="and" />
+
+        <condition operation="in"  column="category_srl" var="var_category_srl" pipe="and" />
+
+	    <group pipe="and">
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" />
+        <condition operation="more"  column="extra_vars_t1.value" var="var_period_start" notnull="notnull" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+        <condition operation="null" column="substr(extra_vars_t6.value,1,1)" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+        <condition operation="null" column="extra_vars_t5.value" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+		<condition operation="notequal"  column="substr(extra_vars_t6.value,1,1)" default='2' notnull="notnull" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+        <condition operation="notequal"  column="extra_vars_t5.value" default='12' notnull="notnull" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+		<condition operation="equal"  column="substr(extra_vars_t6.value,1,1)" default='2' notnull="notnull" pipe="and" />
+        <condition operation="equal"  column="extra_vars_t5.value" default='12' notnull="notnull" pipe="and" />
+		<condition operation="more"  column="substr(extra_vars_t1.value,5,4)" var="var_start_mmdd" notnull="notnull"  pipe="and" />
+        <condition operation="less"  column="substr(extra_vars_t1.value,5,4)" var="var_end_mmdd" notnull="notnull" pipe="and" />
+
+        <condition operation="less"  column="extra_vars_t1.value" var="var_period_end" notnull="notnull" pipe="or" />
+        <condition operation="more"  column="extra_vars_t2.value" var="var_period_start" notnull="notnull" pipe="and" />
+        <condition operation="equal"  column="substr(extra_vars_t6.value,1,1)" default='2' notnull="notnull" pipe="and" />
+        <condition operation="equal"  column="extra_vars_t5.value" default='12' notnull="notnull" pipe="and" />
+        <condition operation="more"  column="substr(extra_vars_t1.value,5,4)" var="var_start_mmdd2" notnull="notnull"  pipe="and" />
+        <condition operation="less"  column="substr(extra_vars_t1.value,5,4)" var="var_end_mmdd2" notnull="notnull" pipe="and" />
+       </group>
+
+	    <group pipe="and">
+            <condition operation="equal"  column="documents.is_notice" default="Y" />
+            <condition operation="equal" column="documents.member_srl" var="var_member_srl" default="-1" pipe="or" />
+		</group>
+
+ 	    <group pipe="and">
+        <condition operation="like"  column="documents.title" var="var_search_title" />
+        <condition operation="like"  column="documents.content" var="var_search_content" pipe="or" />
+        <condition operation="like"  column="documents.user_name" var="var_search_user_name" pipe="or" />
+        <condition operation="like"  column="documents.nick_name" var="var_search_nick_name" pipe="or" />
+        <condition operation="like"  column="documents.user_id" var="var_search_user_id" pipe="or" />
+        <condition operation="like"  column="documents.tags" var="var_search_tags" pipe="or" />
+        <condition operation="like"  column="extra_vars_search.value" var="var_search_extra_value" pipe="or" />
+        </group>
+    </conditions>
+
+    <navigation>
+        <index var="sort_index_1" default="sort_index_default_1" order="order_type_1" />
+        <index var="sort_index_1_1" default="sort_index_default_1_1" order="order_type_1_1" />
+        <index var="sort_index_2" default="sort_index_default_2" order="order_type_2" />
+        <index var="sort_index" default="sort_index_default" order="order_type" />
+        <list_count var="list_count" default="50" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+	<groups>
+		<group column="documents.document_srl" />
+	</groups>
+</query>

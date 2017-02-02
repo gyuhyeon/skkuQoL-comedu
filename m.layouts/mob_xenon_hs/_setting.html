@@ -1,0 +1,92 @@
+<!--// CSS 파일 로딩 -->
+<load target="css/xeicon.min.css" />
+<load target="css/jquery.mmenu.all.css" />
+<load cond="$layout_info->css_load != 'developer'" target="css/main.min.css" />
+<load cond="$layout_info->css_load == 'developer'" target="css/main.css" />
+
+<!--// JS 파일 로딩 -->
+<load cond="$layout_info->mmenu_drag_open == 'true'" target="js/hammer.min.js" />
+<load target="js/jquery.mmenu.min.all.js" />
+
+<!--// 초기화 -->
+{@ $ly = $layout_info;}
+<block cond="!$ly->mmenu_classes_themes">{@ $ly->mmenu_classes_themes = 'mm-white';}</block>
+<block cond="!$ly->mmenu_classes_effect">{@ $ly->mmenu_classes_effect = '';}</block>
+<block cond="!$ly->mmenu_zposition">{@ $ly->mmenu_zposition = 'front';}</block>
+<block cond="!$ly->mmenu_position">{@ $ly->mmenu_position = 'left';}</block>
+<block cond="!$ly->mmenu_slidingSubmenus">{@ $ly->mmenu_slidingSubmenus = 'true';}</block>
+<block cond="!$ly->mmenu_drag_open">{@ $ly->mmenu_drag_open = 'true';}</block>
+<block cond="!$ly->mmenu_footer">{@ $ly->mmenu_footer = 'false';}</block>
+<block cond="!$ly->content_xewiget">{@ $ly->content_xewiget = 'true';}</block>
+<block cond="!$ly->mmenu_counters">{@ $ly->mmenu_counters = 'true';}</block>
+
+<!--// mmenu 설정, 충돌 문제로 jQuery 사용 -->
+<script>
+jQuery(document).ready(function() {
+	jQuery('#menu').mmenu({
+		'classes': '{$ly->mmenu_classes_themes} {$ly->mmenu_classes_effect}',
+		'slidingSubmenus': {$ly->mmenu_slidingSubmenus},
+		'counters': {$ly->mmenu_counters},
+		'offCanvas': {
+			'zposition': '{$ly->mmenu_zposition}',
+			'position': '{$ly->mmenu_position}'
+		}
+		<!--@if($ly->mmenu_drag_open == 'true')-->
+		<!--// 드래그 오픈 설정-->
+		,'dragOpen': {
+			'open': true,
+			'pageNode': '.layout'
+		}
+		<!--@end-->
+		<!--@if($ly->mmenu_footer == 'true')-->
+		<!--// 푸터 설정-->
+		,'footer': {
+			'add': true,
+			'content': '{$ly->mmenu_footer_text}'
+		}
+		<!--@end-->
+	}).on('opened.mm', function() {
+		jQuery('.lines-button').removeClass('arrow');
+		jQuery('.lines-button').addClass('close');
+	}).on('closed.mm', function() {
+		jQuery('.lines-button').removeClass('close');
+	});
+	jQuery('.userArea').appendTo(jQuery('#menu'));
+	jQuery('.searchButton').on('click', function() {
+		jQuery('.lines-button').addClass('arrow');
+		jQuery('#menuBtnA').attr('href','#close');
+		jQuery('.logo').add('.searchButton').hide();
+		jQuery('.searchInput > input').width(jQuery('.headerBar').width()-110);
+		jQuery('.searchForm').show();
+		jQuery('.searchInput > input').focus();
+		return false;
+	});
+	jQuery('a').on('click', function() {
+		if(jQuery(this).attr('href') == '#close') {
+			jQuery('.lines-button').removeClass('arrow');
+			jQuery('#menuBtnA').attr('href','#menu');
+			jQuery('.searchForm').hide();
+			jQuery('.logo').add('.searchButton').show();
+			return false;
+		}
+	});
+});
+</script>
+
+<!--// 커스텀 설정 -->
+<style>
+<!--@if($ly->content_style == 'xewiget')-->
+<!--// XE 기본 위젯 가공 -->
+.layout{background-color:#ebebeb !important}.layout>.contentArea {padding:5px}.layout>.contentArea>.bd>.xe-widget-wrapper{padding:5px;box-sizing:border-box}.layout>.contentArea>.bd>.xe-widget-wrapper>div{border-radius:3px;border:1px solid #ddd;background-color:#fff;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)}
+<!--@elseif($ly->content_style == 'page')-->
+<!--// 기본 페이지 및 게시판 가공 -->
+.layout{background-color:#ebebeb !important}.layout>.contentArea {padding:5px;margin:10px;border-radius:3px;border:1px solid #DDD;background-color:#FFF;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)}
+<!--@end-->
+<!--@if($ly->member_background_type == 'image')-->
+<!--//유저 영역 배경 -->
+.userArea{background-image:url({$ly->member_background_image})}
+<!--@elseif($ly->member_background_type == 'color')-->
+<!--//유저 영역 색상 -->
+.userArea{background-image:none;background-color:{$ly->member_background_image}}
+<!--@end-->
+</style>

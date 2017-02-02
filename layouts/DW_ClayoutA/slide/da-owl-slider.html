@@ -1,0 +1,125 @@
+<!--@if(!$layout_info->slide_height)-->{@$layout_info->slide_height = "450"}<!--@end-->
+<!--@if(!$layout_info->slide_speed)-->{@$layout_info->slide_speed = "7000"}<!--@end-->
+<!--@if(!$layout_info->slide_title_color)-->{@$layout_info->slide_title_color = "#222"}<!--@end-->
+<!--@if(!$layout_info->slide_text_color)-->{@$layout_info->slide_text_color = "#999"}<!--@end-->
+<!--@if(!$layout_info->more_bg)-->{@$layout_info->more_bg = "#222"}<!--@end-->
+<!--@if(!$layout_info->more_color)-->{@$layout_info->more_color = "#fff"}<!--@end-->
+<load target="../css/owl.carousel.css" />
+<load target="../css/da-owl.css" />
+<load target="../js/owl.carousel.min.js" type="body" />
+<load target="../js/jquery.mousewheel.min.js" type="body" />
+
+<style>
+.wrap_slide{width:100%;padding:0;overflow:hidden;}
+.xe .owl-carousel .owl-item .main_slide_div h2{font-size:38px/*타이틀 폰트 사이즈 수정*/;color:{$layout_info->slide_title_color};margin-bottom:50px;}
+.xe .owl-carousel .owl-item .main_slide_div p{line-height:1.5em;font-size:20px/*텍스트 폰트 사이즈 수정*/;color:{$layout_info->slide_text_color}}
+.xe .owl-carousel .owl-item .main_slide_div img{width:auto;}
+.xe .owl-carousel .owl-item img.main_slide_img{width:100%;}
+.da-owl .owl-controls{bottom:0;height:0;width:100%;text-align:center;position:initial;}
+.da-owl .owl-nav{display:inline-block;}
+.owl-theme .owl-controls .owl-dots{display:inline-block;*display:inline;position:relative;top:-24px;}
+.owl-theme .owl-controls .owl-dot{float:left;margin:0 2px;}
+.owl-theme .owl-controls .owl-dots span{width:12px;height:12px;display:inline-block;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;background:#666666;-webkit-transition:all .2s;transition:all .2s;-moz-transition:all .2s;}
+.owl-theme .owl-controls .owl-dots .active span {background:#00a7ea;width:24px;height:12px;}
+.item .slide_more{background:{$layout_info->more_bg};color:{$layout_info->more_color}}
+</style>
+<div class="da-owl owl-carousel">
+	<div class="item" cond="$layout_info->slide_img1">
+	  <img class="main_slide_img" src="{$layout_info->slide_img1}" alt="{$layout_info->slide_title1}" />
+	  <div class="main_slide_div" cond="$layout_info->slide_imgB1">
+		<img src="{$layout_info->slide_imgB1}" alt="" />
+	  </div>
+	  <div class="main_slide_div" cond="!$layout_info->slide_imgB1">
+		<h2>{$layout_info->slide_title1}</h2>
+		<p>
+			{$layout_info->slide_text1}
+		</p>
+	  </div>
+	  <a cond="$layout_info->slide_url1" href="{$layout_info->slide_url1}" class="slide_more">MORE</a>
+	</div>
+
+	<div class="item" cond="$layout_info->slide_img2">
+	  <img class="main_slide_img" src="{$layout_info->slide_img2}" alt="{$layout_info->slide_title2}" />
+	  <div class="main_slide_div" cond="$layout_info->slide_imgB2">
+		<img src="{$layout_info->slide_imgB2}" alt="" />
+	  </div>
+	  <div class="main_slide_div" cond="!$layout_info->slide_imgB2">
+		<h2>{$layout_info->slide_title2}</h2>
+		<p>
+			{$layout_info->slide_text2}
+		</p>
+	  </div>
+	  <a cond="$layout_info->slide_url2" href="{$layout_info->slide_url2}" class="slide_more">MORE</a>
+	</div>
+
+	<div class="item" cond="$layout_info->slide_img3">
+	  <img class="main_slide_img" src="{$layout_info->slide_img3}" alt="{$layout_info->slide_title3}" />
+	  <div class="main_slide_div" cond="$layout_info->slide_imgB3">
+		<img src="{$layout_info->slide_imgB3}" alt="" />
+	  </div>
+	  <div class="main_slide_div" cond="!$layout_info->slide_imgB3">
+		<h2>{$layout_info->slide_title3}</h2>
+		<p>
+			{$layout_info->slide_text3}
+		</p>
+	  </div>
+	  <a cond="$layout_info->slide_url3" href="{$layout_info->slide_url3}" class="slide_more">MORE</a>
+	</div>
+
+	<div class="item" cond="$layout_info->slide_img4">
+	  <img class="main_slide_img" src="{$layout_info->slide_img4}" alt="{$layout_info->slide_title4}" />
+	  <div class="main_slide_div" cond="$layout_info->slide_imgB4">
+		<img src="{$layout_info->slide_imgB4}" alt="" />
+	  </div>
+	  <div class="main_slide_div" cond="!$layout_info->slide_imgB4">
+		<h2>{$layout_info->slide_title4}</h2>
+		<p>
+			{$layout_info->slide_text4}
+		</p>
+	  </div>
+	  <a cond="$layout_info->slide_url4" href="{$layout_info->slide_url4}" class="slide_more">MORE</a>
+	</div>
+
+	<div class="item" cond="$layout_info->slide_img5">
+	  <img class="main_slide_img" src="{$layout_info->slide_img5}" alt="{$layout_info->slide_title5}" />
+	  <div class="main_slide_div" cond="$layout_info->slide_imgB5">
+		<img src="{$layout_info->slide_imgB5}" alt="" />
+	  </div>
+	  <div class="main_slide_div" cond="!$layout_info->slide_imgB5">
+		<h2>{$layout_info->slide_title5}</h2>
+		<p>
+			{$layout_info->slide_text5}
+		</p>
+	  </div>
+	  <a cond="$layout_info->slide_url5" href="{$layout_info->slide_url5}" class="slide_more">MORE</a>
+	</div>
+</div>
+	
+		
+		<script type="text/javascript">
+			jQuery(function($){
+			
+			  $('.da-owl').owlCarousel({
+				nav:true,
+                items: 1,
+                loop: true,
+				autoplay:true,
+				autoplayTimeout:{$layout_info->slide_speed},
+				autoplayHoverPause:true,
+                margin:0
+               
+              });
+
+			  $('.da-owl').on('mousewheel', '.owl-stage', function (e) {
+				if (e.deltaY>0) {
+					$('.da-owl').trigger('next.owl');
+				} else {
+					$('.da-owl').trigger('prev.owl');
+				}
+				e.preventDefault();
+			});
+
+			
+		});
+		</script>	
+	

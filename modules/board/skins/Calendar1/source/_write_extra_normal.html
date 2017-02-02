@@ -1,0 +1,233 @@
+<!--// 쓰기 코드중 일반 플래너 및, 시간 선택일 경우의 확장변수 부분-->
+<!--@if($ind_reservation != "T")-->
+	<div class="boardWriteHeader">
+		<!--// 예약용이 아니면 제목앞에 카테고리 출력-->
+		<!--@if($module_info->use_category=="Y")-->
+		<select name="category_srl" class="category">
+			<option value="">{$lang->category}</option>
+			<!--@foreach($category_list as $val)-->
+				<option <!--@if(!$val->grant)-->disabled="disabled"<!--@endif--> value="{$val->category_srl}" <!--@if($val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl'))-->selected="selected"
+				<!--@endif-->>
+				{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
+				</option>
+			<!--@endforeach-->
+		</select>
+		<!--@endif-->
+
+		<!--@if($oDocument->getTitleText())-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{htmlspecialchars($oDocument->getTitleText())}" />
+		<!--@else-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{$lang->title}" title="{$lang->title}" onfocus="if(this.value==this.title) this.value='';" />
+		<!--@endif-->
+
+		<!--@if(!$ind_mobile)--><!--// 모바일일때 불러오기 숨김 -->
+			<!--@if($is_logged)-->
+			<span class="buttonOfficial"><button type="button" onclick="doDocumentLoad(this); return false;">{$lang->cmd_load}</button></span>
+			<!--@endif-->
+		<!--@endif-->
+	</div>
+
+	{@ $nonuse_extra_vars = unserialize($module_info->nonuse_extra_vars);}
+	{@ if(!is_array($nonuse_extra_vars)) $nonuse_extra_vars = array($nonuse_extra_vars);}
+
+<!--@if(count($extra_keys))-->
+    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
+	<caption><em>*</em> : {$lang->is_required}</caption>
+    <!--@foreach($extra_keys as $key => $val)-->
+ 	<!--@if($val->idx != 7 && !in_array($val->idx, $nonuse_extra_vars))--><!--// 시간이 아닐때 -->
+		<tr>
+        <th scope="row">{$val->name}<!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+
+		<!--@if($val->idx == 1)-->  <!--// 일정시작 -->
+			<!--@if($in_extra_vars1_temp != null && $val->value == null)--><!--// 일정시작일자 없으면-->
+				{@ $val->value = $in_extra_vars1_temp}
+			<!--@endif-->
+			<td>
+			<div>{html_entity_decode($val->getFormHTML())}</div>
+
+			<!--@if(count($extra_keys) >= 7 && !in_array(7, $nonuse_extra_vars))--><!--// 시간표 (0.2대 호환을 위해)-->
+				{@ $ev_arr=explode("|@|",$extra_keys[7]->value)}
+				<!--@if(!$ev_arr[0] && $in_extra_vars7_temp)-->{@ $ev_arr=explode(',',$in_extra_vars7_temp)}
+				<!--@end--><!--//시간값 받은경우-->
+				<!--@if($ind_reservation != "T")--><!--// 시간예약아니면-->
+					<!--@if(count($ev_arr)>=2)-->{@ $tmp_cnt = count($ev_arr)-1}<!--@else-->{@ $tmp_cnt=1}
+					<!--@endif--><!--// 마지막시간값-->
+	 				<p><br/>
+					{$lang->pln_start_time}:&nbsp;
+					<select name="extra_vars7" id="extra_vars7_start"><!--// 시작시간선택: V400에서 모바일을 위해 timepicker 대신 Select로 변경-->
+						<option value=""></option><!--//빈칸-->
+						<!--@foreach($slt_arr as $key_a => $slt_time)-->
+							<!--@if($slt_time != '23:59')-->
+							<option value="{$slt_time}"<!--@if($slt_time == $ev_arr[0])-->selected="selected"<!--@endif-->> {$slt_time}</option>
+							<!--@end-->
+						<!--@endforeach-->
+					</select>
+					<!--@if($ind_mobile)--><br/><!--@else-->&nbsp;&nbsp;&nbsp;
+					<!--@endif-->
+					{$lang->pln_end_time}:&nbsp;
+					<select name="extra_vars7" id="extra_vars7_end"><!--// 종료시간선택-->
+						<option value=""></option><!--//빈칸-->
+						<!--@foreach($slt_arr as $key_a => $slt_time)-->
+							<option value="{$slt_time}"<!--@if($slt_time == $ev_arr[$tmp_cnt])-->selected="selected"<!--@endif-->> {$slt_time}</option>
+						<!--@endforeach-->
+					</select>
+					</p>
+					{$extra_keys[7]->desc}
+				<!--@endif--><!--// 예약아니면 끝-->
+			</td>
+        <!--@endif--><!--// 시간 끝-->
+
+		<!--@elseif($val->idx == 2)--><!--// 일정종료 -->
+        <td>
+		  <div>{$val->getFormHTML()}</div>
+        </td>
+
+		<!--@elseif($val->idx == 3 and $val->type != "color")--><!--// 배경색상 -->
+        <td>
+			<!--@if(!$val->value && $val->default)--><!--// value값 없고 default값 있으면..-->
+				{@ $val->value = $val->default}
+			<!--@endif-->
+            <!--@if($module_info->use_category != "Y")-->
+                <?php Context::loadJavascriptPlugin('ui.colorpicker'); ?>
+                <input type="text" name="extra_vars3" value="{$val->value}" class="color-indicator inputTypeText" />
+                <br/>{$val->desc}
+			<!--@else-->
+				<!--@if($module_info->use_category_bgcolor == "category_bg" || $module_info->use_category_bgcolor == "category_text")-->
+                    <?php Context::loadJavascriptPlugin('ui.colorpicker'); ?>
+                    <input type="text" name="extra_vars3" value="{$val->value}" class="color-indicator inputTypeText" />
+                    <br/>{$val->desc}
+                    &nbsp;{$lang->pln_apply_cat_color}
+			    <!--@else-->
+                    <?php Context::loadJavascriptPlugin('ui.colorpicker'); ?>
+                    <input type="text" name="extra_vars3" value="{$val->value}" class="color-indicator inputTypeText" />
+                    <br/>{$val->desc}
+                <!--@endif-->
+            <!--@endif-->
+        </td>
+
+        <!--@elseif($val->idx == 4)--><!--// 일정확인 -->
+        <td>
+			<!--@if($extra_keys[4]->type == "radio" || $extra_keys[4]->type == "checkbox")-->
+				{@ $ev_type=$extra_keys[4]->type}
+			<!--@else-->
+				{@ $ev_type="radio"}
+			<!--@endif-->
+            <!--@if($extra_keys[4]->default != null)--><!--// 기본값에 값이 있으면 이것으로 아이콘 목록 대체 -->
+				{@ $icon=explode("||",$extra_keys[4]->default)}<!--// 기본값: 사용자용, 매니저용 아이콘 구분자 "||"-->
+				{@ $icon_user=explode(",",$icon[0])}
+				{@ $icon_user_path = $dir=$tpl_path."images/icon/"}
+				{@ $icon_mgr=explode(",",$icon[1])}
+				{@ $icon_mgr_path = $dir=$tpl_path."images/icon/"}
+            <!--@endif-->
+
+			{@ $ev_arr=explode("|@|",$extra_keys[4]->value)}<!--// 선택된 아이콘-->
+
+			{@ $tmp_count = 0}
+			<!--@foreach($icon_user as $valf)--><!--// 사용자용 일정확인 아이콘 출력: 웹은 14개, 모바일 5개씩-->
+				{@ $tmp_count = $tmp_count + 1}
+				{@ $valf_id = str_replace(".", "_", $valf)}
+				<input type="{$ev_type}" id="{$valf_id}" name="extra_vars4" value="{$valf}"
+				<!--@if(in_array($valf, $ev_arr))-->checked="checked"<!--@endif-->
+				/>
+				<label for="{$valf_id}" onclick="if(navigator.appVersion.indexOf('MSIE') != -1){$valf_id}.click()"><img src="{$icon_user_path}{$valf}" style="cursor:pointer;" /></label>
+				<!--@if(($tmp_count == 14 && !$ind_mobile) || ($tmp_count == 5 && $ind_mobile))-->{@ $tmp_count = 0} <br/> <!--@endif-->
+			<!--@endforeach-->
+
+			{@ $tmp_count = 0}
+			<!--@if($grant->manager && $icon_mgr[0] !=null )--><!--// 매니저용 일정확인 아이콘 출력-->
+				<br />
+				<!--@foreach($icon_mgr as $valf)-->
+					{@ $tmp_count =$tmp_count + 1}
+					{@ $valf_id = str_replace(".", "_", $valf)}
+					<input type="{$ev_type}" id="{$valf_id}" name="extra_vars4" value="{$valf}"
+					<!--@if(in_array($valf, $ev_arr))-->checked="checked"<!--@endif-->
+					/>
+					<label for="{$valf_id}" onclick="if(navigator.appVersion.indexOf('MSIE') != -1){$valf_id}.click()"><img src="{$icon_mgr_path}{$valf}" style="cursor:pointer;" /></label>
+					<!--@if(($tmp_count == 14 && !$ind_mobile) || ($tmp_count == 5 && $ind_mobile))-->{@ $tmp_count = 0}<br/> <!--@endif-->
+				<!--@endforeach-->
+			<!--@endif-->
+            <br/>{$val->desc}
+        </td>
+
+        <!--@elseif($val->idx == 5 || $val->idx == 6)-->
+			<td>{html_entity_decode($val->getFormHTML())}</td>
+
+        <!--@elseif($val->idx == 8)--><!--// 공개그룹 -->
+            <!--@if($logged_info->member_srl != null)-->
+				<!--@if($grant->manager)-->
+					{@ $oMemberModel = &getModel('member');}
+					{@ $group_list = $oMemberModel->getGroups($module_info->site_srl);}
+					<!--@foreach($group_list as $key => $group)-->
+                    {@ $group_list_temp .= ','.$group->title}
+					<!--@end-->
+					{@ $group_list_temp=substr($group_list_temp,1)}<!--// 전체 user그룹목록 -->
+
+					{@ $oMemberAdminModel = &getAdminModel('member');}
+					{@ $member_list_out = $oMemberAdminModel->getMemberList();}
+					<!--@foreach($member_list_out->data as $key_a => $member_tmp)-->
+						{@ $member_tmp_name = $member_tmp->nick_name}<!--// nick_name을 이용-->
+						<!--// {@ $member_tmp_name = $member_tmp->user_name}--><!--// user_name을 이용-->
+						<!--@if($member_tmp_name)-->
+						{@ $member_list_temp .= ','.$member_tmp_name}<!--// 전체 member_name 목록 -->
+						<!--@endif-->
+					<!--@end-->
+				<!--@else-->
+					{@ $group_list = $logged_info->group_list}
+					<!--@foreach($group_list as $key => $group)-->
+						{@ $group_list_temp .= ','.$group}
+					<!--@end-->
+					{@ $group_list_temp=substr($group_list_temp,1)}<!--// login user가 소속된 user그룹목록 -->
+				<!--@endif-->
+				{@ $group_list_arr = explode(",",$group_list_temp)}
+				{@ $open_group_arr=explode("|@|",$extra_keys[8]->value)}<!--// 선택된 공개그룹-->
+            <!--@endif-->
+			<td>
+				<!--@if($logged_info->member_srl != null)-->
+					<!--@foreach($group_list_arr as $key => $group)-->
+                   <input type="checkbox" name="extra_vars8" value="{$group}" id="open_group_{$group}"<!--@if(in_array($group, $open_group_arr))--> checked="checked"<!--@end--> />
+                   <label for="open_group_{$group}">{$group}</label>
+					<!--@end-->
+
+					<!--@if($oDocument->get('nick_name'))-->
+						{@ $tmp_nick_name = $oDocument->get('nick_name')}
+					<!--@else-->
+						{@ $tmp_nick_name = $logged_info->nick_name}
+					<!--@endif-->
+				   <!--// 닉네임을 추가할경우 문서보기 nonsecured의 일반문서 구분시 혼란이 있고 활용도 없어 null로 대체함.-->
+                   <!--//<input type="hidden" name="extra_vars8" value="{$tmp_nick_name}" id="open_group_owner" checked="checked" />-->
+                   <input type="hidden" name="extra_vars8" value="" id="open_group_owner" checked="checked" />
+                   <label for="open_group_owner"></label>
+
+					<!--@if($grant->manager)-->
+						{@ $member_list_arr = explode(",",$member_list_temp)}
+						{@ sort($member_list_arr)}
+						&nbsp;&nbsp;&nbsp;&nbsp;User:&nbsp;
+						<select name="extra_vars8" id="open_group_user" ><!--// 공개할 user_name 선택-->
+						<!--@foreach($member_list_arr as $key_a => $member_a)-->
+							<option value="{$member_a}" <!--@if(in_array($member_a, $open_group_arr) && $member_a != $tmp_nick_name )--> selected="selected" <!--@endif--> >
+							{$member_a}
+							</option>
+						<!--@endforeach-->
+						</select>
+					<!--@endif-->
+				<!--@else-->
+					{$lang->pln_opengroup_needlogin}<!--// 오픈그룹-로그인필요-->
+				<!--@endif-->
+				<br/>{$val->desc}
+			</td>
+
+		<!--@else-->
+            {@ $temp_getFormHTML = $val->getFormHTML()}
+			<!--@if($val->type == "radio")--><!--// 라디오타입 한줄로 출력위해-->
+				{@ $temp_getFormHTML = str_replace("<ul>", "", $temp_getFormHTML)}
+				{@ $temp_getFormHTML = str_replace("</ul>", "", $temp_getFormHTML)}
+			<!--@endif-->
+			<td>{$temp_getFormHTML}</td>
+		<!--@endif-->
+	</tr>
+ 	<!--@endif--><!--// 시간(7)이 아닐때 -->
+	<!--@endforeach-->
+    </table>
+<!--@endif--><!--// count($extra_keys)-->
+
+<!--@endif--><!--// 일반 플래너일때-->

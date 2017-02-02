@@ -1,0 +1,63 @@
+
+
+<script type="text/javascript">
+	jQuery(function($){
+		
+		$(".{$widget_info->slider_name}").owlCarousel({
+			loop:true,
+			nav:true,
+			margin:0,
+			responsive:{
+				 0:{
+					items:1   
+				},
+				  480:{
+					items:2   
+				},
+				641:{
+					items:3
+				},
+				1320:{
+					items:3
+				}
+			}
+		});
+	 
+	});
+</script>
+<style type="text/css">
+  
+    .{$widget_info->slider_name} .item img.DW_img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+<div class="wrap-owl">
+	<div class="owl-carousel {$widget_info->slider_name} owl-small">
+	<!--@foreach($widget_info->content_items as $key => $item)-->
+		<div class="item">
+			<!--@if($item->getThumbnail())-->
+			<div class="wrap_Thumb">
+				<a class="slide_link" href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window"><img class="DW_img" src="{$item->getThumbnail()}" alt="{$item->getTitle(20)}"></a>
+				<!--@else-->
+				<a class="slide_link" href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window"><img class="DW_img" src="img/noneLarge_img.gif" alt="{$item->getTitle(20)}"></a>
+				<!--@end-->
+				<div class="count_voted" cond="$widget_info->show_comment_count=='Y'">
+					<span><i class="xi-heart"></i><block cond="$item->getVotedCount()">{$item->getVotedCount()}</block><block cond="!$item->getVotedCount()">0</block></span><span class="comment"><i class="xi-message"></i><block cond="$item->getCommentCount()">{$item->getCommentCount()}</block><block cond="!$item->getCommentCount()">0</block></span>
+				</div>
+			</div>
+			<!--@for($j=0,$c=count($widget_info->option_view_arr);$j<$c;$j++)-->
+			 <!--@if($widget_info->option_view_arr[$j]=='title')-->
+			<div class="slide_title">
+				<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window">{$item->getTitle($widget_info->subject_cut_size)}</a>
+			</div>
+			
+			
+			<!--@end-->
+
+		<!--@end-->
+		</div>
+	<!--@end-->
+	</div>
+</div>

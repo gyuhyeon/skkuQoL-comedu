@@ -1,0 +1,1851 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title>XE Official Skin + PlannerXE123(v5.0.3)</title>
+    <description>
+        The PlannerXE123 skin is designed for board module. 
+	    Base skin: xe_official skin is PlannerXE123's base skin.
+    </description>
+    <version>5.0.3</version>
+    <date>2015-12-10</date>
+
+    <author email_address="keysung2004@gmail.com" link="http://chungfamily.woweb.net/">
+        <name>Chung, Key_Sung</name>
+    </author>
+
+<license>
+* Package:    xe_official_planner123 (board skin)
+* File name:  skin.xml
+* Author:     Keysung Chung (http://chungfamily.woweb.net, keysung2004@gmail.com)
+* Copyright:  © 2009 Keysung Chung (keysung2004@gmail.com)
+* Contributors: Clements J. SONG (http://clements.kyunggi.ca, clements_song@hotmail.com)
+* Release:    under GPL-v2 License.
+* License:    http://www.opensource.org/licenses/gpl-2.0.php
+*
+* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+* 
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* 
+* Neither the name of the author nor the names of contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+* 
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</license>
+
+<colorset>
+	<color name="white" src="screenshot/white.gif">
+        <title xml:lang="ko">하얀색(기본)</title>
+        <title xml:lang="jp">白（デフォルト）</title>
+        <title xml:lang="zh-CN">白色（基本）</title>
+        <title xml:lang="en">White (default)</title>
+        <title xml:lang="es">Blanco (por defecto)</title>
+        <title xml:lang="zh-TW">白色(預設)</title>
+    </color>
+    <color name="black" src="screenshot/black.gif">
+        <title xml:lang="ko">검은색</title>
+        <title xml:lang="jp">黒</title>
+        <title xml:lang="en">Black</title>
+        <title xml:lang="ru">Черного</title>
+        <title xml:lang="es">Negro</title>
+        <title xml:lang="zh-CN">黑色</title>
+        <title xml:lang="zh-TW">黑色</title>
+    </color>
+</colorset>
+
+<extra_vars>
+	<group>
+		<title xml:lang="ko">사용자 컬러셋(테마)</title>
+		<title xml:lang="jp">User colorset</title>
+		<title xml:lang="en">User colorset</title>
+		<title xml:lang="ru">User colorset</title>
+		<title xml:lang="es">User colorset</title>
+		<title xml:lang="zh-CN">User colorset</title>
+		<title xml:lang="zh-TW">User colorset</title>
+       <var name="user_colorset" type="text"  default="">
+            <title xml:lang="ko">사용자 컬러셋(테마) 이름</title>
+            <title xml:lang="jp">Name of user Colorset(theme)</title>
+            <title xml:lang="en">Name of user Colorset(theme)</title>
+            <title xml:lang="ru">Name of user Colorset(theme)</title>
+            <title xml:lang="es">Name of user Colorset(theme)</title>
+            <title xml:lang="zh-CN">Name of user Colorset(theme)</title>
+            <title xml:lang="zh-TW">Name of user Colorset(theme)</title>
+            <description xml:lang="ko">사용자가 제작한 컬러셋(테마)을 적용할 경우 컬러셋 이름 입력(기본값:비워둠)  
+			(예: user 라고 입력하면, colorset/user.css 파일이 있을경우 user.css를 적용)</description>
+            <description xml:lang="jp">Input name of user developed Colorset(theme).</description>
+            <description xml:lang="en">Input name of user developed Colorset(theme).</description>
+            <description xml:lang="ru">Input name of user developed Colorset(theme).</description>
+            <description xml:lang="es">Input name of user developed Colorset(theme).</description>
+            <description xml:lang="zh-CN">Input name of user developed Colorset(theme).</description>
+            <description xml:lang="zh-TW">Input name of user developed Colorset(theme).</description>
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">스킨관리-기본설정</title>
+		<title xml:lang="jp">Default configuration</title>
+		<title xml:lang="zh-CN">Default configuration</title>
+		<title xml:lang="en">Default configuration</title>
+		<title xml:lang="es">Default configuration</title>
+		<title xml:lang="zh-TW">Default configuration</title>
+        <var name="default_style" type="select">
+            <title xml:lang="ko">스킨 형태</title>
+            <title xml:lang="jp">Skin style</title>
+            <title xml:lang="zh-CN">Skin style</title>
+            <title xml:lang="en">Skin style</title>
+            <title xml:lang="es">Skin style</title>
+            <title xml:lang="zh-TW">Skin style</title>
+            <description xml:lang="ko">
+                Planner123-standard, planner123-simple, planner-list 및 게시판 목록 스타일을 지정할 수 있습니다.
+            </description>
+             <description xml:lang="jp">
+                You may select default styles such as Planner123-standard, Planner123-list, Planner123-simple and board list style.
+				</description>
+            <description xml:lang="zh-CN">
+                You may select default styles such as Planner123-standard, Planner123-list, Planner123-simple and board list style.
+				</description>
+            <description xml:lang="en">
+                You may select default styles such as Planner123-standard, Planner123-list, Planner123-simple and board list style.
+            </description>
+            <description xml:lang="es">
+                You may select default styles such as Planner123-standard, Planner123-list, Planner123-simple and board list style.
+            </description>
+            <description xml:lang="zh-TW">
+                You may select default styles such as Planner123-standard, Planner123-list, Planner123-simple and board list style.
+            </description>
+            <options value="planner_simple">
+                <title xml:lang="ko">planner123_simple</title>
+                <title xml:lang="en">planner123_simple</title>
+                <title xml:lang="jp">planner123_simple</title>
+                <title xml:lang="zh-CN">planner123_simple</title>
+                <title xml:lang="es">planner123_simple</title>
+                <title xml:lang="zh-TW">planner123_simple</title>
+            </options>
+            <options value="planner">
+                <title xml:lang="ko">planner123-standard</title>
+                <title xml:lang="en">planner123-standard</title>
+                <title xml:lang="jp">planner123-standard</title>
+                <title xml:lang="zh-CN">planner123-standard</title>
+                <title xml:lang="es">planner123-standard</title>
+                <title xml:lang="zh-TW">planner123-standard</title>
+            </options>
+            <options value="planner_list">
+                <title xml:lang="ko">planner123_list</title>
+                <title xml:lang="en">planner123_list</title>
+                <title xml:lang="jp">planner123_list</title>
+                <title xml:lang="zh-CN">planner123_list</title>
+                <title xml:lang="es">planner123_list</title>
+                <title xml:lang="zh-TW">planner123_list</title>
+            </options>
+            <options value="planner_weekly">
+                <title xml:lang="ko">planner123_weekly</title>
+                <title xml:lang="en">planner123_weekly</title>
+                <title xml:lang="jp">planner123_weekly</title>
+                <title xml:lang="zh-CN">planner123_weekly</title>
+                <title xml:lang="es">planner123_weekly</title>
+                <title xml:lang="zh-TW">planner123_weekly</title>
+            </options>
+            <options value="list">
+                <title xml:lang="ko">게시판 목록형</title>
+                <title xml:lang="en">list</title>
+                <title xml:lang="jp">リスト型</title>
+                <title xml:lang="zh-CN">目录型</title>
+                <title xml:lang="es">list</title>
+                <title xml:lang="zh-TW">列表型</title>
+            </options>
+        </var>
+        <var name="title" type="text">
+            <title xml:lang="ko">게시판 제목</title>
+            <title xml:lang="jp">掲示板タイトル</title>
+            <title xml:lang="zh-CN">版面标题</title>
+            <title xml:lang="en">Title of Board</title>
+            <title xml:lang="es">Title of Board</title>
+            <title xml:lang="zh-TW">討論板標題</title>
+            <description xml:lang="ko">게시판의 제목을 적어주세요</description>
+            <description xml:lang="jp">掲示板タイトルを入力して下さい。</description>
+            <description xml:lang="zh-CN">请输入版面标题(留空为不显示)。</description>
+            <description xml:lang="en">Plase input the title of board.</description>
+            <description xml:lang="es">Plase input the title of board.</description>
+            <description xml:lang="zh-TW">請輸入討論板標題(留白為隱藏)。</description>
+        </var>
+        <var name="sub_title" type="text">
+            <title xml:lang="ko">게시판 부제목</title>
+            <title xml:lang="jp">掲示板サブタイトル</title>
+            <title xml:lang="zh-CN">版面副标题</title>
+            <title xml:lang="en">Subtitle of Board</title>
+            <title xml:lang="zh-TW">討論板副標題</title>
+            <description xml:lang="ko">게시판 제목 옆에 나타날 부제목을 적어주세요.</description>
+            <description xml:lang="jp">掲示板タイトルの隣りに表示されるサブタイトルを入力して下さい。</description>
+            <description xml:lang="zh-CN">请输入版面副标题(留空为不显示)。</description>
+            <description xml:lang="en">Please input the subtitle of board which will be displayed beside of board title.</description>
+            <description xml:lang="es">Please input the subtitle of board which will be displayed beside of board title.</description>
+            <description xml:lang="zh-TW">請輸入討論板副標題(留白為隱藏)。</description>
+        </var>
+        <var name="comment" type="textarea">
+            <title xml:lang="ko">게시판 상세 설명</title>
+            <title xml:lang="jp">掲示板の詳細</title>
+            <title xml:lang="zh-CN">版面详细说明</title>
+            <title xml:lang="en">Description of Board</title>
+            <title xml:lang="es">Description of Board</title>
+            <title xml:lang="zh-TW">討論板說明</title>
+            <description xml:lang="ko">게시판 제목 아래 표시될 설명을 입력하실 수 있습니다.</description>
+            <description xml:lang="jp">掲示板タイトルの下に表示される説明文を入力して下さい。</description>
+            <description xml:lang="zh-CN">请输入版面说明(留空为不显示)。</description>
+            <description xml:lang="en">You may input description which will be displayed under the board title.</description>
+            <description xml:lang="es">You may input description which will be displayed under the board title.</description>
+            <description xml:lang="zh-TW">請輸入討論板說明(留白為隱藏)。</description>
+        </var>
+        <var name="default_view_pc" type="select" default="M">
+            <title xml:lang="ko">PC-플래너 기본출력 단위</title>
+            <title xml:lang="zh-CN">PC-Default view type</title>
+            <title xml:lang="jp">PC-Default view type</title>
+            <title xml:lang="en">PC-Default view type</title>
+            <title xml:lang="es">PC-Default view type</title>
+            <title xml:lang="zh-TW">PC-Default view type</title>
+            <description xml:lang="ko">PC 플래너 기본 보기를 월단위, 2주단위 및 1주단위 중에서 선택 합니다.</description>
+            <description xml:lang="jp">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="zh-CN">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="en">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="es">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="zh-TW">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <options value="M">
+                <title xml:lang="ko">월단위 플래너</title>
+                <title xml:lang="en">Monthly planner</title>
+                <title xml:lang="jp">Monthly  planner</title>
+                <title xml:lang="zh-CN">Monthly  planner</title>
+                <title xml:lang="es">Monthly planner</title>
+                <title xml:lang="zh-TW">Monthly  planner</title>
+            </options>
+            <options value="W2">
+                <title xml:lang="ko">2주단위 플래너</title>
+                <title xml:lang="en">Two weeks planner</title>
+                <title xml:lang="jp">Two weeks planner</title>
+                <title xml:lang="zh-CN">Two weeks planner</title>
+                <title xml:lang="es">Two weeks planner</title>
+                <title xml:lang="zh-TW">Two weeks planner</title>
+            </options>
+            <options value="W1">
+                <title xml:lang="ko">1주 단위 플래너</title>
+                <title xml:lang="en">one week planner</title>
+                <title xml:lang="jp">one week planner</title>
+                <title xml:lang="zh-CN">one week planner</title>
+                <title xml:lang="es">one week planner</title>
+                <title xml:lang="zh-TW">one week planner</title>
+            </options>
+        </var>
+        <var name="default_view_mobile" type="select" default="M">
+            <title xml:lang="ko">MOBILE-플래너 기본출력 단위</title>
+            <title xml:lang="zh-CN">MOBILE-Default view type</title>
+            <title xml:lang="jp">MOBILE-Default view type</title>
+            <title xml:lang="en">MOBILE-Default view type</title>
+            <title xml:lang="es">MOBILE-Default view type</title>
+            <title xml:lang="zh-TW">MOBILE-Default view type</title>
+            <description xml:lang="ko">MOBILE 플래너 기본 보기를 월단위, 2주단위 및 1주단위 중에서 선택 합니다.</description>
+            <description xml:lang="jp">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="zh-CN">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="en">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="es">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <description xml:lang="zh-TW">Select default view type of planner among the Monthly, 2Weeks and Weekly.</description>
+            <options value="M">
+                <title xml:lang="ko">월단위 플래너</title>
+                <title xml:lang="en">Monthly planner</title>
+                <title xml:lang="jp">Monthly  planner</title>
+                <title xml:lang="zh-CN">Monthly  planner</title>
+                <title xml:lang="es">Monthly planner</title>
+                <title xml:lang="zh-TW">Monthly  planner</title>
+            </options>
+            <options value="W2">
+                <title xml:lang="ko">2주단위 플래너</title>
+                <title xml:lang="en">Two weeks planner</title>
+                <title xml:lang="jp">Two weeks planner</title>
+                <title xml:lang="zh-CN">Two weeks planner</title>
+                <title xml:lang="es">Two weeks planner</title>
+                <title xml:lang="zh-TW">Two weeks planner</title>
+            </options>
+            <options value="W1">
+                <title xml:lang="ko">1주 단위 플래너</title>
+                <title xml:lang="en">one week planner</title>
+                <title xml:lang="jp">one week planner</title>
+                <title xml:lang="zh-CN">one week planner</title>
+                <title xml:lang="es">one week planner</title>
+                <title xml:lang="zh-TW">one week planner</title>
+            </options>
+        </var>
+        <var name="weekly_base" type="select" default="N">
+            <title xml:lang="ko">주단위 달력 여부 및 주일수</title>
+            <title xml:lang="zh-CN">Weekly base calendar.</title>
+            <title xml:lang="jp">Weekly base calendar.</title>
+            <title xml:lang="en">Weekly base calendar.</title>
+            <title xml:lang="es">Weekly base calendar.</title>
+            <title xml:lang="zh-TW">Weekly base calendar.</title>
+            <description xml:lang="ko">주단위 달력 여부및 출력 주수를 선택합니다.</description>
+            <description xml:lang="jp">Select option for Weekly base calendar.</description>
+            <description xml:lang="zh-CN">Select option for Weekly base calendar.</description>
+            <description xml:lang="en">Select option for Weekly base calendar.</description>
+            <description xml:lang="es">Select option for Weekly base calendar.</description>
+            <description xml:lang="zh-TW">Select option for Weekly base calendar.</description>
+            <options value="0">
+                <title xml:lang="ko">주단위 적용하지 않음</title>
+                <title xml:lang="en">not apply</title>
+                <title xml:lang="jp">not apply</title>
+                <title xml:lang="zh-CN">not apply</title>
+                <title xml:lang="es">not apply</title>
+                <title xml:lang="zh-TW">not apply</title>
+            </options>
+            <options value="6">
+                <title xml:lang="ko">금주부터 6주 출력</title>
+                <title xml:lang="en">display 6weeks from this week</title>
+                <title xml:lang="jp">display 6weeks from this week</title>
+                <title xml:lang="zh-CN">display 6weeks from this week</title>
+                <title xml:lang="es">display 6weeks from this week</title>
+                <title xml:lang="zh-TW">display 6weeks from this week</title>
+            </options>
+            <options value="10">
+                <title xml:lang="ko">금주부터 10주 출력</title>
+                <title xml:lang="en">display 10weeks from this week</title>
+                <title xml:lang="jp">display 10weeks from this week</title>
+                <title xml:lang="zh-CN">display 10weeks from this week</title>
+                <title xml:lang="es">display 10weeks from this week</title>
+                <title xml:lang="zh-TW">display 10weeks from this week</title>
+            </options>
+            <options value="14">
+                <title xml:lang="ko">금주부터 14주 출력</title>
+                <title xml:lang="en">display 14weeks from this week</title>
+                <title xml:lang="jp">display 14weeks from this week</title>
+                <title xml:lang="zh-CN">display 14weeks from this week</title>
+                <title xml:lang="es">display 14weeks from this week</title>
+                <title xml:lang="zh-TW">display 14weeks from this week</title>
+            </options>
+		</var>
+        <var name="firstlast_week" type="select" default="empty">
+            <title xml:lang="ko">첫주및 마지막주 날자 표시 (주단위 미적용시)</title>
+            <title xml:lang="zh-CN">First and last week</title>
+            <title xml:lang="jp">First and last week</title>
+            <title xml:lang="en">First and last week</title>
+            <title xml:lang="es">First and last week</title>
+            <title xml:lang="zh-TW">First and last week</title>
+            <description xml:lang="ko">한달단위 달력인경우 첫주및 마지막주 빈칸에 날자 표시 여부를 선택합니다.</description>
+            <description xml:lang="jp">Select option for first and last week.</description>
+            <description xml:lang="zh-CN">Select option for first and last week.</description>
+            <description xml:lang="en">Select option for first and last week.</description>
+            <description xml:lang="es">Select option for first and last week.</description>
+            <description xml:lang="zh-TW">Select option for first and last week.</description>
+            <options value="empty">
+                <title xml:lang="ko">당월 날자만 표시</title>
+                <title xml:lang="en">Display current month only</title>
+                <title xml:lang="jp">Display current month only</title>
+                <title xml:lang="zh-CN">Display current month only</title>
+                <title xml:lang="es">Display current month only</title>
+                <title xml:lang="zh-TW">Display current month only</title>
+            </options>
+            <options value="alldate">
+                <title xml:lang="ko">모든 날자 표시</title>
+                <title xml:lang="en">Display all date</title>
+                <title xml:lang="jp">Display all date</title>
+                <title xml:lang="zh-CN">Display all date</title>
+                <title xml:lang="es">Display all date</title>
+                <title xml:lang="zh-TW">Display all date</title>
+            </options>
+		</var>
+        <var name="firstDayOfWeek" type="select" default="0">
+            <title xml:lang="ko">한주의 시작요일</title>
+            <title xml:lang="zh-CN">First day of the week</title>
+            <title xml:lang="jp">First day of the week</title>
+            <title xml:lang="en">First day of the week</title>
+            <title xml:lang="es">First day of the week</title>
+            <title xml:lang="zh-TW">First day of the week</title>
+            <description xml:lang="ko">한주의 시작요일을 선택합니다.</description>
+            <description xml:lang="jp">Select first day of the week.</description>
+            <description xml:lang="zh-CN">Select first day of the week.</description>
+            <description xml:lang="en">Select first day of the week.</description>
+            <description xml:lang="es">Select first day of the week.</description>
+            <description xml:lang="zh-TW">Select first day of the week.</description>
+            <options value="0">
+                <title xml:lang="ko">일요일</title>
+                <title xml:lang="en">Sunday</title>
+                <title xml:lang="jp">Sunday</title>
+                <title xml:lang="zh-CN">Sunday</title>
+                <title xml:lang="es">Sunday</title>
+                <title xml:lang="zh-TW">Sunday</title>
+            </options>
+            <options value="1">
+                <title xml:lang="ko">월요일</title>
+                <title xml:lang="en">Monday</title>
+                <title xml:lang="jp">Monday</title>
+                <title xml:lang="zh-CN">Monday</title>
+                <title xml:lang="es">Monday</title>
+                <title xml:lang="zh-TW">Monday</title>
+            </options>
+            <options value="2">
+                <title xml:lang="ko">화요일</title>
+                <title xml:lang="en">Tuesday</title>
+                <title xml:lang="jp">Tuesday</title>
+                <title xml:lang="zh-CN">Tuesday</title>
+                <title xml:lang="es">Tuesday</title>
+                <title xml:lang="zh-TW">Tuesday</title>
+            </options>
+            <options value="3">
+                <title xml:lang="ko">수요일</title>
+                <title xml:lang="en">Wednesday</title>
+                <title xml:lang="jp">Wednesday</title>
+                <title xml:lang="zh-CN">Wednesday</title>
+                <title xml:lang="es">Wednesday</title>
+                <title xml:lang="zh-TW">Wednesday</title>
+            </options>
+            <options value="4">
+                <title xml:lang="ko">목요일</title>
+                <title xml:lang="en">Thursday</title>
+                <title xml:lang="jp">Thursday</title>
+                <title xml:lang="zh-CN">Thursday</title>
+                <title xml:lang="es">Thursday</title>
+                <title xml:lang="zh-TW">Thursday</title>
+            </options>
+            <options value="5">
+                <title xml:lang="ko">금요일</title>
+                <title xml:lang="en">Friday</title>
+                <title xml:lang="jp">Friday</title>
+                <title xml:lang="zh-CN">Friday</title>
+                <title xml:lang="es">Friday</title>
+                <title xml:lang="zh-TW">Friday</title>
+            </options>
+            <options value="6">
+                <title xml:lang="ko">토요일</title>
+                <title xml:lang="en">Saturday</title>
+                <title xml:lang="jp">Saturday</title>
+                <title xml:lang="zh-CN">Saturday</title>
+                <title xml:lang="es">Saturday</title>
+                <title xml:lang="zh-TW">Saturday</title>
+            </options>
+            <options value="8">
+                <title xml:lang="ko">리스트형:당일요일, 달력형:일요일</title>
+                <title xml:lang="en">day of the week today(list-style only)</title>
+                <title xml:lang="jp">day of the week today(list-style only)</title>
+                <title xml:lang="zh-CN">day of the week today(list-style only)</title>
+                <title xml:lang="es">day of the week today(list-style only)</title>
+                <title xml:lang="zh-TW">day of the week today(list-style only)</title>
+            </options>
+		</var>
+		<var name="column_width" type="text" default="14%,14%,14%,14%,14%,14%,14%">
+            <title xml:lang="ko">요일 컬럼 폭 (기본14%: 일,월,화,수,목,금,토 순으로)</title>
+            <title xml:lang="zh-CN">Weekday column width(default 14%: sun,mon,tue... sequance)</title>
+            <title xml:lang="jp">Weekday column width(default 14%: sun,mon,tue... sequance)</title>
+            <title xml:lang="en">Weekday column width(default 14%: sun,mon,tue... sequance)</title>
+            <title xml:lang="es">Weekday column width(default 14%: sun,mon,tue... sequance)</title>
+            <title xml:lang="zh-TW">Weekday column width(default 14%: sun,mon,tue... sequance)</title>
+            <description xml:lang="ko">각 요일의 컬럼폭 지정(기본 14%: 일,월,화.... 순으로)</description>
+            <description xml:lang="jp">Input weekday column width(default 14%: sun,mon,tue... seq).</description>
+            <description xml:lang="zh-CN">Input weekday column width(default 14%: sun,mon,tue... seq).</description>
+            <description xml:lang="en">Input weekday column width(default 14%: sun,mon,tue... seq).</description>
+            <description xml:lang="es">Input weekday column width(default 14%: sun,mon,tue... seq).</description>
+            <description xml:lang="zh-TW">Input weekday column width(default 14%: sun,mon,tue... seq).</description>
+        </var>
+		<var name="default_document_group" type="select">
+            <title xml:lang="ko">기본 열람가능문서</title>
+            <title xml:lang="zh-CN">General user's readable document</title>
+            <title xml:lang="jp">General user's readable document</title>
+            <title xml:lang="en">General user's readable document</title>
+            <title xml:lang="es">General user's readable document</title>
+            <title xml:lang="zh-TW">General user's readable document</title>
+            <description xml:lang="ko">관리자가 아닌 일반사용자의 열람 가능한 문서 지정</description>
+            <description xml:lang="jp">Select readable document group for general user.</description>
+            <description xml:lang="zh-CN">Select readable document group for general user.</description>
+            <description xml:lang="en">Select readable document group for general user.</description>
+            <description xml:lang="es">Select readable document group for general user.</description>
+            <description xml:lang="zh-TW">Select readable document group for general user.</description>
+            <options value="alldocument">
+                <title xml:lang="ko">전체문서 열람(타인 비밀문서는 제목만 열람)</title>
+                <title xml:lang="en">All documents</title>
+                <title xml:lang="jp">All documents</title>
+                <title xml:lang="zh-CN">All documents</title>
+                <title xml:lang="es">All documents</title>
+                <title xml:lang="zh-TW">All documents</title>
+            </options>
+            <options value="nonsecured">
+                <title xml:lang="ko">공지+본인문서+멤버쉽이 있는 공개그룹 문서+일반문서 열람</title>
+                <title xml:lang="en">Exclude secured or non membership document.</title>
+                <title xml:lang="jp">Exclude secured or non membership document.</title>
+                <title xml:lang="zh-CN">Exclude secured or non membership document.</title>
+                <title xml:lang="es">Exclude secured or non membership document.</title>
+                <title xml:lang="zh-TW">Exclude secured or non membership document.</title>
+            </options>
+            <options value="usergroup">
+                <title xml:lang="ko">공지+본인문서+멤버쉽이 있는 공개그룹 문서 열람</title>
+                <title xml:lang="en">Notice, own and open_group's membership doc.</title>
+                <title xml:lang="jp">Notice, own and open_group's membership doc.</title>
+                <title xml:lang="zh-CN">Notice, own, and open_group's membership doc.</title>
+                <title xml:lang="es">Notice, own and open_group's membership doc.</title>
+                <title xml:lang="zh-TW">Notice, own and open_group's membership doc.</title>
+            </options>
+            <options value="owner">
+                <title xml:lang="ko">공지+본인문서만 열람</title>
+                <title xml:lang="en">Notice and own document only</title>
+                <title xml:lang="jp">Notice and own document only</title>
+                <title xml:lang="zh-CN">Notice and own document only</title>
+                <title xml:lang="es">Notice and own document only</title>
+                <title xml:lang="zh-TW">Notice and own document only</title>
+            </options>
+        </var>
+        <var name="holiday_country" type="select" default="kor">
+            <title xml:lang="ko">휴일/기념일 적용 국가</title>
+            <title xml:lang="jp">Default country will be applied for holiday</title>
+            <title xml:lang="zh-CN">Default country will be applied for holiday</title>
+            <title xml:lang="en">Default country will be applied for holiday</title>
+            <title xml:lang="es">Default country will be applied for holiday</title>
+            <title xml:lang="zh-TW">Default country will be applied for holiday</title>
+            <description xml:lang="ko">휴일/기념일 적용 국가를 선택 합니다.</description>
+            <description xml:lang="jp">Select country will be applied for holiday.</description>
+            <description xml:lang="zh-CN">Select country will be applied for holiday.</description>
+            <description xml:lang="en">Select country will be applied for holiday.</description>
+            <description xml:lang="es">Select country will be applied for holiday.</description>
+            <description xml:lang="zh-TW">Select country will be applied for holiday.</description>
+            <options value="kor">
+                <title>대한민국 Korea</title>
+            </options>
+            <options value="usa">
+                <title>미국 USA</title>
+            </options>
+            <options value="can">
+                <title>캐나다 Canada</title>
+            </options>
+            <options value="chn">
+                <title>중국 China</title>
+            </options>
+            <options value="jpn">
+                <title>일본 Japan</title>
+            </options>
+            <options value="vnm">
+                <title>베트남 Vietnam</title>
+            </options>
+            <options value="tur">
+                <title>터키 Turkey</title>
+            </options>
+            <options value="user">
+                <title>사용자파일 User's file</title>
+            </options>
+        </var>
+        <var name="display_country_select" type="select" default="Y">
+            <title xml:lang="ko">휴일/기념일 국가 선택박스</title>
+            <title xml:lang="zh-CN">Display country select box</title>
+            <title xml:lang="jp">Display country select box</title>
+            <title xml:lang="en">Display country select box</title>
+            <title xml:lang="es">Display country select box</title>
+            <title xml:lang="zh-TW">Display country select box</title>
+            <description xml:lang="ko">휴일적용 국가 선택박스 출력여부를 선택 합니다.</description>
+            <description xml:lang="jp">Select display option for Country select box.</description>
+            <description xml:lang="zh-CN">Select display option for Country select box.</description>
+            <description xml:lang="en">Select display option for Country select box.</description>
+            <description xml:lang="es">Select display option for Country select box.</description>
+            <description xml:lang="zh-TW">Select display option for Country select box.</description>
+           <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+       </var>
+       <var name="image_diary" type="select" default="N">
+            <title xml:lang="ko">그림일기</title>
+            <title xml:lang="zh-CN">Image Diary</title>
+            <title xml:lang="jp">Image Diary</title>
+            <title xml:lang="en">Image Diary</title>
+            <title xml:lang="es">Image Diary</title>
+            <title xml:lang="zh-TW">Image Diary</title>
+            <description xml:lang="ko">본문에 이미지가 있을경우, 제목대신 첫번째 이미지를 출력합니다.</description>
+            <description xml:lang="jp">If there is any images included in the article, display the first image instead of the title.</description>
+            <description xml:lang="zh-CN">If there is any images included in the article, display the first image instead of the title.</description>
+            <description xml:lang="en">If there is any images included in the article, display the first image instead of the title.</description>
+            <description xml:lang="es">If there is any images included in the article, display the first image instead of the title.</description>
+            <description xml:lang="zh-TW">If there is any images included in the article, display the first image instead of the title.</description>
+            <options value="N">
+                <title xml:lang="ko">사용안함</title>
+                <title xml:lang="en">Do not use image diary</title>
+                <title xml:lang="jp">Do not use image diary</title>
+                <title xml:lang="zh-CN">Do not use image diary</title>
+                <title xml:lang="es">Do not use image diary</title>
+                <title xml:lang="zh-TW">Do not use image diary</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">사용(액자 없음)</title>
+                <title xml:lang="en">Use image diary without picture frame.</title>
+                <title xml:lang="jp">Use image diary without picture frame.</title>
+                <title xml:lang="zh-CN">Use image diary without picture frame.</title>
+                <title xml:lang="es">Use image diary without picture frame.</title>
+                <title xml:lang="zh-TW">Use image diary without picture frame.</title>
+            </options>
+            <options value="F">
+                <title xml:lang="ko">사용(액자 있음)</title>
+                <title xml:lang="en">Use image diary with a picture frame.</title>
+                <title xml:lang="jp">Use image diary with a picture frame.</title>
+                <title xml:lang="zh-CN">Use image diary with a picture frame.</title>
+                <title xml:lang="es">Use image diary with a picture frame.</title>
+                <title xml:lang="zh-TW">Use image diary with a picture frame.</title>
+            </options>
+        </var>
+        <var name="allow_modify_schedule" type="select" default="Y">
+            <title xml:lang="ko">과거일정 수정 허용</title>
+            <title xml:lang="zh-CN">Allow modification of the past event</title>
+            <title xml:lang="jp">Allow modification of the past event</title>
+            <title xml:lang="en">Allow modification of the past event</title>
+            <title xml:lang="es">Allow modification of the past event</title>
+            <title xml:lang="zh-TW">Allow modification of the past event</title>
+            <description xml:lang="ko">과거일정 수정 허용여부를 선택합니다.(관리자는 항상 수정 허용)</description>
+            <description xml:lang="jp">Selection allow or not allow modification of the past event.</description>
+            <description xml:lang="zh-CN">Selection allow or not allow modification of the past event.</description>
+            <description xml:lang="en">Selection allow or not allow modification of the past event.</description>
+            <description xml:lang="es">Selection allow or not allow modification of the past event.</description>
+            <description xml:lang="zh-TW">Selection allow or not allow modification of the past event.</description>
+            <options value="Y">
+                <title xml:lang="ko">과거일정의 수정을 허용</title>
+                <title xml:lang="en">allow modification of the past event</title>
+                <title xml:lang="jp">allow modification of the past event</title>
+                <title xml:lang="zh-CN">allow modification of the past event</title>
+                <title xml:lang="es">allow modification of the past event</title>
+                <title xml:lang="zh-TW">allow modification of the past event</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">과거일정의 수정을 허용하지 않음</title>
+                <title xml:lang="en">not allow modification of the past event</title>
+                <title xml:lang="jp">not allow modification of the past event</title>
+                <title xml:lang="zh-CN">not allow modification of the past event</title>
+                <title xml:lang="es">not allow allow modification of the past event</title>
+                <title xml:lang="zh-TW">not allow modification of the past event</title>
+            </options>
+        </var>
+		<var name="oneday_container" type="select" default="T">
+            <title xml:lang="ko">비연속일정 출력위치</title>
+            <title xml:lang="zh-CN">One-day schedule container</title>
+            <title xml:lang="jp">One-day schedule container</title>
+            <title xml:lang="en">One-day schedule container</title>
+            <title xml:lang="es">One-day schedule container</title>
+            <title xml:lang="zh-TW">Oneday schedule container</title>
+            <description xml:lang="ko">비연속일정 출력 위치를 선택합니다.(Table:속도위주, JQuery:모양위주)</description>
+            <description xml:lang="jp">Selection container for One-day schedule.</description>
+            <description xml:lang="zh-CN">Selection container for One-day schedule.</description>
+            <description xml:lang="en">Selection container for One-day schedule.</description>
+            <description xml:lang="es">Selection container for One-day schedule.</description>
+            <description xml:lang="zh-TW">Selection container for One-day schedule.</description>
+            <options value="T">
+                <title xml:lang="ko">Table (focus on speed)</title>
+                <title xml:lang="en">Table (focus on speed)</title>
+                <title xml:lang="jp">Table (focus on speed)</title>
+                <title xml:lang="zh-CN">Table (focus on speed)</title>
+                <title xml:lang="es">Table (focus on speed)</title>
+                <title xml:lang="zh-TW">Table (focus on speed)</title>
+            </options>
+            <options value="J">
+                <title xml:lang="ko">JQuery (focus on design)</title>
+                <title xml:lang="en">JQuery (focus on design)</title>
+                <title xml:lang="jp">JQuery (focus on design)</title>
+                <title xml:lang="zh-CN">JQuery (focus on design)</title>
+                <title xml:lang="es">JQuery (focus on design)</title>
+                <title xml:lang="zh-TW">JQuery (focus on design)</title>
+            </options>
+        </var>
+        <var name="tz_apply" type="select" default="N">
+            <title xml:lang="ko">당일표시 방문자 시간 적용</title>
+            <title xml:lang="zh-CN">Adjust today boarder using client's timezone.</title>
+            <title xml:lang="jp">Adjust today boarder using client's timezone.</title>
+            <title xml:lang="en">Adjust today boarder using client's timezone.</title>
+            <title xml:lang="es">Adjust today boarder using client's timezone.</title>
+            <title xml:lang="zh-TW">Adjust today boarder using client's timezone.</title>
+            <description xml:lang="ko">오늘날자 표시를 방문자시간 기준으로 표시합니다.</description>
+            <description xml:lang="jp">Display today boarder based on client's timezone.</description>
+            <description xml:lang="zh-CN">Display today boarder based on client's timezone.</description>
+            <description xml:lang="en">Display today boarder based on client's timezone.</description>
+            <description xml:lang="es">Display today boarder based on client's timezone.</description>
+            <description xml:lang="zh-TW">Display today boarder based on client's timezone.</description>
+            <options value="N">
+                <title xml:lang="ko">적용하지 않음</title>
+                <title xml:lang="en">not apply</title>
+                <title xml:lang="jp">not apply</title>
+                <title xml:lang="zh-CN">not apply</title>
+                <title xml:lang="es">not apply</title>
+                <title xml:lang="zh-TW">not apply</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">적용함</title>
+                <title xml:lang="en">apply</title>
+                <title xml:lang="jp">apply</title>
+                <title xml:lang="zh-CN">apply</title>
+                <title xml:lang="es">apply</title>
+                <title xml:lang="zh-TW">apply</title>
+            </options>
+       </var>
+ 	</group>
+	<group>
+		<title xml:lang="ko">스킨관리- 달력 항목 설정</title>
+		<title xml:lang="jp">Display option</title>
+		<title xml:lang="zh-CN">Display option</title>
+		<title xml:lang="en">Display option</title>
+		<title xml:lang="es">Display option</title>
+		<title xml:lang="zh-TW">Display option</title>
+        <var name="display_week_number" type="select" default="N">
+            <title xml:lang="ko">몇주차 표시</title>
+            <title xml:lang="zh-CN">Display week number</title>
+            <title xml:lang="jp">Display week number</title>
+            <title xml:lang="en">Display week number</title>
+            <title xml:lang="es">Display week number</title>
+            <title xml:lang="zh-TW">Display week number</title>
+            <description xml:lang="ko">몇주차 표시(ISO 8601).</description>
+            <description xml:lang="jp">Week number display(ISO 8601)</description>
+            <description xml:lang="zh-CN">Week number display(ISO 8601)</description>
+            <description xml:lang="en">Week number display(ISO 8601)</description>
+            <description xml:lang="es">Week number display(ISO 8601)</description>
+            <description xml:lang="zh-TW">Week number display(ISO 8601)</description>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+        </var>
+        <var name="display_holiday" type="select" default="Y">
+            <title xml:lang="ko">휴일 표시</title>
+            <title xml:lang="zh-CN">Display holiday</title>
+            <title xml:lang="jp">Display holiday</title>
+            <title xml:lang="en">Display holiday</title>
+            <title xml:lang="es">Display holiday</title>
+            <title xml:lang="zh-TW">Display holiday</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_memday" type="select" default="Y">
+            <title xml:lang="ko">기념일 표시</title>
+            <title xml:lang="zh-CN">Display memorialday</title>
+            <title xml:lang="jp">Display memorialday</title>
+            <title xml:lang="en">Display memorialday</title>
+            <title xml:lang="es">Display memorialday</title>
+            <title xml:lang="zh-TW">Display memorialday</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_lunar" type="select" default="Y">
+            <title xml:lang="ko">음력 표시</title>
+            <title xml:lang="zh-CN">Display lunar calendar</title>
+            <title xml:lang="jp">Display lunar calendar</title>
+            <title xml:lang="en">Display lunar calendar</title>
+            <title xml:lang="es">Display lunar calendar</title>
+            <title xml:lang="zh-TW">Display lunar calendar</title>
+            <options value="Y">
+                <title xml:lang="ko">1,10,15,20일 출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="Y_all">
+                <title xml:lang="ko">모든날자 출력</title>
+                <title xml:lang="en">display all day</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_24term" type="select" default="Y">
+            <title xml:lang="ko">24절기 표시</title>
+            <title xml:lang="zh-CN">Display 24 solar terms</title>
+            <title xml:lang="jp">Display 24 solar terms</title>
+            <title xml:lang="en">Display 24 solar terms</title>
+            <title xml:lang="es">Display 24 solar terms</title>
+            <title xml:lang="zh-TW">Display 24 solar terms</title>
+            <description xml:lang="ko">Simple 플래너는 24절기가 지원되지 않습니다.</description>
+            <description xml:lang="jp">Simple planner doesn't display</description>
+            <description xml:lang="zh-CN">Simple planner doesn't display</description>
+            <description xml:lang="en">Simple planner doesn't display</description>
+            <description xml:lang="es">Simple planner doesn't display</description>
+            <description xml:lang="zh-TW">Simple planner doesn't display</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_iljin" type="select" default="N">
+            <title xml:lang="ko">일진 표시</title>
+            <title xml:lang="zh-CN">Display iljin</title>
+            <title xml:lang="jp">Display iljin</title>
+            <title xml:lang="en">Display iljin</title>
+            <title xml:lang="es">Display iljin</title>
+            <title xml:lang="zh-TW">Display iljin</title>
+            <description xml:lang="ko">Simple 플래너는 일진이 지원되지 않습니다.</description>
+            <description xml:lang="jp">Simple planner doesn't display</description>
+            <description xml:lang="zh-CN">Simple planner doesn't display</description>
+            <description xml:lang="en">Simple planner doesn't display</description>
+            <description xml:lang="es">Simple planner doesn't display</description>
+            <description xml:lang="zh-TW">Simple planner doesn't display</description>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+        </var>
+        <var name="display_islamic" type="select" default="N">
+            <title xml:lang="ko">이슬람력 표시</title>
+            <title xml:lang="zh-CN">Display Islamic calendar</title>
+            <title xml:lang="jp">Display Islamic calendar</title>
+            <title xml:lang="en">Display Islamic calendar</title>
+            <title xml:lang="es">Display Islamic calendar</title>
+            <title xml:lang="zh-TW">Display lunar calendar</title>
+            <description xml:lang="ko">이슬람 달력은 추정치이며 하루정도 오차가 있을 수 있습니다.</description>
+            <description xml:lang="en">The Islamic calendar gives ONLY estimated date.</description>
+            <options value="Y">
+                <title xml:lang="ko">1,10,15,20일 출력</title>
+                <title xml:lang="en">display 1,10,15,20 day</title>
+                <title xml:lang="jp">display 1,10,15,20 day</title>
+                <title xml:lang="zh-CN">display 1,10,15,20 day</title>
+                <title xml:lang="es">display 1,10,15,20 day</title>
+                <title xml:lang="zh-TW">display 1,10,15,20 day</title>
+            </options>
+            <options value="Y_all">
+                <title xml:lang="ko">모든날자 출력</title>
+                <title xml:lang="en">display all day</title>
+                <title xml:lang="jp">display all day</title>
+                <title xml:lang="zh-CN">display all day</title>
+                <title xml:lang="es">display all day</title>
+                <title xml:lang="zh-TW">display all day</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+ 	</group>
+   	<group>
+		<title xml:lang="ko">스킨관리- 화면표시 옵션(1)</title>
+		<title xml:lang="jp">Misc. option(1)</title>
+		<title xml:lang="zh-CN">Misc. option(1)</title>
+		<title xml:lang="en">Misc. option(1)</title>
+		<title xml:lang="es">Misc. option(1)</title>
+		<title xml:lang="zh-TW">Misc. option(1)</title>
+        <var name="calendar_bgcolor" type="select" default="transparent">
+            <title xml:lang="ko">플래너 달력 배경색상</title>
+            <title xml:lang="zh-CN">Calendar background color</title>
+            <title xml:lang="jp">Calendar background color</title>
+            <title xml:lang="en">Calendar background color</title>
+            <title xml:lang="es">Calendar background color</title>
+            <title xml:lang="zh-TW">Calendar background color</title>
+            <description xml:lang="ko">플래너 달력 배경색상</description>
+            <description xml:lang="jp">Calendar background color</description>
+            <description xml:lang="zh-CN">Calendar background color</description>
+            <description xml:lang="en">Calendar background color</description>
+            <description xml:lang="es">Calendar background color</description>
+            <description xml:lang="zh-TW">Calendar background color</description>
+            <options value="transparent">
+                <title xml:lang="ko">transparent</title>
+                <title xml:lang="en">transparent</title>
+                <title xml:lang="jp">transparent</title>
+                <title xml:lang="zh-CN">transparent</title>
+                <title xml:lang="es">transparent</title>
+                <title xml:lang="zh-TW">transparent</title>
+            </options>
+           <options value="white">
+                <title xml:lang="ko">white</title>
+                <title xml:lang="en">white</title>
+                <title xml:lang="jp">white</title>
+                <title xml:lang="zh-CN">white</title>
+                <title xml:lang="es">white</title>
+                <title xml:lang="zh-TW">white</title>
+            </options>
+            <options value="whitesmoke">
+                <title xml:lang="ko">whitesmoke</title>
+                <title xml:lang="en">whitesmoke</title>
+                <title xml:lang="jp">whitesmoke</title>
+                <title xml:lang="zh-CN">whitesmoke</title>
+                <title xml:lang="es">whitesmoke</title>
+                <title xml:lang="zh-TW">whitesmoke</title>
+            </options>
+            <options value="ivory">
+                <title xml:lang="ko">ivory</title>
+                <title xml:lang="en">ivory</title>
+                <title xml:lang="jp">ivory</title>
+                <title xml:lang="zh-CN">ivory</title>
+                <title xml:lang="es">ivory</title>
+                <title xml:lang="zh-TW">ivory</title>
+            </options>
+            <options value="beige">
+                <title xml:lang="ko">beige</title>
+                <title xml:lang="en">beige</title>
+                <title xml:lang="jp">beige</title>
+                <title xml:lang="zh-CN">beige</title>
+                <title xml:lang="es">beige</title>
+                <title xml:lang="zh-TW">beige</title>
+            </options>
+            <options value="honeydew">
+                <title xml:lang="ko">honeydew</title>
+                <title xml:lang="en">honeydew</title>
+                <title xml:lang="jp">honeydew</title>
+                <title xml:lang="zh-CN">honeydew</title>
+                <title xml:lang="es">honeydew</title>
+                <title xml:lang="zh-TW">honeydew</title>
+            </options>
+            <options value="linen">
+                <title xml:lang="ko">linen</title>
+                <title xml:lang="en">linen</title>
+                <title xml:lang="jp">linen</title>
+                <title xml:lang="zh-CN">linen</title>
+                <title xml:lang="es">linen</title>
+                <title xml:lang="zh-TW">linen</title>
+            </options>
+            <options value="#606060">
+                <title xml:lang="ko">gray</title>
+                <title xml:lang="en">gray</title>
+                <title xml:lang="jp">gray</title>
+                <title xml:lang="zh-CN">gray</title>
+                <title xml:lang="es">gray</title>
+                <title xml:lang="zh-TW">gray</title>
+            </options>
+        </var>
+        <var name="use_category_bgcolor" type="select" default="picker_bg">
+            <title xml:lang="ko">일정색상 표시 방법</title>
+            <title xml:lang="zh-CN">Event background color</title>
+            <title xml:lang="jp">Event background color</title>
+            <title xml:lang="en">Event background color</title>
+            <title xml:lang="es">Event background color</title>
+            <title xml:lang="zh-TW">Event background color</title>
+            <description xml:lang="ko">분류색상 적용은 분류 사용이 선택 되어야 적용됩니다.</description>
+            <description xml:lang="jp">Category color applicable combind with using category option.</description>
+            <description xml:lang="zh-CN">Category color applicable combind with using category option.</description>
+            <description xml:lang="en">Category color applicable combind with using category option.</description>
+            <description xml:lang="es">Category color applicable combind with using category option.</description>
+            <description xml:lang="zh-TW">Category color applicable combind with using category option.</description>
+            <options value="picker_bg">
+                <title xml:lang="ko">Color picker색 -> 배경색에 적용</title>
+                <title xml:lang="en">Color picker -> background color</title>
+                <title xml:lang="jp">Color picker -> background color</title>
+                <title xml:lang="zh-CN">Color picker -> background color</title>
+                <title xml:lang="es">Color picker -> background color</title>
+                <title xml:lang="zh-TW">Color picker -> background color</title>
+            </options>
+            <options value="picker_text">
+                <title xml:lang="ko">Color picker색 -> 글자색에 적용(배경색 없음)</title>
+                <title xml:lang="en">Color picker -> text color</title>
+                <title xml:lang="jp">Color picker -> text color</title>
+                <title xml:lang="zh-CN">Color picker -> text color</title>
+                <title xml:lang="es">Color picker -> text color</title>
+                <title xml:lang="zh-TW">Color picker -> text color</title>
+            </options>
+            <options value="category_bg">
+                <title xml:lang="ko">분류색을 배경색에 적용</title>
+                <title xml:lang="en">Replace background color by category color</title>
+                <title xml:lang="jp">Replace background color by category color</title>
+                <title xml:lang="zh-CN">Replace background color by category color</title>
+                <title xml:lang="es">Replace background color by category color</title>
+                <title xml:lang="zh-TW">Replace background color by category color</title>
+            </options>
+            <options value="category_text">
+                <title xml:lang="ko">분류색을 글자색에 적용(배경색 없음)</title>
+                <title xml:lang="en">Replace text color by category color</title>
+                <title xml:lang="jp">Replace text color by category color</title>
+                <title xml:lang="zh-CN">Replace text color by category color</title>
+                <title xml:lang="es">Replace text color by category color</title>
+                <title xml:lang="zh-TW">Replace text color by category color</title>
+            </options>
+		</var>
+		<var name="time_start" type="text" default="08:00">
+            <title xml:lang="ko">타임픽커 시작시간(기본 08:00)</title>
+            <title xml:lang="zh-CN">Time picker start hour(default 08:00)</title>
+            <title xml:lang="jp">Time picker start hour(default 08:00)</title>
+            <title xml:lang="en">Time picker start hour(default 08:00)</title>
+            <title xml:lang="es">Time picker start hour(default 08:00)</title>
+            <title xml:lang="zh-TW">Time picker start hour(default 08:00)</title>
+            <description xml:lang="ko">입력된 시간부터 선택할 수 있습니다.(기본 08:00)</description>
+            <description xml:lang="jp">Input start hour of time picker(default 08:00).</description>
+            <description xml:lang="zh-CN">Input start hour of time picker(default 08:00).</description>
+            <description xml:lang="en">Input start hour of time picker(default 08:00).</description>
+            <description xml:lang="es">Input start hour of time picker(default 08:00).</description>
+            <description xml:lang="zh-TW">Input start hour of time picker(default 08:00).</description>
+        </var>
+		<var name="time_end" type="text" default="20:00">
+            <title xml:lang="ko">타임픽커 종료시간(기본 20:00)</title>
+            <title xml:lang="zh-CN">Time picker end hour(default 20:00)</title>
+            <title xml:lang="jp">Time picker end hour(default 20:00)</title>
+            <title xml:lang="en">Time picker end hour(default 20:00)</title>
+            <title xml:lang="es">Time picker end hour(default 20:00)</title>
+            <title xml:lang="zh-TW">Time picker end hour(default 20:00)</title>
+            <description xml:lang="ko">입력된 시간까지 선택할 수 있습니다.(기본 20:00)</description>
+            <description xml:lang="jp">Input end hour of time picker(default 20:00).</description>
+            <description xml:lang="zh-CN">Input end hour of time picker(default 20:00).</description>
+            <description xml:lang="en">Input end hour of time picker(default 20:00).</description>
+            <description xml:lang="es">Input end hour of time picker(default 20:00).</description>
+            <description xml:lang="zh-TW">Input end hour of time picker(default 20:00).</description>
+        </var>
+ 		<var name="time_interval" type="text" default="15">
+            <title xml:lang="ko">시간표시 간격(분)</title>
+            <title xml:lang="zh-CN">Time picker interval(minute)</title>
+            <title xml:lang="jp">Time picker interval(minute)</title>
+            <title xml:lang="en">Time picker interval(minute)</title>
+            <title xml:lang="es">Time picker interval(minute)</title>
+            <title xml:lang="zh-TW">Time picker interval(minute)</title>
+            <description xml:lang="ko">입력된 숫자(분) 간격으로 시간을 선택할 수 있습니다.(기본:15분)</description>
+            <description xml:lang="jp">Input time picker interval minute (default:15).</description>
+            <description xml:lang="zh-CN">Input time picker interval minute (default:15).</description>
+            <description xml:lang="en">Input time picker interval minute (default:15).</description>
+            <description xml:lang="es">Input time picker interval minute (default:15).</description>
+            <description xml:lang="zh-TW">Input time picker interval minute (default:15).</description>
+        </var>
+        <var name="display_complete_doc" type="select" default="Y">
+            <title xml:lang="ko">완료일정 표시 방법</title>
+            <title xml:lang="zh-CN">Display completed event</title>
+            <title xml:lang="jp">Display completed event</title>
+            <title xml:lang="en">Display completed event</title>
+            <title xml:lang="es">Display completed event</title>
+            <title xml:lang="zh-TW">Display completed event on the calendar</title>
+            <description xml:lang="ko">완료로 체크된 일정의 달력 표시여부를 선택합니다.</description>
+            <description xml:lang="jp">Display completed event on the calendar</description>
+            <description xml:lang="zh-CN">Display completed event on the calendar</description>
+            <description xml:lang="en">Display completed event on the calendar</description>
+            <description xml:lang="es">Display completed event on the calendar</description>
+            <description xml:lang="zh-TW">Display completed event on the calendar</description>
+            <options value="Y">
+                <title xml:lang="ko">출력(일반)</title>
+                <title xml:lang="en">display(normal)</title>
+                <title xml:lang="jp">display(normal)</title>
+                <title xml:lang="zh-CN">display(normal)</title>
+                <title xml:lang="es">display(normal)</title>
+                <title xml:lang="zh-TW">display(normal)</title>
+            </options>
+            <options value="L">
+                <title xml:lang="ko">출력(완료선표시)</title>
+                <title xml:lang="en">display(line-through)</title>
+                <title xml:lang="jp">display(line-through)</title>
+                <title xml:lang="zh-CN">display(line-through)</title>
+                <title xml:lang="es">display(line-through)</title>
+                <title xml:lang="zh-TW">display(line-through)</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">not display</title>
+                <title xml:lang="zh-CN">not display</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">not display</title>
+            </options>
+        </var>
+       <var name="repeat_style" type="select" default="Y">
+            <title xml:lang="ko">반복일정 표시방법</title>
+            <title xml:lang="zh-CN">Repeat-event display style</title>
+            <title xml:lang="jp">Repeat-event display style</title>
+            <title xml:lang="en">Repeat-event display style</title>
+            <title xml:lang="es">Repeat-event display style</title>
+            <title xml:lang="zh-TW">Repeat-event display style</title>
+            <description xml:lang="ko">반복일정 표시방법을 선택합니다.</description>
+            <description xml:lang="jp">Selection repeat-event display style</description>
+            <description xml:lang="zh-CN">Selection repeat-event display style</description>
+            <description xml:lang="en">Selection repeat-event display style</description>
+            <description xml:lang="es">Selection repeat-event display style</description>
+            <description xml:lang="zh-TW">Selection repeat-event display style</description>
+            <options value="Y">
+                <title xml:lang="ko">한줄-제목 한번 표시</title>
+                <title xml:lang="en">display one line- title once</title>
+                <title xml:lang="jp">display one line- title once</title>
+                <title xml:lang="zh-CN">display one line- title once</title>
+                <title xml:lang="es">display one line- title once</title>
+                <title xml:lang="zh-TW">display one line- title once</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">한줄-제목 매일 표시</title>
+                <title xml:lang="en">display one line- title repeat</title>
+                <title xml:lang="jp">display one line- title repeat</title>
+                <title xml:lang="zh-CN">display one line- title repeat</title>
+                <title xml:lang="es">display one line- title repeat</title>
+                <title xml:lang="zh-TW">display one line- title repeat</title>
+            </options>
+            <options value="S">
+                <title xml:lang="ko">일정을 날자별로 분리</title>
+                <title xml:lang="en">separate event by date</title>
+                <title xml:lang="jp">separate event by date</title>
+                <title xml:lang="zh-CN">separate event by date</title>
+                <title xml:lang="es">separate event by date</title>
+                <title xml:lang="zh-TW">separate event by date</title>
+            </options>
+       </var>
+       <var name="display_doc_list" type="select">
+            <title xml:lang="ko"> 플래너 밑에 일정목록 표시</title>
+            <title xml:lang="zh-CN">Display document list under the calendar</title>
+            <title xml:lang="jp">Display document list under the calendar</title>
+            <title xml:lang="en">Display document list under the calendar</title>
+            <title xml:lang="es">Display document list under the calendar</title>
+            <title xml:lang="zh-TW">Display document list under the calendar</title>
+            <description xml:lang="ko">출력을 선택하면 플래너 밑에 문서 목록이 출력됩니다.</description>
+            <description xml:lang="jp">Display document list under the calendar.</description>
+            <description xml:lang="zh-CN">Display document list under the calendar.</description>
+            <description xml:lang="en">Display document list under the calendar.</description>
+            <description xml:lang="es">Display document list under the calendar.</description>
+            <description xml:lang="zh-TW">Display document list under the calendar.</description>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">not display</title>
+                <title xml:lang="zh-CN">not display</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">not display</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">Display document list.</title>
+                <title xml:lang="jp">Display document list.</title>
+                <title xml:lang="zh-CN">Display document list.</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">Display document list.</title>
+            </options>
+       </var>
+       <var name="display_TimeSchedule" type="select">
+            <title xml:lang="ko"> 2주/1주 플래너 밑에 일별 시간테이블 표시</title>
+            <title xml:lang="zh-CN">Display time schedule under the weekly calendar</title>
+            <title xml:lang="jp">Display time schedule under the weekly calendar</title>
+            <title xml:lang="en">Display time schedule under the weekly calendar</title>
+            <title xml:lang="es">Display time schedule under the weekly calendar</title>
+            <title xml:lang="zh-TW">Display time schedule under the weekly calendar</title>
+            <description xml:lang="ko">출력을 선택하면 2주/1주 플래너 밑에 타임스케줄이 출력됩니다.</description>
+            <description xml:lang="jp">Display time schedule under the weekly calendar</description>
+            <description xml:lang="zh-CN">Display time schedule under the weekly calendar.</description>
+            <description xml:lang="en">Display time schedule under the weekly calendar</description>
+            <description xml:lang="es">Display time schedule under the weekly calendar</description>
+            <description xml:lang="zh-TW">Display time schedule under the weekly calendar</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">Display document list.</title>
+                <title xml:lang="jp">Display document list.</title>
+                <title xml:lang="zh-CN">Display document list.</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">Display document list.</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">not display</title>
+                <title xml:lang="zh-CN">not display</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">not display</title>
+            </options>
+       </var>
+       <var name="display_calendar_under_view" type="select">
+            <title xml:lang="ko"> 문서 보기화면 밑에 플래너 표시</title>
+            <title xml:lang="zh-CN">Display planner under the document view.</title>
+            <title xml:lang="jp">Display planner under the document view.</title>
+            <title xml:lang="en">Display planner under the document view.</title>
+            <title xml:lang="es">Display planner under the document view.</title>
+            <title xml:lang="zh-TW">Display planner under the document view.</title>
+            <description xml:lang="ko">출력을 선택하면 문서보기 화면 밑에 플래너(목록)가 출력됩니다.</description>
+            <description xml:lang="jp">Display planner under the document view.</description>
+            <description xml:lang="zh-CN">Display planner under the document view.</description>
+            <description xml:lang="en">Display planner under the document view.</description>
+            <description xml:lang="es">Display planner under the document view.</description>
+            <description xml:lang="zh-TW">Display planner under the document view.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">Display planner.</title>
+                <title xml:lang="jp">Display planner.</title>
+                <title xml:lang="zh-CN">Display planner.</title>
+				<title xml:lang="es">Display planner.</title>
+                <title xml:lang="zh-TW">Display planner.</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">not display</title>
+                <title xml:lang="zh-CN">not display</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">not display</title>
+            </options>
+        </var>
+       <var name="display_detail" type="select">
+            <title xml:lang="ko">일정내용 일부 출력(List형에만 적용)</title>
+            <title xml:lang="zh-CN">Display detail(List style only)</title>
+            <title xml:lang="jp">Display detail(List style only)</title>
+            <title xml:lang="en">Display detail(List style only)</title>
+            <title xml:lang="es">Display detail(List style only)</title>
+            <title xml:lang="zh-TW">DDisplay detail(List style only)</title>
+            <description xml:lang="ko">출력을 선택하면 제목밑에 문서내용 일부가 출력됩니다.</description>
+            <description xml:lang="jp">Display plan detail under the title.</description>
+            <description xml:lang="zh-CN">Display plan detail under the title.</description>
+            <description xml:lang="en">Display plan detail under the title.</description>
+            <description xml:lang="es">Display plan detail under the title.</description>
+            <description xml:lang="zh-TW">Display plan detail under the title.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력-요약</title>
+                <title xml:lang="en">Display summary.</title>
+                <title xml:lang="jp">Display summary.</title>
+                <title xml:lang="zh-CN">Display summary.</title>
+                <title xml:lang="es">Display summary.</title>
+                <title xml:lang="zh-TW">Display summary.</title>
+            </options>
+            <options value="F">
+                <title xml:lang="ko">출력-전체</title>
+                <title xml:lang="en">Display full text.</title>
+                <title xml:lang="jp">Display full text.</title>
+                <title xml:lang="zh-CN">Display full text.</title>
+                <title xml:lang="es">Display full text.</title>
+                <title xml:lang="zh-TW">Display full text.</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">not display</title>
+                <title xml:lang="zh-CN">not display</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">not display</title>
+            </options>
+        </var>
+		<var name="display_category_button" type="select">
+            <title xml:lang="ko">카테고리 버튼표시</title>
+            <title xml:lang="zh-CN">Category button</title>
+            <title xml:lang="jp">Category button</title>
+            <title xml:lang="en">Category button</title>
+            <title xml:lang="es">Category button</title>
+            <title xml:lang="zh-TW">Category button</title>
+            <description xml:lang="ko">출력을 선택하면 카테고리 버튼이 표시됩니다.</description>
+            <description xml:lang="jp">Display Category button</description>
+            <description xml:lang="zh-CN">Display Category button</description>
+            <description xml:lang="en">Display Category button</description>
+            <description xml:lang="es">Display Category button</description>
+            <description xml:lang="zh-TW">Display Category button</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_tooltip" type="select" default="all">
+            <title xml:lang="ko">툴팁 출력</title>
+            <title xml:lang="zh-CN">Display Tooltip</title>
+            <title xml:lang="jp">Display Tooltip</title>
+            <title xml:lang="en">Display Tooltip</title>
+            <title xml:lang="es">Display Tooltip</title>
+            <title xml:lang="zh-TW">Display Tooltip</title>
+            <description xml:lang="ko">툴팁 출력될 사용자 선택.</description>
+            <description xml:lang="jp">Select users</description>
+            <description xml:lang="zh-CN">Select users</description>
+            <description xml:lang="en">Select users</description>
+            <description xml:lang="es">Select users</description>
+            <description xml:lang="zh-TW">Select users</description>
+            <options value="all">
+                <title xml:lang="ko">모든 사용자</title>
+                <title xml:lang="en">display all users</title>
+                <title xml:lang="jp">display all users</title>
+                <title xml:lang="zh-CN">display all users</title>
+                <title xml:lang="es">display all users</title>
+                <title xml:lang="zh-TW">display all users</title>
+            </options>
+            <options value="log">
+                <title xml:lang="ko">로그인 사용자</title>
+                <title xml:lang="en">display login users</title>
+                <title xml:lang="jp">display login users</title>
+                <title xml:lang="zh-CN">display login users</title>
+                <title xml:lang="es">display login users</title>
+                <title xml:lang="zh-TW">display login users</title>
+            </options>
+            <options value="adm">
+                <title xml:lang="ko">관리자</title>
+                <title xml:lang="en">display admin only</title>
+                <title xml:lang="jp">display admin only</title>
+                <title xml:lang="zh-CN">display admin only</title>
+                <title xml:lang="es">display admin only</title>
+                <title xml:lang="zh-TW">display admin only</title>
+            </options>
+        </var>
+        <var name="allow_status_change" type="select" default="adm">
+            <title xml:lang="ko">상태코드 변경 허용</title>
+            <title xml:lang="zh-CN">Allow status code change</title>
+            <title xml:lang="jp">Allow status code change</title>
+            <title xml:lang="en">Allow status code change</title>
+            <title xml:lang="es">Allow status code change</title>
+            <title xml:lang="zh-TW">Allow status code change</title>
+            <description xml:lang="ko">상태코드 변경을 허용할 사용자.</description>
+            <description xml:lang="jp">Select users</description>
+            <description xml:lang="zh-CN">Select users</description>
+            <description xml:lang="en">Select users</description>
+            <description xml:lang="es">Select users</description>
+            <description xml:lang="zh-TW">Select users</description>
+            <options value="adm">
+                <title xml:lang="ko">관리자</title>
+                <title xml:lang="en">manager only</title>
+                <title xml:lang="jp">manager only</title>
+                <title xml:lang="zh-CN">manager only</title>
+                <title xml:lang="es">manager only</title>
+                <title xml:lang="zh-TW">manager only</title>
+            </options>
+            <options value="own">
+                <title xml:lang="ko">작성자</title>
+                <title xml:lang="en">Owner</title>
+                <title xml:lang="jp">Owner</title>
+                <title xml:lang="zh-CN">Owner</title>
+                <title xml:lang="es">Owner</title>
+                <title xml:lang="zh-TW">Owner</title>
+            </options>
+            <options value="log">
+                <title xml:lang="ko">로그인 사용자</title>
+                <title xml:lang="en">Login users</title>
+                <title xml:lang="jp">Login users</title>
+                <title xml:lang="zh-CN">Login users</title>
+                <title xml:lang="es">Login users</title>
+                <title xml:lang="zh-TW">Login users</title>
+            </options>
+        </var>
+        <var name="auto_text" type="textarea">
+            <title xml:lang="ko">글쓰기에 나타낼 상용구 등록</title>
+            <title xml:lang="jp">Define common used sentence for editor</title>
+            <title xml:lang="zh-CN">Define common used sentence for editor</title>
+            <title xml:lang="en">Define common used sentence for editor</title>
+            <title xml:lang="es">Define common used sentence for editor</title>
+            <title xml:lang="zh-TW">Define common used sentence for editor</title>
+            <description xml:lang="ko">글쓰기에 미리 표시될 상용구를 입력하실 수 있습니다.</description>
+            <description xml:lang="jp">You may input common used sentence for document write.</description>
+            <description xml:lang="zh-CN">You may input common used sentence for document write.</description>
+            <description xml:lang="en">You may input common used sentence for document write.</description>
+            <description xml:lang="es">You may input common used sentence for document write.</description>
+            <description xml:lang="zh-TW">You may input common used sentence for document write.</description>
+        </var>
+        <var name="auto_comment_text" type="textarea">
+            <title xml:lang="ko">댓글쓰기에 나타낼 상용구 등록</title>
+            <title xml:lang="jp">Define common used sentence for editor</title>
+            <title xml:lang="zh-CN">Define common used sentence for editor</title>
+            <title xml:lang="en">Define common used sentence for editor</title>
+            <title xml:lang="es">Define common used sentence for editor</title>
+            <title xml:lang="zh-TW">Define common used sentence for editor</title>
+            <description xml:lang="ko">댓글쓰기에 미리 표시될 상용구를 입력하실 수 있습니다.</description>
+            <description xml:lang="jp">You may input common used sentence for comment.</description>
+            <description xml:lang="zh-CN">You may input common used sentence for comment.</description>
+            <description xml:lang="en">You may input common used sentence for comment.</description>
+            <description xml:lang="es">You may input common used sentence for comment.</description>
+            <description xml:lang="zh-TW">You may input common used sentence for comment.</description>
+        </var>
+		<var name="nonuse_extra_vars" type="checkbox">
+            <title xml:lang="ko">사용하지 않을 확장변수</title>
+            <title xml:lang="zh-CN">nonuse extra-vars</title>
+            <title xml:lang="jp">nonuse extra-vars</title>
+            <title xml:lang="en">nonuse extra-vars</title>
+            <title xml:lang="es">nonuse extra-vars</title>
+            <title xml:lang="zh-TW">nonuse extra-vars</title>
+            <description xml:lang="ko">사용하지 않을 확장변수 선택</description>
+            <description xml:lang="jp">Check nonuse extra-vars.</description>
+            <description xml:lang="zh-CN">Check nonuse extra-vars.</description>
+            <description xml:lang="en">Check nonuse extra-vars.</description>
+            <description xml:lang="es">Check nonuse extra-vars.</description>
+            <description xml:lang="zh-TW">Check nonuse extra-vars.</description>
+            <options value="2">
+                <title xml:lang="ko">2-일정종료</title>
+                <title xml:lang="en">2-End date</title>
+                <title xml:lang="jp">2-End date</title>
+                <title xml:lang="zh-CN">2-End date</title>
+                <title xml:lang="es">2-End date</title>
+                <title xml:lang="zh-TW">2-End date</title>
+            </options>
+            <options value="3">
+                <title xml:lang="ko">3-배경색상</title>
+                <title xml:lang="en">3-Color</title>
+                <title xml:lang="jp">3-Color</title>
+                <title xml:lang="zh-CN">3-Color</title>
+                <title xml:lang="es">3-Color</title>
+                <title xml:lang="zh-TW">3-Color</title>
+            </options>
+            <options value="4">
+                <title xml:lang="ko">4-일정확인</title>
+                <title xml:lang="en">4-Icon</title>
+                <title xml:lang="jp">4-Icon</title>
+                <title xml:lang="zh-CN">4-Icon</title>
+                <title xml:lang="es">4-Icon</title>
+                <title xml:lang="zh-TW">4-Icon</title>
+            </options>
+            <options value="5">
+                <title xml:lang="ko">5-반복주기</title>
+                <title xml:lang="en">5-Cycle</title>
+                <title xml:lang="jp">5-Cycle</title>
+                <title xml:lang="zh-CN">5-Cycle</title>
+                <title xml:lang="es">5-Cycle</title>
+                <title xml:lang="zh-TW">5-Cycle</title>
+            </options>
+            <options value="6">
+                <title xml:lang="ko">6-반복단위</title>
+                <title xml:lang="en">6-Unit</title>
+                <title xml:lang="jp">6-Unit</title>
+                <title xml:lang="zh-CN">6-Unit</title>
+                <title xml:lang="es">6-Unit</title>
+                <title xml:lang="zh-TW">6-Unit</title>
+            </options>
+            <options value="7">
+                <title xml:lang="ko">7-선택시간</title>
+                <title xml:lang="en">7-Time</title>
+                <title xml:lang="jp">7-Time</title>
+                <title xml:lang="zh-CN">7-Time</title>
+                <title xml:lang="es">7-Time</title>
+                <title xml:lang="zh-TW">7-Time</title>
+            </options>
+            <options value="8">
+                <title xml:lang="ko">8-공개그룹</title>
+                <title xml:lang="en">8-Group</title>
+                <title xml:lang="jp">8-Group</title>
+                <title xml:lang="zh-CN">8-Group</title>
+                <title xml:lang="es">8-Group</title>
+                <title xml:lang="zh-TW">8-Group</title>
+            </options>
+        </var>
+		<var name="off_day" type="checkbox">
+            <title xml:lang="ko">휴무일</title>
+            <title xml:lang="zh-CN">Off day</title>
+            <title xml:lang="jp">Off day</title>
+            <title xml:lang="en">Off day</title>
+            <title xml:lang="es">Off day</title>
+            <title xml:lang="zh-TW">Off day</title>
+            <description xml:lang="ko">휴무일 선택</description>
+            <description xml:lang="jp">Check Off days.</description>
+            <description xml:lang="zh-CN">Check Off days.</description>
+            <description xml:lang="en">Check Off days.</description>
+            <description xml:lang="es">Check Off days.</description>
+            <description xml:lang="zh-TW">Check Off days.</description>
+            <options value="H">
+                <title xml:lang="ko">공휴일</title>
+                <title xml:lang="en">Official Holiday</title>
+                <title xml:lang="jp">Official Holiday</title>
+                <title xml:lang="zh-CN">Official Holiday</title>
+                <title xml:lang="es">Official Holiday</title>
+                <title xml:lang="zh-TW">Official Holiday</title>
+            </options>
+            <options value="0">
+                <title xml:lang="ko">일요일</title>
+                <title xml:lang="en">Sunday</title>
+                <title xml:lang="jp">Sunday</title>
+                <title xml:lang="zh-CN">Sunday</title>
+                <title xml:lang="es">Sunday</title>
+                <title xml:lang="zh-TW">Sunday</title>
+            </options>
+            <options value="1">
+                <title xml:lang="ko">월요일</title>
+                <title xml:lang="en">Monday</title>
+                <title xml:lang="jp">Monday</title>
+                <title xml:lang="zh-CN">Monday</title>
+                <title xml:lang="es">Monday</title>
+                <title xml:lang="zh-TW">Monday</title>
+            </options>
+            <options value="2">
+                <title xml:lang="ko">화요일</title>
+                <title xml:lang="en">Tuesday</title>
+                <title xml:lang="jp">Tuesday</title>
+                <title xml:lang="zh-CN">Tuesday</title>
+                <title xml:lang="es">Tuesday</title>
+                <title xml:lang="zh-TW">Tuesday</title>
+            </options>
+            <options value="3">
+                <title xml:lang="ko">수요일</title>
+                <title xml:lang="en">Wednesday</title>
+                <title xml:lang="jp">Wednesday</title>
+                <title xml:lang="zh-CN">Wednesday</title>
+                <title xml:lang="es">Wednesday</title>
+                <title xml:lang="zh-TW">Wednesday</title>
+            </options>
+            <options value="4">
+                <title xml:lang="ko">목요일</title>
+                <title xml:lang="en">Thursday</title>
+                <title xml:lang="jp">Thursday</title>
+                <title xml:lang="zh-CN">Thursday</title>
+                <title xml:lang="es">Thursday</title>
+                <title xml:lang="zh-TW">Thursday</title>
+            </options>
+            <options value="5">
+                <title xml:lang="ko">금요일</title>
+                <title xml:lang="en">Friday</title>
+                <title xml:lang="jp">Friday</title>
+                <title xml:lang="zh-CN">Friday</title>
+                <title xml:lang="es">Friday</title>
+                <title xml:lang="zh-TW">Friday</title>
+            </options>
+            <options value="6">
+                <title xml:lang="ko">토요일</title>
+                <title xml:lang="en">Saterday</title>
+                <title xml:lang="jp">Saterday</title>
+                <title xml:lang="zh-CN">Saterday</title>
+                <title xml:lang="es">Saterday</title>
+                <title xml:lang="zh-TW">Saterday</title>
+            </options>
+        </var>
+		<var name="off_day_option" type="checkbox">
+            <title xml:lang="ko">휴무일 처리 옵션</title>
+            <title xml:lang="zh-CN">Off day event option.</title>
+            <title xml:lang="jp">Off day event option.</title>
+            <title xml:lang="en">Off day event option.</title>
+            <title xml:lang="es">Off day event option.</title>
+            <title xml:lang="zh-TW">Off day event option.</title>
+            <description xml:lang="ko">휴무일 처리 옵션: 
+			일정 출력 않음을 선택하면, 비록 일정이 있더라도 휴무일에는 일정이 표시되지 않습니다. 
+			따라서 종요한 일정이 안보일 수 있으니, 신중히 사용하시기 바랍니다.
+			</description>
+            <description xml:lang="jp">Select Off day event option.</description>
+            <description xml:lang="zh-CN">Select Off day event option.</description>
+            <description xml:lang="en">Select Off day event option.</description>
+            <description xml:lang="es">Select Off day event option.</description>
+            <description xml:lang="zh-TW">Select Off day event option.</description>
+            <options value="LABEL">
+                <title xml:lang="ko">휴무일 표시</title>
+                <title xml:lang="en">Display Label</title>
+                <title xml:lang="jp">Display Label</title>
+                <title xml:lang="zh-CN">Display Label</title>
+                <title xml:lang="es">Display Label</title>
+                <title xml:lang="zh-TW">Display Label</title>
+            </options>
+            <options value="NA_NEW">
+                <title xml:lang="ko">신규일정 작성 금지</title>
+                <title xml:lang="en">Not allow new event.</title>
+                <title xml:lang="jp">Not allow new event.</title>
+                <title xml:lang="zh-CN">Not allow new event.</title>
+                <title xml:lang="es">Not allow new event.</title>
+                <title xml:lang="zh-TW">Not allow new event.</title>
+            </options>
+            <options value="NA_DISP">
+                <title xml:lang="ko">일정 출력 않음</title>
+                <title xml:lang="en">Not display events</title>
+                <title xml:lang="jp">Not display events</title>
+                <title xml:lang="zh-CN">Not display events</title>
+                <title xml:lang="es">Not display events</title>
+                <title xml:lang="zh-TW">Not display events</title>
+            </options>
+        </var>
+   	</group>
+   	<group>
+		<title xml:lang="ko">스킨관리- 기타설정 옵션(2)</title>
+		<title xml:lang="jp">Board option(2)</title>
+		<title xml:lang="zh-CN">Board option(2)</title>
+		<title xml:lang="en">Board option(2)</title>
+		<title xml:lang="es">Board option(2)</title>
+		<title xml:lang="zh-TW">Board option(2)</title>
+		<var name="display_setup_button" type="select">
+            <title xml:lang="ko">설정 표시</title>
+            <title xml:lang="zh-CN">显示管理设置组</title>
+            <title xml:lang="jp">設定表示</title>
+            <title xml:lang="en">Display Setup</title>
+            <title xml:lang="es">Muestra la información de la Configuración</title>
+            <title xml:lang="zh-TW">顯示設置</title>
+            <description xml:lang="ko">출력을 선택하면 표준형, 리스트형 아이콘이 표시됩니다.</description>
+            <description xml:lang="jp">Display planner icon for different style.</description>
+            <description xml:lang="zh-CN">Display planner icon for different style.</description>
+            <description xml:lang="en">Display planner icon for different style.</description>
+            <description xml:lang="es">Display planner icon for different style.</description>
+            <description xml:lang="zh-TW">Display planner icon for different style.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">제목 글자수</title>
+            <title xml:lang="jp">タイトルの文字数</title>
+            <title xml:lang="zh-CN">标题字数</title>
+            <title xml:lang="en">Length of Subject</title>
+            <title xml:lang="es">Length of Subject</title>
+            <title xml:lang="zh-TW">標題字數</title>
+            <description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+            <description xml:lang="jp">タイトルの文字数を設定します（「0」または空欄の場合は、文字数を制限しません）。</description>
+            <description xml:lang="zh-CN">可以指定标题字数(0或留空为不限)。</description>
+            <description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+            <description xml:lang="es">You may set length of title. (0 or blank value will not restrict the length)</description>
+            <description xml:lang="zh-TW">可指定標題字數(0或留白為不限制)。</description>
+        </var>
+		<var name="content_cut_size" type="text">
+			<title xml:lang="ko">내용 글자수</title>
+			<title xml:lang="jp">内容の文字数</title>
+			<title xml:lang="zh-CN">内容字数</title>
+			<title xml:lang="en">Length of Content</title>
+			<title xml:lang="es">Número de letras del Contenidos</title>
+			<title xml:lang="ru">Длина содержания</title>
+			<title xml:lang="zh-TW">內容字數</title>
+			<description xml:lang="ko">내용 글자수를 지정할 수 있습니다. (기본 240)</description>
+			<description xml:lang="jp">内容の文字数を指定します(デフォルト 240)。</description>
+			<description xml:lang="zh-CN">可以指定要显示的内容字数。(默认为240)</description>
+			<description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+			<description xml:lang="es">El largo del Contenidos puede ser asignado. (Predefinido 240)</description>
+			<description xml:lang="ru">Длина содержания может быть присвоена. (стандарт: 240)</description>
+			<description xml:lang="zh-TW">可以指定要顯示的內容字數。(預設是240)</description>
+		</var>
+        <var name="display_ip_address" type="select">
+            <title xml:lang="ko">아이피주소 표시</title>
+            <title xml:lang="en">Display ip address</title>
+            <title xml:lang="jp">IPアドレス表示</title>
+            <title xml:lang="zh-CN">显示IP地址</title>
+            <title xml:lang="es-CN">Display ip address</title>
+            <title xml:lang="zh-TW">顯示IP位址</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="display_sign" type="select">
+            <title xml:lang="ko">서명표시</title>
+            <title xml:lang="jp">署名表示</title>
+            <title xml:lang="zh-CN">显示签名</title>
+            <title xml:lang="en">display signature</title>
+            <title xml:lang="es">display signature</title>
+            <title xml:lang="zh-TW">顯示簽名檔</title>
+            <description xml:lang="ko">글내용 사용자의 서명과 프로필 이미지를 표시하거나 숨길 수 있습니다.</description>
+            <description xml:lang="jp">本文内で会員の署名とプロフィルイメージの表示を設定します。</description>
+            <description xml:lang="zh-CN">可以设置主题发布者的个人签名及个性头像显示与否。</description>
+            <description xml:lang="en">Display user's sign and profile image.</description>
+            <description xml:lang="es">Display user's sign and profile image.</description>
+            <description xml:lang="zh-TW">可選擇是否在文章中顯示個人圖片和簽名檔</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+        <var name="duration_new" type="text" default="24">
+            <title xml:lang="ko">new표시 시간 (hours)</title>
+            <title xml:lang="jp">Newの表示時間 (Hours)</title>
+            <title xml:lang="zh-CN">new图标显示时间(hours)</title>
+            <title xml:lang="en">Duration of indication for new item</title>
+            <title xml:lang="es">Duration of indication for new item</title>
+            <title xml:lang="zh-TW">new圖案顯示時間(hours)</title>
+            <description xml:lang="ko">새로 등록된 게시물의 new 표시시간을 정할 수 있습니다. </description>
+            <description xml:lang="jp">新しく登録された書き込みに対して「New」の表示時間を設定します。 </description>
+            <description xml:lang="zh-CN">可以设置最新更新主题的new图标显示时间。</description>
+            <description xml:lang="en">You may set the duration of indication for fresh item. </description>
+            <description xml:lang="es">You may set the duration of indication for fresh item. </description>
+            <description xml:lang="zh-TW">可設置最新更新主題的new圖案顯示時間。</description>
+        </var>
+        <var name="thumbnail_type" type="select">
+            <title xml:lang="ko">썸네일 생성 방법</title>
+            <title xml:lang="jp">サムネール生成方法</title>
+            <title xml:lang="zh-CN">缩略图生成方式</title>
+            <title xml:lang="en">Type of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖建立方式</title>
+            <description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+            <description xml:lang="jp">サムネールの生成方法を選択します。</description>
+            <description xml:lang="zh-CN">可以选择缩略图生成方式。</description>
+            <description xml:lang="en">Choose the type to create the thumnail.</description>
+            <description xml:lang="zh-TW">可選擇縮圖建立方式。</description>
+            <options value="crop">
+                <title xml:lang="ko">꽉 채우기</title>
+                <title xml:lang="jp">刈り込み</title>
+                <title xml:lang="zh-CN">裁减</title>
+                <title xml:lang="en">crop</title>
+                <title xml:lang="zh-TW">裁減</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">비율 맞추기</title>
+                <title xml:lang="jp">比率</title>
+                <title xml:lang="zh-CN">比例</title>
+                <title xml:lang="en">ratio</title>
+                <title xml:lang="zh-TW">比例</title>
+            </options>
+        </var>
+        <var name="thumbnail_width" type="text" default="75">
+            <title xml:lang="ko">썸네일 가로크기</title>
+            <title xml:lang="jp">サムネールの横サイズ</title>
+            <title xml:lang="zh-CN">缩略图宽度</title>
+            <title xml:lang="en">Width of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖寬度</title>
+            <description xml:lang="ko">썸네일의 가로 크기를 지정할 수 있습니다. (기본 75px)</description>
+            <description xml:lang="jp">サムネールの横サイズを指定します(デフォルト 75px)。</description>
+            <description xml:lang="zh-CN">可以指定缩略图宽度(默认为 75px)。</description>
+            <description xml:lang="en">Set the width of thumbnail. Default is 75px.</description>
+            <description xml:lang="zh-TW">可指定縮圖寬度(預設是 75px)。</description>
+        </var>
+        <var name="thumbnail_height" type="text" default="75">
+            <title xml:lang="ko">썸네일 세로크기</title>
+            <title xml:lang="jp">サムネールの縦サイズ</title>
+            <title xml:lang="zh-CN">缩略图高度</title>
+            <title xml:lang="en">Height of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖高度</title>
+            <description xml:lang="ko">썸네일의 세로 크기를 지정할 수 있습니다. (기본 75px)</description>
+            <description xml:lang="jp">サムネールの縦サイズを指定します(デフォルト 75px)。</description>
+            <description xml:lang="zh-CN">可以指定缩略图高度(默认为 75px)。</description>
+            <description xml:lang="en">Set the height of thumbnail. Default is 75px.</description>
+            <description xml:lang="zh-TW">可指定縮圖高度(預設是 75px)。</description>
+        </var>
+	</group>
+   	<group>
+		<title xml:lang="ko">스킨관리- 예약관련 옵션(3)</title>
+		<title xml:lang="jp">Board option(2)</title>
+		<title xml:lang="zh-CN">Board option(2)</title>
+		<title xml:lang="en">Board option(2)</title>
+		<title xml:lang="es">Board option(2)</title>
+		<title xml:lang="zh-TW">Board option(2)</title>
+		<var name="reservation" type="select" default="N">
+            <title xml:lang="ko">예약용(중복금지) 여부</title>
+            <title xml:lang="zh-CN">Reservation type</title>
+            <title xml:lang="jp">Reservation type</title>
+            <title xml:lang="en">Reservation type</title>
+            <title xml:lang="es">Reservation type</title>
+            <title xml:lang="zh-TW">Reservation type</title>
+            <description xml:lang="ko">일반용/예약용(중복금지) 여부를 선택합니다.</description>
+            <description xml:lang="jp">Selection norml planner or reservation planner.</description>
+            <description xml:lang="zh-CN">Selection norml planner or reservation planner.</description>
+            <description xml:lang="en">Selection norml planner or reservation planner.</description>
+            <description xml:lang="es">Selection norml planneror reservation planner.</description>
+            <description xml:lang="zh-TW">Selection norml planner or reservation planner.</description>
+            <options value="N">
+                <title xml:lang="ko">일반 플래너</title>
+                <title xml:lang="en">Normal planner</title>
+                <title xml:lang="jp">Normal planner</title>
+                <title xml:lang="zh-CN">Normal planner</title>
+                <title xml:lang="es">Normal planner</title>
+                <title xml:lang="zh-TW">Normal planner</title>
+            </options>
+            <options value="T">
+                <title xml:lang="ko">시간 중복불허</title>
+                <title xml:lang="en">Not allow overlapping time</title>
+                <title xml:lang="jp">Not allow overlapping time</title>
+                <title xml:lang="zh-CN">Not allow overlapping time</title>
+                <title xml:lang="es">Not allow overlapping time</title>
+                <title xml:lang="zh-TW">Not allow overlapping time</title>
+            </options>
+        </var>
+        <var name="display_resv_btn" type="select">
+            <title xml:lang="ko">예약단추 표시</title>
+            <title xml:lang="jp">display reservation button</title>
+            <title xml:lang="zh-CN">display reservation button</title>
+            <title xml:lang="en">display reservation button</title>
+            <title xml:lang="es">display reservation button</title>
+            <title xml:lang="zh-TW">display reservation button</title>
+            <description xml:lang="ko">예약단추 이미지를 표시하거나 숨길 수 있습니다.</description>
+            <description xml:lang="jp">Display reservation button image.</description>
+            <description xml:lang="zh-CN">Display reservation button image.</description>
+            <description xml:lang="en">Display reservation button image.</description>
+            <description xml:lang="es">Display reservation button image.</description>
+            <description xml:lang="zh-TW">Display reservation button image.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+                <title xml:lang="zh-CN">显示</title>
+                <title xml:lang="es">display</title>
+                <title xml:lang="zh-TW">顯示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+                <title xml:lang="zh-CN">不显示</title>
+                <title xml:lang="es">not display</title>
+                <title xml:lang="zh-TW">隱藏</title>
+            </options>
+        </var>
+	</group>
+</extra_vars>
+</skin>
+

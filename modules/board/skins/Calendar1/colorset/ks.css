@@ -1,0 +1,14 @@
+/* PlannerXE123 user colorset ks.css*/
+.planner_calendar thead th, .planner_list thead th {background:#e5e5e5;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e5e5e5));
+    background:-moz-linear-gradient(top, #ffffff, #e5e5e5);
+	background-image:linear-gradient(#ffffff, #e5e5e5);
+	-ms-filter:progid:DXImageTransform.Microsoft.gradient(GradientType='0',startColorstr='#ffffff', endColorstr='#e5e5e5'); /* IE8 */	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType='0', startColorStr='#ffffff', endColorStr='#e5e5e5'); /* for IE6-7*/
+	}
+.planner_calendar tr td.hover {background-color: #FFFFCC; }
+.planner_calendar .holiday {font-family:Times New Roman; color:#FF6600;}
+.planner_calendar .memorial {font-family:Times New Roman; color:#87ceeb;}
+.planner_calendar .link_allow:hover {background-color:#FBE452; }
+.planner_calendar .holiday_topline {display:inline; padding:2px 0px 0px 3px; word-break:break-all;}
+.planner_calendar .holiday_bottomline {display:none; }

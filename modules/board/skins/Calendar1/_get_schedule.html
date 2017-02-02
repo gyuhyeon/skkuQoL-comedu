@@ -1,0 +1,667 @@
+<!--// XE ver.1.2.x 게시판을 이용한 플래너/음력달력-----------------------
+##
+## @Package:    xe_official_planner123 (board skin)
+## @File name:	_get_schedule.html
+## @Author:     Keysung Chung (keysung2004@gmail.com)
+## @Copyright:  © 2009 Keysung Chung(keysung2004@gmail.com)
+## @Contributors: Clements J. SONG (http://clements.kyunggi.ca/ , clements_song@hotmail.com)
+## @Release:	under GPL-v2 License.
+## @License:	http://www.opensource.org/licenses/gpl-2.0.php
+##
+## Redistribution and use in source and binary forms, with or without modification,
+## are permitted provided that the following conditions are met:
+##
+## Redistributions of source code must retain the above copyright notice, this list of
+## conditions and the following disclaimer.
+## Redistributions in binary form must reproduce the above copyright notice, this list
+## of conditions and the following disclaimer in the documentation and/or other materials
+## provided with the distribution.
+##
+## Neither the name of the author nor the names of contributors may be used to endorse
+## or promote products derived from this software without specific prior written permission.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+## EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+## COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+## GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+## AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+## OF THE POSSIBILITY OF SUCH DAMAGE.
+##
+## [author]
+##  - Keysung Chung, 2009, 07, 28
+##  - http://chungfamily.woweb.net/
+## [changes]
+##  - PlannerXE123 ver. 5.0.0 : Keysung Chung, 2015, 11, 05
+##  - PlannerXE123 ver. 4.6.0 : Keysung Chung, 2014, 11, 01
+##  - PlannerXE123 ver. 4.4.0 : Keysung Chung, 2014, 05, 01
+##  - PlannerXE123 ver. 4.3.0 : Keysung Chung, 2014, 01, 01
+##  - PlannerXE123 ver. 4.1.0 : Keysung Chung, 2013, 03, 19
+##  - PlannerXE123 ver. 4.0.0 : Keysung Chung, 2011, 08, 01
+##  - PlannerXE123 ver. 3.5.0 : Keysung Chung, 2011, 09, 30
+##  - PlannerXE123 ver. 3.3.0 : Keysung Chung, 2010, 12, 12
+##  - PlannerXE123 ver. 3.2.0 : Keysung Chung, 2010, 10, 31
+##  - PlannerXE123 ver. 3.1.0 : Keysung Chung, 2010, 10, 12
+##  - PlannerXE123 ver. 2.1.0 : Keysung Chung, 2010, 09, 13
+##  - PlannerXE123 ver. 2.0.0 : Keysung Chung, 2010, 09, 01
+##  - PlannerXE123 ver. 1.7.0 : Keysung Chung, 2010, 08, 01
+##  - PlannerXE123 ver. 1.6.0 : Keysung Chung, 2010, 07, 01
+##  - PlannerXE123 ver. 1.5.0 : Keysung Chung, 2010, 06, 15
+##  - PlannerXE123 ver. 1.4.0 : Keysung Chung, 2010, 06, 01
+##  - PlannerXE123 ver. 1.3.0 : Keysung Chung, 2010, 05, 15
+##  - PlannerXE123 ver. 1.2.0 : Keysung Chung, 2010, 05, 01
+##  - PlannerXE123 ver. 1.1.0 : Keysung Chung, 2010, 04, 14
+##  - PlannerXE123 ver. 1.0.0 : Keysung Chung, 2010, 04, 01
+##  - PlannerXE123 ver. 0.3 : Keysung Chung, 2010, 02, 28
+##  - PlannerXE123 ver. 0.2 : Keysung Chung, 2009, 11, 09
+##	- PlannerXE123 ver. 0.1 : Keysung Chung, 2009, 07, 28
+----------------------------------------------------------------------- -->
+<!--// *** planner123: get schedule elements *********************************** -->
+{@ $XE_version = __ZBXE_VERSION__;}<!--@if(!$XE_version)-->{@ $XE_version = __XE_VERSION__;}<!--@end-->
+{@ $var_version = "PlannerXE123 Skin V503(".$XE_version."+".phpversion().")";}<!--{$var_version}-->
+{@
+$linkpath = getUrl('mid',$mid,'pGanjioption',1,'offset',$offset,'pOption',$pOption,'listStyle',$listStyle,'pYear','','pMonth','','pDay','');
+$skinpath = $tpl_path;// 스킨 설치 경로지정
+$XE_path = getUrl('');
+$obj = new stdClass;// 클리어 쿼리검색 object
+$arr_plan = array();// 전역변수 처럼 작용되어 위젯, 스킨 모두에서 클리어함)
+}
+<!--@if($module_info->calendar_bgcolor == null || $module_info->calendar_bgcolor == "transparent" )-->
+{@ $day_bgcolor="transparent";}<!--// 달력의 평일 칸 배경색 -->
+<!--@else-->
+{@ $day_bgcolor=$module_info->calendar_bgcolor;}<!--// 달력의 평일 칸 배경색 -->
+<!--@end-->
+{@ $day_bgcolor2="#fffacd";}<!--// 달력의 평일 칸 배경색 list형에서 2 주별 다른 배경색을 위하여-->
+<!--%import("./js/plannerXE123_skin.js")--><!--// planner123 js --><!--//  js 인쿨르드 -->
+<!--@if(!class_exists('planner123_main'))-->
+{@ require_once($skinpath.'function/class.planner123_main.php');}<!--//  function -->
+<!--@end-->
+<!--@if($grant->is_admin)-->
+{@
+$args = new stdClass;
+$args->module_srl = $module_info->module_srl;
+$args->var_idx = 1;
+$tmp_output = executeQuery('document.getDocumentExtraKeys', $args);
+}
+<!--@if(!$tmp_output->data->module_srl)-->
+{@ planner123_main::fn_install_extra_keys($module_info->module_srl);}
+<!--@end-->
+<!--@end-->
+<!--@if($listStyle == '')--><!--// listStyle 입력값이 없으면 디폴트 스킨으로-->
+{@ $listStyle = $module_info->default_style;}
+<!--@end-->
+<!--// 날자 설정 ----------------------------------
+##  Daylight saving time을 위해 Time zone을 지정할 수 있음 ( php4.대에서는 에러 발생, php5.1 이상에서 정상작동)
+##  date_default_timezone_set('America/Toronto'); // 타임존목록 http://kr.php.net/manual/kr/timezones.php )예: America/Toronto
+-->
+{@
+$server_timestamp = mktime(date("H"), date("i"), date("s"), date("m"), date("d"), date("Y"));
+$server_offset = date("Z");
+$xe_timestamp = planner123_main::fn_xetimestamp();
+$xe_offset = date("Z")+zgap();
+$client_offset = Context::get('offset');// url 변수로 받은 client offset
+$client_timestamp = mktime(date("H"), date("i"), date("s")-date("Z")+$client_offset, date("m"), date("d"), date("Y"));
+}
+{@ $display_timestamp = $xe_timestamp;}<!--// 화면에 보여줄 서버시간: 기본 XE시간으로 설정, 만약 default_timezone을 사용할 경우는 $server_timestamp, $server_offset 로 변경-->
+<!--@if($client_offset == null )-->
+{@ $wrk_timestamp = $display_timestamp;}
+<!--@else-->
+{@ $wrk_timestamp = $client_timestamp;}
+<!--@end-->
+{@
+$today_stamp = $wrk_timestamp;// 날자 재계산 // 당일 타임스탬프
+$todayYY = date("Y", $wrk_timestamp);// 당일년도
+$todayMM = date("n", $wrk_timestamp);// 당일월
+$todayDD = date("j", $wrk_timestamp);// 당일일
+$todayWeekday = date("w", $wrk_timestamp);// 당일요일
+$ind_weekly_base = $module_info->weekly_base; //주단위 출력 적용여부(0=적용 않음, 기타=주 갯수)
+$firstDayOfWeek = (int)$module_info->firstDayOfWeek; //한주 시작요일(V480)
+}
+<!--@if($firstDayOfWeek == 8)-->
+<!--@if($listStyle == 'planner_list')-->
+{@ $firstDayOfWeek = $todayWeekday; //당일 요일}
+<!--@else-->
+{@ $firstDayOfWeek = 0; //일요일}
+<!--@end-->
+<!--@end-->
+{@ $ind_fill = '';}
+<!--@if($pMonth != '' && $pDay =='')--><!--//월이동단추 클릭이면 1일로-->
+{@
+$pDay = 1;
+$ind_fill = 'Y';
+}
+<!--@end-->
+<!--@if($pYear == null )-->
+{@ $pYear = date("Y", $wrk_timestamp);}
+<!--@end-->
+<!--@if($pMonth == null )-->
+{@ $pMonth = date("n", $wrk_timestamp);}
+<!--@end-->
+<!--@if($pMon == null )-->
+{@ $pMon = date("F", $wrk_timestamp);}
+<!--@end-->
+<!--@if($pDay == null )--><!--// 날자 지정 안된 상태에서 해당월 마지막날 보다크면 말일로...-->
+{@
+$pDay =$todayDD;
+$tmp_feb_lastday = date('t', mktime(0,0,0,$pMonth,1,$pYear));
+}
+<!--@if($pDay > $tmp_feb_lastday)-->
+{@ $pDay = $tmp_feb_lastday;}
+<!--@end-->
+<!--@end-->
+{@
+$pTimestamp = mktime(0, 0, 0, $pMonth, $pDay, $pYear);
+$pYear =date("Y", $pTimestamp);
+$pMonth =date("n", $pTimestamp);
+$pDay = date("j", $pTimestamp);
+$pMon =date("F", $pTimestamp);// 당월 이름
+}
+<!--@if($pOption != 'W1' && $pOption != 'W2' && $pOption != 'M')-->
+<!--@if($ind_mobile)-->
+{@ $pOption = $module_info->default_view_mobile;}<!--// 모바일 보기옵션-->
+<!--@else-->
+{@ $pOption = $module_info->default_view_pc;}<!--// PC 보기옵션 M=월 단위, W1,W2 =주단위 출력-->
+<!--@end-->
+<!--@end-->
+<!--@if($pOption == null)-->
+{@ $pOption = "M";}<!--// M=월 단위 출력-->
+<!--@end-->
+<!--@if($module_info->display_TimeSchedule != 'N')-->
+{@ $pTimeSchedule = "Y";}<!--// time schedule 출력-->
+<!--@end-->
+<!--@if($listStyle == 'planner_weekly')--><!--//주간계획 작성-->
+{@
+$tmp_timestamp_01 = mktime(0, 0, 0, $pMonth, $pDay, $pYear);// 주간계획으로 추가
+$pMon_short =date("M", $tmp_timestamp_01);// 주간계획으로 추가
+$pWeekday =date("D", $tmp_timestamp_01);// 주간계획으로 추가
+$week_count = planner123_main::fn_WeekOfYear($pMonth, $pDay, $pYear);// 주간계획(주일 수)
+}
+<!--@end-->
+{@ $tmp_lastday = date("t", $pTimestamp);//말일}
+<!--@if(function_exists('gregoriantojd'))--><!--// PHP 컴파일시 calendar library 누락 감안-->
+{@ $jd_dspStart = gregoriantojd($pMonth, $pDay, $pYear); // 출력시작 일자 jd }
+{@ $jd_dspEnd = gregoriantojd($pMonth, $tmp_lastday, $pYear); // 출력종료 일자 jd }
+<!--@else-->
+{@ $jd_dspStart = planner123_main::fn_calcDateToJD($pYear, $pMonth, $pDay); // 출력시작 일자 jd }
+{@ $jd_dspEnd = planner123_main::fn_calcDateToJD($pYear, $pMonth, $tmp_lastday); // 출력종료 일자 jd }
+<!--@end-->
+<!--// 시작요일 위치 반영을 위해 출력 시작일자, 출력 종료일자 조정함(V480)-->
+<!--@if($pOption == "W1")--><!--// 1주 단위 출력-->
+{@
+$jd_dspStart = $jd_dspStart - ( date("w", $pTimestamp) + 7 - $firstDayOfWeek) % 7; // 시작요일 조정(V480)
+$jd_dspEnd = $jd_dspStart + 7-1;
+}
+<!--@elseif($pOption == "W2")--><!--// 2주 단위 출력-->
+{@
+$jd_dspStart = $jd_dspStart - ( date("w", $pTimestamp) + 7 - $firstDayOfWeek) % 7; // 시작요일 조정(V480)
+$jd_dspEnd = $jd_dspStart + 14-1;
+}
+<!--@else--><!--// M: 월 단위 출력 -->
+<!--@if($ind_weekly_base > 0)-->
+{@
+$jd_dspStart = $jd_dspStart - ( date("w", $pTimestamp) + 7 - $firstDayOfWeek) % 7; // 시작요일 조정(V480)
+$jd_dspEnd = $jd_dspStart + 7 * $ind_weekly_base - 1;
+}
+<!--@elseif($module_info->firstlast_week =="alldate" )--><!--// 첫주및 마지막주: "empty":당월만 표시, "alldate":전부 표시-->
+{@
+$jd_dspStart = $jd_dspStart - $pDay + 1 - ( date("w", mktime(0,0,0,$pMonth,1,$pYear)) - $firstDayOfWeek + 7 ) % 7;
+$jd_dspEnd = $jd_dspEnd + ( $firstDayOfWeek - date("w", mktime(0,0,0,$pMonth,$tmp_lastday,$pYear)) + 6 ) % 7;
+$ind_fill = 'Y';
+}
+<!--@else-->
+{@
+$jd_dspStart = $jd_dspStart - $pDay + 1; // 출력시작 일자 jd
+//$jd_dspEnd = $jd_dspEnd; // 변동없음(말일)
+}
+<!--@end-->
+<!--@end-->
+<!--@if(function_exists('jdtogregorian'))--><!--// PHP 컴파일시 calendar library 누락 감안-->
+{@ $wrk_dsp_str = jdtogregorian($jd_dspStart);}
+{@ $wrk_dsp_end = jdtogregorian($jd_dspEnd);}
+<!--@else-->
+{@ $wrk_dsp_str = planner123_main::fn_calcJDToGregorian($jd_dspStart);}
+{@ $wrk_dsp_end = planner123_main::fn_calcJDToGregorian($jd_dspEnd);}
+<!--@end-->
+{@
+$wrk_arr_dt = explode('/', $wrk_dsp_str);
+$dispStart_stamp =  mktime(0, 1, 0, $wrk_arr_dt[0], $wrk_arr_dt[1], $wrk_arr_dt[2]);// 출력 시작일
+$wrk_arr_dt = explode('/', $wrk_dsp_end);
+$dispEnd_stamp =  mktime(23, 59, 0, $wrk_arr_dt[0], $wrk_arr_dt[1], $wrk_arr_dt[2]);// 출력 종료일
+}
+{@
+$dispStartYY = date("Y", $dispStart_stamp);// 출력 시작일 년도
+$dispStartMM = date("m", $dispStart_stamp);
+$dispStartDD = date("d", $dispStart_stamp);
+$dispStartM = date("n", $dispStart_stamp);
+$dispStart_date = $dispStartYY.",".$dispStartMM.",".$dispStartDD.",0,0,0";// 시간테이블을 위해
+$dispEndYY = date("Y", $dispEnd_stamp);// 출력 종료일 년도
+$dispEndMM = date("m", $dispEnd_stamp);
+$dispEndDD = date("d", $dispEnd_stamp);
+$dispEndM = date("n", $dispEnd_stamp);
+$dispEnd_date = $dispEndYY.",".$dispEndMM.",".$dispEndDD.",23,59,59";// 시간테이블을 위해
+}
+<!--// 달력일자, 휴일(달력일자 붉은색표시를 위해 조건없이 수행) -->
+{@ $Calmain = planner123_main::fn_CalMain($dispStart_stamp, $dispEnd_stamp, $firstDayOfWeek);}<!--// 달력일자: 시작요일추가(V480)-->
+{@ $holiday_cnt_arr = array("kor" => "Korea", "usa"=> "U.S.A", "chn"=> "China", "jpn"=> "Japan", "can"=> "Canada", "vnm"=> "Vietnam", "tur"=> "Turkey", "user"=> "User", "default"=> "Default"); }
+{@ $dft_country_code = $module_info->holiday_country; // 기본국가 공휴일 }<!--// 휴일-->
+{@ $dft_holiday = planner123_main::fn_getHolidayByCountry($skinpath.'function/', $dft_country_code, $dispStart_stamp, $dispEnd_stamp);}
+<!--@if($pHoliday_cnt == null )-->
+{@ $holiday_country_code = $dft_country_code; }
+{@ $Holiday = $dft_holiday;}
+<!--@else-->
+{@ $holiday_filename = planner123_main::fn_getHolidayFileName($skinpath.'function/', $pHoliday_cnt);}
+<!--@if($holiday_filename == 'class.planner123_holiday_default.php' )-->
+{@ $holiday_country_code = 'default';}
+<!--@else-->
+{@ $holiday_country_code = $pHoliday_cnt;}
+<!--@end-->
+{@ $Holiday = planner123_main::fn_getHolidayByCountry($skinpath.'function/', $holiday_country_code, $dispStart_stamp, $dispEnd_stamp);}
+<!--@end-->
+{@ $holiday_country_name = $holiday_cnt_arr[$holiday_country_code];}
+<!--@if($module_info->display_holiday == 'Y')-->
+{@ $ind_holiday = "Y";}<!--// 휴일표시-->
+<!--@end-->
+<!--@if($module_info->display_memday == 'Y')--><!--// 기념일표시-->
+{@ $Memday = planner123_main::fn_getMemdayByCountry($skinpath.'function/', $holiday_country_code, $dispStart_stamp, $dispEnd_stamp);}
+{@ $ind_memday = "Y";}
+<!--@end-->
+<!--@if($module_info->display_lunar == 'Y')--><!--// 음력표시 1,10,15,20일 (2014-07-01:음력함수변경)-->
+{@ $Lunarday = planner123_main::fn_sol2lun_kr_period($dispStart_stamp,$dispEnd_stamp);}
+{@ $ind_lunar = "Y";}
+<!--@elseif($module_info->display_lunar == 'Y_all')--><!--// 음력표시 - 모든날자-->
+{@ $Lunarday = planner123_main::fn_sol2lun_kr_period($dispStart_stamp,$dispEnd_stamp);}
+{@ $ind_lunar_all = "Y";}
+<!--@end-->
+<!--@if($module_info->default_style != 'planner_simple')--><!--// simple type 이 아닐때만 절기, 일진, 이슬람력 함수실행-->
+<!--@if($module_info->display_24term == 'Y' || $module_info->display_iljin == 'Y')-->
+{@ $GanjiJeolki = planner123_main::fn_jeolki_ganji_ary($dispStartYY,$dispStartM,$pGanjioption);}
+<!--@if($dispStartYY != $dispEndYY)--><!--// 년도 다를때는 1월부터-->
+{@ $GanjiJeolki_2 = planner123_main::fn_jeolki_ganji_ary($dispEndYY,1,$pGanjioption);}<!--// 주단위에서 다음년도 값중 절기는 의미 없으나 일진은 의미 있음-->
+<!--@end-->
+<!--@end-->
+<!--@if($module_info->display_24term == 'Y')-->
+{@ $ind_24term = "Y";}
+<!--@end-->
+<!--@if($module_info->display_iljin == 'Y')-->
+{@ $ind_iljin = "Y";}
+<!--@end-->
+<!--@if($module_info->display_islamic == 'Y')--><!--// 이슬람력표시 1,10,15,20일 -->
+{@
+$Islamicday = planner123_main::fn_getIslamic_ary($dispStart_stamp,$dispEnd_stamp);
+$ind_islamic = "Y";
+}
+<!--@elseif($module_info->display_islamic == 'Y_all')--><!--// 이슬람력표시 - 모든날자-->
+{@
+$Islamicday = planner123_main::fn_getIslamic_ary($dispStart_stamp,$dispEnd_stamp);
+$ind_islamic_all = "Y";
+}
+<!--@end-->
+<!--@end--><!--// simple type 이 아닐때만 끝-->
+{@
+$ind_bgcolor_option = $module_info->use_category_bgcolor;// 일정 배경색상 옵션
+$ind_image_diary = $module_info->image_diary;// 그림일기 사용여부
+$ind_complete_doc = $module_info->display_complete_doc;// 완료일정 표시여부
+$ind_oneday_container = $module_info->oneday_container;// 하루(비연속)일정 콘테이너 (T, J)
+$dft_offday = unserialize($module_info->off_day);// 휴무일
+$dft_offday_option = unserialize($module_info->off_day_option);// 휴무일 처리옵션
+}
+{@ if(!is_array($dft_offday)) $dft_offday = array($dft_offday);}
+{@ if(!is_array($dft_offday_option)) $dft_offday_option = array($dft_offday_option);}
+<!--@if(in_array("NA_DISP", $dft_offday_option))--><!--// 휴무일은 일정 출력 않음 옵션(V430)-->
+{@ $ind_offday_naDisp = TRUE;}
+<!--@end-->
+<!--@if(in_array("NA_NEW", $dft_offday_option))--><!--// 휴무일은 신규일정 작성 않음 옵션(V430)-->
+{@ $ind_offday_naNew = TRUE;}
+<!--@end-->
+<!--@if(in_array("LABEL", $dft_offday_option))--><!--// 휴무일표시 옵션(V430)-->
+{@ $ind_offday_Label = TRUE;}
+<!--@end-->
+<!--@if(in_array("H", $dft_offday))--><!--// 공휴일 휴무 옵션(V430)-->
+{@ $ind_holiday_off = TRUE;}
+<!--@end-->
+<!--@if($ind_oneday_container == '' || $ind_oneday_container == 'T')-->
+{@ $ind_oneday_container = 'T';}<!--// Table에 직접출력-->
+<!--@end-->
+{@ $ind_reservation = $module_info->reservation;}<!--// 예약일정여부-->
+<!--@if($ind_reservation == '')-->
+{@ $ind_reservation = 'N';}
+<!--@end-->
+<!--@if($listStyle == 'planner_weekly' || $listStyle == 'planner_list')--><!--// 반복일정 제목 표시형식 (Y=제목한줄(한번), N=제목한줄(여러번), S=일별로 일정분리)-->
+{@ $ind_repeat_style = 'S';}<!--// 리스트형, 주간계획은 매일 분리하여 표시-->
+<!--@else-->
+{@ $ind_repeat_style = $module_info->repeat_style;}<!--// 스킨 설정에 따라 표시-->
+<!--@end-->
+{@
+$tempmonth = substr("0".$pMonth, -2);// 검색년월 및 목록수 설정//월 을 "7" 에서 "07"로
+$list_count = $module_info->list_count;//목록수
+$page_count = $module_info->page_count;//목록수
+}
+<!--@if($search_keyword != null)--><!--// 검색 Target에 따른 검색필드 설정.-->
+{@ $tmp_search_keyword = str_replace(' ','%',$search_keyword);}
+<!--@if($search_target == 'title')-->
+{@ $obj->var_search_title = $tmp_search_keyword;}
+<!--@elseif($search_target == 'content')-->
+{@ $obj->var_search_content = $tmp_search_keyword;}
+<!--@elseif($search_target == 'title_content')-->
+{@ $obj->var_search_content = $tmp_search_keyword;}
+<!--@elseif($search_target == 'user_name')-->
+{@ $obj->var_search_user_name = $tmp_search_keyword;}
+<!--@elseif($search_target == 'nick_name')-->
+{@ $obj->var_search_nick_name = $tmp_search_keyword;}
+<!--@elseif($search_target == 'user_id')-->
+{@ $obj->var_search_user_id = $tmp_search_keyword;}
+<!--@elseif($search_target == 'tag')-->
+{@ $obj->var_search_tags = $tmp_search_keyword;}
+<!--@else-->
+<!--@if(strpos($search_target,'extra_vars')!==false)-->
+{@ $obj->var_search_extra_idx = substr($search_target, strlen('extra_vars'));}
+{@ $obj->var_search_extra_value = str_replace(' ','%',$search_keyword);}
+<!--@end-->
+<!--@end-->
+<!--@end-->
+<!--@if(count($category_list))--><!--// $module_info->hide_category, use_category 오작동하여 조건 변경함-->
+{@ $ind_use_category = "Y";// 분류(카테고리) 사용}
+<!--@foreach($category_list as $key => $val)--><!--// 분류 타이틀에 상위분류 타이틀 포함-->
+<!--@if($val->parent_srl > 0)-->
+{@ $category_list[$key]->title = $category_list[$val->parent_srl]->title.'/'.$category_list[$key]->title;}
+<!--@end-->
+<!--@end-->
+<!--@else-->
+{@ $ind_use_category = "N";}
+<!--@end-->
+<!--@if($ind_use_category == "Y")--><!--// 분류필드 설정-->
+{@ $wrk_var_category_srl = "0";}<!--// 디폴트-->
+<!--@foreach($category_list as $val)--><!--// 분류srl 얻기 (1단계만 지원, 그룹제한 고려 않음)-->
+{@ $wrk_var_category_srl .= ",".$val->category_srl;}
+<!--@if($val->selected)-->
+{@ $obj->var_category_srl = $val->category_srl;}
+<!--@if(count($val->childs))-->
+<!--@foreach($val->childs as $val2)--><!--// 분류 childs srl 얻기-->
+{@ $obj->var_category_srl .= ",".$val2;}
+<!--@end-->
+<!--@end-->
+<!--@end-->
+<!--@end-->
+<!--@if(!$obj->var_category_srl)-->
+{@ $obj->var_category_srl = $wrk_var_category_srl;}
+<!--@end-->
+<!--@end-->
+{@
+$module_srl = $module_info->module_srl;// loged member// module srl (drag&drop 에서 사용)
+$module_name = $module_info->module;// module name (drag&drop 에서 사용)
+$member_temp_name = $logged_info->nick_name;// 공개그룹 user에 nick_name 이용
+$member_srl = $logged_info->member_srl;
+$group_list = $logged_info->group_list;
+$usergroup_arr = array();
+}
+<!--@if($member_srl != null)-->
+{@ $obj->var_member_srl = $member_srl;}<!--// user srl-->
+<!--@foreach($group_list as $key => $val)-->
+{@ $group_titles .= ",".$val;}
+<!--@end-->
+{@
+$group_titles=substr($group_titles,1);// 사용자가 소속된 그룹명칭
+$usergroup_arr = explode(",",$group_titles);
+}
+<!--@end-->
+<!--@if($listStyle == 'planner_weekly')--><!--// ***get loged member's weekly plan for myplan (개인별 주간계획)*** -->
+<!--#include("./_get_weeklyplan.html")-->
+<!--@end-->
+<!--@if($dispEndMM >= $dispStartMM)--><!--// 년단위 반복일정만 select하기 위해 -->
+{@
+$tmp_slt_s_mmdd = $dispStartMM.$dispStartDD;
+$tmp_slt_e_mmdd = $dispEndMM.$dispEndDD;
+$tmp_slt_s_mmdd2 = '0000';
+$tmp_slt_e_mmdd2 = '0000';
+}
+<!--@else--><!--// 선택 범위 종료월이 시작월보다 작을때를 고려 예:12월말-->
+{@
+$tmp_slt_s_mmdd = $dispStartMM.$dispStartDD;
+$tmp_slt_e_mmdd = '1231';
+$tmp_slt_s_mmdd2 = '0101';
+$tmp_slt_e_mmdd2 = $dispEndMM.$dispEndDD;
+}
+<!--@end-->
+{@
+$obj->var_0 = '0';
+$obj->site_srl = '';// 쿼리 설정/실행/list만들기// 0을 넣으면 이상해짐
+$obj->module_srl = $module_info->module_srl;
+$obj->sort_index_1 = 'extra_value_end';// (일정종료 일) start를 end로(2010-08-01)
+$obj->order_type_1 = 'desc';
+$obj->sort_index_default_1 = 'extra_value_end';
+$obj->sort_index_1_1 = 'extra_value_start';// (일정시작 일) (2010-08-01
+$obj->order_type_1_1 = 'desc';
+$obj->sort_index_default_1_1 = 'extra_value_start';
+$obj->sort_index_2 = 'extra_value_time';// (시작종료 시간)
+$obj->order_type_2 = 'asc';
+$obj->sort_index_default_2 = 'extra_value_time';
+$obj->sort_index = $module_info->order_target;// (게시판 문서 정렬 번호)
+$obj->order_type = $module_info->order_type;
+$obj->sort_index_default = 'list_order';// 게시판설정 선택값이 null 일때
+$obj->list_count = $list_count*10;// 게시판 설정값 10배의 일정표시 (예:기본 20일때 200개까지)
+$obj->page_count = $page_count;// 게시판 설정값
+$obj->var_period_start = $dispStartYY.$dispStartMM.$dispStartDD;// 선택 범위시작
+$obj->var_period_end = $dispEndYY.$dispEndMM.$dispEndDD;// 선택 범위  끝
+$obj->var_start_mmdd = $tmp_slt_s_mmdd;// 년단위 반복일정만 있는경우 선택 범위시작
+$obj->var_end_mmdd = $tmp_slt_e_mmdd;//  년단위 반복일정만 있는경우 선택 범위  끝
+$obj->var_start_mmdd2 = $tmp_slt_s_mmdd2;// 년단위 반복일정만 있는경우 선택 범위시작 2
+$obj->var_end_mmdd2 = $tmp_slt_e_mmdd2;//  년단위 반복일정만 있는경우 선택 범위  끝 2
+$obj->var_fld_null = null;// 0을 null로 (0일 경우 레코드 없으면 안됨 -> 추후 값이없는 확장변수 레코드 삭제를 고려하여 null로 변경)
+$query_path = $module_info->module."/skins/".$module_info->skin;// 쿼리경로
+$view_group = $module_info->default_document_group;// 스킨에서 정해준 일반사용자가 볼수있는 문서그룹
+}
+<!--@if($XE_version < "1.5")-->
+{@ $obj->var_status ="N";// Status }
+<!--@elseif($XE_version >= "1.5")-->
+{@ $obj->var_status ="PUBLIC";// Status }
+<!--@end-->
+<!--@if($grant->manager)-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_all', $obj);}<!--// 관리자 (모든문서)-->
+<!--@elseif($module_info->consultation == "Y")-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_own', $obj);}<!--// 상담기능 (자신 + 공지)-->
+<!--@elseif($view_group == "owner")-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_own', $obj);}<!--// 자신 + 공지-->
+<!--@elseif($view_group == "usergroup")-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_group', $obj);}  <!--// 자신 + 공지 + 공개그룹소속-->
+<!--@elseif($view_group == "nonsecured")-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_nonSec', $obj);}  <!--// 타인 비밀글및 비멤버쉽 문서 제외-->
+<!--@elseif($view_group == "alldocument")-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_all', $obj);}<!--// 모든문서-->
+<!--@else-->
+{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_all', $obj);}<!--// 모든문서-->
+<!--@end-->
+<!--@if(count($output->data))--><!--// 문서 목록 생성 -->
+<!--@foreach($output->data as $key => $attribute)-->
+{@
+$tmp_document_srl = $attribute->document_srl;
+$tmp_Document = null;
+$tmp_Document = new documentItem();
+$tmp_Document->setAttribute($attribute, false);
+$tmp_Document->category_srl = $attribute->category_srl;
+$tmp_opengroup_arr = explode("|@|",$attribute->extra_value_group);
+}
+<!--@if($module_info->consultation == 'Y')--><!--// 상담기능 일때-->
+<!--@if($grant->manager)-->
+{@ $tmp_document_list[$key] = $tmp_Document;}<!--// 상담기능-관리자이면 전체 문서를 처리,-->
+<!--@else-->
+<!--@if($attribute->is_notice == "Y" || $attribute->member_srl == $member_srl)-->
+{@ $tmp_document_list[$key] = $tmp_Document;}<!--// 상담기능-관리자 아니면 공지문서나 자신의 문서이면 처리.-->
+<!--@end-->
+<!--@end-->
+<!--@else--><!--// 상담기능 아닐때-->
+<!--@if($grant->manager)--><!--// 관리자면 전체 문서를 처리,-->
+{@ $tmp_document_list[$key] = $tmp_Document;}
+<!--@elseif($view_group == "alldocument")--><!--// 문서그룹이 alldocument 이면 전체 문서를 처리,-->
+{@ $tmp_document_list[$key] = $tmp_Document;}
+<!--@elseif($attribute->is_notice == "Y" || $attribute->member_srl == $member_srl)--><!--// 자신또는 공지문서면 처리 (owner동시처리)-->
+{@ $tmp_document_list[$key] = $tmp_Document;}
+<!--@elseif($view_group == "nonsecured")-->
+{@ $tmp_flag = null;}
+{@ $tmp_group_01 = $tmp_opengroup_arr[0];}
+<!--@if($attribute->is_secret == "N" || $attribute->status == "PUBLIC")-->  <!--// 일반문서 처리-->
+<!--@if($tmp_opengroup_arr == null || $tmp_group_01 == null)--><!--// 공개그룹 없는 일반문서-->
+{@ $tmp_flag = "*";}
+<!--@elseif(count($tmp_opengroup_arr) == 1 && ($attribute->nick_name == $tmp_group_01 || $attribute->user_name == $tmp_group_01))-->
+{@ $tmp_flag = "*";}<!--// 공개그룹 요소가 1개이면서 이것이 작성자 닉네임 또는 이름이면 일반문서(공개그룹문서 아님)-->
+<!--@else-->
+<!--@foreach($usergroup_arr as $tmp_key => $val_tmp)-->
+<!--@if(in_array($val_tmp, $tmp_opengroup_arr))--><!--// 공개그룹 소속.-->
+{@ $tmp_flag = "*";}
+<!--@end-->
+<!--@end-->
+<!--@if($member_temp_name != null && in_array($member_temp_name, $tmp_opengroup_arr))--><!--// 공개 nick_name.-->
+{@ $tmp_flag = "*";}
+<!--@end-->
+<!--@end-->
+<!--@if($tmp_flag == "*")-->
+{@ $tmp_document_list[$key] = $tmp_Document;}<!--//  조건맞는 문서 처리,-->
+<!--@end-->
+<!--@end-->
+<!--@elseif($view_group == "usergroup")-->
+{@ $tmp_flag = "";}
+<!--@if($attribute->is_secret == "N" || $attribute->status == "PUBLIC")-->  <!--// 일반문서 처리-->
+<!--@if($tmp_opengroup_arr != null)--><!--// 공개그룹 있을때.-->
+<!--@foreach($usergroup_arr as $tmp_key => $val_tmp)-->
+<!--@if(in_array($val_tmp, $tmp_opengroup_arr))--><!--// 공개그룹 소속.-->
+{@ $tmp_flag = "*";}
+<!--@end-->
+<!--@end-->
+<!--@if($member_temp_name != null && in_array($member_temp_name, $tmp_opengroup_arr))--><!--// 공개 nick_name.-->
+{@ $tmp_flag = "*";}
+<!--@end-->
+<!--@end-->
+<!--@if($tmp_flag == "*")-->
+{@ $tmp_document_list[$key] = $tmp_Document;}<!--//  조건맞는 문서 처리,-->
+<!--@end-->
+<!--@end-->
+<!--@end-->
+<!--@end--><!--// 상담기능 끝-->
+<!--@end--><!--// foreeach 끝-->
+<!--@else-->
+{@ $tmp_document_list = array();}
+<!--@end-->
+{@
+Context::set('document_list', $tmp_document_list);
+$oDocumentModel = &getModel('document');
+$oDocumentModel->setToAllDocumentExtraVars();
+$planner_flag = "Y"
+}
+<!--// planner123 문서목록 얻기 끝 -->
+<!--@foreach($document_list as $no => $document)--><!--// Xe 확장변수등 일정관련 데이터 -->
+<!--@if($ind_use_category == "Y" && $document->get('category_srl'))-->
+<!--@if($category_list[$document->get('category_srl')]->color)-->
+{@ $category_color = $category_list[$document->get('category_srl')]->color;}<!--// Category color -->
+<!--@end-->
+{@ $category_title = $category_list[$document->get('category_srl')]->title;}<!--// Category title -->
+<!--@else-->
+{@ $category_color = null;}
+{@ $category_title = null;}
+<!--@end-->
+<!--@if($document->getCommentCount())-->
+{@ $plan_reply = $document->getCommentCount();}<!--// 댓글 숫자 -->
+<!--@else-->
+{@ $plan_reply = null;}
+<!--@end-->
+{@
+$plan_NickName = "[".$document->getNickName()."]";// 닉네임
+$plan_title = $document->getTitle($module_info->subject_cut_size);//일정제목
+$plan_detail = $document->getSummary($module_info->content_cut_size);//일정내용
+$plan_doc_extra_vars = $document->get('extra_vars');// 상태 - 취소일정을 위해 추가
+$plan_docsrl = $document->document_srl;//문서번호
+$plan_url = getUrl('document_srl',$document->document_srl,'offset',$offset);//문서url
+$plan_new = $document->printExtraImages(60*60*$module_info->duration_new);// 새글표시 이미지
+}
+<!--@if($listStyle == 'planner_list' && $module_info->display_detail == "F")--><!--// 문서내용 전체 -->
+{@ $plan_detail_all[$plan_docsrl] = $document->getContent(false); }
+<!--@end-->
+<!--@if($ind_mobile)--><!--// 모바일일때 그림 사이즈작게 mobile::isFromMobilePhone() 대체-->
+{@ $plan_img = null;}
+<!--@else-->
+{@ $plan_img = $document->getThumbnail($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type);}
+<!--@end-->
+{@
+$plan_start = $document->getExtraValue(1);// 일정시작일자-확장변수값 얻기
+$plnstartYY = substr($plan_start,0,4);
+$plnstartMM = substr($plan_start,4,2);
+$plnstartDD = substr($plan_start,6,2);
+$plnstartMM = ltrim( $plnstartMM, "0" );//  앞의 "0" 제거
+$plnstartDD = ltrim( $plnstartDD, "0" );//  앞의 "0" 제거
+}
+{@ $plan_end = $document->getExtraValue(2);}<!--// 일정종료일자-->
+<!--@if($plan_end == null )-->{@ $plan_end = $plan_start;}<!--@end-->
+{@
+$plnendYY = substr($plan_end,0,4);
+$plnendMM = substr($plan_end,4,2);
+$plnendDD = substr($plan_end,6,2);
+$plnendMM = ltrim( $plnendMM, "0" );// 일자 앞의 "0" 제거
+$plnendDD = ltrim( $plnendDD, "0" );// 일자 앞의 "0" 제거
+$plan_bgcolor = $document->getExtraValueHTML(3);// 배경색상
+$plan_flagicon = $document->getExtraValueHTML(4);// 일정확인
+$plan_repeat_cycle = $document->getExtraValueHTML(5);// 반복일정 cycle
+$plan_repeat_unit = $document->getExtraValueHTML(6);// 반복일정 unit
+$plan_time = $document->getExtraValueHTML(7);// 시작종료시간 (09:00, 09:30, 10:00,.. 형식)
+}
+<!--@if($plan_start != null)-->
+{@ $plan_detail = str_replace("'", "&#39;", $plan_detail);}<!--// '을 &#39;로 대체 textbox보이기위해-->
+{@ $plan_detail = str_replace("\"", "&quot;", $plan_detail);}<!--// "를 &quot;로 대체 textbox보이기위해-->
+<!--@if($plan_doc_extra_vars == 'A' || $plan_doc_extra_vars == 'F' || $plan_doc_extra_vars == 'R')-->
+{@ $_doc_status = $plan_doc_extra_vars;}<!--// 취소일정위해 추가 ('A'=>'기본', 'F'=>'완료', 'R'=>'취소');  // 기본: 최초는 null, 수정하면 A. (XEV174부터 serialize 않음)-->
+<!--@else-->
+{@ $_doc_status = unserialize($plan_doc_extra_vars);}<!--// XEV174이전 호환을 위해-->
+<!--@end-->
+<!--@if($_doc_status == "F" && $ind_complete_doc == "L")-->
+{@ $plan_title = "<span class='complete'>".$plan_title."</span>";}<!--// 완료일정 제목에 취소선 긋기-->
+<!--@end-->
+<!--@if($_doc_status != "R" && ($ind_complete_doc == "N" && $_doc_status != "F" || $ind_complete_doc != "N") )--><!--// 취소일정이 아닐때 처리-->
+{@ $arr_repeat = planner123_main::fn_repeat_schedule($dispStart_stamp, $dispEnd_stamp, $plan_start, $plan_end, $plan_repeat_cycle, $plan_repeat_unit, $dft_holiday); // V430에서 $dft_holiday 추가}
+<!--@foreach($arr_repeat as $i => $val_1)-->
+<!--@foreach($val_1 as $j => $val_2)-->
+<!--@if($arr_repeat[$i][$j])--><!--//년도 들어옴 V400-->
+{@ $ind_weekday = date('w', mktime(0, 0, 0, $i, $j, $arr_repeat[$i][$j])); // 당일요일}
+<!--@if($ind_offday_naDisp)--><!--// 휴무일 출력않음 V430-->
+{@ $tmp_offday = in_array(strval($ind_weekday), $dft_offday); // 당일 휴뮤 요일여부}
+<!--@if(!$tmp_offday && $ind_holiday_off)-->
+{@ if($dft_holiday[$i][$j] != null) $tmp_offday = TRUE; // 당일 기본 공휴일여부}
+<!--@end-->
+{@ $ind_weekday_2 = $ind_weekday + 1; // 다음날 요일}
+<!--@if($ind_weekday_2 > 6)-->
+{@ $ind_weekday_2 = 0;}
+<!--@end-->
+{@ $i_next = date('n', mktime(0, 0, 0, $i, $j+1, $arr_repeat[$i][$j])); // 다음날월}
+{@ $j_next = date('j', mktime(0, 0, 0, $i, $j+1, $arr_repeat[$i][$j])); // 다음날일}
+{@ $tmp_offday_2 = in_array(strval($ind_weekday_2), $dft_offday); // 다음날 휴뮤 요일여부}
+<!--@if(!$tmp_offday_2 && $ind_holiday_off)-->
+{@ if($dft_holiday[$i_next][$j_next] != null) $tmp_offday_2 = TRUE; // 다음날 기본 공휴일여부}
+<!--@end-->
+<!--@end-->
+<!--@if($ind_repeat_style != "S")--><!--// 반복일정 표시형식 S아닐때(한줄로 표시:(Y=제목한번,N=제목여러번,S=분리))-->
+<!--@if((!$arr_repeat[$i][$j-1] || !$j_temp) && !$tmp_offday)--><!--// 처음 또는 새로 시작이면서 휴뮤가 아니면 시작일자 보관-->
+{@ $j_temp = $j;}
+<!--@end-->
+{@ $WDay_position = ($ind_weekday - $firstDayOfWeek + 7) % 7; // 시작요일 위치 변경을 위해 조정(V480) }
+<!--@if(!$arr_repeat[$i][$j+1] || $WDay_position == 6 || $tmp_offday_2)--><!--// 마지막, 토요일, 다음날이 휴일이면 output-->
+{@ $plan_length = $j-$j_temp+1;}
+<!--@if($arr_plan[$i][$j_temp])--><!--// 비어있지 않으면 일정 구분자(1차분리자) 추가-->
+{@ $arr_plan[$i][$j_temp] .="|#&Oslash;#|"}
+<!--@end-->
+{@ $arr_plan[$i][$j_temp] .= $plan_title."|&Oslash;|".$plan_url."|&Oslash;|".$plan_detail."|&Oslash;|".$plan_bgcolor."|&Oslash;|".$plan_flagicon."|&Oslash;|".$category_title."|&Oslash;|".$category_color."|&Oslash;|".$plan_reply."|&Oslash;|".$plan_time."|&Oslash;|".$plan_new."|&Oslash;|".$plan_img."|&Oslash;|".$plan_length."|&Oslash;|".$plan_docsrl."|&Oslash;|".$plan_start."|&Oslash;|".$plan_end."|&Oslash;|".$plan_NickName;}<!--// 어레이에 추가 1차분리자= "|#&Oslash;#|", 2차 분리자 "|&Oslash;|"-->
+{@ $j_temp = ""; // 일정 시작일 지움}
+<!--@end-->
+<!--@else--><!--// 반복일정형식 "S" 일때 (일정을 하루씩 분리)-->
+<!--@if(!$tmp_offday)--><!--// 휴일아니면-->
+{@ $plan_length = 1;}
+<!--@if($arr_plan[$i][$j])--><!--// 비어있지 않으면 일정 구분자(1차분리자) 추가-->
+{@ $arr_plan[$i][$j] .="|#&Oslash;#|"}
+<!--@end-->
+{@ $arr_plan[$i][$j] .= $plan_title."|&Oslash;|".$plan_url."|&Oslash;|".$plan_detail."|&Oslash;|".$plan_bgcolor."|&Oslash;|".$plan_flagicon."|&Oslash;|".$category_title."|&Oslash;|".$category_color."|&Oslash;|".$plan_reply."|&Oslash;|".$plan_time."|&Oslash;|".$plan_new."|&Oslash;|".$plan_img."|&Oslash;|".$plan_length."|&Oslash;|".$plan_docsrl."|&Oslash;|".$plan_start."|&Oslash;|".$plan_end."|&Oslash;|".$plan_NickName;}<!--// 어레이에 추가 1차분리자= "|#&Oslash;#|", 2차 분리자 "|&Oslash;|"-->
+<!--@end-->
+<!--@end--><!--// 반복일정 표시형식 끝-->
+<!--@end--><!--// "$arr_repeat[$i][$j]" 끝 -->
+<!--@end--><!--// foreach 끝 -->
+<!--@end--><!--// foreach 끝 -->
+<!--@end--><!--// 취소일정이 아닐때 처리 끝-->
+<!--@end--><!--// if($plan_start != null ) 끝-->
+<!--@end--><!--// foreach($document_list as $no => $document) 끝-->
+<!--// ************************************************************************ -->

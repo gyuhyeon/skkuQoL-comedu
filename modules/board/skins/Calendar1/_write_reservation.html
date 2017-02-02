@@ -1,0 +1,162 @@
+<!--// XE ver.1.2.x 게시판을 이용한 플래너/음력달력-----------------------
+##
+## @Package:    xe_official_planner123 (board skin)
+## @File name:	_write_reservation.html
+## @Author:     Keysung Chung (keysung2004@gmail.com)
+## @Copyright:  © 2009 Keysung Chung(keysung2004@gmail.com)
+## @Contributors: Clements J. SONG (http://clements.kyunggi.ca/ , clements_song@hotmail.com)
+## @Release:	under GPL-v2 License.
+## @License:	http://www.opensource.org/licenses/gpl-2.0.php
+##
+## Redistribution and use in source and binary forms, with or without modification,
+## are permitted provided that the following conditions are met:
+##
+## Redistributions of source code must retain the above copyright notice, this list of
+## conditions and the following disclaimer.
+## Redistributions in binary form must reproduce the above copyright notice, this list
+## of conditions and the following disclaimer in the documentation and/or other materials
+## provided with the distribution.
+##
+## Neither the name of the author nor the names of contributors may be used to endorse
+## or promote products derived from this software without specific prior written permission.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+## EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+## COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+## GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+## AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+## OF THE POSSIBILITY OF SUCH DAMAGE.
+##
+## [author]
+##  - Keysung Chung, 2009, 07, 28
+##  - http://chungfamily.woweb.net/
+## [changes]
+##  - PlannerXE123 ver. 5.0.0 : Keysung Chung, 2015, 11, 05
+##  - PlannerXE123 ver. 4.3.0 : Keysung Chung, 2014, 01, 01
+##  - PlannerXE123 ver. 4.1.0 : Keysung Chung, 2012, 04, 27
+##  - PlannerXE123 ver. 4.0.0 : Keysung Chung, 2011, 07, 01
+##  - PlannerXE123 ver. 3.2.0 : Keysung Chung, 2010, 10, 31
+##  - PlannerXE123 ver. 3.1.0 : Keysung Chung, 2010, 10, 12
+##  - PlannerXE123 ver. 2.1.0 : Keysung Chung, 2010, 09, 13
+##  - PlannerXE123 ver. 2.0.0 : Keysung Chung, 2010, 09, 01
+##  - PlannerXE123 ver. 1.7.0 : Keysung Chung, 2010, 08, 01
+----------------------------------------------------------------------- -->
+<!--@if($ind_reservation == 'T')--> <!--// 예약(시간) -->
+<!--@if($module_info->use_category=='Y')--><!--// 카테고리별 시간표 얻기-->
+{@ $ind_use_category = $module_info->use_category;}
+<!--@foreach($category_list as $val)-->
+{@ $reservation_arr[$val->category_srl] = null;}<!--// 카테고리별 일정시간표 array -->
+<!--@endforeach-->
+<!--@else-->
+{@ $reservation_arr = array('0'=>null);}<!--// 카테고리 사용않을경우 -->
+<!--@endif-->
+<!--// 일정시간표 array 안에 업무시간의에 *표-->
+<!--@foreach($reservation_arr as $key => $val)-->
+<!--@foreach($slt_arr as $key2 => $val2)-->
+{@ $reservation_arr[$key][$val2] = '*';}
+<!--@endforeach-->
+<!--@endforeach-->
+<!--@if($document_srl != null)-->  <!--// 문서선택된 경우-->
+{@
+$tmp_beginday=$extra_keys[1]->value;
+$wrkYear = substr($tmp_beginday,0,4);
+$wrkMonth = substr($tmp_beginday,4,2);
+$wrkDay = substr($tmp_beginday,6,2);
+}
+<!--@elseif(Context::get('extra_vars1') != null)-->
+{@$tmparr=explode('-', $extra_vars1);}<!--//클릭한 날자-->
+<!--@if($tmparr[2] != null)-->
+{@
+$wrkYear = $tmparr[0];
+$wrkMonth = $tmparr[1];
+$wrkDay = $tmparr[2];
+}
+<!--@endif-->
+<!--@else-->
+<!--@if($pYear == null)-->
+{@
+$wrkYear = date('Y');
+$wrkMonth = date('n');
+$wrkDay = date('d');
+}
+<!--@endif-->
+<!--@endif-->
+<!--// 예약에서는 시작과 종료일이 같기 때문에 의미없으나 쿼리 일관성과 차후를 위해 -->
+{@
+$dispStartYY = $wrkYear;
+$dispStartMM = substr('0'.$wrkMonth, -2);//월 을 "7" 에서 "07"로
+$dispStartDD = $wrkDay;
+$dispEndYY = $wrkYear;
+$dispEndMM = substr('0'.$wrkMonth, -2);//월 을 "7" 에서 "07"로
+$dispEndDD = $wrkDay;
+}
+<!--@if($dispEndMM >= $dispStartMM)--><!--// 년단위 반복일정만 select하기 위해 -->
+{@
+$tmp_slt_s_mmdd = $dispStartMM.$dispStartDD;
+$tmp_slt_e_mmdd = $dispEndMM.$dispEndDD;
+$tmp_slt_s_mmdd2 = '0000';
+$tmp_slt_e_mmdd2 = '0000';
+}
+<!--@else--><!--// 선택 범위 종료월이 시작월보다 작을때를 고려 예:12월말-->
+{@
+$tmp_slt_s_mmdd = $dispStartMM.$dispStartDD;
+$tmp_slt_e_mmdd = '1231';
+$tmp_slt_s_mmdd2 = '0101';
+$tmp_slt_e_mmdd2 = $dispEndMM.$dispEndDD;
+}
+<!--@end-->
+<!--// 쿼리 설정/실행/list만들기 -->
+{@
+$obj = new stdClass;// 클리어
+$obj->var_0 = '0';
+$obj->site_srl = '';	//0을 넣으면 이상해짐
+$obj->module_srl = $module_info->module_srl;
+$obj->sort_index_1 = 'extra_value_end';// (일정시작 일) start를 end로(2010-08-01)
+$obj->order_type_1 = 'desc';
+$obj->sort_index_default_1 = 'extra_value_end';
+$obj->sort_index_1_1 = 'extra_value_start';// (일정시작 일) (2010-08-01
+$obj->order_type_1_1 = 'desc';
+$obj->sort_index_default_1_1 = 'extra_value_start';
+$obj->sort_index_2 = 'extra_value_time';	// (시작종료 시간)
+$obj->order_type_2 = 'asc';
+$obj->sort_index_default_2 = 'extra_value_time';
+$obj->sort_index = $module_info->order_target;	//(게시판 문서 정렬 번호)
+$obj->order_type = $module_info->order_type;
+$obj->sort_index_default = 'list_order';	//게시판설정 선택값이 null 일때
+$obj->list_count = $module_info->list_count*10;	// 게시판 설정값 10배의 일정표시 (예:기본 20일때 200개까지
+$obj->page_count = $module_info->page_count;	// 게시판 설정값
+$obj->var_period_start = $dispStartYY.$dispStartMM.$dispStartDD;	// 선택 범위시작 - 당일 >=
+$obj->var_period_end = $dispEndYY.$dispEndMM.$dispEndDD;	//선택 범위  끝 - 당일 <=
+$obj->var_start_mmdd = $tmp_slt_s_mmdd;	// 년단위 반복일정만 있는경우 선택 범위시작
+$obj->var_end_mmdd = $tmp_slt_e_mmdd;	// 년단위 반복일정만 있는경우 선택 범위  끝
+$obj->var_start_mmdd2 = $tmp_slt_s_mmdd2;	// 년단위 반복일정만 있는경우 선택 범위시작 2
+$obj->var_end_mmdd2 = $tmp_slt_e_mmdd2;	// 년단위 반복일정만 있는경우 선택 범위  끝 2
+$obj->var_fld_null = '0';	// null 대신값 (null이면 이상해짐)
+$obj->var_fin = 'R';// 완료일정-Finished('F') (일정 자체가 완료된것이 아니라 입금이 완료된것으로 보는경우가 많아 완료조건 제외함)
+$obj->var_rej = 'R';// 취소일정-Reject('R')
+$query_path = $module_info->module.'/skins/'.$module_info->skin;	// 쿼리경로
+$output = executeQueryArray($query_path.'.getDocumentsForPlanner_reservation', $obj);	// 유효 일정
+$obj->var_document_srl = $document_srl;// 문서번호(중복 점검: 수정일경우 제외를 위해...)
+$obj->resv_type = $resv_type;// 예약 타입(중복 점검: )
+$obj->ind_use_category = $ind_use_category;// 카테고리사용여부
+$obj->input_method =$input_method;// 날자선택방법(S.R)
+$obj->rev_s_stmp = $rev_s_stmp;// time stamp - 시작
+$obj->rev_e_stmp = $rev_e_stmp;// time stamp - 끝
+}
+<!--@if(count($output->data))-->
+<!--@foreach($output->data as $key => $attribute)-->
+{@ $tmp_time_arr = explode('|@|',$attribute->extra_value_time);}
+<!--@foreach($tmp_time_arr as $tmp_rev_time)--><!--// 입력된 시간만 예약시간으로 처리-->
+{@ $tmp_fld01 = $tmp_rev_time;}
+<!--@if($ind_use_category == 'Y')-->
+{@ $reservation_arr[$attribute->category_srl][$tmp_fld01] = 'R';}<!--// R:해당시간에 일정있음-->
+<!--@else-->
+{@ $reservation_arr[0][$tmp_fld01] = 'R';}
+<!--@endif-->
+<!--@end-->
+<!--@end--><!--// foreeach 끝-->
+<!--@end--><!--// if 끝 (count($output->data))-->
+<!--@endif--><!--// 예약(시간) 끝-->

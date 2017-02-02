@@ -1,0 +1,254 @@
+@charset "utf-8";
+*{margin:0;padding:0;border:0;font-size:12px;font:inherit;vertical-align:baseline;font-family: 'NanumGothic','나눔고딕','Malgun Gothic',Meiryo,'Trebuchet MS',AppleGothic,sans-serif;outline:none}section,nav,menu,hgroup,header,footer,figure,figcaption,details,aside,article{display:block}body{line-height:1}ul,ol{list-style:none}q,blockquote{quotes:none}q:after,q:before,blockquote:after,blockquote:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none}input{border: 1px solid #CCC}select{border: 1px solid #CCC}
+.mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-search):not(.mm-noresults):after{margin-left:0!important}
+.mm-menu.mm-white .mm-list > li > a.mm-subclose{color: rgba(0, 0, 0, 0.9)!important}
+/* 초기화 */
+
+.lines-button {
+    padding: 14px 13px;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 1px;
+}
+.lines {
+    border-radius: 1px;
+	display: inline-block;
+	width: 20px;
+	height: 2px;
+    background: #333;
+    transition: 0.3s;
+    position: relative;
+}
+.lines:before,
+.lines:after {
+    border-radius: 1px;
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: #333;
+    transition: 0.3s;
+    position: absolute;
+    left: 0;
+    content: '';
+    -webkit-transform-origin: 1.42857px center;
+    transform-origin: 1.42857px center;
+}
+.lines:before {
+    top: 5px;
+}
+.lines:after {
+    top: -5px;
+}
+.lines-button.close .lines {
+    background: rgba(0,0,0,0);
+}
+.lines-button.close .lines:before {
+    -webkit-transform: rotate3d(0,0,1,45deg);
+    transform: rotate3d(0,0,1,45deg);
+}
+.lines-button.close .lines:before,
+.lines-button.close .lines:after {
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    top: 0;
+    width: 20px;
+}
+.lines-button.close .lines:after {
+    -webkit-transform: rotate3d(0,0,1,-45deg);
+    transform: rotate3d(0,0,1,-45deg);
+}
+.lines-button.arrow .lines:after {
+    -webkit-transform: rotate3d(0,0,1,-40deg);
+    transform: rotate3d(0,0,1,-40deg);
+}
+.lines-button.arrow .lines:before {
+    -webkit-transform: rotate3d(0,0,1,40deg);
+    transform: rotate3d(0,0,1,40deg);
+}
+.lines-button.arrow .lines:before,
+.lines-button.arrow .lines:after {
+    top: 0;
+    width: 11.11111px;
+}
+/* 메뉴 아이콘 설정 */
+
+html, body, .layout {
+	width: 100%;
+	min-height: 100%;
+}
+
+#menu > ul {
+	padding: 0 !important;
+	margin-top: 80px;
+	border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.layout > .headerBar {
+	width: 100%;
+	height: 44px;
+	border-bottom: 1px solid #bbb;
+	background-color: #fff;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.layout > .headerBar > a > .menuButton {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 44px;
+	width: 45px;
+}
+.layout > .headerBar > .logo, .layout > .headerBar > .searchForm > .searchInput {
+	margin-left: 55px;
+	padding: 12px 0 10px;
+	float: left;
+	height: 22px;
+	font-size: 20px;
+	line-height: 22px;
+}
+.layout > .headerBar > .logo > a {
+	color: #333;
+}
+.layout > .headerBar > .logo > a > img {
+	wight: auto;
+	height: 22px;
+	margin-right: 5px;
+}
+.layout > .headerBar > .searchButton, .headerBar > .searchForm > .searchBtn {
+	float: right;
+	width: 45px;
+	height: 44px;
+	line-height: 49px;
+	text-align: center;
+	font-size: 17px;
+	color: #333;
+	background-color: transparent;
+}
+.layout > .headerBar > .searchForm {
+	display: none;
+}
+.layout > .headerBar > .searchForm > .searchInput > input {
+	width: 200px;
+	border: none;
+	border-bottom: 1px solid #CCC;
+	border-radius: 0;
+}
+.headerBar > .searchForm > .searchBtn {
+	line-height: 48px;
+}
+.layout > .footerBar {
+	width: 100%;
+	background-color: #444;
+}
+.layout > .footerBar > .menuBar {
+	width: 100%;
+	height: 30px;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #272727;
+	background-color: #555;
+}
+.layout > .footerBar > .menuBar > li {
+	width: 25%;
+	float: left;
+	height: 30px;
+}
+.layout > .footerBar > .menuBar > li > a {
+	color: #eee;
+	display: block;
+	border-right: 1px solid #272727;
+	text-align: center;
+	line-height: 30px;
+}
+.layout > .footerBar > .menuBar > li > a:last=child {
+	border: none;
+}
+.layout > .footerBar > div {
+	color: #eee;
+	text-align: center;
+	padding: 20px 40px;
+}
+
+.userArea {
+	width: 100%;
+	height: 80px;
+	position: relative;
+	background-image:url(../image/hanbumson.png);
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+}
+.userArea > .profileImage {
+	position: absolute;
+	width: 58px;
+	height: 58px;
+	background-size: 60px;
+	top: 7px;
+	left: 15px;
+	border: 1px solid #CCC;
+	border-radius: 30px;
+	background-color: #FFF;
+	padding: 2px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.userArea > .profileImage > div {
+	width: 58px;
+	height: 58px;
+	border-radius: 30px;
+	background-size: 58px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.userArea > .profileImage > span {
+	display: block;
+	width: 58px;
+	height: 58px;
+	border-radius: 30px;
+	overflow: hidden;
+	text-align: center;
+	line-height: 80px;
+	font-size: 65px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.userArea > .profileImage > span > span {
+	margin-left: -3.5px;
+}
+.userArea > .nickName {
+	position: absolute;
+	left: 85px;
+	top: 25px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #fff;
+	color: rgba(255, 255, 255, 0.9);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.userArea > .groupList {
+	position: absolute;
+	top: 52px;
+	left: 80px;
+	font-size: 12px;
+	color: #fff;
+	color: rgba(255, 255, 255, 0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	max-width: 55%;
+}
+.userArea > .memberBtn {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 40px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.userArea > .memberBtn > a {
+	display: block;
+	width: 40px;
+	height: 39px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	line-height: 44px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 20px;
+	background-color: rgba(255, 255, 255, 0.1);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.userArea > .memberBtn > a:last-child {
+	border: none;
+}

@@ -1,0 +1,64 @@
+<!-- 레이어 팝업 시작 -->
+<block cond="$layout_info->use_layer_popup === 'Y'">
+	<block cond="$layout_info->layer_popup_type =='text' || !$layout_info->layer_popup_type">{@ $_popup_type='text'}</block>
+	<block cond="$layout_info->layer_popup_type =='image'">
+		{@ $_popup_type='image'}
+		<block cond="!$layout_info->layer_popup_image">{@ $_popup_load_url = $layout_info->path.'img/popup_sample.jpg'}</block>
+		<block cond="!$layout_info->layer_popup_move_target">{@ $_move_target = '_self'}</block>
+		<block cond="!$layout_info->layer_popup_width">
+			{@ $layout_info->layer_popup_width = '450';}
+		</block>
+		<block cond="$layout_info->layer_popup_image">{@ $_popup_load_url = $layout_info->layer_popup_image}</block>
+		<block cond="$layout_info->layer_popup_move_url">{@ $_move_url = $layout_info->layer_popup_move_url}</block>
+		<block cond="$layout_info->layer_popup_move_target">{@ $_move_target = $layout_info->layer_popup_move_target}</block>
+	</block>
+	<block cond="$layout_info->layer_popup_type =='iframe'">
+		{@ $_popup_type='iframe'}
+		<block cond="!$layout_info->layer_popup_iframe_min_width">{@ $_iframe_min_width = '450px'}</block>
+		<block cond="!$layout_info->layer_popup_iframe_min_height">{@ $_iframe_min_height = '800px'}</block>
+
+		<block cond="!$layout_info->layer_popup_iframe_url">{@ $_iframe_url = 'http://naver.com'}</block>
+
+		<block cond="$layout_info->layer_popup_iframe_min_width">{@ $_iframe_min_width = $layout_info->layer_popup_iframe_min_width}</block>
+		<block cond="$layout_info->layer_popup_iframe_min_height">{@ $_iframe_min_height = $layout_info->layer_popup_iframe_min_height}</block>
+		<block cond="$layout_info->layer_popup_iframe_url">{@ $_iframe_url = $layout_info->layer_popup_iframe_url}</block>
+		<style>
+			iframe{
+				min-width:{$_iframe_min_width};
+				min-height:{$_iframe_min_height};
+			}
+		</style>
+	</block>
+	<style>
+		#layer_popup_text,
+		#layer_popup_image,
+		#layer_popup_iframe{
+			min-width:{$layout_info->layer_popup_width}px;
+		}
+	</style>
+</block>
+<!--// 레이어 팝업 끝 -->
+
+<div id="layer_popup_text" cond="$_popup_type === 'text'">
+	<span class="popup_btn b-close"><span>X</span></span>
+	<p cond="$layout_info->layer_popup_text">
+		{$layout_info->layer_popup_text}
+	</p>
+	<p cond="!$layout_info->layer_popup_text">
+		<h1>팝업 레이어</h1>
+		<hr />
+		<p>팝업 레이어입니다. 관리자 페이지에서 내용을 입력해주세요.</p>
+		<a class="btn_item" href="./index.php?module=admin&act=dispMenuAdminSiteDesign">설정 바로가기</a>
+	</p>
+</div>
+
+<div id="layer_popup_image" cond="$_popup_type === 'image'">
+	<span class="popup_btn b-close"><span>X</span></span>
+	<div class="layer_popup_image_content"></div>
+</div>
+
+<div id="layer_popup_iframe" cond="$_popup_type === 'iframe'">
+
+	<span class="popup_btn b-close"><span>X</span></span>
+	<div class="layer_popup_iframe_content"></div>
+</div>

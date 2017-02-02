@@ -1,0 +1,478 @@
+<!--// XE ver.1.2.x 게시판을 이용한 플래너/음력달력-----------------------
+##
+## @Package:    xe_official_planner123 (board skin)
+## @File name:	_style.planner_myplan.html
+## @Author:     Keysung Chung (keysung2004@gmail.com)
+## @Copyright:  © 2009 Keysung Chung(keysung2004@gmail.com)
+## @Contributors: Clements J. SONG (http://clements.kyunggi.ca/ , clements_song@hotmail.com)
+## @Release:	under GPL-v2 License.
+## @License:	http://www.opensource.org/licenses/gpl-2.0.php
+##
+## Redistribution and use in source and binary forms, with or without modification,
+## are permitted provided that the following conditions are met:
+##
+## Redistributions of source code must retain the above copyright notice, this list of
+## conditions and the following disclaimer.
+## Redistributions in binary form must reproduce the above copyright notice, this list
+## of conditions and the following disclaimer in the documentation and/or other materials
+## provided with the distribution.
+##
+## Neither the name of the author nor the names of contributors may be used to endorse
+## or promote products derived from this software without specific prior written permission.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+## EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+## COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+## GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+## AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+## OF THE POSSIBILITY OF SUCH DAMAGE.
+##
+## [author]
+##  - Keysung Chung, 2009, 07, 28
+##  - http://chungfamily.woweb.net/
+## [changes]
+##  - PlannerXE123 ver. 5.0.0 : Keysung Chung, 2015, 11, 05
+##  - PlannerXE123 ver. 4.3.0 : Keysung Chung, 2014, 01, 01
+##  - PlannerXE123 ver. 4.1.0 : Keysung Chung, 2013, 03, 12
+##  - PlannerXE123 ver. 4.0.0 : Keysung Chung, 2011, 08, 01
+##  - PlannerXE123 ver. 3.3.0 : Keysung Chung, 2010, 12, 12
+##  - PlannerXE123 ver. 3.2.0 : Keysung Chung, 2010, 10, 31
+##  - PlannerXE123 ver. 3.1.0 : Keysung Chung, 2010, 10, 12
+##  - PlannerXE123 ver. 2.1.0 : Keysung Chung, 2010, 09, 13
+##  - PlannerXE123 ver. 2.0.0 : Keysung Chung, 2010, 09, 01
+##  - PlannerXE123 ver. 1.7.0 : Keysung Chung, 2010, 08, 01
+##  - PlannerXE123 ver. 1.6.0 : Keysung Chung, 2010, 07, 01
+##  - PlannerXE123 ver. 1.5.0 : Keysung Chung, 2010, 06, 15
+##  - PlannerXE123 ver. 1.4.0 : Keysung Chung, 2010, 06, 01
+##  - PlannerXE123 ver. 1.3.0 : Keysung Chung, 2010, 05, 15
+##  - PlannerXE123 ver. 1.2.0 : Keysung Chung, 2010, 05, 01
+##  - PlannerXE123 ver. 1.1.0 : Keysung Chung, 2010, 04, 14
+##  - PlannerXE123 ver. 1.0.0 : Keysung Chung, 2010, 04, 01
+##  - PlannerXE123 ver. 0.3 : Keysung Chung, 2010, 02, 28
+##  - PlannerXE123 ver. 0.2 : Keysung Chung, 2009, 11, 09
+##  - PlannerXE123 ver. 0.1 : Keysung Chung, 2009, 07, 28
+----------------------------------------------------------------------- -->
+<!--// **************************************************************** -->
+<!--#include("./_get_schedule.html")-->
+<!--// **************************************************************** -->
+<!--@if($ind_mobile)-->
+<style type="text/css">
+.weekPlan{ width:100%; float:left;}
+.weekplan_calendar{ width:100%; float:left;}
+</style>
+<!--@else-->
+<style type="text/css">
+.weekPlan{ width:47%; float:left;}
+.weekplan_calendar{ width:52%; float:right;}
+</style>
+<!--@endif-->
+<!--// 주간 계획 -->
+<!--@if($is_logged && $logged_info->member_srl)-->
+{@
+$plan_weekday = date("w", mktime(0,0,0,$pMonth, $pDay, $pYear));
+$tmp_desc_sharpen = $lang->pln_sharpen_1.":&#x0A;&#x0A;&#x0A;".$lang->pln_sharpen_2.":&#x0A;&#x0A;&#x0A;".$lang->pln_sharpen_3.":&#x0A;&#x0A;&#x0A;".$lang->pln_sharpen_4.":&#x0A;";
+$tmp_desc_role = $lang->pln_role_1.":&#x0A;&#x0A;&#x0A;".$lang->pln_role_2.":&#x0A;&#x0A;&#x0A;".$lang->pln_role_3.":&#x0A;&#x0A;&#x0A;".$lang->pln_role_4.":&#x0A;&#x0A;&#x0A;".$lang->pln_role_5.":&#x0A;";
+$tmp_desc_task = $lang->pln_today_task_1."&#x0A;&#x0A;&#x0A;&#x0A;".$lang->pln_today_task_2."&#x0A;&#x0A;&#x0A;&#x0A;".$lang->pln_today_task_3."&#x0A;&#x0A;";
+$tmp_desc_remark = $lang->pln_remark_1.":&#x0A;&#x0A;";
+}
+<div class="weekPlan">
+<div class="weekPlanNavigation">
+<button type="button" class="button3 prevWeek" title="prevWeek" onclick="location.href='{$linkpath}&pOption={$pOption}&pYear={$pYear}&pMonth={$pMonth}&pDay={$pDay-7}'">&lt;&lt;</button>
+<button type="button" class="button3 prevDay" title="prevDay"  onclick="location.href='{$linkpath}&pOption={$pOption}&pYear={$pYear}&pMonth={$pMonth}&pDay={$pDay-1}'">&lt;</button>
+<button type="button" class="button3 Today" title="Today" onclick="location.href='{$linkpath}&pOption={$pOption}&pYear={$todayYY}&pMonth={$todayMM}&pDay={$todayDD}'">Today</button>
+<button type="button" class="button3 nextDay" title="nextDay" onclick="location.href='{$linkpath}&pOption={$pOption}&pYear={$pYear}&pMonth={$pMonth}&pDay={$pDay+1}'">&gt;</button>
+<button type="button" class="button3 nextWeek" title="nextWeek" onclick="location.href='{$linkpath}&pOption={$pOption}&pYear={$pYear}&pMonth={$pMonth}&pDay={$pDay+7}'">&gt;&gt;</button>
+<div class="week_title">{$pYear}/{$pMonth}/{$pDay}({$pWeekday})<br/><br/></div>
+<input type="hidden" id="myplan_content" value='{$myplan_content}'></input>
+<input type="hidden" id="myplan_title" value='{$myplan_title}'></input>
+</div>
+<div style="clear:both; height:30px; "></div>
+<div style="float:left; width:46%; padding-left:8px;"><span style="">{$lang->pln_today_task}<br/></span>
+<textarea id="task" style="width:97%; font-size:12px;" rows="29" name="sharpen"><!--@if($myplan_arr_week[$plan_weekday]==null)-->{$tmp_desc_task}<!--@else-->{$myplan_arr_week[$plan_weekday]}<!--@endif--></textarea>
+</div>
+<div style="float:left; width:46%; padding-left:8px;">
+<div>{$lang->pln_sharpen}<br/>
+<textarea id="sharpen" style="width:97%; font-size:12px;" rows="12" name="task"><!--@if($myplan_arr_week[7]==null)-->{$tmp_desc_sharpen}<!--@else-->{$myplan_arr_week[7]}<!--@endif--></textarea>
+</div>
+<div style="margin-top:6px;">{$lang->pln_role}<br/>
+<textarea id="role" style="width:97%; font-size:12px;" rows="15" name="goal"><!--@if($myplan_arr_week[8]==null)-->{$tmp_desc_role}<!--@else-->{$myplan_arr_week[8]}<!--@endif--></textarea>
+</div>
+</div>
+<div style="clear:both; padding-left:8px; " ><br/>{$lang->pln_remark}<br/>
+<textarea id="remark" style="width:95%; font-size:12px; " rows="7" name="remark"><!--@if($myplan_arr_week[9]==null)-->{$tmp_desc_remark}<!--@else-->{$myplan_arr_week[9]}<!--@endif--></textarea>
+</div><br/>
+<form action="./" method="post" id='fo_week' >
+<div style="text-align:center;" >
+<span class="buttonOfficial"><button type="submit" onclick="doUpdateMyplan('{$module_info->module}','{$myplan_module_srl}','{$myplan_srl}', '{$week_count}', '{$plan_weekday}', this); return false;">{$lang->cmd_registration}</button></span><br/><br/>
+</div>
+</form>
+<div class="epigram"><!--// 경구출력 -->
+{@$epigrams_arr = planner123_main::fn_getTextFile($skinpath, '20');}
+<span>{$epigrams_arr[0]}</span><br/><br/>
+</div>
+</div>
+<!--@else-->
+<div class="myPlan">
+<span style="color:brown; font: bold 12px verdana;"><br/><br/><br/>&nbsp;{$lang->pln_need_login}<br/><br/><br/><br/></span>
+</div>
+<!--@endif--><!--// 주간 계획 끝-->
+<!--@if($ind_mobile)-->
+<div style="clear:both; height:5px;"></div>
+<!--@endif-->
+<div id='weekplan_calendar' class="weekplan_calendar"><!--// 달력영역 시작-->
+<div id='planner123' class="planner123"><!--// 달력 시작-->
+{@ $theme_name = $module_info->user_colorset;}
+<!--@if($theme_name && file_exists($tpl_path.'colorset/'.$theme_name.'.css'))--><!--//theme css-->
+<link rel="stylesheet" type="text/css" href="{$tpl_path}colorset/{$theme_name}.css" />
+<!--@end-->
+<!--@if($theme_name && file_exists($tpl_path.'colorset/'.$theme_name.'.html'))--><!--//theme header-->
+{@ $oTemplate = &TemplateHandler::getInstance();}
+{@ print $oTemplate->compile($tpl_path.'colorset/', $theme_name.'.html');}
+<!--@else-->
+<!--#include("./_header_planner.html")-->
+<!--@end-->
+<!--@if($ind_use_category == "Y" && count($category_list) && $module_info->display_category_button != "N")--><!--// 카테고리 탭 출력 -->
+<!--@foreach($category_list as $val)-->
+{@ $tmp_cartegory[$val->title] = array('title' => $val->title, 'category_srl' => $val->category_srl, 'color' => $val->color, 'grant' => $val->grant, 'selected' => $val->selected, 'document_count' => $val->document_count, 'depth' => $val->depth)}
+<!--@end-->
+{@ ksort($tmp_cartegory)}
+<div class="category_navigation">
+{@ $label_cat_all=$lang->pln_cat_all}
+<button title="{$label_cat_all}" type="button" id="btn_all" onclick="doChgCategory(); return false;" class="button2"><!--@if(!$category)--><span class="strong"><!--@else--><span><!--@end-->{$label_cat_all}</span></button>
+<!--@foreach($tmp_cartegory as $val)-->
+<button title="{$val['title']}" type="button" id={$val['title']} onclick="doChgCategory({$val['category_srl']}); return false;" class="button2" style="<!--@if($val['color'] != transparent)-->color:{$val['color']};<!--@end-->" > <!--@if($category == $val['category_srl'])--><span class="strong" ><!--@else--><span><!--@end-->{$val['title']}</span></button>
+<!--@end-->
+</div>
+<!--@end-->
+<table class="planner_list" summary="PlannerXE123"><!--//  달력 -->
+<thead>
+<tr>
+<th scope='col' width='20%'><div class='wd_border'><div class='wd_title'>Date</div></div></th>
+<th scope='col' width='*'><div class='wd_border'><div class='wd_title'>Schedule</div></div></th>
+<th scope='col' width='15%'><div class='wd_border'><div class='wd_title'>Note</div></div></th>
+</tr>
+</thead>
+<tbody>
+{@ $weekcount = count($Calmain);}
+<!--@for($i=0; $i<$weekcount; $i++)-->
+<!--@for($j=0; $j<7; $j++)-->
+<!--@if($Calmain[$i][$j]== "*")--><!--//  달력상의 빈날 제외-->
+{@ $Calmain[$i][$j]=null;}
+<!--@else--><!--//  달력상 날자 있으면-->
+{@
+$wrk_tmp_arr= explode("-",$Calmain[$i][$j]);// YYYY-M-d
+$Calmain_YY = $wrk_tmp_arr[0];
+$Calmain_MM = $wrk_tmp_arr[1];
+$Calmain_DD = $wrk_tmp_arr[2];
+$Calmain_yymmdd = $Calmain_YY.$Calmain_MM.$Calmain_DD;
+$today_yymmdd = $todayYY.$todayMM.$todayDD;
+}
+<!--@if($Calmain_yymmdd == $today_yymmdd)-->
+<tr class="today_bgcolor"><!--// 당일-->
+<!--@else-->
+<!--@if($i%2)-->
+<tr class="week_one">
+<!--@else-->
+<tr><!--//스킨관리의 배경색 설정은 생략함-->
+<!--@end-->
+<!--@end-->
+{@ $tmparr_lunar=explode(",",$Lunarday[$Calmain_MM][$Calmain_DD]);//음력날자(2014-07-01 "-"를 ","로변경) }
+<!--@if($tmparr_lunar[3] == "윤달")-->{@ $youndal = "윤";}<!--@else-->{@ $youndal = null;}<!--@end-->
+{@
+$tmpfld_lunar ="(".$youndal.$tmparr_lunar[1]."-".$tmparr_lunar[2].")";
+$tmparr_islam=explode("-",$Islamicday[$Calmain_MM][$Calmain_DD]);
+$tmpfld_islamicday ="(".$tmparr_islam[1]."-".$tmparr_islam[2].")";//이슬람력날자
+$tmparr4=explode("-",$Holiday[$Calmain_MM][$Calmain_DD]);// 공휴일
+$tmparr5=explode("-",$Memday[$Calmain_MM][$Calmain_DD]);// 기념일
+$tmparr6=explode("|#&Oslash;#|",$arr_plan[$Calmain_MM][$Calmain_DD]);// 일정/플랜  1차 "|#&Oslash;#|",로 분리
+}
+<!--@if($Calmain_YY == $dispStartYY)-->
+{@ $tmparr2=explode("-",$GanjiJeolki[$Calmain_MM][$Calmain_DD]);}<!--//24절기-->
+<!--@else-->
+{@ $tmparr2=explode("-",$GanjiJeolki_2[$Calmain_MM][$Calmain_DD]);}<!--//24절기 후년-->
+<!--@end-->
+<!--@if(($j==0 || $Calmain_DD==1) && ($pOption == 'W1' || $pOption == 'W2' || $ind_weekly_base > 0))--><!--//첫칸 (일자) -->
+{@ $tmp_dsp_mmdd = $Calmain_MM."/".$Calmain_DD;}
+<!--@else-->
+{@ $tmp_dsp_mmdd = $Calmain_DD;}
+<!--@end-->
+{@ $WDay_seq = ($firstDayOfWeek + $j) % 7;}<!--// 요일위치 조정(V500)-->
+<!--@if($WDay_seq==1 && $module_info->display_week_number =='Y')-->
+{@ $tmp_weekNo = "(".date("W", strtotime($Calmain[$i][$j])).")"; //몇주차 }
+{@ $wrkfld_weekNo = "<span class='week_no'>".$tmp_weekNo."</span>";}
+<!--@else-->
+{@ $wrkfld_weekNo = "";}
+<!--@end-->
+<!--@if($WDay_seq==0 || $tmparr4[0] != null)-->
+{@ $wrkfld_dt = "<span class='holiday strong font_big'>".$tmp_dsp_mmdd."</span>";}<!--// 일요일 및 휴일-->
+<!--@elseif($WDay_seq==6)-->
+{@ $wrkfld_dt = "<span class='saturday strong font_big'>".$tmp_dsp_mmdd."</span>";}<!--// 토요일-->
+<!--@else-->
+{@ $wrkfld_dt = "<span class='weekday strong font_big'>".$tmp_dsp_mmdd."</span>";}<!--// 평일-->
+<!--@end-->
+<!--@if($ind_lunar_all == 'Y' && $Calmain_DD != null)-->
+{@ $wrkfld_lunar = "<span class='lunar'>".$tmpfld_lunar."</span>";}<!--// 음력 - 모든날자 표시-->
+<!--@elseif($ind_lunar == 'Y' && ($tmparr_lunar[2] == 1 || $tmparr_lunar[2] == 10 || $tmparr_lunar[2] == 15 || $tmparr_lunar[2] == 20))-->
+{@ $wrkfld_lunar = "<span class='lunar'>".$tmpfld_lunar."</span>";}<!--// 음력 - 1,10,15,20일 표시-->
+<!--@else-->
+{@ $wrkfld_lunar = '';}
+<!--@end-->
+<!--@if($ind_islamic_all == 'Y' && $Calmain_DD != null)-->
+{@ $wrkfld_islam = "<span class='islamic'>".$tmpfld_islamicday."</span>";}<!--// 이슬람력 - 모든날자 표시-->
+<!--@elseif($ind_islamic == 'Y' && ($tmparr_islam[2] == 1 || $tmparr_islam[2] == 10 || $tmparr_islam[2] == 15 || $tmparr_islam[2] == 20))-->
+{@ $wrkfld_islam = "<span class='islamic'>".$tmpfld_islamicday."</span>";}<!--// 이슬람력 - 1,10,15,20일 표시-->
+<!--@else-->
+{@ $wrkfld_islam = '';}
+<!--@end-->
+<!--@if($ind_24term == 'Y')--><!--// 절기 표시-->
+{@ $wrkfld_24term = "<span class='seasons24 strong'> ".$tmparr2[4]."</span>";}<!--// 절기-->
+<!--@end-->
+<!--@if($ind_iljin == 'Y')--><!--// 일진 표시-->
+{@ $wrkfld_iljin = "<span class='lunar'>".substr($tmparr2[2], 0, 6)."</span>";}<!--// 일진-->
+<!--@end-->
+<!--@if($ind_holiday == 'Y' && $tmparr4[0] != null)-->
+{@ $wrkfld_holiday = "<span class='holiday'>".$tmparr4[0]."</span>";}<!--// 공휴일-->
+<!--@else-->
+{@ $wrkfld_holiday = '';}
+<!--@end-->
+{@ $is_offday = FALSE;}
+<!--@if($ind_offday_naNew || $ind_offday_Label)--><!--// 휴무일 신규금지 및 휴무일표시V430-->
+{@ $is_offday = in_array(strval($WDay_seq), $dft_offday); // 시작요일 관련 변경(V480) }
+<!--@if(!$is_offday && $ind_holiday_off)-->
+{@ if($dft_holiday[$Calmain_MM][$Calmain_DD] != "") $is_offday = TRUE; //default holiday}
+<!--@end-->
+<!--@end-->
+{@ $is_pastday = FALSE; // 과거일정}
+<!--@if(mktime(0,0,0,$Calmain_MM,$Calmain_DD,$Calmain_YY) < mktime(0,0,0,$todayMM,$todayDD,$todayYY))-->
+{@ $is_pastday = TRUE;}
+<!--@end-->
+<!--@if($ind_reservation != 'N' && $module_info->display_resv_btn != 'N')--><!--// 예약버튼-->
+<!--@if($ind_offday_naNew && $is_offday)--><!--// 휴무일 신규금지면-->
+{@ $wrkfld_btn = '';}
+{@ $date_tooltip = ' title='.$lang->pln_off_day.' ';}
+<!--@else-->
+<!--@if($is_pastday)--><!--// 과거일정-->
+{@ $wrkfld_btn = '';}
+{@ $date_tooltip = ' title='.$lang->pln_closed_resv2.' ';}
+<!--@else-->
+{@ $wrkfld_btn = ' <button title="'.$lang->pln_resv2.'" type="button" class="button3"> <span>'.$lang->pln_resv.'</span></button>';}
+{@ $date_tooltip = ' title='.$lang->pln_resv2.' ';}
+<!--@end-->
+<!--@end-->
+<!--@else-->
+{@ $wrkfld_btn = '';}
+{@ $date_tooltip = ' title='.$lang->pln_write.' ';}
+<!--@end-->
+{@ $weekDayTitle_arr = explode(",", $lang->pln_calendar_header); //요일 이름(V500) }
+<!--@if($WDay_seq==0)-->
+{@ $wrkfld_wd_name = "<span class='holiday'>".$weekDayTitle_arr[$WDay_seq]."</span>";}<!--//일요일이름-->
+<!--@elseif($WDay_seq==6)-->
+{@ $wrkfld_wd_name = "<span class='saturday'>".$weekDayTitle_arr[$WDay_seq]."</span>";}<!--//토요일이름-->
+<!--@else-->
+{@ $wrkfld_wd_name = "<span class='weekday'>".$weekDayTitle_arr[$WDay_seq]."</span>";}<!--//평일이름-->
+<!--@end-->
+{@ $wrkfld_link = '';}
+<!--@if($is_offday && $ind_offday_naNew || $ind_reservation != 'N' && $is_pastday)-->
+<!--// 휴무일 신규금지 및 예약일정시 과거일자는 링크없이.-->
+{@ $wrkfld_link = "<a href='#' class='strong past_day'>".$wrkfld_weekNo.$wrkfld_dt." ".$wrkfld_wd_name."&nbsp;".$wrkfld_bt."</a>";}
+<!--@else-->
+{@
+$write_ymd = $Calmain_YY.substr('0'.$Calmain_MM,-2).substr('0'.$Calmain_DD,-2);// -제거, 일정시작 확장변수값
+$wrkfld_url = getUrl('act','dispBoardWrite','document_srl','','extra_vars1',$write_ymd);// 일자 클릭시 쓰기로 이동
+}
+<!--@if($Calmain_MM != $pMonth && $ind_fill == 'Y' && $pOption == 'M' && $ind_weekly_base <= 6)--><!--//월이다르면 반투명(TD에는잘안됨)-->
+{@ $wrkfld_class = " diff_month";}
+<!--@else-->
+{@ $wrkfld_class = "";}
+<!--@end-->
+{@ $wrkfld_link = "<a href=".$wrkfld_url." class='strong link_allow " .$wrkfld_class."'>" .$wrkfld_weekNo.$wrkfld_dt."&nbsp;".$wrkfld_wd_name."&nbsp;".$wrkfld_btn."</a>";}
+<!--@end-->
+{@ $outtext = "<ul><li class='date_label' ".$date_tooltip. ">".$wrkfld_link."</li>"
+."<li class='date_label2'>".$wrkfld_lunar.$wrkfld_islam.$wrkfld_iljin.$wrkfld_24term.$wrkfld_holiday."</li></ul>";}<!--// 첫칸-->
+<td>{$outtext}</td><!--// 첫칸 출력-->
+{@ $outtext = null;}
+<!--@if(!empty($tmparr6[0]))--><!--// 두째칸(일정/플랜) -->
+<!--@foreach($tmparr6 as $val)-->
+{@ $tmparr7=explode("|&Oslash;|",$val);}<!--// 일정/플랜  2차 "|&Oslash;|",로 분리-->
+<!--@if(!empty($tmparr7[0]))--><!--// 일정 있으면-->
+<!--@if($ind_bgcolor_option == "category_bg")--><!--//분류색이 배경색이면-->
+{@ $tmp_color_chr = '';}
+<!--@else-->
+{@ $tmp_color_chr = $tmparr7[6];}
+<!--@end-->
+{@ $lplan_cat = (!empty($tmparr7[5]))?"<span style='color:".$tmp_color_chr.";'>[".$tmparr7[5]."] </span>":"";}<!--// 분류-->
+{@ $lplan_state = null;}
+<!--@if(!empty($tmparr7[4]))-->
+{@ $arr_icon = explode(",",$tmparr7[4]);}
+<!--@foreach($arr_icon as $icon)-->
+<!--@if($icon = trim($icon))-->
+<!--@if(file_exists($skinpath."images/icon/".$icon))-->
+{@ $icon_folder = "";}
+<!--@elseif(file_exists($skinpath."images/icon/client/".$icon))-->
+{@ $icon_folder = "client/";}
+<!--@elseif(file_exists($skinpath."images/icon/manager/".$icon))-->
+{@ $icon_folder = "manager/";}
+<!--@end-->
+{@ $lplan_state .= "<img src='".$skinpath."images/icon/".$icon_folder.$icon."'/>";}<!--//일정확인-->
+<!--@end-->
+<!--@end-->
+<!--@end-->
+<!--@if(!empty($tmparr7[7]))--><!--//댓글숫자-->
+{@ $lplan_reply ="<span class='small'>[".$tmparr7[7]."]</span>";}
+<!--@else-->
+{@ $lplan_reply =null;}
+<!--@end-->
+<!--@if(!$tmparr7[8])--><!--//시간표시-->
+{@
+$title_time = null;// 제목에표시할 시간값
+$time_start =null;// 일정 시작시간
+$time_end = null;// 일정 종료시간
+$time_disply_fld = null;// 툴팁에표시할 시간값
+$tmp_time = null;
+}
+<!--@else-->
+{@ $tmp_time = explode(",",$tmparr7[8]);}
+<!--@if($ind_reservation == "T")--><!--// 예약(시간)-->
+{@
+$title_time = $tmp_time[0];
+$time_start = $tmp_time[0];
+$time_end = trim($tmp_time[count($tmp_time)-1]);
+$tmp_etime_arr = explode(':',$time_end);
+$ind_interval = $module_info->time_interval;//시간간격
+$time_end = date('H:i', mktime($tmp_etime_arr[0],$tmp_etime_arr[1]+$ind_interval,-1,1,1,2011));
+$time_disply_fld = "[".$tmparr7[8]."]&#x0A;";//선택내용 전부
+}
+<!--@else--><!--// 중복허용 -->
+{@
+$title_time = $tmp_time[0];
+$time_start = $tmp_time[0];
+$time_end = trim($tmp_time[count($tmp_time)-1]);
+}
+<!--@if($time_start && $time_start == $time_end)-->
+{@ $time_disply_fld = "[".$time_start."-"."] ";}
+<!--@else-->
+{@ $time_disply_fld = "[".$time_start."-".$time_end."] ";}
+<!--@end-->
+{@
+$tmp_etime_arr = explode(':',$time_end);
+$ind_interval = $module_info->time_interval;//시간간격
+$time_end = date('H:i', mktime($tmp_etime_arr[0],$tmp_etime_arr[1],-1,1,1,2011));
+}
+<!--@end-->
+<!--@end--><!--//시간표시-->
+<!--@if($module_info->display_tooltip == "all" || $module_info->display_tooltip == "")--><!--// 툴팁표시조건 -->
+{@ $tooltip_desc = $time_disply_fld.$tmparr7[2];}
+<!--@elseif($module_info->display_tooltip == "log" && $is_logged)-->
+{@ $tooltip_desc = $time_disply_fld.$tmparr7[2];}
+<!--@elseif($module_info->display_tooltip == "adm" && $grant->is_admin)-->
+{@ $tooltip_desc = $time_disply_fld.$tmparr7[2];}
+<!--@end--><!--//툴팁표시조건-->
+{@ $title_disp = $tmparr7[0];}<!--// 출력될 일정 제목-->
+<!--@if($tmparr7[3] =="" && $tmparr7[6] =="")-->
+{@ $tmparr7[3] = $tmparr7[6] = "#77CC00";}
+<!--@end-->
+<!--@if($ind_bgcolor_option == "picker_bg")--><!--// 선택색상을->배경색-->
+{@
+$tmp_style = "style='clear:both; background-color:".$tmparr7[3]."; '";
+$tmp_style1_0 = "style='float:left; background-color:".$tmparr7[3]."; '";
+$tmp_style1_1 = "style='padding:5px 0 0 5px; background-color:".$tmparr7[3]."; border:medium double  #FFFFFF;'";
+$tmp_style2 = "style='background-color:".$tmparr7[3].";'";
+}
+<!--@elseif($ind_bgcolor_option == "picker_text")--><!--// 선택색상을->글자색-->
+{@
+$tmp_style = "style='clear:both; color:".$tmparr7[3]."; '";
+$tmp_style1_0 = "style='float:left; color:".$tmparr7[3]."; '";
+$tmp_style1_1 = "style='padding:5px 0 0 5px; color:".$tmparr7[3]."; border:medium double ".$tmparr7[3].";'";
+$tmp_style2 = "style='color:".$tmparr7[3].";'";
+}
+<!--@elseif($ind_bgcolor_option == "category_bg" && $ind_use_category == "Y")--><!--// 분류색상을->배경색-->
+{@
+$color_chr = 'whitesmoke';
+$tmp_style = "style='clear:both; color:".$color_chr."; background-color:".$tmparr7[6]."; ".$id_overflow."'";
+$tmp_style1_0 = "style='color:".$color_chr."; background-color:".$tmparr7[6]."; '";
+$tmp_style1_1 = "style='padding:2px 0 0 2px; color:".$color_chr."; background-color:".$tmparr7[6]."; border:medium double #FFFFFF;'";
+$tmp_style2 = "style='vertical-align:top; color:".$color_chr."; background-color:".$tmparr7[6].";'";
+}
+<!--@elseif($ind_bgcolor_option == "category_text" && $ind_use_category == "Y")--><!--// 분류색상을->글자색-->
+{@
+$tmp_style = "style='clear:both; color:".$tmparr7[6]."; '";
+$tmp_style1_0 = "style='float:left; color:".$tmparr7[6]."; '";
+$tmp_style1_1 = "style='padding:5px 0 0 5px; color:".$tmparr7[6]."; border:medium double ".$tmparr7[6].";'";
+$tmp_style2 = "style='color:".$tmparr7[6].";'";
+}
+<!--@else--><!--// 기본은 선택색상->배경색-->
+{@
+$tmp_style = "style='clear:both; background-color:".$tmparr7[3]."; '";
+$tmp_style1_0 = "style='float:left; background-color:".$tmparr7[3]."; '";
+$tmp_style1_1 = "style='padding:5px 0 0 5px; background-color:".$tmparr7[3]."; border:medium double  #FFFFFF;'";
+$tmp_style2 = "style='background-color:".$tmparr7[3].";'";
+}
+<!--@end-->
+<!--@if($document_srl == $tmparr7[12])--><!--// 열린문서 블링크-->
+{@ $blink_class = 'blink_me';}
+<!--@else-->
+{@ $blink_class = '';}
+<!--@end-->
+<!--@if($ind_image_diary == "Y" && !empty($tmparr7[10]))--><!--//시간+일정제목 -->
+{@ $out_text = "<a class='schedule_view' ".$tmp_style2." href='".$tmparr7[1]."' title='".$tooltip_desc."'><img class='clear_line' style='float:left;' src='".$tmparr7[10]."'/>&nbsp;".$time_disply_fld.$title_disp."&nbsp;".$lplan_cat.$lplan_state.$lplan_reply.$tmparr7[9]."</a><div class='clear_line schedule_bottom'></div>";}
+<!--@elseif($ind_image_diary == "F" && !empty($tmparr7[10]))-->
+{@ $out_text = "<a class='schedule_view' ".$tmp_style2." href='".$tmparr7[1]."' title='".$tooltip_desc."'><img class='clear_line' style='float:left;' src='".$tmparr7[10]."'/>&nbsp;".$time_disply_fld.$title_disp."&nbsp;".$lplan_cat.$lplan_state.$lplan_reply.$tmparr7[9]."</a><div class='clear_line schedule_bottom'></div>";}
+<!--@else-->
+{@ $out_text = "<a class='schedule_view' ".$tmp_style2." href='".$tmparr7[1]."' title='".$tooltip_desc."'>&nbsp;".$time_disply_fld.$title_disp."&nbsp;".$lplan_cat.$lplan_state.$lplan_reply.$tmparr7[9]."</a><div class='clear_line schedule_bottom'></div>";}
+<!--@end-->
+{@ $out_text = "<div class='schedule_view_div $blink_class'>".$out_text."</div>";}
+<!--@if($module_info->display_detail == "Y")--><!--// 두째칸(일정/플랜)detail 출력을 위해...-->
+{@ $out_html .= $out_text."<div style='padding-left:10px;'>".$tmparr7[2]."</div><br/>";}
+<!--@elseif($module_info->display_detail == "F")-->
+{@ $out_html .= $out_text."<div style='padding-left:10px;'>".$plan_detail_all[$tmparr7[12]]."</div><br/>";}
+<!--@else-->
+{@ $out_html .= $out_text;}<!--// 두째칸(일정/플랜)출력-->
+<!--@end-->
+<!--@end--><!--// end if 일정 있으면 끝-->
+<!--@end--><!--// end foreach($tmparr6 as $val)-->
+<!--@end--><!--// end if(!empty($tmparr6[0])-->
+<!--@if($is_offday && $ind_offday_Label)--><!--// 휴무일-->
+{@ $out_html .= "<div class='offday strong'>".$lang->pln_off_day."</div>";}<!--//휴뮤일표시-->
+<!--@end-->
+{@ $ind_ua = planner123_main::fn_get_USER_AGENT()}
+<!--@if(($ind_ua == "IE6" || $ind_ua == "IE7") && $Calmain_yymmdd == $today_yymmdd)-->
+<td class = 'plan today_border'>{$out_html}</td><!--// 일정 출력-->
+<!--@else-->
+<td class = 'plan'>{$out_html}</td><!--// 일정 출력-->
+<!--@end-->
+{@ $out_html = null;}
+<!--@if($ind_memday == 'Y' && !empty($tmparr5[0]))--><!--// 셋째칸 두째줄(기념일) -->
+{@ $out_html = "<li><span class='memorial'>".$tmparr5[0]."</span></li>";}<!--// 기념일-->
+<!--@else-->
+{@ $out_html = null;}
+<!--@end-->
+<td>{$out_html}</td>
+{@ $out_html = null;}
+</tr>
+<!--@end--><!--// end if 달력상 날자있으면-->
+<!--@end--><!--// end for-->
+<!--@end--><!--// end for-->
+</tbody>
+</table>
+<!--@if($display_offset != $offset && $offset != null && $device != printer )--><!--// 사용자시간 출력 -->
+<div class="client_time">
+Server time is <font color='blue'>{date("l, F j, Y, g:i a", $display_timestamp)}</font>
+and your time is <font color='blue'>{date("l, F j, Y, g:i a", $client_timestamp)}</font> : {($display_timestamp-$client_timestamp)*(-1)/3600}Hrs difference.
+</div>
+<!--@end-->
+</div> <!--// end of id='planner123' class="planner123"-->
+</div><!--// end of id='weekplan_calendar' class="weekplan_calendar"-->
+<div style='clear:both;'></div>
+<!--@if($grant->manager)--><!--// 관리자로 로그인및 문서목록출력이 Y 일경우 문서 리스트 출력 -->
+<!--@if($module_info->display_doc_list != "N")-->
+<!--#include("./_style.list_planner.html")-->
+<!--@endif-->
+<!--@else-->
+{@$write_ymd = date('Y',$wrk_timestamp).date('m',$wrk_timestamp).date('d',$wrk_timestamp)}
+<div class="buttonRight" style="clear:both; float:right;">
+<a href="{getUrl('act','dispBoardWrite','document_srl','','extra_vars1',$write_ymd)}" class="buttonOfficial"><span>{$lang->cmd_write}</span></a>
+</div>
+<!--@end-->

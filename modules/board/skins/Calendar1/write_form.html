@@ -1,0 +1,265 @@
+<!--// XE ver.1.2.x 게시판을 이용한 플래너/음력달력-----------------------
+##
+## @Package:    xe_official_planner123 (board skin)
+## @File name:	write_form.html
+## @Author:     Keysung Chung (keysung2004@gmail.com)
+## @Copyright:  © 2009 Keysung Chung(keysung2004@gmail.com)
+## @Contributors: Clements J. SONG (http://clements.kyunggi.ca/ , clements_song@hotmail.com)
+## @Release:	under Commercial License. (Do not copy or distribute without written permission.)
+##
+## Redistribution and use in source and binary forms, with or without modification,
+## are permitted provided that the following conditions are met:
+##
+## Redistributions of source code must retain the above copyright notice, this list of
+## conditions and the following disclaimer.
+## Redistributions in binary form must reproduce the above copyright notice, this list
+## of conditions and the following disclaimer in the documentation and/or other materials
+## provided with the distribution.
+##
+## Neither the name of the author nor the names of contributors may be used to endorse
+## or promote products derived from this software without specific prior written permission.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+## EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+## COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+## GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+## AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+## OF THE POSSIBILITY OF SUCH DAMAGE.
+##
+## [author]
+##  - Keysung Chung, 2009, 07, 28
+##  - http://chungfamily.woweb.net/
+## [changes]
+##  - PlannerXE123 ver. 5.0.0 : Keysung Chung, 2015, 11, 05
+##  - PlannerXE123 ver. 4.6.0 : Keysung Chung, 2014, 11, 01
+##  - PlannerXE123 ver. 4.3.0 : Keysung Chung, 2014, 01, 01
+##  - PlannerXE123 ver. 4.1.0 : Keysung Chung, 2013, 03, 12
+##  - PlannerXE123 ver. 4.0.0 : Keysung Chung, 2011, 08, 01
+##  - PlannerXE123 ver. 3.2.0 : Keysung Chung, 2010, 10, 31
+##  - PlannerXE123 ver. 3.1.0 : Keysung Chung, 2010, 10, 12
+##  - PlannerXE123 ver. 2.1.0 : Keysung Chung, 2010, 09, 13
+##  - PlannerXE123 ver. 2.0.0 : Keysung Chung, 2010, 09, 01
+##  - PlannerXE123 ver. 1.7.0 : Keysung Chung, 2010, 08, 01
+##  - PlannerXE123 ver. 1.6.0 : Keysung Chung, 2010, 07, 01
+##  - PlannerXE123 ver. 1.5.0 : Keysung Chung, 2010, 06, 15
+##  - PlannerXE123 ver. 1.4.0 : Keysung Chung, 2010, 06, 01
+##  - PlannerXE123 ver. 1.3.0 : Keysung Chung, 2010, 05, 15
+##  - PlannerXE123 ver. 1.2.0 : Keysung Chung, 2010, 05, 01
+##  - PlannerXE123 ver. 1.1.0 : Keysung Chung, 2010, 04, 14
+##  - PlannerXE123 ver. 1.0.0 : Keysung Chung, 2010, 04, 01
+##  - PlannerXE123 ver. 0.3 : Keysung Chung, 2010, 02, 28
+##  - PlannerXE123 ver. 0.2 : Keysung Chung, 2009, 11, 09
+##	- PlannerXE123 ver. 0.1 : Keysung Chung, 2009, 07, 28
+----------------------------------------------------------------------- -->
+<!--#include('_header.html')-->
+{@ $in_extra_vars1_temp = $extra_vars1;}<!--// "-" 제거-->
+{@ $in_extra_vars7_temp = $extra_vars7;}
+<!--@if($pYear == NULL)-->
+{@ $pYear = date('Y');}
+{@ $pMonth = date('n');}
+{@ $pDay = date('d');}
+<!--@end-->
+<!--@if($in_extra_vars1_temp)-->  <!--//클릭한 날자-->
+{@ $wrkYear = $pYear = substr($in_extra_vars1_temp,0,4);}
+{@ $wrkMonth = $pMonth = substr($in_extra_vars1_temp,4,2);}
+{@ $wrkDay = $pDay = substr($in_extra_vars1_temp,6,2);}
+<!--@end-->
+<!--// 타임 픽커를 위한 시작 종료 시간값 조정-->
+<!--@if($module_info->time_start == NULL)-->
+{@ $working_start = $working_start_2 = '08:00';}<!--// 시작시간 기본값 08:00 부터-->
+<!--@else-->
+{@ $working_start = $working_start_2 = $module_info->time_start;}<!--// 게시판관리 설정된 시작시간-->
+<!--@end-->
+<!--@if($module_info->time_end == NULL)-->
+{@ $working_end = $working_end_2 = '20:00';}<!--// 종료시간 기본값 20:00 까지-->
+<!--@else-->
+{@ $working_end = $working_end_2 = $module_info->time_end;}<!--// 게시판관리 설정된 종료시간-->
+<!--@end-->
+<!--@if($module_info->time_interval == NULL)-->
+{@ $time_interval = $time_interval = '15';}<!--// 시간간격 15분-->
+<!--@else-->
+{@ $time_interval = $module_info->time_interval;}<!--// 시간간격 설정값-->
+<!--@end-->
+{@ $skinpath = $tpl_path;}<!--// 스킨 설치 경로지정-->
+<!--@if(!class_exists('planner123_main'))-->
+{@ require_once($skinpath.'function/class.planner123_main.php');}<!--//  function -->
+<!--@endif-->
+<!--// 타임 픽커 시간값 어레이-->
+{@ $slt_arr = planner123_main::fn_get_time_interval($module_info, $category_list)}
+<!--// 아이콘 목록얻기 -->
+<!--@if(is_dir($dir=$tpl_path.'images/icon/client'))-->
+{@ $icon_user = planner123_main::fn_readFolderDirectory($dir)}
+{@ $icon_user_path = $dir.'/'}
+<!--@endif-->
+<!--@if(is_dir($dir=$tpl_path.'images/icon/manager'))-->
+{@ $icon_mgr = planner123_main::fn_readFolderDirectory($dir)}
+{@ $icon_mgr_path = $dir.'/'}
+<!--@endif-->
+<!--// 예약 관련코드-->
+{@ $ind_reservation = $module_info->reservation;}
+<!--@if($ind_reservation == "T")-->
+{@ $resv_type = 'hour';}
+<!--#include('_write_reservation.html')-->
+<!--@endif-->
+<!--@if(!$ind_mobile)-->
+{@ $tmp_url = getUrl('act','dispBoardWrite','document_srl','','extra_vars1', '');}
+<div class="calendar_container">
+{$tmp_html = planner123_main::fn_smallcalendar_ymd($pYear,$pMonth-1, 0, $tmp_url, $ind_reservation, $grant->manager, $document_srl, $extra_keys[1]->value)}
+{$tmp_html = planner123_main::fn_smallcalendar_ymd($pYear,$pMonth, $pDay, $tmp_url, $ind_reservation, $grant->manager, $document_srl, $extra_keys[1]->value)}
+{$tmp_html = planner123_main::fn_smallcalendar_ymd($pYear,$pMonth+1, 0, $tmp_url, $ind_reservation, $grant->manager, $document_srl, $extra_keys[1]->value)}
+</div>
+<div class="clear">&nbsp;</div>
+<!--@endif-->
+<form action="./" method="post" onsubmit="jQuery(this).find('input').each(function(){if(this.title==this.value)this.value='';});return procFilter(this, window.insert)" id="fo_write" class="boardWrite">
+<input type="hidden" name="mid" value="{$mid}" />
+<!--@if(!$ind_mobile)--> <!--// 모바일이 아닐때 실행 (에디터 관련 필드)-->
+<!--@if($oDocument->getContentText() == NULL)-->
+<input type="hidden" name="content" value="{htmlspecialchars($module_info->auto_text)}" />
+<!--@else-->
+<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+<!--@endif-->
+<!--@endif-->
+<input type="hidden" name="document_srl" value="{$document_srl}" />
+<!--// 확장변수부분 불러오기-->
+<!--@if($ind_reservation == 'T')-->
+<!--#include('_write_extra_time.html')-->
+<!--@else-->
+<!--#include('_write_extra_normal.html')-->
+<!--@endif-->
+<div class="editorOption">
+<!--@if(!$is_logged)-->
+<input type="text" name="nick_name" class="inputText userName" value="{$lang->writer}" title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+<input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+<input type="text" name="email_address" class="inputText emailAddress" value="{$lang->email_address}" title="{$lang->email_address}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+<input type="text" name="homepage" class="inputText homePage" value="{$lang->homepage}" title="{$lang->homepage}"  onfocus="if(this.value==this.title)this.value='';return false;" /><br/>
+<!--@end-->
+<!--@if($grant->manager || $module_info->allow_status_change == 'own' && $logged_info->member_srl && $oDocument->getMemberSrl() == $logged_info->member_srl || $module_info->allow_status_change == 'own' && $logged_info->member_srl && !$oDocument->getMemberSrl() || $module_info->allow_status_change == 'log' && $logged_info->member_srl)-->
+{@ $_status_arr = array('A'=>$lang->pln_status_normal, 'F'=>$lang->pln_status_complete, 'R'=>$lang->pln_status_cancel) }<!--// 기본, 완료, 취소: 최초는 NULL(기본), 수정하면 A(기본) -->
+{@ $plan_doc_extra_vars = $oDocument->get('extra_vars')}
+<!--@if($plan_doc_extra_vars == 'A' || $plan_doc_extra_vars == 'F' || $plan_doc_extra_vars == 'R' || $plan_doc_extra_vars == 'X')-->
+{@ $_doc_status = $plan_doc_extra_vars;}<!--// 취소일정위해 추가 ('A'=>'기본', 'F'=>'완료', 'R'=>'취소');  // 기본: 최초는 NULL, 수정하면 A. (v430: XEV174부터 serialize 않음)-->
+<!--@else-->
+{@ $_doc_status = unserialize($plan_doc_extra_vars);}<!--// v430: XEV174이전 호환을 위해-->
+<!--@end-->
+<!--@if($_doc_status == '')-->
+{@ $_doc_status = '';}<!--//디폴트값을 설정-->
+<!--@endif-->
+<!--@if($_doc_status != 'X')-->
+<select name="extra_vars" id="extra_vars" >
+<!--@if($_doc_status == NULL)-->
+<option value="">{$lang->pln_status}</option>
+<!--@endif-->
+<!--@foreach($_status_arr as $key => $_status)-->
+<option value={$key} <!--@if($key==$_doc_status)-->selected="selected"<!--@endif--> >
+{$_status}
+</option>
+<!--@endforeach-->
+</select>
+<!--@endif-->
+<!--@else-->
+<!--@if($_doc_status == '')-->
+<input type="hidden" name="extra_vars" value="" /><!--//디폴트값 설정-->
+<!--@endif-->
+<!--@endif-->
+<!--@if($grant->manager)-->
+{@ $_color = array('555555','222288','226622','2266EE','8866CC','88AA66','EE2222','EE6622','EEAA22','EEEE22') }
+<select name="title_color" id="title_color" <!--@if($oDocument->get('title_color'))-->style="color:#{$oDocument->get('title_color')};"<!--@end--> onchange="this.style.color=this.options[this.selectedIndex].style.color;">
+<option value="" style="color:#CCCCCC;">{$lang->title_color}</option>
+<!--@foreach($_color as $_col)-->
+<option value="{$_col}" style="color:#{$_col}" <!--@if($oDocument->get('title_color')==$_col)-->selected="selected"<!--@end-->>{$lang->title_color}</option>
+<!--@endforeach-->
+</select>
+<input type="checkbox" name="title_bold" id="title_bold" value="Y" <!--@if($oDocument->get('title_bold')=='Y')-->checked="checked"<!--@end--> />
+<label for="title_bold">{$lang->title_bold}</label>
+<input type="checkbox" name="is_notice" value="Y" <!--@if($oDocument->isNotice())-->checked="checked"<!--@end--> id="is_notice" />
+<label for="is_notice">{$lang->notice}</label>
+<!--@endif-->
+<input type="checkbox" name="comment_status" value="ALLOW" <!--@if($oDocument->allowComment())-->checked="checked"<!--@end--> id="comment_status" />
+<label for="comment_status">{$lang->allow_comment}</label>
+<input type="checkbox" name="allow_trackback" value="Y" <!--@if($oDocument->allowTrackback())-->checked="checked"<!--@end--> id="allow_trackback" />
+<label for="allow_trackback">{$lang->allow_trackback}</label>
+<!--@if($is_logged)-->
+<input type="checkbox" name="notify_message" value="Y" <!--@if($oDocument->useNotify())-->checked="checked"<!--@end--> id="notify_message" />
+<label for="notify_message">{$lang->notify}</label>
+<!--@end-->
+<!--@if(is_array($status_list))-->
+<!--@foreach($status_list AS $key=>$value)-->
+<input type="radio" name="status" value="{$key}" id="{$key}" <!--@if($oDocument->get('status') == $key || ($key == 'PUBLIC' && !$document_srl))-->checked="checked"<!--@end--> />
+<label for="{$key}">{$value}</label>
+<!--@end-->
+<!--@end-->
+</div>
+<!--@if($ind_mobile)--><!--//모바일일 경우 에디터 대신-->
+<div>
+<label for="nText" class="fl">{$lang->content}</label>
+<!--@if($oDocument->getContentText() == NULL)-->
+<textarea name="content" cols="40" rows="8" id="nText">{$module_info->auto_text}</textarea>
+<!--@else-->
+<textarea name="content" cols="40" rows="8" id="nText">{strip_tags($oDocument->getContentText())}</textarea>
+<!--@endif-->
+</div>
+<!--@else--><!--//모바일이 아닐때는 에디터 사용-->
+<div class="editor">{$oDocument->getEditor()}</div>
+<!--@endif-->
+<div class="tag">
+<input type="text" name="tags" value="{htmlspecialchars($oDocument->get('tags'))}" class="inputText" title="Tag" />
+<p>{$lang->about_tag}</p>
+</div>
+<!--@if(unserialize($oDocument->get('extra_vars')) != "X")-->
+<div class="boardNavigation">
+<span class="buttonOfficial"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+<span class="buttonOfficial"><button type="button" onclick="doDocumentSave(this);">{$lang->cmd_temp_save}</button></span>
+<span class="buttonOfficial"><button type="button" onclick="doDocumentLoad(this);">{$lang->cmd_load}</button></span>
+</div>
+<!--@end-->
+</form>
+<!--#include('_footer.html')-->
+<!--@if($ind_reservation == "T" && count($extra_keys) >= 7)-->
+<!--// 예약(시간) 선택을 위한 카테고리에따른 disabled 토글을 위하여 -->
+<script type='text/javascript' >
+// <![CDATA[
+jQuery(function($){
+$(document).ready(function(){
+var checked_category_srl = $('.line_colunm_category input:radio:checked').val();
+//alert(checked_category_srl);
+//alert ($('#category_radio').length);
+if ( $('#category_radio').length ) {
+$('.time :input').attr('disabled', true);
+$('.time_abled'+ checked_category_srl + ' :input').attr('disabled', false);
+}
+});
+});
+function toggleStatus(category_srl) {
+jQuery(function($){
+$('.time :input').attr('disabled', true);
+$('.time_abled'+ category_srl + ' :input').attr('disabled', false);
+});
+}
+// ]]>
+</script>
+<!--@else-->
+<!--// 시작 종료시간 체크 -->
+<script type='text/javascript'>
+// <![CDATA[
+jQuery(function($){
+$('#extra_vars7_start').change(function() {
+var selected_start_time = $('#extra_vars7_start option:selected').val();
+var selected_end_time = $('#extra_vars7_end option:selected').val();
+if ( selected_end_time && selected_start_time > selected_end_time ) {
+alert('End time is earlier than start time.\n' + '종료시간이 시작시간보다 이릅니다.');
+}
+});
+$('#extra_vars7_end' ).change(function() {
+var selected_start_time = $('#extra_vars7_start option:selected').val();
+var selected_end_time = $('#extra_vars7_end option:selected').val();
+if ( selected_start_time && selected_start_time > selected_end_time) {
+alert('End time is earlier than start time.\n' + '종료시간이 시작시간보다 이릅니다.');
+}
+});
+});
+// ]]>
+</script>
+<!--@endif-->

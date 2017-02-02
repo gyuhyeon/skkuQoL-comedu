@@ -1,0 +1,770 @@
+<!--// META -->
+{Context::addHtmlHeader('<meta name="viewport" content="width=device-width, user-scalable=yes">')}
+<!--// LANG -->
+<load target="./lang" />
+
+<!--// 레이아웃을 위한 설정 값들 -->
+<!--// index 모듈 체크 -->
+{@ $_is_indexmodule = ($site_module_info->module_srl === $current_module_info->module_srl)}
+{@ $_body_class = array()}
+{@ $_container_class = array()}
+{@ $_visual_class = array()}
+{@ $_selected_menu = null}
+{@ $sub_header_title = $module_info->browser_title}
+
+<!--// 초기화 -->
+{@ $_enable_slide = true}
+{@ $_enable_main = true}
+{@ $_enable_unb = false}
+{@ $_sample_slide = false}
+
+<block cond="!$layout_info->layout_type">{@ $layout_info->layout_type = 'auto'}</block>
+<block cond="!$layout_info->menu_type_main">{@ $layout_info->menu_type_main = 'basic'}</block>
+<block cond="!$layout_info->menu_type_sub">{@ $layout_info->menu_type_sub = 'basic'}</block>
+<block cond="!$layout_info->content_fixed_width">{@ $layout_info->content_fixed_width = 'index'}</block>
+<block cond="!$layout_info->menu_fixed">{@ $layout_info->menu_fixed = 'Y'}</block>
+<block cond="!$layout_info->sidebar_position">{@ $layout_info->sidebar_position = 'right'}</block>
+<block cond="!$layout_info->use_slide">{@ $layout_info->use_slide = 'Y'}</block>
+<block cond="!$layout_info->enable_intergration_search">{@ $layout_info->enable_intergration_search = 'Y'}</block>
+<block cond="!$layout_info->footer_copyright">{@ $layout_info->footer_copyright = 'Powered by KIM TAJO.'}</block>
+<block cond="!$layout_info->use_banner">{@ $layout_info->use_banner = "N"}</block>
+
+<block cond="!$layout_info->slide_img1">{@ $_sample_slide = true}</block>
+
+<!--// xeicon 페이지 별도 정의 -->
+<block cond="$mid === 'xeicon'">
+	{@ $layout_info->layout_type = 'sub'}
+	{@ $layout_info->menu_type_sub = 'onepage_parallax'}
+	{@ $layout_info->content_fixed_width = 'N'}
+</block>
+
+<!--// 콘텐츠 영역 폭 -->
+<block cond="$layout_info->content_fixed_width === 'index'">
+	{@ $layout_info->content_fixed_width = (!$_is_indexmodule) ? 'Y' : 'N';}
+</block>
+<block cond="$layout_info->content_fixed_width === 'Y'">
+	{@ $_body_class[] = 'fixed-width'}
+</block>
+<!--// 회원, 커뮤니케이션 모듈 등 페이지에서 콘텐츠 영역 폭 고정 -->
+{@ $_fixed_width_act = array(
+'dispMemberSignUpForm',
+'dispMemberLoginForm',
+'dispMemberFindAccount',
+'dispMemberInfo',
+'dispMemberModifyPassword',
+'dispMemberModifyEmailAddress',
+'dispMemberModifyInfo',
+'dispMemberLeave',
+'dispMemberScrappedDocument',
+'dispMemberSavedDocument',
+'dispMemberOwnDocument',
+'dispCommunicationFriend',
+'dispCommunicationMessages',
+'dispNcenterliteUserConfig',
+'dispNcenterliteNotifyList',
+'dispLoginxeclientListProvider',
+'dispAjaxboardNotificationConfig',
+'dispXimemberSignUpForm',
+'IS',
+)}
+
+<block cond="$layout_info->fixed_width_act">
+	{@ $fixed_width_act = explode("\n", $layout_info->fixed_width_act)}
+ 	<!--@foreach($fixed_width_act as $data)-->
+	{@ array_push($_fixed_width_act, trim($data))}
+	<!--@end-->
+</block>
+<block cond="in_array($act, $_fixed_width_act)">
+	{@ $_body_class[] = 'fixed-width'}
+	{@ $layout_info->sidebar_position = 'none'}
+	{@ $sub_header_title = 'Membership'}
+	{@ $_enable_main = false}
+	<block cond="$act === 'IS'">{@ $sub_header_title = 'Search'}</block>
+</block>
+
+<!--// 레이아웃 타입 -->
+<block cond="$layout_info->layout_type === 'auto'">
+	{@ $layout_info->layout_type = ($_is_indexmodule) ? 'main' : 'sub';}
+</block>
+{@ $_body_class[] = $layout_info->layout_type}
+<block cond="!$_is_indexmodule">{@ $_body_class[] = $layout_info->sidebar_position}</block>
+<block cond="$layout_info->layout_type === 'main'">
+	{@ $_visual_class[] = 'main'}
+</block>
+<block cond="$layout_info->layout_type === 'sub'">
+	{@ $_enable_slide = false}
+	{@ $_enable_main = true}
+	{@ $_visual_class[] = 'sub'}
+	<block cond="$layout_info->menu_type_sub === 'basic_regular'">
+		{@ $_visual_class[] = 'sub_type2'}
+	</block>
+</block>
+
+<!--// 메뉴 -->
+<block cond="$layout_info->menu_fixed === 'Y'">
+	{@ $_container_class[] = 'fixed_header'}
+</block>
+
+
+
+<!--// 김타조 제작 -->
+<block cond="!$layout_info->logo_text_color">{@ $layout_info->logo_text_color = "#888"}</block>
+<block cond="!$layout_info->sub_title_color">{@ $layout_info->sub_title_color = "#444"}</block>
+<block cond="!$layout_info->menu_text_color">{@ $layout_info->menu_text_color = "#888"}</block>
+<block cond="!$layout_info->sidemenu_text_color">{@ $layout_info->sidemenu_text_color = "#444"}</block>
+<block cond="$layout_info->use_fixed_css=='Y'">{@ $_use_css = 'fixed'}</block>
+<block cond="$layout_info->use_fixed_css=='N' && $layout_info->use_custom_color =='Y'">
+	{@ $_use_css = 'custom'}
+	{@ $_custom_color = $layout_info->custom_color}
+</block>
+<!--// 김타조 제작 끝 -->
+
+
+
+
+{@ $_body_class = join(' ', $_body_class)}
+{@ $_visual_class = join(' ', $_visual_class)}
+{@ $_container_class = join(' ', $_container_class)}
+<!--// END:레이아웃을 위한 설정 값들 -->
+
+
+<!--// CSS -->
+<load target="./css/layout.css" />
+<load target="./css/swiper.min.css" />
+
+<load target="./css/webfont.css" />
+<load target="../../common/xeicon/xeicon.min.css" />
+<load target="./css/main_content.css" />
+
+<block cond="$_use_css=='fixed'">
+	<load cond="$layout_info->fixed_css=='red'" target="./css/fixed_css/red.css" />
+	<load cond="$layout_info->fixed_css=='pink'" target="./css/fixed_css/pink.css" />
+	<load cond="$layout_info->fixed_css=='purple'" target="./css/fixed_css/purple.css" />
+	<load cond="$layout_info->fixed_css=='deep_purple'" target="./css/fixed_css/deep_purple.css" />
+	<load cond="$layout_info->fixed_css=='indigo'" target="./css/fixed_css/indigo.css" />
+	<load cond="$layout_info->fixed_css=='blue'" target="./css/fixed_css/blue.css" />
+	<load cond="$layout_info->fixed_css=='light_blue'" target="./css/fixed_css/light_blue.css" />
+	<load cond="$layout_info->fixed_css=='cyan'" target="./css/fixed_css/cyan.css" />
+	<load cond="$layout_info->fixed_css=='green'" target="./css/fixed_css/green.css" />
+	<load cond="$layout_info->fixed_css=='light_green'" target="./css/fixed_css/light_green.css" />
+	<load cond="$layout_info->fixed_css=='lime'" target="./css/fixed_css/lime.css" />
+	<load cond="$layout_info->fixed_css=='yellow'" target="./css/fixed_css/yellow.css" />
+	<load cond="$layout_info->fixed_css=='amber'" target="./css/fixed_css/amber.css" />
+	<load cond="$layout_info->fixed_css=='orange'" target="./css/fixed_css/orange.css" />
+	<load cond="$layout_info->fixed_css=='deep_orange'" target="./css/fixed_css/deep_orange.css" />
+	<load cond="$layout_info->fixed_css=='brown'" target="./css/fixed_css/brown.css" />
+	<load cond="$layout_info->fixed_css=='grey'" target="./css/fixed_css/grey.css" />
+	<load cond="$layout_info->fixed_css=='blue_grey'" target="./css/fixed_css/blue_grey.css" />
+	<load cond="$layout_info->fixed_css=='teal'" target="./css/fixed_css/teal.css" />
+</block>
+<block cond="$_enable_slide">
+	<block cond="!$layout_info->slide_time">{@ $layout_info->slide_time=3000}</block>
+	<block cond="!$layout_info->slide_height">{@ $layout_info->slide_height=600}</block>
+	<style type="text/css">
+		.swiper-container{
+			
+			height:{$layout_info->slide_height}px;
+		}
+		.swiper-container > div > div {
+			height: {$layout_info->slide_height}px;
+		}
+	</style>
+</block>
+<block cond="$_use_css == 'custom'">
+	<style type="text/css">
+		.visual.sub .sub_title h1:after{background-color:{$_custom_color};}
+		.footer{border-bottom:3px solid {$_custom_color};}
+		.footer .bottom a:active{color:{$_custom_color}}
+		.header>.side>ul .ly a:hover{color:{$_custom_color};}
+		.gnb>ul .depth2:after{background-color:{$_custom_color}}
+		.gnb>ul .depth2 a:hover,.gnb>ul .depth2 a:active,.gnb>ul .depth2 a:focus,.gnb>ul .depth2>li.on>a {color:{$_custom_color}}
+		.body.fixed-width .lnb>ul>li.on a{color:{$_custom_color};}
+		.body.fixed-width .lnb ul ul li.on a{color:{$_custom_color}}
+		.body.fixed-width .lnb ul ul a:active{color:{$_custom_color}}
+		.btn_top:hover{background-color:{$_custom_color};}
+		.gnb>ul>li>a,.gnb>ul>li>a:hover,.gnb>ul>li>a:focus,.gnb>ul>li>a:focus,.gnb>ul>li.on>a{color:{$_custom_color}}
+		.btn_item:hover,
+		.btn_item:active
+		.btn_item:focus{background-color:{$_custom_color};color:#fff}
+		.body.fixed-width .lnb>ul>li.on>ul>li.on a{color:{$_custom_color}}
+		.body.fixed-width .lnb ul ul li.on a{color:{$_custom_color}}
+		.popup_btn{background-color:{$_custom_color}}
+		/* main_content */
+		.main_content .noti{color:{$_custom_color};}
+		.main_content .main2 .ico:hover,
+		.main_content .main2 .ico:active,
+		.main_content .main2 .ico:focus{background-color:{$_custom_color}}
+		.main_content .main2 p a:hover,
+		.main_content .main2 p a:active,
+		.main_content .main2 p a:focus{color:{$_custom_color};border-bottom:1px solid {$_custom_color}}
+		.main_content .main3 .fe_box a:hover{color:{$_custom_color}}
+		.main_content .main3 .fe_box.on{background-color:{$_custom_color}}
+		.main_content .main4 .ico{background-color:{$_custom_color};}
+
+		.footer .bottom a:hover, .footer .bottom a:focus, .footer .bottom a:active {color:{$_custom_color};}
+		@media all and (max-width: 479px) {
+			.main_content .main3 li .fe_box { background-color:{$_custom_color};}
+		}
+	</style>
+</block>
+<block cond="!$_selected_menu['list']">
+	<style>
+		@media all and (min-width: 480px) {
+			.visual .content {
+				min-width: 1200px;
+			}
+		}
+		@media all and (max-width: 479px) {
+			.content {
+				min-width:100%;
+			}
+		}
+	</style>
+</block>
+<block cond="$layout_info->sub_menu_text_color">
+	<style type="text/css">
+		.gnb>ul .depth2 a,
+		.header>.side>ul .ly a{
+			color:{$layout_info->sub_menu_text_color};
+		}
+		@media all and (max-width: 479px) {
+			.footer .f_cr_area .mobile-footer-member li a{
+				color:{$layout_info->sub_menu_text_color};
+			}
+		}
+	</style>
+</block>
+<block cond="$layout_info->copyright_text_color">
+	<style type="text/css">
+		.footer .bottom,
+		.footer .bottom a{
+			color:{$layout_info->copyright_text_color};
+		}
+	</style>
+</block>
+<block cond="$layout_info->mobile_login_border_color">
+	<style>
+		@media all and (max-width: 479px) {
+			.footer .f_cr_area .mobile-footer-member {
+				border-top-color:{$layout_info->mobile_login_border_color};
+			}
+			.footer .f_cr_area .mobile-footer-member li{
+				border-left-color:{$layout_info->mobile_login_border_color};
+			}
+		}
+	</style>
+</block>
+
+<block cond="$layout_info->menu_background_color">
+	<style>
+		@media all and (min-width: 480px) {
+			.gnb > ul .depth2,
+			.gnb > ul .depth3 {
+			background-color:{$layout_info->menu_background_color};
+			}
+		}
+	</style>
+</block>
+<!--// JS -->
+<load target="./js/jquery.easing.js" />
+<load cond="$_enable_slide" target="./js/swiper.min.js" />
+
+<load target="./js/layout.js" />
+<load target="./js/main_content.js" />
+<load target="./js/jquery.parallax-scroll.js" />
+<load target="./js/SmoothScroll.min.js" />
+
+<!-- LAYER POPUP -->
+<div cond="$layout_info->use_layer_popup === 'Y' && $layout_info->layout_type =='main' && $_enable_main">
+	<load target="./css/bpopup.css" />
+	<load target="./js/jquery.bpopup.min.js" type="body" />
+	<load target="./js/layer_popup.js" type="body" />
+	<include target="./main/layer_popup.html" />
+</div>
+<!-- LAYER POPUP 끝 -->
+
+<!--// BODY -->
+<p class="skip"><a href="#content">{$lang->skip_to_content}</a></p>
+<div class="container {$_container_class}  {$menutype_class}">
+
+	<!-- HEADER -->
+	<div class="header_wrap xe-clearfix">
+		<div cond="$layout_info->enable_intergration_search === 'Y'" class="search_wrap">
+			<div class="search_area">
+				<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="Search" />
+				</form>
+				<!-- /SEARCH -->
+				<a href="#" class="btn_close" title="{$lang->cmd_xedition_search_close}" onclick="return false"><i class="xi-close"></i><span class="blind">{$lang->cmd_xedition_search_close}</span></a>
+			</div>
+		</div>
+
+		<header class="header {$_visual_class}">
+			<!--// LOGO -->
+			<h1 class="logo-item">
+				{@ $_logo_img = $layout_info->logo_img}
+				<a href="<!--@if($layout_info->logo_url)-->{$layout_info->logo_url}<!--@else-->{getUrl('')}<!--@end-->">
+					<!--@if($_logo_img)-->
+					<img src="{$_logo_img}" alt="{$layout_info->logo_text}" />
+					<!--@else if(!$layout_info->logo_text)-->
+					{@ $_logo_img = 'logo.png'}
+					<img src="{$layout_info->path}img/{$_logo_img}" data-logo="{$layout_info->path}img/logo.png"|cond="$_onepage_header" alt="XEDITION" />
+					<!--@else-->
+					<span style="color:{$layout_info->logo_text_color};">{$layout_info->logo_text}</span>
+					<!--@end-->
+				</a>
+			</h1>
+			<!--// END:LOGO -->
+
+			<div class="side">
+				<ul>
+					<!-- search -->
+					<li cond="$layout_info->enable_intergration_search === 'Y'" class="click">
+						<a href="#" title="{$lang->cmd_search}"><i class="xi-magnifier"></i><span class="blind">{$lang->cmd_search}</span></a>
+					</li>
+					<!-- admin -->
+					<li cond="$logged_info->is_admin == 'Y'">
+						<a href="{getUrl('', 'module', 'admin')}" target="_blank" title="{$lang->cmd_management}"><i class="xi-cog"></i><span class="blind">{$lang->cmd_management}</span></a>
+					</li>
+					<!-- login -->
+					<li class="hover">
+						<!--@if($is_logged)-->
+						<!-- after_login -->
+						<a href="{getUrl('act', 'dispMemberInfo')}" class="login_after">
+							<!--@if($logged_info->profile_image->src)-->
+							<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}" />
+							<!--@else-->
+							<img src="./img/ico_default.jpg" alt="{$logged_info->nick_name}" />
+							<!--@end-->
+						</a>
+						<div class="ly ly_login">
+							<ul style="background-color:{$layout_info->menu_background_color};"|cond="$layout_info->menu_background_color">
+								<li loop="$logged_info->menu_list => $key, $val"><a href="{getUrl('act', $key, 'member_srl', '', 'page', '')}">{Context::getLang($val)}</a></li>
+								<li><a href="{getUrl('act', 'dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+							</ul>
+							<span class="edge"></span>
+						</div>
+						<!-- /after_login -->
+						<!--@else-->
+						<!-- before_login -->
+						<a href="{getUrl('act', 'dispMemberLoginForm')}" id="ly_btn"><i class="xi-user-add"></i><span class="blind">{$lang->cmd_login}/{$lang->cmd_signup}</span></a>
+						<div class="ly ly_login">
+							<ul style="background-color:{$layout_info->menu_background_color};"|cond="$layout_info->menu_background_color">
+								<li><a id="ly_login_btn" href="{getUrl('act', 'dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+								<li><a href="{getUrl('act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+							</ul>
+							<span class="edge"></span>
+						</div>
+						<!-- /before_login -->
+						<!--@end-->
+					</li>
+				</ul>
+			</div>
+
+			<!-- SNB -->
+			<div cond="$_enable_unb && $UNB->list" class="custom_area">
+				<ul>
+					<li loop="$UNB->list => $key, $val">
+						<a href="{$val['href']}" target="_blank"|cond="$val['open_window'] == 'Y'">{$val['link']}</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- GNB -->
+			<nav cond="$GNB->list" class="gnb" id="gnb">
+				<div id="mobile_menu_btn" class="menu_btn">
+					<div class="menu_bar">
+						<div class="btn1"></div>
+						<div class="btn2"></div>
+						<div class="btn3"></div>
+					</div>
+				</div>
+				<ul>
+					<li loop="$GNB->list => $key1, $val1">
+						<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window'] == 'Y'" style="color:{$layout_info->menu_text_color}"|cond="!$val1['selected']">{$val1['link']}</a>
+						<block cond="$val1['selected']">{@ $_selected_menu = $val1}</block>
+						<ul cond="$val1['list']" class="depth2">
+							<li loop="$val1['list'] => $key2, $val2" class="more"|cond="$val2['list']">
+								<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window'] == 'Y'">{$val2['link']}</a>
+								<ul cond="$val2['list']" class="depth3">
+									<li loop="$val2['list'] => $key3, $val3">
+										<a href="{$val3['href']}" target="_blank"|cond="$val3['open_window'] == 'Y'">{$val3['link']}</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- /GNB -->
+		</header>
+	</div>
+	<!-- END:HEADER -->
+
+	<!-- VISUAL-SUBHEADER -->
+	<div cond="$layout_info->layout_type === 'sub'" class="visual {$_visual_class}">
+		<!--@if($layout_info->use_sub_image == 'Y' && $layout_info->sub_image)-->
+		{@ $_subheader_img = $layout_info->sub_image}
+		{@ $_url = $layout_info->sub_image}
+		
+		{@ $_subheader_img = 'sub_banner_01.jpg'}
+		<block cond="$layout_info->menu_type_sub === 'onepage_parallax'">
+			{@ $_subheader_img = 'sub_banner_02.jpg'}
+		</block>
+		<block cond="$mid === 'xeicon'">{@ $_subheader_img = 'sub_banner_xeicon.jpg'}</block>
+		{@ $_url = $layout_info->path."img/".$_subheader_img }
+
+		<!--@end-->
+
+		<span class="bg_img" style="background-image:url('{$_url}')" cond="$layout_info->use_sub_image ==='Y'"></span>
+		<span class="mask"></span>
+		<div class="sub_title">
+			<h1 style="color:{$layout_info->sub_title_color};">{$sub_header_title}</h1>
+		</div>
+	</div>
+
+
+	<!-- Swiper -->
+	<div cond="$layout_info->layout_type === 'main' && $_enable_slide && $layout_info->use_slide === 'Y'" class="visual swiper-container">
+		<!-- 슬라이드 -->
+		<div class="swiper-wrapper">
+			<!--@if($_sample_slide)-->
+			<include target="./demo/demo_slide.html" />
+			<!--@else-->
+			<div cond="$layout_info->slide_img1" style="background-image:url('{$layout_info->slide_img1}');" class="swiper-slide">
+				<div cond="$layout_info->slide_text1 || $layout_info->slide_header1">
+					<div>
+						<h1 cond="$layout_info->slide_header1">{$layout_info->slide_header1}</h1>
+						<p cond="$layout_info->slide_text1">
+							{nl2br($layout_info->slide_text1)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div cond="$layout_info->slide_img2" style="background-image:url('{$layout_info->slide_img2}');" class="swiper-slide">
+				<div cond="$layout_info->slide_text2 || $layout_info->slide_header2">
+					<div>
+						<h1 cond="$layout_info->slide_header2">{$layout_info->slide_header2}</h1>
+						<p cond="$layout_info->slide_text2">
+							{nl2br($layout_info->slide_text2)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div cond="$layout_info->slide_img3" style="background-image:url('{$layout_info->slide_img3}');" class="swiper-slide">
+				<div cond="$layout_info->slide_text3 || $layout_info->slide_header3">
+					<div>
+						<h1 cond="$layout_info->slide_header3">{$layout_info->slide_header3}</h1>
+						<p cond="$layout_info->slide_text3">
+							{nl2br($layout_info->slide_text3)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div cond="$layout_info->slide_img4" style="background-image:url('{$layout_info->slide_img4}');" class="swiper-slide">
+				<div cond="$layout_info->slide_text4 || $layout_info->slide_header4">
+					<div>
+						<h1 cond="$layout_info->slide_header4">{$layout_info->slide_header4}</h1>
+						<p cond="$layout_info->slide_text4">
+							{nl2br($layout_info->slide_text4)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div cond="$layout_info->slide_img5" style="background-image:url('{$layout_info->slide_img5}');" class="swiper-slide">
+				<div cond="$layout_info->slide_text5 || $layout_info->slide_header5">
+					<div>
+						<h1 cond="$layout_info->slide_header2">{$layout_info->slide_header5}</h1>
+						<p cond="$layout_info->slide_text5">
+							{nl2br($layout_info->slide_text5)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--@end-->
+		</div>
+		<!-- END:슬라이드 -->
+		<div class="swiper-pagination swiper-pagination-white"></div>
+		<div class="swiper-button-prev swiper-button-white"></div>
+		<div class="swiper-button-next swiper-button-white"></div>
+		<!--
+		<div class="swiper-button left"><button type="button" class="swiper-button-prev"><i class="xi-angle-left"></i></button></div>
+		<div class="swiper-button right"><button type="button" class="swiper-button-next"><i class="xi-angle-right"></i></button></div>
+		-->
+	</div>
+	<!-- /VISUAL -->
+
+	<!-- BODY -->
+	<div class="body {$_body_class}">
+		<!-- LNB -->
+		<nav cond="$_selected_menu['list'] && $layout_info->layout_type === 'sub' && $layout_info->sidebar_position !== 'none'" class="lnb">
+			<ul>
+				<li loop="$_selected_menu['list'] => $key1, $val1" class="on"|cond="$val1['selected']">
+					<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window'] == 'Y'" style="color:{$layout_info->sidemenu_text_color};"|cond="!$val1['selected']">{$val1['link']}</a>
+					<ul cond="$val1['list']" class="depth2">
+						<li loop="$val1['list'] => $key2, $val2" class="on"|cond="$val2['selected']">
+							<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window'] == 'Y'" style="color:{$layout_info->sidemenu_text_color};"|cond="!$val2['selected']">{$val2['link']}</a>
+								<ul cond="$val2['list']" class="depth3">
+									<li loop="$val2['list'] => $key3, $val3" class="on"|cond="$val3['selected']">
+										<a href="{$val3['href']}" style="color:{$layout_info->sidemenu_text_color};"|cond="!$val3['selected']">{$val3['link']}</a>
+									</li>
+								</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!-- /LNB -->
+
+		<!-- CONTENT -->
+		<div class="content" id="content">
+			{$content}
+		</div>
+		<!-- /CONTENT -->
+
+		<!-- MAIN CONTENT -->
+		<block cond="$layout_info->use_main === 'Y' && $layout_info->layout_type === 'main' && $_enable_main" class="visual">
+			<include target="./main/main_content.html" />
+		</block>
+		<!-- END MAIN CONTENT -->
+
+
+	</div>
+	<!-- END:BODY -->
+	<!-- BANNER 제작 중 -->
+	<section class=" banner">
+
+	</section>
+	<!-- /.BANNER 제작 중 -->
+	<footer class="footer">
+		<div class="f_info_area">
+			<div class="f_info">
+				<p class="f_logo<!--@if(!$layout_info->footer_logo_img)--> log_txt<!--@end-->">
+					<a href="<!--@if($layout_info->footer_logo_url)-->{$layout_info->footer_logo_url}<!--@else-->#<!--@end-->">
+						<!--@if($layout_info->footer_logo_img)-->
+						<img src="{$layout_info->footer_logo_img}" alt="{$layout_info->footer_logo_text}" />
+						<!--@else-->
+						{$layout_info->footer_logo_text}
+						<!--@endif-->
+					</a>
+				</p>
+				<p class="sub_desc">
+
+					{nl2br($layout_info->footer_text)}
+					<!--@if($layout_info->use_banner == 'Y')-->
+						<p class="f_logo" cond="$layout_info->banner_img1">
+							<a href ="<!--@if($layout_info->banner_img1_url)-->{$layout_info->banner_img1_url}<!--@else-->#<!--@end-->" target="{$layout_info->banner_img1_url_target}">
+								<img src="{$layout_info->banner_img1}"  alt="banner1"/>
+							</a>
+						</p>
+						<p class="f_logo" cond="$layout_info->banner_img2">
+							<a href ="<!--@if($layout_info->banner_img2_url)-->{$layout_info->banner_img2_url}<!--@else-->#<!--@end-->" target="{$layout_info->banner_img2_url_target}">
+								<img src="{$layout_info->banner_img2}"  alt="banner2"/>
+							</a>
+						</p>
+						<p class="f_logo" cond="$layout_info->banner_img3">
+							<a href ="<!--@if($layout_info->banner_img3_url)-->{$layout_info->banner_img3_url}<!--@else-->#<!--@end-->" target="{$layout_info->banner_img3_url_target}">
+								<img src="{$layout_info->banner_img3}"  alt="banner3"/>
+							</a>
+						</p>
+						<p class="f_logo" cond="$layout_info->banner_img4">
+							<a href ="<!--@if($layout_info->banner_img4_url)-->{$layout_info->banner_img4_url}<!--@else-->#<!--@end-->" target="{$layout_info->banner_img4_url_target}">
+								<img src="{$layout_info->banner_img4}"  alt="banner4"/>
+							</a>
+						</p>
+						<p class="f_logo" cond="$layout_info->banner_img5">
+							<a href ="<!--@if($layout_info->banner_img5_url)-->{$layout_info->banner_img5_url}<!--@else-->#<!--@end-->" target="{$layout_info->banner_img5_url_target}">
+								<img src="{$layout_info->banner_img5}"  alt="banner5"/>
+							</a>
+						</p>
+					<!--@end-->
+				</p>
+			</div>
+			<div class="f_info2">
+				<div class="site_map">
+					<ul cond="$FNB->list">
+						{@$i = 0}
+						<li loop="$FNB->list => $key1, $val1" class="clear"|cond="!($i % 3) && $i > 0">
+							{@$i++}
+							<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window'] == 'Y'">{$val1['link']}</a>
+							<ul cond="$val1['list']">
+								<li loop="$val1['list'] => $key2, $val2">
+									<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window'] == 'Y'">{$val2['link']}</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="f_cr_area" style="background-color: {$layout_info->copyright_background_color}"|cond="$layout_info->copyright_background_color">
+			<p class="bottom">
+				<span class="copyright">
+					{$layout_info->footer_copyright}
+				</span>
+				<span class="FNB2" style="float:right" cond="$FNB2->list">
+					<!--@foreach($FNB2->list as $key => $val)-->
+ 						<a href="{$val['href']}" target="_blank"|cond="$val['open_window'] == 'Y'">{$val['link']}</a>
+					<!--@end-->
+				</span>
+			</p>
+			<ul class="mobile-footer-member">
+				<!--@if(!$is_logged)-->
+				<li><a href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+				<li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+				<!--@else-->
+				<li><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+				<li><a href="{getUrl('act','dispMemberInfo')}">{$lang->cmd_view_member_info}</a></li>
+				<!--@end-->
+			</ul>
+		</div>
+	</footer>
+</div>
+
+<!-- TOP -->
+<a href="#" class="btn_top"><i class="xi-angle-up"><span class="blind">{$lang->cmd_move_up}</span></i></a>
+<!-- /TOP -->
+
+<!-- Login widget -->
+<section cond="$layout_info->use_login_widget != 'N'" class="login_widget" style="display:none"|cond="$XE_VALIDATOR_ID != 'layouts/xedition/layout/1' || !$XE_VALIDATOR_MESSAGE">
+	<load target="./css/widget.login.css" />
+	<div class="ly_dimmed"></div>
+	<div class="signin">
+		<div class="login-header">
+			<h1>LOGIN</h1>
+		</div>
+		<div class="login-body">
+			<form action="{getUrl()}" method="post" autocomplete="off">
+				<input type="hidden" name="act" value="procMemberLogin" />
+				<input type="hidden" name="success_return_url" value="{htmlspecialchars(getRequestUriByServerEnviroment(), ENT_COMPAT | ENT_HTML401, 'UTF-8', FALSE)}" />
+				<input type="hidden" name="xe_validator_id" value="layouts/xedition/layout/1" />
+				<fieldset>
+					<legend class="blind">{$lang->cmd_login}</legend>
+					<div class="control-group">
+						<div class="group">
+							<input type="text" name="user_id" id="uemail" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="uemail">{$lang->user_id}</label>
+						</div>
+						<div class="group">
+							<input type="password" name="password" id="upw" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="upw">{$lang->password}</label>
+						</div>
+					</div>
+					<div cond="$XE_VALIDATOR_ID == 'layouts/xedition/layout/1' && $XE_VALIDATOR_MESSAGE" class="control-group">
+						<p class="error">{$XE_VALIDATOR_MESSAGE}</p>
+					</div>
+					<div class="control-group">
+						<label class="chk_label" for="keepid_opt">
+							<input type="checkbox" name="keep_signed" id="keepid_opt" />
+							<span class="checkbox"></span> {$lang->keep_signed}
+						</label>
+						<div id="warning">
+							<p>{str_replace('\n\n', '<br />', $lang->about_keep_signed)}</p>
+							<div class="edge"></div>
+						</div>
+						<button type="submit" class="btn_submit">{$lang->cmd_login}</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="login-footer">
+			<a href="{getUrl('act', 'dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a>
+			<span class="f_bar">|</span>
+			<a href="{getUrl('act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a>
+		</div>
+		<a href="#" class="btn_ly_popup"><span class="blind">닫기</span></a>
+	</div>
+	<script>
+		jQuery(function ($) {
+			var keep_msg = $("#warning");
+			$(".chk_label").on("mouseenter mouseleave focusin focusout", function (e) {
+				if(e.type == "mouseenter" || e.type == "focusin") {
+					keep_msg.show();
+				}
+				else {
+					keep_msg.hide();
+				}
+			});
+			$("#ly_login_btn, #ly_btn").click(function () {
+				$(".login_widget").show();
+				return false;
+			});
+			$(".btn_ly_popup").click(function () {
+				$(".login_widget").hide();
+				return false;
+			});
+			$("input").blur(function () {
+				var $this = $(this);
+				if ($this.val()) {
+					$this.addClass("used");
+				}
+				else {
+					$this.removeClass("used");
+				}
+			});
+		});
+	</script>
+	<block cond="$layout_info->use_layer_popup === 'Y' && $layout_info->layout_type =='main' && $_enable_main">
+
+		<block cond="$_popup_type == 'text'">
+			<script>
+				jQuery(function () {
+					jQuery('#layer_popup_text').bPopup({
+						modalClose: false
+					});
+				});
+			</script>
+		</block>
+
+		<block cond="$_popup_type == 'image'">
+			<script>
+				jQuery(function ($) {
+					bpopup_load_image('{$_popup_load_url}', '{$_move_url}', '{$_move_target}');
+					$("#bpopup_img").click(function(){
+						$('#layer_popup_image').bPopup().close();
+					})
+				});
+			</script>
+		</block>
+
+		<block cond="$_popup_type == 'iframe'">
+			<script>
+				jQuery(function () {
+					/*
+					jQuery('#layer_popup_iframe').bPopup({
+						modalClose: false,
+						content:'iframe',
+						contentContainer:'.layer_popup_iframe_content',
+						loadUrl:'http://dinbror.dk/blog'
+					});*/
+					bpopup_load_iframe('{$_iframe_url}');
+				});
+			</script>
+		</block>
+
+	</block>
+</section>
+<!-- /Login widget -->
+
+<script cond="$_enable_slide">
+	jQuery(document).ready(function () {
+		var swiper = new Swiper('.swiper-container', {
+			 // Optional parameters
+			
+			nextButton: '.swiper-button-next',
+		 	prevButton: '.swiper-button-prev',
+			pagination: '.swiper-pagination',
+        			paginationClickable: true,
+        			loop: true,
+        			autoplay:{$layout_info->slide_time}
+		});
+	});
+</script>

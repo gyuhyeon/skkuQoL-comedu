@@ -1,0 +1,45 @@
+.visual.sub .sub_title h1:after{background-color:#FF9800;}
+.footer{border-bottom:3px solid #FF9800;}
+.footer .bottom a:active{color:#FF9800}
+.gnb>ul .depth2:after{background-color:#FF9800}
+.body.fixed-width .lnb>ul>li.on a{color:#FF9800}
+.body.fixed-width .lnb ul ul li.on a{color:#FF9800}
+.body.fixed-width .lnb ul ul a:active{color:#FF9800}
+.body.fixed-width .lnb>ul>li.on>ul>li.on a{color:#FF9800}
+.body.fixed-width .lnb ul ul li.on a{color:#FF9800}
+
+.gnb>ul .depth2 a:hover,.gnb>ul .depth2 a:active,.gnb>ul .depth2 a:focus,.gnb>ul .depth2>li.on>a {color:#FFB74D}
+.btn_top:hover{background-color:#FFB74D;}
+.gnb>ul>li>a,.gnb>ul>li>a:hover,.gnb>ul>li>a:focus,.gnb>ul>li>a:focus,.gnb>ul>li.on>a{color:#FFB74D}
+.footer .site_map > ul ul a:hover,
+.footer .site_map > ul ul a:focus,
+.footer .site_map > ul ul a:active{color:#FFB74D}
+.footer .bottom a:hover,
+.footer .bottom a:focus,
+.footer .bottom a:active{color:#FFB74D}
+.header>.side>ul .ly a:hover{color:#FFB74D;}
+
+.btn_item:hover,
+.btn_item:active
+.btn_item:focus{background-color:#FFB74D;color:#fff}
+
+.popup_btn{background-color: #FFB74D;}
+
+/* main_content */
+.main_content .noti{color:#FF9800;}
+.main_content .main2 .ico:hover,
+.main_content .main2 .ico:active,
+.main_content .main2 .ico:focus{background-color:#FF9800}
+.main_content .main2 p a:hover,
+.main_content .main2 p a:active,
+.main_content .main2 p a:focus{color:#FF9800;border-bottom:1px solid #FF9800}
+
+
+.main_content .main3 .fe_box a:hover{color:#FF9800}
+.main_content .main3 .fe_box.on{background-color:#FF9800}
+
+.main_content .main4 .ico{background-color:#FF9800;}
+
+@media all and (max-width: 479px) {
+    .main_content .main3 li .fe_box { background-color:#FF9800; }
+}

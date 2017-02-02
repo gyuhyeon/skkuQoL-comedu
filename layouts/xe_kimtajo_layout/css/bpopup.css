@@ -1,0 +1,29 @@
+#layer_popup_text,
+#layer_popup_image,
+#layer_popup_iframe{
+    background-color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    color: #111;
+    display: none;
+    padding: 25px;
+    font-size:medium;
+}
+.layer_popup_image_content > img{
+    width:100%;
+}
+@media all and (max-width: 479px) {
+    #layer_popup_text,
+    #layer_popup_image,
+    #layer_popup_iframe{
+        background-color: #fff;
+        border-radius: 10px 10px 10px 10px;
+        color: #111;
+        display: none;
+        min-width: 200px;
+        padding: 25px;
+        font-size:medium;
+    }
+
+
+
+}

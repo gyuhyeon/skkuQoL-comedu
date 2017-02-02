@@ -1,0 +1,459 @@
+<!-- 메인 설정 시작 -->
+<!--@if($layout_info->use_main === 'Y')-->
+    <!-- 메인 1 설정 시작 -->
+    <!--@if($layout_info->use_main1_section === 'Y')-->
+        <!--@if(!$layout_info->main1_image)-->{@ $layout_info->main1_image = $layout_info->path."img/bg_stat.jpg"}<!--@endif-->
+        <!--@if(!$layout_info->main1_font_color)-->{@ $layout_info->main1_font_color = "#f6f6f6"}<!--@endif-->
+        <!--@if(!$layout_info->main1_text)-->{@ $layout_info->main1_text = "텍스트를 입력합니다."}<!--@endif-->
+        <!--@if($layout_info->use_main1_btn1 == 'Y')-->
+            <!--@if(!$layout_info->main1_btn1_text)--> {@ $layout_info->main1_btn1_text = "버튼 1"}<!--@endif-->
+            <!--@if($layout_info->main1_btn1_target == 'Y')-->
+            {@ $layout_info->main1_btn1_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main1_btn1_target = "_self"}
+            <!--@endif-->
+            <!--@if(!$layout_info->main1_btn1_url)--> {@ $layout_info->main1_btn1_url = "/"}<!--@endif-->
+        <!--@endif-->
+        <!--@if($layout_info->use_main1_btn2 === 'Y')-->
+            <!--@if($layout_info->main1_btn2_text == '')--> {@ $layout_info->main1_btn2_text = "버튼 2"}<!--@endif-->
+            <!--@if($layout_info->main1_btn2_target == 'Y')-->
+            {@ $layout_info->main1_btn2_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main1_btn2_target = "_self"}
+            <!--@endif-->
+            <!--@if($layout_info->main1_btn2_url == '')--> {@ $layout_info->main1_btn2_url = "/"}<!--@endif-->
+        <!--@endif-->
+    <!--@endif-->
+    <!-- 메인 1 설정 끝 -->
+
+    <!-- 메인 2 설정 시작 -->
+    <!--@if($layout_info->use_main2_section === 'Y')-->
+        <!--@if(!$layout_info->main2_text)-->{@ $layout_info->main2_text = "Title"}<!--@endif-->
+        <!--@if(!$layout_info->main2_large_text)-->{@ $layout_info->main2_large_text = "큰 제목을 입력합니다."}<!--@endif-->
+        <!--@if($layout_info->main2_list_cnt >= 1)-->
+            {@ $_main2_height = '320px';}
+            <!--@if(!$layout_info->main2_row1_col1_ico)-->{@ $layout_info->main2_row1_col1_ico = "xi-plus-square"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col2_ico)-->{@ $layout_info->main2_row1_col2_ico = "xi-plus-square"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col3_ico)-->{@ $layout_info->main2_row1_col3_ico = "xi-plus-square"}<!--@endif-->
+
+            <!--@if(!$layout_info->main2_row1_col1_ico_url)--> {@ $layout_info->main2_row1_col1_ico_url = "/"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col2_ico_url)--> {@ $layout_info->main2_row1_col2_ico_url = "/"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col3_ico_url)--> {@ $layout_info->main2_row1_col3_ico_link = "/"}<!--@endif-->
+
+            <!--@if($layout_info->main2_row1_col1_target == 'Y')-->
+            {@ $layout_info->main2_row1_col1_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row1_col1_target = "_self"}
+            <!--@endif-->
+            <!--@if($layout_info->main2_row1_col2_target == 'Y')-->
+            {@ $layout_info->main2_row1_col2_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row1_col2_target = "_self"}
+            <!--@endif-->
+            <!--@if($layout_info->main2_row1_col3_target == 'Y')-->
+            {@ $layout_info->main2_row1_col3_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row1_col3_target = "_self"}
+            <!--@endif-->
+
+
+            <!--@if(!$layout_info->main2_row1_col1_title)-->{@ $layout_info->main2_row1_col1_title = "제목을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col2_title)-->{@ $layout_info->main2_row1_col2_title = "제목을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col3_title)-->{@ $layout_info->main2_row1_col3_title = "제목을 입력하세요."}<!--@endif-->
+
+            <!--@if(!$layout_info->main2_row1_col1_content)-->{@ $layout_info->main2_row1_col1_content = "내용을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col2_content)-->{@ $layout_info->main2_row1_col2_content = "내용을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row1_col3_content)-->{@ $layout_info->main2_row1_col3_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@endif-->
+        <!--@if($layout_info->main2_list_cnt == 2)-->
+            {@ $_main2_height = '500px';}
+            <!--@if(!$layout_info->main2_row2_col1_ico)-->{@ $layout_info->main2_row2_col1_ico = "xi-plus-square"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col2_ico)-->{@ $layout_info->main2_row2_col2_ico = "xi-plus-square"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col3_ico)-->{@ $layout_info->main2_row2_col3_ico = "xi-plus-square"}<!--@endif-->
+
+            <!--@if(!$layout_info->main2_row2_col1_ico_url)--> {@ $layout_info->main2_row2_col1_ico_url = "/"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col2_ico_url)--> {@ $layout_info->main2_row2_col2_ico_url = "/"}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col3_ico_url)--> {@ $layout_info->main2_row2_col3_ico_url = "/"}<!--@endif-->
+
+            <!--@if($layout_info->main2_row2_col1_target == 'Y')-->
+            {@ $layout_info->main2_row2_col1_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row2_col1_target = "_self"}
+            <!--@endif-->
+            <!--@if($layout_info->main2_row2_col2_target == 'Y')-->
+            {@ $layout_info->main2_row2_col2_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row2_col2_target = "_self"}
+            <!--@endif-->
+            <!--@if($layout_info->main2_row2_col3_target == 'Y')-->
+            {@ $layout_info->main2_row2_col3_target = "_blank"}
+            <!--@else-->
+            {@ $layout_info->main2_row2_col3_target = "_self"}
+            <!--@endif-->
+
+            <!--@if(!$layout_info->main2_row2_col1_title)-->{@ $layout_info->main2_row2_col1_title = "제목을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col2_title)-->{@ $layout_info->main2_row2_col2_title = "제목을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col3_title)-->{@ $layout_info->main2_row2_col3_title = "제목을 입력하세요."}<!--@endif-->
+
+            <!--@if(!$layout_info->main2_row2_col1_content)-->{@ $layout_info->main2_row2_col1_content = "내용을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col2_content)-->{@ $layout_info->main2_row2_col2_content = "내용을 입력하세요."}<!--@endif-->
+            <!--@if(!$layout_info->main2_row2_col3_content)-->{@ $layout_info->main2_row2_col3_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@endif-->
+    <!--@endif-->
+    <!-- 메인 2 설정 끝 -->
+
+    <!-- 메인 3 설정 시작 -->
+    <!--@if($layout_info->use_main3_section === 'Y')-->
+        <!--@if(!$layout_info->main3_image)-->{@ $layout_info->main3_image = $layout_info->path."img/sp_feature.png"}<!--@endif-->
+        <!--@if(!$layout_info->main3_text)-->{@ $layout_info->main3_text = "Title"}<!--@endif-->
+        <!--@if(!$layout_info->main3_large_text)-->{@ $layout_info->main3_large_text = "큰 제목을 입력합니다."}<!--@endif-->
+        <!--@if(!$layout_info->main3_content)-->{@ $layout_info->main3_content = "내용을 입력합니다."}<!--@endif-->
+
+        <!--@if(!$layout_info->main3_background_color)-->{@ $layout_info->main3_background_color = "#444"}<!--@endif-->
+        <!--@if(!$layout_info->main3_large_text_color)-->{@ $layout_info->main3_large_text_color = "#f6f6f6"}<!--@endif-->
+        <!--@if(!$layout_info->main3_content_color)-->{@ $layout_info->main3_content_color = "#ddd"}<!--@endif-->
+
+        <!--@if(!$layout_info->main3_sub1_title)-->{@ $layout_info->main3_sub1_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub2_title)-->{@ $layout_info->main3_sub2_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub3_title)-->{@ $layout_info->main3_sub3_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub4_title)-->{@ $layout_info->main3_sub4_title = "제목을 입력하세요."}<!--@endif-->
+
+        <!--@if(!$layout_info->main3_sub1_content)-->{@ $layout_info->main3_sub1_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub2_content)-->{@ $layout_info->main3_sub2_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub3_content)-->{@ $layout_info->main3_sub3_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub4_content)-->{@ $layout_info->main3_sub4_content = "내용을 입력하세요."}<!--@endif-->
+
+        <!--@if(!$layout_info->main3_sub1_btn_text)--> {@ $layout_info->main3_sub1_btn_text = "버튼 1"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub2_btn_text)--> {@ $layout_info->main3_sub2_btn_text = "버튼 2"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub3_btn_text)--> {@ $layout_info->main3_sub3_btn_text = "버튼 3"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub4_btn_text)--> {@ $layout_info->main3_sub4_btn_text = "버튼 4"}<!--@endif-->
+
+        <!--@if($layout_info->main3_sub1_btn_target == 'Y')-->
+        {@ $layout_info->main3_sub1_btn_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main3_sub1_btn_target = "_self"}
+        <!--@endif-->
+
+        <!--@if($layout_info->main3_sub2_btn_target == 'Y')-->
+        {@ $layout_info->main3_sub2_btn_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main3_sub2_btn_target = "_self"}
+        <!--@endif-->
+
+        <!--@if($layout_info->main3_sub3_btn_target == 'Y')-->
+        {@ $layout_info->main3_sub3_btn_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main3_sub3_btn_target = "_self"}
+        <!--@endif-->
+
+        <!--@if($layout_info->main3_sub4_btn_target == 'Y')-->
+        {@ $layout_info->main3_sub4_btn_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main3_sub4_btn_target = "_self"}
+        <!--@endif-->
+
+        <!--@if(!$layout_info->main3_sub1_btn_url)--> {@ $layout_info->main3_sub1_btn_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub2_btn_url)--> {@ $layout_info->main3_sub2_btn_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub3_btn_url)--> {@ $layout_info->main3_sub3_btn_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main3_sub4_btn_url)--> {@ $layout_info->main3_sub4_btn_url = "/"}<!--@endif-->
+
+    <!--@endif-->
+    <!-- 메인 3 설정 끝 -->
+
+    <!-- 메인 2 설정 시작 -->
+    <!--@if($layout_info->use_main4_section === 'Y')-->
+        <!--@if(!$layout_info->main4_text)-->{@ $layout_info->main4_text = "Title"}<!--@endif-->
+        <!--@if(!$layout_info->main4_large_text)-->{@ $layout_info->main4_large_text = "큰 제목을 입력합니다."}<!--@endif-->
+
+        <!--@if(!$layout_info->main4_sub1_icon)-->{@ $layout_info->main4_sub1_icon = "xi-plus-square"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub2_icon)-->{@ $layout_info->main4_sub2_icon = "xi-plus-square"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub3_icon)-->{@ $layout_info->main4_sub3_icon = "xi-plus-square"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub4_icon)-->{@ $layout_info->main4_sub4_icon = "xi-plus-square"}<!--@endif-->
+
+        <!--@if(!$layout_info->main4_sub1_url)--> {@ $layout_info->main4_sub1_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub2_url)--> {@ $layout_info->main4_sub2_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub3_url)--> {@ $layout_info->main4_sub3_url = "/"}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub4_url)--> {@ $layout_info->main4_sub4_url = "/"}<!--@endif-->
+
+        <!--@if($layout_info->main4_sub1_target == 'Y')-->
+        {@ $layout_info->main4_sub1_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main4_sub1_target = "_self"}
+        <!--@endif-->
+        <!--@if($layout_info->main4_sub2_target == 'Y')-->
+        {@ $layout_info->main4_sub2_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main4_sub2_target = "_self"}
+        <!--@endif-->
+        <!--@if($layout_info->main4_sub3_target == 'Y')-->
+        {@ $layout_info->main4_sub3_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main4_sub3_target = "_self"}
+        <!--@endif-->
+        <!--@if($layout_info->main4_sub4_target == 'Y')-->
+        {@ $layout_info->main4_sub4_target = "_blank"}
+        <!--@else-->
+        {@ $layout_info->main4_sub4_target = "_self"}
+        <!--@endif-->
+
+        <!--@if(!$layout_info->main4_sub1_title)-->{@ $layout_info->main4_sub1_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub2_title)-->{@ $layout_info->main4_sub2_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub3_title)-->{@ $layout_info->main4_sub3_title = "제목을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub4_title)-->{@ $layout_info->main4_sub4_title = "제목을 입력하세요."}<!--@endif-->
+
+        <!--@if(!$layout_info->main4_sub1_content)-->{@ $layout_info->main4_sub1_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub2_content)-->{@ $layout_info->main4_sub2_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub3_content)-->{@ $layout_info->main4_sub3_content = "내용을 입력하세요."}<!--@endif-->
+        <!--@if(!$layout_info->main4_sub4_content)-->{@ $layout_info->main4_sub4_content = "내용을 입력하세요."}<!--@endif-->
+    <!--@endif-->
+    <!-- 메인 2 설정 끝 -->
+<!--@endif-->
+<!-- 메인 설정 끝 -->
+<style type="text/css">
+    .main_content .main2 {
+        height:{$_main2_height};
+    }
+
+    .main_content .main3 .fe_box .ico{
+        display:inline-block;width:70px;height:70px;margin:162px 0 27px;background-color:#cda25a;background:url({$layout_info->main3_image}) 0 0 no-repeat;
+        text-align:center;font-size:60px;line-height:70px}
+    .main_content .main3 .fe_box.on .ico{background-color:#f6f6f6;background:url({$layout_info->main3_image}) 0 -70px no-repeat}
+    .main_content .main3 .fe_box .ico2{background-position:-70px 0}
+    .main_content .main3 .fe_box .ico3{background-position:-140px 0}
+    .main_content .main3 .fe_box .ico4{background-position:-210px 0}
+    .main_content .main3 .fe_box.on .ico2{background-position:-70px -70px}
+    .main_content .main3 .fe_box.on .ico3{background-position:-140px -70px}
+    .main_content .main3 .fe_box.on .ico4{background-position:-210px -70px}
+    @media all and (max-width: 479px) {
+        .main_content .main2{height:auto;}
+        .main_content .main3 .fe_box .ico {
+            display: inline-block;
+            width: 70px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 70px;
+            margin: 0;
+            background: url({$layout_info->main3_image}) 0 -70px no-repeat;
+        }
+        .main_content .main3 .fe_box h2 {
+            color: #f6f6f6;
+            font-weight: normal;
+            padding-left: 80px
+        }
+        .main_content .main3 .fe_box a {
+            height: 30px;
+            padding: 0 20px;
+            line-height: 30px;
+            float: right;
+        }
+        .main_content .main3 .fe_bottom {
+            padding-left: 80px;
+            overflow: hidden;
+            position: static;
+        }
+        .main_content .main3 .fe_box p {
+            margin-bottom: 40px;
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 20px;
+        }
+        .main_content .main3 .fe_box .ico2 {
+            background-position: -70px -70px
+        }
+        .main_content .main3 .fe_box .ico3 {
+            background-position: -140px -70px
+        }
+        .main_content .main3 .fe_box .ico4 {
+            background-position: -210px -70px
+        }
+    }
+</style>
+<div class="main_content">
+
+    <!-- main 1 시작 -->
+    <!--@if($layout_info->use_main1_section === 'Y')-->
+        <style>
+            .bg-holder{background-image:url('{$layout_info->main1_image}');}
+        </style>
+        <section class="main1 bg-holder" data-width="1240" data-height="1000">
+            <h1 style="color:{$layout_info->main1_font_color};">{$layout_info->main1_text}<br />&nbsp;</h1>
+            <div class="button-area">
+                <!--@if($layout_info->use_main1_btn1 === 'Y')-->
+                    <a class="btn_item" target="{$layout_info->main1_btn1_target}" href="{$layout_info->main1_btn1_url}">{$layout_info->main1_btn1_text}</a>
+                <!--@endif-->
+                <!--@if($layout_info->use_main1_btn2 === 'Y')-->
+                    <a class="btn_item" target="{$layout_info->main1_btn2_target}" href="{$layout_info->main1_btn2_url}">{$layout_info->main1_btn2_text}</a>
+                <!--@endif-->
+            </div>
+        </section>
+    <!--@endif-->
+    <!-- main 1 끝 -->
+   
+    <!-- main 2 시작 -->
+    <!--@if($layout_info->use_main2_section === 'Y')-->
+        <section class="main2">
+            <span class="noti">{$layout_info->main2_text}</span>
+            <h1 class="tit">{$layout_info->main2_large_text}</h1>
+            <ul>
+                <!--@if($layout_info->main2_list_cnt >= 1)-->
+                    <li>
+                        <a href="{$layout_info->main2_row1_col1_ico_url}" target="{$layout_info->main2_row1_col1_target}" class="ico">
+                            <i class="{$layout_info->main2_row1_col1_ico}"></i><span class="blind">{$layout_info->main2_row1_col1_title}</span></a>
+                        <h2>{$layout_info->main2_row1_col1_title}</h2>
+                        <p>
+                            {$layout_info->main2_row1_col1_content}
+                        </p>
+                    </li>
+                    <li>
+                        <a href="{$layout_info->main2_row1_col2_ico_url}" target="{$layout_info->main2_row1_col2_target}" class="ico">
+                            <i class="{$layout_info->main2_row1_col2_ico}"></i><span class="blind">{$layout_info->main2_row1_col2_title}</span></a>
+                        <h2>{$layout_info->main2_row1_col2_title}</h2>
+                        <p>
+                            {$layout_info->main2_row1_col2_content}
+                        </p>
+                    </li>
+                    <li>
+                        <a href="{$layout_info->main2_row1_col3_ico_url}" target="{$layout_info->main2_row1_col3_target}" class="ico">
+                            <i class="{$layout_info->main2_row1_col3_ico}"></i><span class="blind">{$layout_info->main2_row1_col3_title}</span></a>
+                        <h2>{$layout_info->main2_row1_col3_title}</h2>
+                        <p>
+                            {$layout_info->main2_row1_col3_content}
+                        </p>
+                    </li>
+                <!--@endif-->
+
+                <!--@if($layout_info->main2_list_cnt == 2)-->
+                    <li>
+                        <a href="{$layout_info->main2_row2_col1_ico_url}" target="{$layout_info->main2_row2_col1_target}" class="ico">
+                            <i class="{$layout_info->main2_row2_col1_ico}"></i><span class="blind">{$layout_info->main2_row2_col1_title}</span></a>
+                        <h2>{$layout_info->main2_row2_col1_title}</h2>
+                        <p>
+                            {$layout_info->main2_row2_col1_content}
+                        </p>
+                    </li>
+                    <li>
+                        <a href="{$layout_info->main2_row2_col2_ico_url}" target="{$layout_info->main2_row2_col2_target}" class="ico">
+                            <i class="{$layout_info->main2_row2_col2_ico}"></i><span class="blind">{$layout_info->main2_row2_col2_title}</span></a>
+                        <h2>{$layout_info->main2_row2_col2_title}</h2>
+                        <p>
+                            {$layout_info->main2_row2_col2_content}
+                        </p>
+                    </li>
+                    <li>
+                        <a href="{$layout_info->main2_row2_col3_ico_url}" target="{$layout_info->main2_row2_col3_target}" class="ico">
+                            <i class="{$layout_info->main2_row2_col3_ico}"></i><span class="blind">{$layout_info->main2_row2_col3_title}</span></a>
+                        <h2>{$layout_info->main2_row2_col3_title}</h2>
+                        <p>
+                            {$layout_info->main2_row2_col3_content}
+                        </p>
+                    </li>
+                <!--@endif-->
+            </ul>
+        </section>
+        <!--@endif-->
+    <!-- main 2 끝 -->
+
+    <!-- main 3 시작 -->
+    <!--@if($layout_info->use_main3_section === 'Y')-->
+        <section class="main3" style="background-color: {$layout_info->main3_background_color};">
+            <span class="noti" style="color:{$layout_info->main3_text_color}">{$layout_info->main3_text}</span>
+            <h1 class="tit" style="color:{$layout_info->main3_large_text_color}">{$layout_info->main3_large_text}</h1>
+            <p class="cont" style="color:{$layout_info->main3_content_color};">{$layout_info->main3_content}</p>
+            <ul>
+                <li>
+                    <div class="fe_box">
+                        <div class="fe_top">
+                            <span class="ico"></span>
+                            <h2>{$layout_info->main3_sub1_title}</h2>
+                        </div>
+                        <div class="fe_bottom">
+                            <p>{$layout_info->main3_sub1_content}</p>
+                            <a target="{$layout_info->main3_sub1_btn_target}" href="{$layout_info->main3_sub1_btn_url}">{$layout_info->main3_sub1_btn_text}</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="fe_box">
+                        <div class="fe_top">
+                            <span class="ico ico2"></span>
+                            <h2>{$layout_info->main3_sub2_title}</h2>
+                        </div>
+                        <div class="fe_bottom">
+                            <p>{$layout_info->main3_sub2_content}</p>
+                            <a target="{$layout_info->main3_sub2_btn_target}" href="{$layout_info->main3_sub2_btn_url}">{$layout_info->main3_sub2_btn_text}</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="fe_box">
+                        <div class="fe_top">
+                            <span class="ico ico3"></span>
+                            <h2>{$layout_info->main3_sub3_title}</h2>
+                        </div>
+                        <div class="fe_bottom">
+                            <p>{$layout_info->main3_sub3_content}</p>
+                            <a target="{$layout_info->main3_sub3_btn_target}" href="{$layout_info->main3_sub3_btn_url}">{$layout_info->main3_sub3_btn_text}</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="fe_box">
+                        <div class="fe_top">
+                            <span class="ico ico4"></span>
+                            <h2>{$layout_info->main3_sub4_title}</h2>
+                        </div>
+                        <div class="fe_bottom">
+                            <p>{$layout_info->main3_sub4_content}</p>
+                            <a target="{$layout_info->main3_sub4_btn_target}" href="{$layout_info->main3_sub4_btn_url}">{$layout_info->main3_sub4_btn_text}</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    <!--@endif-->
+    <!-- main 3 끝 -->
+
+    <!-- main 4 시작 -->
+    <!--@if($layout_info->use_main4_section === 'Y')-->
+        <section class="main4">
+            <span class="noti">{$layout_info->main4_text}</span>
+            <h1 class="tit">{$layout_info->main4_large_text}</h1>
+            <ul>
+                <li>
+                    <a href="{$layout_info->main4_sub1_url}" target="{$layout_info->main4_sub1_target}" class="ico">
+                        <i class="{$layout_info->main4_sub1_icon}"></i>
+                        <span class="blind">{$layout_info->main4_sub1_title}</span>
+                    </a>
+                    <h2>{$layout_info->main4_sub1_title}</h2>
+                    <p>{$layout_info->main4_sub1_content}</p>
+                </li>
+                <li>
+                    <a href="{$layout_info->main4_sub2_url}" target="{$layout_info->main4_sub2_target}" class="ico">
+                        <i class="{$layout_info->main4_sub2_icon}"></i>
+                        <span class="blind">{$layout_info->main4_sub2_title}</span>
+                    </a>
+                    <h2>{$layout_info->main4_sub2_title}</h2>
+                    <p>{$layout_info->main4_sub2_content}</p>
+                </li>
+                <li>
+                    <a href="{$layout_info->main4_sub3_url}" target="{$layout_info->main4_sub3_target}" class="ico">
+                        <i class="{$layout_info->main4_sub3_icon}"></i>
+                        <span class="blind">{$layout_info->main4_sub3_title}</span>
+                    </a>
+                    <h2>{$layout_info->main4_sub3_title}</h2>
+                    <p>{$layout_info->main4_sub3_content}</p>
+                </li>
+                <li>
+                    <a href="{$layout_info->main4_sub4_url}" target="{$layout_info->main4_sub4_target}" class="ico">
+                        <i class="{$layout_info->main4_sub4_icon}"></i>
+                        <span class="blind">{$layout_info->main4_sub4_title}</span>
+                    </a>
+                    <h2>{$layout_info->main4_sub4_title}</h2>
+                    <p>{$layout_info->main4_sub4_content}</p>
+                </li>
+            </ul>
+        </section>
+    <!--@endif-->
+    <!-- main 4 끝 -->
+</div>

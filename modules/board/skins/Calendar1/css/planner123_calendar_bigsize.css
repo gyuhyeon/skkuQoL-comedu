@@ -1,0 +1,9 @@
+/* wide display */
+#columnLeft, .columnLeft, .bloozLeft, .bread-left, .bread-crumb, .lnb, .e1, .fixed .ec #body .e1 {display:none;}
+#columnRight, .columnRight, #bloozLayout .bloozRight, #contentBody, .content, .body, .fixed .ec #body #content {background:#FFFFFF; width:100%;}
+/* xedition layout */
+.body.fixed-width.left .content, .body.fixed-width.right .content {width:100%;} 
+/* sketchbook5 layout */
+#snb, #aside {display:none;}
+.ec #container,.ece #container{padding-left:0px}
+.ece #content{max-width:100%}

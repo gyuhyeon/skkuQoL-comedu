@@ -1,0 +1,90 @@
+<!--// XE ver.1.2.x 게시판을 이용한 플래너/음력달력-----------------------
+##
+## @Package:    xe_official_planner123 (board skin)
+## @File name:	_get_weeklyplan.html
+## @Author:     Keysung Chung (keysung2004@gmail.com)
+## @Copyright:  © 2009 Keysung Chung(keysung2004@gmail.com)
+## @Contributors: Clements J. SONG (http://clements.kyunggi.ca/ , clements_song@hotmail.com)
+## @Release:	under GPL-v2 License.
+## @License:	http://www.opensource.org/licenses/gpl-2.0.php
+##
+## Redistribution and use in source and binary forms, with or without modification,
+## are permitted provided that the following conditions are met:
+##
+## Redistributions of source code must retain the above copyright notice, this list of
+## conditions and the following disclaimer.
+## Redistributions in binary form must reproduce the above copyright notice, this list
+## of conditions and the following disclaimer in the documentation and/or other materials
+## provided with the distribution.
+##
+## Neither the name of the author nor the names of contributors may be used to endorse
+## or promote products derived from this software without specific prior written permission.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+## EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+## COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+## GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+## AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+## OF THE POSSIBILITY OF SUCH DAMAGE.
+##
+## [author]
+##  - Keysung Chung, 2009, 07, 28
+##  - http://chungfamily.woweb.net/
+## [changes]
+##  - PlannerXE123 ver. 4.3.0 : Keysung Chung, 2014, 01, 01
+##  - PlannerXE123 ver. 4.1.0 : Keysung Chung, 2013, 03, 12
+##  - PlannerXE123 ver. 4.0.0 : Keysung Chung, 2011, 08, 01
+----------------------------------------------------------------------- -->
+<!--// *** planner123: get loged member's 주간 계획********************** -->
+<!--//  js 인쿨르드 -->
+<!--%import("./js/php.weekplan.min.js")--><!--// php함수를 js로 -->
+
+<!--// loged member 주간 계획 -->
+<!--@if($member_srl != null)--><!--// 멤버의 주간 계획 데이터얻기-->
+	{@
+	$obj->module_srl = $module_info->module_srl;
+	$obj->var_member_srl = $member_srl;// user srl
+	$obj->extra_vars = "X"; //주간 계획 데이터: v430 쿼리 변경(XE v174에서 serialize 않는것으로 또 바뀜)
+	$obj->extra_vars_serial = serialize("X"); //주간 계획 데이터: XE v174이전 호환을 위해(status = X)
+	$obj->title = "weekplan_".$member_srl."_".$pYear;
+	$query_path = $module_info->module."/skins/".$module_info->skin;// 쿼리경로
+	$output = executeQueryArray($query_path.'.getDocumentsForPlanner_weekplan', $obj);// 주간계획 찾기
+	}
+
+	<!--@if(!count($output->data))--><!--// 주간계획 없으면 레코드 만들고...-->
+		<!--// 0=sun, 1=mon, 2=tue, 3=wed, 4=thu, 5=fri, 6=sat 7=sharpen, 8=role, 9=remark, -->
+		<!--@for($j = 0; $j <= 53; $j++ )-->
+			{@ $tmp_myplan_fld .= "|@||@||@||@||@||@||@||@||@||=@=|";}
+		<!--@end-->
+		{@
+		$obj->content = $tmp_myplan_fld;
+		$obj->is_secret = "Y";
+		$obj->status = "SECRET";
+		$obj->nick_name = $logged_info->nick_name;
+		$obj->member_srl = $member_srl;// user srl
+        $oDocumentModel = &getModel('document');
+        $oDocumentController = &getController('document');
+        $output = $oDocumentController->insertDocument($obj,TRUE);
+		}
+	<!--@end-->
+	{@ $output = executeQueryArray($query_path.'.getDocumentsForPlanner_weekplan', $obj);}<!--// 주간계획 다시 찾기-->
+	<!--@if(count($output->data))-->
+		<!--@foreach($output->data as $key => $attribute_myplan)-->
+			<!--@if($attribute_myplan->title == $obj->title)-->
+				{@
+				$myplan_module_srl = $attribute_myplan->module_srl;
+				$myplan_srl = $attribute_myplan->document_srl;
+				$myplan_title = $attribute_myplan->title;
+				$myplan_content = $attribute_myplan->content;
+				}
+			<!--@end-->
+		<!--@end-->
+				{@
+				$myplan_arr = explode('|=@=|',$attribute_myplan->content);
+				$myplan_arr_week = explode('|@|',$myplan_arr[$week_count]);
+				}
+	<!--@end-->
+<!--@end-->
