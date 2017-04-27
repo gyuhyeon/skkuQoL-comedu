@@ -254,6 +254,26 @@ class memberController extends member
 	function procMemberInsert()
 	{
 		if (Context::getRequestMethod () == "GET") return new Object (-1, "msg_invalid_request");
+
+		if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
+			//your site secret key
+			$secret = '6LfOBR8UAAAAAKnuenB-aiDeUIBajjuAGiVel5li';
+    	    //get verify response data
+    	    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+			$responseData = json_decode($verifyResponse);
+			if(!($responseData->success)){
+				return new Object (-1, "Recaptcha verification failed");
+			}
+		}
+		else{
+			return new Object (-1, "Please click on Recaptcha");
+		}//asdf
+
+
+
+
+
+
 		$oMemberModel = &getModel ('member');
 		$config = $oMemberModel->getMemberConfig();
 
