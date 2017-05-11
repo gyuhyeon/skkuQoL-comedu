@@ -1,0 +1,232 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* Form */
+
+	form {
+		margin: 0 0 _size(element-margin) 0;
+	}
+
+	label {
+		display: block;
+		font-size: 0.8em;
+		font-weight: _font(weight-bold);
+		font-weight: _font(weight-bold);
+		letter-spacing: 0.2em;
+		margin: 0 0 1em 0;
+		text-transform: uppercase;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		@include vendor('appearance', 'none');
+		border-radius: _size(border-radius);
+		border: none;
+		border: solid _size(border-width);
+		color: inherit;
+		display: block;
+		margin-bottom: (_size(element-margin) * 0.7);
+		outline: 0;
+		padding: 0 1em;
+		text-decoration: none;
+		transition: border-color _duration(transition);
+		width: 100%;
+
+		&:invalid {
+			box-shadow: none;
+		}
+	}
+
+	.select-wrapper {
+		@include icon;
+		display: block;
+		position: relative;
+
+		&:before {
+			content: '\f078';
+			display: block;
+			height: _size(element-height);
+			line-height: _size(element-height);
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			top: 0;
+			width: _size(element-height);
+		}
+
+		select::-ms-expand {
+			display: none;
+		}
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select {
+		height: _size(element-height);
+	}
+
+	textarea {
+		padding: 0.75em 1em;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"], {
+		@include vendor('appearance', 'none');
+		display: block;
+		float: left;
+		margin-right: -2em;
+		opacity: 0;
+		width: 1em;
+		z-index: -1;
+
+		& + label {
+			@include icon;
+			cursor: pointer;
+			display: inline-block;
+			font-weight: _font(weight);
+			margin-bottom: (_size(element-margin) * 0.9);
+			padding-left: (_size(element-height) * 0.6) + 0.75em;
+			padding-right: 0.75em;
+			position: relative;
+
+			&:before {
+				border-radius: _size(border-radius);
+				border: solid _size(border-width);
+				content: '';
+				display: inline-block;
+				height: (_size(element-height) * 0.6);
+				left: 0;
+				line-height: (_size(element-height) * 0.575);
+				padding-left: 3px;
+				position: absolute;
+				text-align: center;
+				top: 2px;
+				width: (_size(element-height) * 0.6);
+			}
+		}
+
+		&:checked + label {
+			&:before {
+				content: '\f00c';
+			}
+		}
+	}
+
+	input[type="checkbox"] {
+		& + label {
+			&:before {
+				border-radius: _size(border-radius);
+			}
+		}
+	}
+
+	input[type="radio"] {
+		& + label {
+			&:before {
+				border-radius: 100%;
+			}
+		}
+	}
+
+	::-webkit-input-placeholder {
+		opacity: 1.0;
+	}
+
+	:-moz-placeholder {
+		opacity: 1.0;
+	}
+
+	::-moz-placeholder {
+		opacity: 1.0;
+	}
+
+	:-ms-input-placeholder {
+		opacity: 1.0;
+	}
+
+	.formerize-placeholder {
+		opacity: 1.0;
+	}
+
+	@mixin color-form($p: null) {
+		$highlight: _palette($p, highlight);
+
+		label {
+			color: _palette($p, fg-bold);
+		}
+
+		input[type="text"],
+		input[type="password"],
+		input[type="email"],
+		select,
+		textarea {
+			background: _palette($p, border-bg);
+			border-color: _palette($p, border);
+
+			&:focus {
+				border-color: _palette($p, fg-bold);
+			}
+		}
+
+		.select-wrapper {
+			&:before {
+				color: _palette($p, border);
+			}
+		}
+
+		input[type="checkbox"],
+		input[type="radio"], {
+			& + label {
+				color: _palette($p, fg);
+
+				&:before {
+					background: _palette($p, border-bg);
+					border-color: _palette($p, border);
+				}
+			}
+
+			&:checked + label {
+				&:before {
+					background-color: _palette($p, fg);
+					border-color: _palette($p, fg);
+					color: _palette($p, bg);
+				}
+			}
+
+			&:focus + label {
+				&:before {
+					border-color: _palette($p, fg-bold);
+				}
+			}
+		}
+
+		::-webkit-input-placeholder {
+			color: _palette($p, fg-light) !important;
+		}
+
+		:-moz-placeholder {
+			color: _palette($p, fg-light) !important;
+		}
+
+		::-moz-placeholder {
+			color: _palette($p, fg-light) !important;
+		}
+
+		:-ms-input-placeholder {
+			color: _palette($p, fg-light) !important;
+		}
+
+		.formerize-placeholder {
+			color: _palette($p, fg-light) !important;
+		}
+	}
+
+	@include color-form;

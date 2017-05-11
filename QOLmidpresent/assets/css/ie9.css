@@ -1,0 +1,57 @@
+/*
+	Hologram by Pixelarity
+	pixelarity.com @pixelarity
+	License: pixelarity.com/license
+*/
+
+/* List */
+
+	ul.alt-icons {
+		display: inline-block;
+	}
+
+		ul.alt-icons > li {
+			display: inline-block;
+		}
+
+/* Split */
+
+	.split:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	.split > * {
+		float: left;
+	}
+
+/* Spotlights */
+
+	.spotlights:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	.spotlights > section {
+		float: left;
+	}
+
+/* Features */
+
+	.features:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	.features > section {
+		float: left;
+	}
+
+/* Header */
+
+	#header {
+		text-align: center;
+	}

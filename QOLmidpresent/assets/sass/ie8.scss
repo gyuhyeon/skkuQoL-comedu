@@ -1,0 +1,24 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+
+/*
+	Hologram by Pixelarity
+	pixelarity.com @pixelarity
+	License: pixelarity.com/license
+*/
+
+/* Basic */
+
+	body {
+		background-image: url('../../images/bg.jpg');
+		background-size: cover;
+		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+
+		&.landing {
+			background-image: url('../../images/bg.jpg');
+			background-size: cover;
+			-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+		}
+	}

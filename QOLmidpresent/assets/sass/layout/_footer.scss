@@ -1,0 +1,39 @@
+/* Footer */
+
+	#footer {
+		@include padding(4em, 0);
+		text-align: center;
+
+		.alt-icons {
+			margin-bottom: 3.5em;
+		}
+
+		.menu {
+			font-size: 0.8em;
+			margin-bottom: 1.1em;
+
+			a {
+				color: _palette(fg-light);
+			}
+		}
+
+		.copyright {
+			color: _palette(fg-light);
+			font-size: 0.8em;
+			text-align: center;
+		}
+
+		@include breakpoint(large) {
+			.menu {
+				font-size: 0.9em;
+			}
+
+			.copyright {
+				font-size: 0.9em;
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			@include padding(3em, 1.5em);
+		}
+	}

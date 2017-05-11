@@ -1,0 +1,106 @@
+/* Banner */
+
+	#banner {
+		$count: 3;
+
+		@include padding(8em, 0);
+		text-align: center;
+
+		header {
+			padding: 0;
+			overflow: hidden;
+
+			> * {
+				@include vendor('transition', (
+					'opacity 1s ease-in-out',
+					'transform 0.65s ease-out',
+					'filter 0.65s ease-out'
+				));
+				opacity: 1;
+			}
+
+			@for $i from 1 through $count {
+				> :nth-child(#{$i}) {
+					@include vendor('transition-delay', '#{0s + (($i - 1) * 0.125s)} !important');
+				}
+			}
+		}
+
+		.icon {
+			display: block;
+			font-size: 4em;
+		}
+
+		h1 {
+			font-size: 2.4em;
+			margin-bottom: 0.7em;
+			padding-bottom: 0.5em;
+
+			&:before {
+				left: calc(50% - 1px);
+			}
+
+			&:after {
+				left: calc(50% - 30px);
+			}
+		}
+
+		p {
+			font-size: 0.9em;
+			margin-bottom: 3.15em;
+		}
+
+		.button {
+			min-width: 15em;
+		}
+
+		.actions {
+			@include vendor('transition', (
+				'opacity 1s ease-in-out',
+				'transform 0.65s ease-in-out',
+				'filter 0.85s ease-out'
+			));
+			@include vendor('transition-delay', '#{0.125s + (($count - 1) * 0.25s)}');
+			opacity: 1;
+		}
+
+		body.is-loading & {
+			header {
+				> * {
+					opacity: 0;
+					@include vendor('transform', 'scale(1.1)');
+					@include vendor('filter', 'blur(4px)');
+				}
+			}
+
+			.actions {
+				opacity: 0;
+				@include vendor('transform', 'translateY(0.25em)');
+				@include vendor('filter', 'blur(2px)');
+			}
+		}
+
+		@include breakpoint(xlarge) {
+			@include padding(8em, 0);
+		}
+
+		@include breakpoint(large) {
+			@include padding(6em, 0);
+		}
+
+		@include breakpoint(medium) {
+			@include padding(8em, 2em);
+		}
+
+		@include breakpoint(small) {
+			@include padding(2em, 2em);
+
+			h1 {
+				font-size: 1.9em;
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			@include padding(4em, 2em);
+		}
+	}

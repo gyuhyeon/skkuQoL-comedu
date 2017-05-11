@@ -1,0 +1,71 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* Split */
+
+	.split {
+		@include vendor('display', 'flex');
+		@include vendor('flex-wrap', 'wrap');
+
+		> * {
+			@include padding(4.5em, 2.5em);
+			margin-bottom: 0;
+			width: 50%;
+
+			&:nth-child(odd) {
+				border-right: solid _size(border-width);
+			}
+
+			&:nth-child(n+3) {
+				// Add top border only on the third element and after
+				border-top: solid _size(border-width);
+			}
+
+			> header.major {
+				padding: 0;
+			}
+		}
+
+		@include breakpoint(medium) {
+			> * {
+				@include padding(4em, 2em);
+			}
+		}
+
+		@include breakpoint(small) {
+			> * {
+				@include padding(2.5em, 2em);
+				width: 100%;
+
+				&:nth-child(2) {
+					// Show the top border on the second element too
+					border-top: solid _size(border-width);
+				}
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			> * {
+				@include padding(2.5em, 1.5em);
+			}
+		}
+	}
+
+	@mixin color-split($p: null) {
+		.split {
+			> * {
+				&:nth-child(odd) {
+					border-right-color: _palette($p, border-bg);
+				}
+
+				&:nth-child(n+2) {
+					border-top-color: _palette($p, border-bg);
+				}
+			}
+		}
+	}
+
+	@include color-split;

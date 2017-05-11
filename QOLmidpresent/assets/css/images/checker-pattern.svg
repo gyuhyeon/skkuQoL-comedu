@@ -1,0 +1,17 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1700" height="1700">
+
+	<style type="text/css"><![CDATA[
+		rect {
+			fill: rgba(0,0,0,0.04);
+		}
+		.alt {
+			fill: rgba(0,0,0,0.03);
+		}
+	]]></style>
+
+	<!-- Polygons -->
+	<rect width="1202" height="1202" transform="rotate(45)" />
+	<rect width="1202" height="1202" transform="translate(850 0) rotate(45)" class="alt" />
+	<rect width="1202" height="1202" transform="translate(1700 0) rotate(45)" />
+
+</svg>

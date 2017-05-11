@@ -1,0 +1,33 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* Icon */
+
+	.icon {
+		@include icon;
+		border-bottom: none;
+		position: relative;
+
+		> .label {
+			display: none;
+		}
+
+		&.style1 {
+			color: _palette(accent1, fg-light);
+		}
+
+		&.style2 {
+			color: _palette(accent2, fg-light);
+		}
+
+		&.style3 {
+			color: _palette(accent3, fg-light);
+		}
+
+		&.style4 {
+			color: _palette(accent4, fg-light);
+		}
+	}

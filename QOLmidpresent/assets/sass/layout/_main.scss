@@ -1,0 +1,41 @@
+/* Main */
+
+	#main {
+		padding-top: 10em;
+
+		> .inner {
+			> .content {
+				padding: 2em 3em 3em;
+			}
+		}
+
+		@include breakpoint(large) {
+			padding-top: 8em;
+
+			> .inner {
+				> .content {
+					padding: 2.5em;
+				}
+			}
+		}
+
+		@include breakpoint(medium) {
+			> .inner {
+				> .content {
+					padding: 2em;
+				}
+			}
+		}
+
+		@include breakpoint(small) {
+			padding-top: 6em;
+		}
+
+		@include breakpoint(xsmall) {
+			> .inner {
+				> .content {
+					padding: 1em;
+				}
+			}
+		}
+	}

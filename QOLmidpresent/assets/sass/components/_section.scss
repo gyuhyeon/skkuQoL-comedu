@@ -1,0 +1,198 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* Section/Article */
+
+	section, article, header {
+		&.special {
+			text-align: center;
+		}
+
+		@include breakpoint(small) {
+			&.special-alt {
+				text-align: center;
+			}
+		}
+	}
+
+	header {
+		p {
+			position: relative;
+			margin: 0 0 (_size(element-margin) * 0.75) 0;
+		}
+
+		h2 + p {
+			font-size: 1.25em;
+			margin-top: (_size(element-margin) * -0.5);
+		}
+
+		h3 + p {
+			font-size: 1.1em;
+			margin-top: (_size(element-margin) * -0.4);
+		}
+
+		h4 + p,
+		h5 + p,
+		h6 + p {
+			font-size: 0.9em;
+			margin-top: (_size(element-margin) * -0.3);
+		}
+
+		&.major {
+			@include padding(5.5em, 0);
+
+			h1, h2 {
+				color: inherit;
+				font-size: 2.1em;
+				margin-bottom: 0.8em;
+				position: relative;
+				padding-bottom: 0.65em;
+
+				&:before, &:after {
+					background-color: currentColor;
+					content: '';
+					opacity: 0.2;
+					position: absolute;
+				}
+
+				&:before {
+					bottom: -4px;
+					height: 10px;
+					left: 30px;
+					width: 2px;
+				}
+
+				&:after {
+					bottom: 0;
+					height: 2px;
+					left: 0;
+					width: 60px;
+				}
+
+				+ p {
+					font-size: 0.9em;
+					font-weight: _font(weight-bold);
+					letter-spacing: 0.2em;
+					margin-top: 0;
+					text-transform: uppercase;
+				}
+			}
+
+			.special &, &.special {
+				h1, h2 {
+					&:before {
+						left: calc(50% - 1px);
+					}
+
+					&:after {
+						left: calc(50% - 30px);
+					}
+				}
+			}
+
+			&.alt {
+				@include padding(7em, 0);
+			}
+		}
+
+		&.style1 {
+			background-color: _palette(accent1, bg);
+			color: _palette(accent1, fg)
+		}
+
+		&.style2 {
+			background-color: _palette(accent2, bg);
+			color: _palette(accent2, fg)
+		}
+
+		&.style3 {
+			background-color: _palette(accent3, bg);
+			color: _palette(accent3, fg)
+		}
+
+		&.style4 {
+			background-color: _palette(accent4, bg);
+			color: _palette(accent4, fg)
+		}
+
+		&.style1, &.style2, &.style3, &.style4 {
+			background-image: url('images/overlay.png'), url('images/checker-pattern.svg');
+			background-position: center top;
+			background-repeat: repeat;
+		}
+
+		@include breakpoint(medium) {
+			&.major {
+				@include padding(4em, 2em);
+
+				h1, h2 {
+					font-size: 1.9em;
+				}
+
+				&.alt {
+					@include padding(6em, 2em);
+				}
+			}
+		}
+
+		@include breakpoint(small) {
+			&.major {
+				@include padding(3em, 2em);
+
+				h1, h2 {
+					font-size: 1.8em;
+
+					+ p {
+						margin-bottom: (_size(element-margin) * 1.1);
+					}
+				}
+
+				&.alt {
+					@include padding(3em, 2em);
+				}
+
+				.special-alt &, &.special-alt {
+					h1, h2 {
+						&:before {
+							left: calc(50% - 1px);
+						}
+
+						&:after {
+							left: calc(50% - 30px);
+						}
+					}
+				}
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			&.major {
+				@include padding(2.5em, 1.5em);
+
+				&.alt {
+					@include padding(2.5em, 1.5em);
+				}
+			}
+		}
+	}
+
+	footer {
+		&.major {
+			margin: (_size(element-margin) * 1.25) 0 (_size(element-margin) * 1.35);
+		}
+
+		@include breakpoint(small) {
+			&.major {
+				margin: 0;
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			&.major {
+				@include padding(0, 1.5em);
+			}
+		}
+	}

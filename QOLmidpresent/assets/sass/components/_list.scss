@@ -1,0 +1,277 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* List */
+
+	ol {
+		list-style: decimal;
+		margin: 0 0 _size(element-margin) 0;
+		padding-left: 1.25em;
+
+		li {
+			padding-left: 0.25em;
+		}
+	}
+
+	ul {
+		list-style: disc;
+		margin: 0 0 _size(element-margin) 0;
+		padding-left: 1em;
+
+		li {
+			padding-left: 0.5em;
+		}
+
+		&.alt {
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				border-top: solid _size(border-width);
+				padding: 0.5em 0;
+
+				&:first-child {
+					border-top: 0;
+					padding-top: 0;
+				}
+			}
+		}
+
+		&.menu {
+			li {
+				border-left: solid _size(border-width);
+				display: inline-block;
+				list-style: none;
+				margin-left: 1em;
+				padding-left: 1em;
+
+				a {
+					text-decoration: none;
+				}
+
+				&:first-child {
+					border-left: 0;
+					margin-left: 0;
+					padding-left: 0;
+				}
+			}
+		}
+
+		&.icons {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				display: inline-block;
+				padding: 0 1em 0 0;
+
+				&:last-child {
+					padding-right: 0;
+				}
+
+				.icon {
+					&:before {
+						font-size: 1em;
+					}
+				}
+			}
+		}
+
+		&.alt-icons {
+			@include vendor('display', 'inline-flex');
+			border-radius: _size(border-radius);
+			border: solid _size(border-width);
+			list-style-type: none;
+			padding-left: 0;
+
+			> li {
+				border-left: solid _size(border-width);
+				height: 2.5em;
+				line-height: 2.5em;
+				padding: 0;
+				width: 2.6em;
+
+				&:first-child {
+					border-left: 0;
+				}
+			}
+
+			.icon {
+				display: block;
+				height: 100%;
+				width: 100%;
+				transition: color _duration(transition), background-color _duration(transition);
+
+				&:before {
+					font-size: 1.1em;
+				}
+			}
+		}
+
+		&.actions {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				display: inline-block;
+				padding: 0 (_size(element-margin) * 0.5) 0 0;
+				vertical-align: middle;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+
+			&.small {
+				li {
+					padding: 0 (_size(element-margin) * 0.25) 0 0;
+				}
+			}
+
+			&.vertical {
+				li {
+					display: block;
+					padding: (_size(element-margin) * 0.5) 0 0 0;
+
+					&:first-child {
+						padding-top: 0;
+					}
+
+					> * {
+						margin-bottom: 0;
+					}
+				}
+
+				&.small {
+					li {
+						padding: (_size(element-margin) * 0.25) 0 0 0;
+
+						&:first-child {
+							padding-top: 0;
+						}
+					}
+				}
+			}
+
+			&.fit {
+				display: table;
+				margin-left: (_size(element-margin) * -0.5);
+				padding: 0;
+				table-layout: fixed;
+				width: calc(100% + #{(_size(element-margin) * 0.5)});
+
+				li {
+					display: table-cell;
+					padding: 0 0 0 (_size(element-margin) * 0.5);
+
+					> * {
+						margin-bottom: 0;
+					}
+				}
+
+				&.small {
+					margin-left: (_size(element-margin) * -0.25);
+					width: calc(100% + #{(_size(element-margin) * 0.25)});
+
+					li {
+						padding: 0 0 0 (_size(element-margin) * 0.25);
+					}
+				}
+			}
+
+			@include breakpoint(xsmall) {
+				margin: 0 0 _size(element-margin) 0;
+
+				li {
+					padding: (_size(element-margin) * 0.5) 0 0 0;
+					display: block;
+					text-align: center;
+					width: 100%;
+
+					&:first-child {
+						padding-top: 0;
+					}
+
+					> * {
+						width: 100%;
+						margin: 0 !important;
+
+						&.icon {
+							&:before {
+								margin-left: -2em;
+							}
+						}
+					}
+				}
+
+				&.small {
+					li {
+						padding: (_size(element-margin) * 0.25) 0 0 0;
+
+						&:first-child {
+							padding-top: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	dl {
+		margin: 0 0 _size(element-margin) 0;
+
+		dt {
+			display: block;
+			font-weight: _font(weight-bold);
+			margin: 0 0 (_size(element-margin) * 0.5) 0;
+		}
+
+		dd {
+			margin-left: _size(element-margin);
+		}
+	}
+
+	@mixin color-list($p: null) {
+		ul {
+			&.alt {
+				li {
+					border-top-color: _palette($p, border);
+				}
+			}
+
+			&.menu {
+				li {
+					border-left-color: _palette($p, border);
+				}
+			}
+
+			&.alt-icons {
+				border-color: _palette($p, border);
+
+				li {
+					border-left-color: _palette($p, border);
+				}
+
+				.icon {
+					color: _palette($p, fg-light);
+
+					&:hover {
+						background-color: _palette($p, border-bg);
+						color: _palette($p, fg);
+					}
+
+					&:active {
+						background-color: _palette($p, border2-bg);
+						color: _palette($p, fg);
+					}
+				}
+			}
+		}
+	}
+
+	@include color-list;

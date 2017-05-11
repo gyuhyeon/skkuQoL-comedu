@@ -1,0 +1,74 @@
+///
+/// Hologram by Pixelarity
+/// pixelarity.com @pixelarity
+/// License: pixelarity.com/license
+///
+
+/* Wrapper */
+
+	.wrapper {
+		padding-bottom: 0.01em;
+		position: relative;
+		overflow-x: hidden;
+
+		> .inner {
+			margin: 0 auto;
+			padding-bottom: 0.01em;
+			width: 100%;
+			max-width: _size(inner);
+		}
+
+		&.alt {
+			> .inner {
+				@include padding(4.5em, 4em);
+			}
+		}
+
+		&.style1 {
+			> .inner {
+				background-color: _palette(accent1, bg);
+			}
+		}
+
+		&.style2 {
+			@include color(accent2);
+		}
+
+		&.style3 {
+			@include color(accent3);
+		}
+
+		&.style4 {
+			@include color(accent4);
+		}
+
+		&.style2, &.style3, &.style4 {
+			background-image: url('images/overlay.png'), url('images/checker-pattern.svg');
+			background-position: center top;
+			background-repeat: repeat, repeat;
+		}
+
+		@include breakpoint(medium) {
+			&.alt {
+				> .inner {
+					@include padding(4em, 2em);
+				}
+			}
+		}
+
+		@include breakpoint(small) {
+			&.alt {
+				> .inner {
+					@include padding(3em, 2em);
+				}
+			}
+		}
+
+		@include breakpoint(xsmall) {
+			&.alt {
+				> .inner {
+					@include padding(2em, 1.5em);
+				}
+			}
+		}
+	}
