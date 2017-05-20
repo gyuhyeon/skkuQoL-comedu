@@ -16,14 +16,12 @@ function clean_string($string) {
     	    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
 			$responseData = json_decode($verifyResponse);
 			if(!($responseData->success)){
-				echo "<script>alert('오류가 발생했습니다 :(');</script>";
-        echo "<script>history.back();</script>"
+				echo "오류가 발생했습니다 :(";
         die();
 			}
 		}
 		else{
-			echo "<script>alert('오류가 발생했습니다 :(');</script>";
-        echo "<script>history.back();</script>"
+			echo "오류가 발생했습니다 :(";
         die();
 		}
 
@@ -45,8 +43,7 @@ if(isset($_POST['email'])) {
     // I put in some sample of how validity could be checked from html/javascript at form.html. Take a look at function verifycontents().
     function died($error) {
         // your error code can go here
-        echo "<script>alert('오류가 발생했습니다 :(');</script>";
-        echo "<script>history.back();</script>"
+        echo "오류가 발생했습니다 :(";
         die();
     }
  
