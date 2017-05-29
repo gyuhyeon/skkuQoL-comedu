@@ -13,6 +13,7 @@
     <?php
     //start of php code
     $sometext="Hello World whose time was ".time();
+    echo $sometext;
     ?>
     </li>
     </ul>
