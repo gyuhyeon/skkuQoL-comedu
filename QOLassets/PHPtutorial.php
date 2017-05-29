@@ -12,7 +12,8 @@
     <li>
     <?php
     //start of php code
-    $sometext="Hello World whose time was ".time();
+    $localdate=date('m/d/Y h:i:s a', time());
+    $sometext="Hello World whose time was ".$localdate;
     echo $sometext;
     ?>
     </li>
