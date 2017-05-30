@@ -156,21 +156,31 @@ $(document).ready(function() {
 
 });
 
+function getTableData(){
+	var currentDate = new Date();
+	var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
 
-function updateTableData(){
+	var formData = {
+		'currentdate'      : formattedDate
+	}
+
 		// process the form
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : 'loadstatus.php', // the url where we want to POST
-        //dataType    : 'json', // what type of data do we expect back from the server
+        data        : formData,
+        dataType    : 'json', // what type of data do we expect back from the server
                         encode          : true
     })
             // using the done promise callback
         .done(function(data) {
-
-            // log data to the console so we can see
-            console.log(data); 
+            return data;
 
             // here we will handle errors and validation messages
         });
+}
+
+function updateTableData(){
+	jsondata = getTableData();
+
 }
