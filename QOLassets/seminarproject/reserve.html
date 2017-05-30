@@ -136,7 +136,7 @@
 		<form id="reserveform">
 			<table width="60%">
 				<tr>
-					<th>신청 장소</th>
+					<th>신청 구분</th>
 					<th>일자 선택</th>
 					<th>시작 시간</th>
 					<th>종료 시간</th>
@@ -146,9 +146,12 @@
 				<tr>
 					<td>
 						<!--place select는 onchange 추가하여 세미나실/실습실에 따라서 다른 표 보여줘야 할듯. 물론 onchange에 상태 업데이트 하는 함수 쓸 때 validateSelection()도 같이 불러주기. -->
-						<select name="place">
-							<option>세미나실</option>
-							<option>실습실</option>
+						<select name="purpose">
+							<option>일반 사용</option>
+							<option>학생회 활동</option>
+							<option>집행부 활동</option>
+							<option>소모임 활동</option>
+							<option>팀프로젝트</option>
 						</select>
 					</td>
 					<td>
