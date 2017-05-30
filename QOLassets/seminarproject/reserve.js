@@ -125,7 +125,7 @@ $(document).ready(function() {
         // get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
         var formData = {
-            'place'              : $('select[name="place"]').val(),
+            'purpose'            : $('select[name="purpose"]').val(),
             'day'                : $('select[name="day"]').val(),
             'start_time'         : $('select[name="start_time"]').val(),
             'end_time'           : $('select[name="end_time"]').val(),
