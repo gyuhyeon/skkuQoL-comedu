@@ -81,12 +81,12 @@ function validateSelection() {
 		alert("시작시간 이후의 종료시간을 선택해주세요 :(");
 	}
 	//day is set, and starttime is occupied
-	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value] + "'] > [name='" + st.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value + "'] > [name='" + st.value.slice(0, 2) + "']")[0].innerText != "") {
 		st.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
 	//day is set, and endtime is occupied
-	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value] + "'] > [name='" + et.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value + "'] > [name='" + et.value.slice(0, 2) + "']")[0].innerText != "") {
 		et.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
