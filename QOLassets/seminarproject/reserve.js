@@ -182,7 +182,7 @@ $(document).ready(function() {
             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url         : 'reserve.php', // the url where we want to POST
             data        : formData, // our data object
-            dataType    : 'json', // what type of data do we expect back from the server
+            //dataType    : 'json', // what type of data do we expect back from the server
                         encode          : true
         })
             // using the done promise callback
@@ -202,13 +202,11 @@ $(document).ready(function() {
 
 
 function updateTableData(){
-	/*
 		// process the form
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'process.php', // the url where we want to POST
-        data        : formData, // our data object
-        dataType    : 'json', // what type of data do we expect back from the server
+        url         : 'loadstatus.php', // the url where we want to POST
+        //dataType    : 'json', // what type of data do we expect back from the server
                         encode          : true
     })
             // using the done promise callback
@@ -219,7 +217,4 @@ function updateTableData(){
 
             // here we will handle errors and validation messages
         });
-
-	});
-*/
 }
