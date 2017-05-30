@@ -202,6 +202,7 @@ $(document).ready(function() {
 
 
 function updateTableData(){
+	/*
 		// process the form
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -220,4 +221,5 @@ function updateTableData(){
         });
 
 	});
+*/
 }
