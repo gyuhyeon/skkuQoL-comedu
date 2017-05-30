@@ -1,0 +1,33 @@
+body
+{
+	font-family: arial;
+}
+
+th,td
+{
+	margin: 0;
+	text-align: center;
+	border-collapse: collapse;
+	outline: 1px solid #e3e3e3;
+}
+
+td
+{
+	padding: 5px 10px;
+	width: 50px;
+}
+
+th
+{
+	background: #064F7D;
+	color: white;
+	padding: 5px 10px;
+	width: 50px;
+}
+
+.schedule td:hover
+{
+	cursor: pointer;
+	background: lightgray;
+	color: white;
+}

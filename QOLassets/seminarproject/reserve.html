@@ -3,44 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Timetable</title>
-	<style type="text/css">
-		body
-		{
-			font-family: arial;
-		}
+	<link rel="stylesheet" href="css/reserve.css" />
 
-		th,td
-		{
-			margin: 0;
-			text-align: center;
-			border-collapse: collapse;
-			outline: 1px solid #e3e3e3;
-		}
-
-		td
-		{
-			padding: 5px 10px;
-			width: 50px;
-		}
-
-		th
-		{
-			background: #666;
-			color: white;
-			padding: 5px 10px;
-			width: 50px;
-		}
-
-		td:hover
-		{
-			cursor: pointer;
-			background: #666;
-			color: white;
-		}
-	</style>
 </head>
 <body>
-	<table width="80%" align="center" >
+	<table width="90%" align="center" class="schedule" id="schedule" >
 		<div id="head_nav">
 			<tr>
 				<th>구분</th>
@@ -58,136 +25,203 @@
 			</tr>
 		</div>  
 
-		<tr>
+		<tr class="reserve" name="col_mon">
 			<th>월</th>
-			<td></td>
-			<td>이규현<br/>test</td>
-			<td>이규현</td>
-			<td></td>
-			<td></td>
-			<td>조한빛</td>
-			<td>조한빛</td>
-			<td>조한빛</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('mon', 10)"></td>
+			<td name="11" onclick="clickToReserve('mon', 11)">이규현</td>
+			<td name="12" onclick="clickToReserve('mon', 12)">이규현</td>
+			<td name="13" onclick="clickToReserve('mon', 13)"></td>
+			<td name="14" onclick="clickToReserve('mon', 14)"></td>
+			<td name="15" onclick="clickToReserve('mon', 15)">조한빛</td>
+			<td name="16" onclick="clickToReserve('mon', 16)">조한빛</td>
+			<td name="17" onclick="clickToReserve('mon', 17)">조한빛</td>
+			<td name="18" onclick="clickToReserve('mon', 18)"></td>
+			<td name="19" onclick="clickToReserve('mon', 19)"></td>
+			<td name="20" onclick="clickToReserve('mon', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_tue">
 			<th>화</th>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>서한승</td>
-			<td>서한승</td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('tue', 10)"></td>
+			<td name="11" onclick="clickToReserve('tue', 11)"></td>
+			<td name="12" onclick="clickToReserve('tue', 12)"></td>
+			<td name="13" onclick="clickToReserve('tue', 13)"></td>
+			<td name="14" onclick="clickToReserve('tue', 14)"></td>
+			<td name="15" onclick="clickToReserve('tue', 15)"></td>
+			<td name="16" onclick="clickToReserve('tue', 16)"></td>
+			<td name="17" onclick="clickToReserve('tue', 17)"></td>
+			<td name="18" onclick="clickToReserve('tue', 18)"></td>
+			<td name="19" onclick="clickToReserve('tue', 19)"></td>
+			<td name="20" onclick="clickToReserve('tue', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_wed">
 			<th>수</th>
-			<td></td>
-			<td>이규현</td>
-			<td>이규현</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('wed', 10)"></td>
+			<td name="11" onclick="clickToReserve('wed', 11)"></td>
+			<td name="12" onclick="clickToReserve('wed', 12)"></td>
+			<td name="13" onclick="clickToReserve('wed', 13)"></td>
+			<td name="14" onclick="clickToReserve('wed', 14)"></td>
+			<td name="15" onclick="clickToReserve('wed', 15)"></td>
+			<td name="16" onclick="clickToReserve('wed', 16)"></td>
+			<td name="17" onclick="clickToReserve('wed', 17)"></td>
+			<td name="18" onclick="clickToReserve('wed', 18)"></td>
+			<td name="19" onclick="clickToReserve('wed', 19)"></td>
+			<td name="20" onclick="clickToReserve('wed', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_thu">
 			<th>목</th>
-			<td></td>
-			<td></td>
-			<td>정윤석</td>
-			<td>정윤석</td>
-			<td></td>
-			<td></td>
-			<td>김지원</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('thu', 10)"></td>
+			<td name="11" onclick="clickToReserve('thu', 11)"></td>
+			<td name="12" onclick="clickToReserve('thu', 12)"></td>
+			<td name="13" onclick="clickToReserve('thu', 13)"></td>
+			<td name="14" onclick="clickToReserve('thu', 14)"></td>
+			<td name="15" onclick="clickToReserve('thu', 15)"></td>
+			<td name="16" onclick="clickToReserve('thu', 16)"></td>
+			<td name="17" onclick="clickToReserve('thu', 17)"></td>
+			<td name="18" onclick="clickToReserve('thu', 18)"></td>
+			<td name="19" onclick="clickToReserve('thu', 19)"></td>
+			<td name="20" onclick="clickToReserve('thu', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_fri">
 			<th>금</th>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>윤서아</td>
-			<td>윤서아</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('fri', 10)"></td>
+			<td name="11" onclick="clickToReserve('fri', 11)"></td>
+			<td name="12" onclick="clickToReserve('fri', 12)"></td>
+			<td name="13" onclick="clickToReserve('fri', 13)"></td>
+			<td name="14" onclick="clickToReserve('fri', 14)"></td>
+			<td name="15" onclick="clickToReserve('fri', 15)"></td>
+			<td name="16" onclick="clickToReserve('fri', 16)"></td>
+			<td name="17" onclick="clickToReserve('fri', 17)"></td>
+			<td name="18" onclick="clickToReserve('fri', 18)"></td>
+			<td name="19" onclick="clickToReserve('fri', 19)"></td>
+			<td name="20" onclick="clickToReserve('fri', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_sat">
 			<th>토</th>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>wasabi</td>
-			<td>김요섭</td>
-			<td>김요섭</td>
-			<td>김요섭</td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('sat', 10)"></td>
+			<td name="11" onclick="clickToReserve('sat', 11)"></td>
+			<td name="12" onclick="clickToReserve('sat', 12)"></td>
+			<td name="13" onclick="clickToReserve('sat', 13)"></td>
+			<td name="14" onclick="clickToReserve('sat', 14)"></td>
+			<td name="15" onclick="clickToReserve('sat', 15)">윤서아</td>
+			<td name="16" onclick="clickToReserve('sat', 16)">윤서아</td>
+			<td name="17" onclick="clickToReserve('sat', 17)"></td>
+			<td name="18" onclick="clickToReserve('sat', 18)"></td>
+			<td name="19" onclick="clickToReserve('sat', 19)"></td>
+			<td name="20" onclick="clickToReserve('sat', 20)"></td>
 		</tr>
 
-		<tr>
+		<tr class="reserve" name="col_sun">
 			<th>일</th>
-			<td>김경혜</td>
-			<td>김경혜</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td name="10" onclick="clickToReserve('sun', 10)"></td>
+			<td name="11" onclick="clickToReserve('sun', 11)"></td>
+			<td name="12" onclick="clickToReserve('sun', 12)"></td>
+			<td name="13" onclick="clickToReserve('sun', 13)"></td>
+			<td name="14" onclick="clickToReserve('sun', 14)"></td>
+			<td name="15" onclick="clickToReserve('sun', 15)"></td>
+			<td name="16" onclick="clickToReserve('sun', 16)"></td>
+			<td name="17" onclick="clickToReserve('sun', 17)"></td>
+			<td name="18" onclick="clickToReserve('sun', 18)"></td>
+			<td name="19" onclick="clickToReserve('sun', 19)"></td>
+			<td name="20" onclick="clickToReserve('sun', 20)"></td>
 		</tr>
 	</table>
+
+	<br />
 	<div align="center">
-		<select>
-			<option>-신청장소-</option>
-			<option>세미나실</option>
-			<option>실습실</option>
-		</select>
-		<select>
-			<option>-요일 선택-</option>
-			<option>월</option>
-			<option>화</option>
-			<option>수</option>
-			<option>목</option>
-			<option>금</option>
-			<option>토</option>
-			<option>일</option>
-		</select>
+		<form id="reserveform" action="reserve.php" method="POST">
+			<table width="60%">
+				<tr>
+					<th>신청 장소</th>
+					<th>요일 선택</th>
+					<th>시작 시간</th>
+					<th>종료 시간</th>
+					<th>신청자</th>
+					<th>총 인원</th>
+				</tr>
+				<tr>
+					<td>
+						<!--place select는 onchange 추가하여 세미나실/실습실에 따라서 다른 표 보여줘야 할듯. 물론 onchange에 상태 업데이트 하는 함수 쓸 때 validateSelection()도 같이 불러주기. -->
+						<select name="place">
+							<option>세미나실</option>
+							<option>실습실</option>
+						</select>
+					</td>
+					<td>
+						<select name="day" onchange="validateSelection()">
+							<option>선택</option>
+							<option>월</option>
+							<option>화</option>
+							<option>수</option>
+							<option>목</option>
+							<option>금</option>
+							<option>토</option>
+							<option>일</option>
+						</select>
+					</td>
+					<td>
+						<select name="start_time" onchange="validateSelection()">
+							<option>선택</option>
+							<option>10:00</option>
+							<option>11:00</option>
+							<option>12:00</option>
+							<option>13:00</option>
+							<option>14:00</option>
+							<option>15:00</option>
+							<option>16:00</option>
+							<option>17:00</option>
+							<option>18:00</option>
+							<option>19:00</option>
+							<option>20:00</option>
+						</select>
+					</td>
+					<td>
+						<select name="end_time" onchange="validateSelection()">
+							<option>선택</option>
+							<option>10:00</option>
+							<option>11:00</option>
+							<option>12:00</option>
+							<option>13:00</option>
+							<option>14:00</option>
+							<option>15:00</option>
+							<option>16:00</option>
+							<option>17:00</option>
+							<option>18:00</option>
+							<option>19:00</option>
+							<option>20:00</option>
+						</select>
+					</td>
+					<td>
+						<input name="reservename" placeholder="신청자" size="10"></input>
+					</td>
+					<td>
+						<select name="groupsize">
+							<option>선택</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7+</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<div align="center">
+				<input type="submit" value="Send Message" class="special" />
+				<input type="reset" value="Reset"/>
+			</div>
+		</form>
 	</div>
-	<script type="text/javascript">
-		window.onload = function(){
-			var td = document.getElementsByTagName('td');
-			for(var i=0; i<td.length; ++i){
-				if(td[i].textContent!=""){
-					td[i].style="background: orange";
-				}
-			}
-		}
-	</script>
+
+
+	<!-- SCRIPTS : jquery, reserve.js for page scripts -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="reserve.js"></script>
+
 </body>
