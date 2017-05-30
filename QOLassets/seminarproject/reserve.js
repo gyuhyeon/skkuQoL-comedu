@@ -22,11 +22,11 @@ function updateTableColor() {
 	//change background for selected cells
 	if (d.value != "선택") {
 		if (st.value != "선택") {
-			$("[name='" + d.value + "'] > [name='" + st.value.slice(0, 2) + "']")[0].style.backgroundColor = selectedColor;
+			$("[name='" + d.selectedOptions[0].className + "'] > [name='" + st.value.slice(0, 2) + "']")[0].style.backgroundColor = selectedColor;
 		}
 		if (st.value != "선택" && et.value != "선택") {
 			for (var i = parseInt(st.value.slice(0, 2)); i <= parseInt(et.value.slice(0, 2)); ++i) {
-				$("[name='" + d.value + "'] > [name='" + i + "']")[0].style.backgroundColor = selectedColor;
+				$("[name='" + d.selectedOptions[0].className + "'] > [name='" + i + "']")[0].style.backgroundColor = selectedColor;
 			}
 		}
 	}
@@ -57,7 +57,7 @@ function clickToReserve(day, time) {
 	// B. Selection date has changed
 	// C. start_time is bigger than time(parameter passed to current function) to register
 	// D. end_time is already set(improve user experience by resetting)
-	else if (d.value == "선택" || st.value == "선택" || day != d.value || parseInt(st.value.slice(0, 2)) > time || et.value != "선택") {
+	else if (d.value == "선택" || st.value == "선택" || day != d.selectedOptions[0].className || parseInt(st.value.slice(0, 2)) > time || et.value != "선택") {
 		$("[name='day'] > ." + day)[0].selected=true; // set date(요일)
 		st.value = time + ":00"; // set time(start time)
 		et.value = "선택"; // reset endtime selection for the user
@@ -81,19 +81,19 @@ function validateSelection() {
 		alert("시작시간 이후의 종료시간을 선택해주세요 :(");
 	}
 	//day is set, and starttime is occupied
-	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value + "'] > [name='" + st.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + st.value.slice(0, 2) + "']")[0].innerText != "") {
 		st.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
 	//day is set, and endtime is occupied
-	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.value + "'] > [name='" + et.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + et.value.slice(0, 2) + "']")[0].innerText != "") {
 		et.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
 	//day is set, both starttime and endtime is specified, which means we can safely loop within it. check if occupied.
 	else if (d.value != "선택" && st.value != "선택" && et.value != "선택") {
 		for (var i = parseInt(st.value.slice(0, 2)); i <= parseInt(et.value.slice(0, 2)); ++i) {
-			if ($("[name='" + d.value + "'] > [name='" + i + "']")[0].innerText != "") {
+			if ($("[name='" + d.selectedOptions[0].className + "'] > [name='" + i + "']")[0].innerText != "") {
 				et.value = "선택";
 				alert("중간에 예약되어 있는 시간이 있습니다 :(");
 			}
