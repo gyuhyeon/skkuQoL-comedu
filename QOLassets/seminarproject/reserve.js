@@ -152,3 +152,8 @@ $("#reserveform").on('reset', function(e) {
 		validateSelection();
 	});
 });
+
+$("#reserveform").ajaxForm({url: "reserve.php", type: "POST"}); //when submit button is pressed
+//$("#reserveform").ajaxSubmit({url: "reserve.php", type: "POST"}); this submits instantly without submit button pressing
+//OR $.post('reserve.php', $('#reserveform').serialize());
+//OR $.get('reserve.php?' + $('#reserveform').serialize());
