@@ -153,7 +153,72 @@ $("#reserveform").on('reset', function(e) {
 	});
 });
 
-$("#reserveform").ajaxForm({url: "reserve.php", type: "POST"}); //when submit button is pressed
+//submit reservation form
+//$("#reserveform").ajaxForm({url: "reserve.php", type: "POST"}); //when submit button is pressed
+
+//education purpose note : alternatives
 //$("#reserveform").ajaxSubmit({url: "reserve.php", type: "POST"}); this submits instantly without submit button pressing
 //OR $.post('reserve.php', $('#reserveform').serialize());
 //OR $.get('reserve.php?' + $('#reserveform').serialize());
+
+$(document).ready(function() {
+
+    // process the form
+    $('#reserveform').submit(function(event) {
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'place'              : $('select[name="place"]').val(),
+            'day'                : $('select[name="day"]').val(),
+            'start_time'         : $('select[name="start_time"]').val(),
+            'end_time'           : $('select[name="end_time"]').val(),
+            'reservename'        : $('input[name="reservename"]').val(),
+            'groupsize'          : $('select[name="groupsize"]').val()
+        };
+
+        // process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'reserveform.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                console.log(data); 
+
+                // here we will handle errors and validation messages
+            });
+
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+});
+
+
+function updateTableData(){
+	$.ajax({
+		// process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'process.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                console.log(data); 
+
+                // here we will handle errors and validation messages
+            });
+
+	})
+}
