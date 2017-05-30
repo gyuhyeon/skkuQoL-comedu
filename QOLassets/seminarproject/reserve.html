@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Timetable</title>
+	<style type="text/css">
+		body
+		{
+			font-family: arial;
+		}
+
+		th,td
+		{
+			margin: 0;
+			text-align: center;
+			border-collapse: collapse;
+			outline: 1px solid #e3e3e3;
+		}
+
+		td
+		{
+			padding: 5px 10px;
+			width: 50px;
+		}
+
+		th
+		{
+			background: #666;
+			color: white;
+			padding: 5px 10px;
+			width: 50px;
+		}
+
+		td:hover
+		{
+			cursor: pointer;
+			background: #666;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<table width="80%" align="center" >
+		<div id="head_nav">
+			<tr>
+				<th>구분</th>
+				<th>10:00</th>
+				<th>11:00</th>
+				<th>12:00</th>
+				<th>13:00</th>
+				<th>14:00</th>
+				<th>15:00</th>
+				<th>16:00</th>
+				<th>17:00</th>
+				<th>18:00</th>
+				<th>19:00</th>
+				<th>20:00</th>
+			</tr>
+		</div>  
+
+		<tr>
+			<th>월</th>
+			<td></td>
+			<td>이규현<br/>test</td>
+			<td>이규현</td>
+			<td></td>
+			<td></td>
+			<td>조한빛</td>
+			<td>조한빛</td>
+			<td>조한빛</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>화</th>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>서한승</td>
+			<td>서한승</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>수</th>
+			<td></td>
+			<td>이규현</td>
+			<td>이규현</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>목</th>
+			<td></td>
+			<td></td>
+			<td>정윤석</td>
+			<td>정윤석</td>
+			<td></td>
+			<td></td>
+			<td>김지원</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>금</th>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>윤서아</td>
+			<td>윤서아</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>토</th>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>wasabi</td>
+			<td>김요섭</td>
+			<td>김요섭</td>
+			<td>김요섭</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<th>일</th>
+			<td>김경혜</td>
+			<td>김경혜</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<div align="center">
+		<select>
+			<option>-신청장소-</option>
+			<option>-세미나실-</option>
+			<option>-실습실-</option>
+		</select>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var td = document.getElementsByTagName('td');
+			for(var i=0; i<td.length; ++i){
+				if(td[i].textContent!=""){
+					td[i].style="background: orange";
+				}
+			}
+		}
+	</script>
+</body>
