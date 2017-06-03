@@ -15,7 +15,7 @@ if (!$conn->set_charset("utf8")) {
 	die("utf8 문자 세트를 가져오다가 에러가 났습니다 :".$conn->error." 현재 문자 세트 : ".$conn->character_set_name());
 }
 
-$currentdate = $_GET['currentdate'];
+$currentdate = htmlspecialchars($_GET['currentdate']);
 $date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
 if(!preg_match($date_regex, $currentdate)){
     die("날짜 양식 오류");
