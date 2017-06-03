@@ -127,8 +127,8 @@ $(document).ready(function() {
         var formData = {
             'purpose'            : $('select[name="purpose"]').val(),
             'day'                : $('select[name="day"]').val(),
-            'start_time'         : $('select[name="start_time"]').val(),
-            'end_time'           : $('select[name="end_time"]').val(),
+            'start_time'         : parseInt($('select[name="start_time"]')[0].value.slice(0,2)),
+            'end_time'           : parseInt($('select[name="end_time"]')[0].value.slice(0,2)),
             'groupsize'          : $('select[name="groupsize"]').val(),
 			'reservename'        : $('input[name="reservename"]').val(),
 			'password'           : $('input[name="password"]').val()
@@ -150,6 +150,8 @@ $(document).ready(function() {
 
 				//show as alert
 				alert(data['response']);
+				//force client reload
+				location.reload();
 
                 // here we will handle errors and validation messages
             });
