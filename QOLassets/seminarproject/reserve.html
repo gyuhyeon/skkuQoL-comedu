@@ -142,16 +142,17 @@
 					<th>종료 시간</th>
 					<th>신청자</th>
 					<th>총 인원</th>
+					<th>비밀번호</th>
 				</tr>
 				<tr>
 					<td>
 						<!--place select는 onchange 추가하여 세미나실/실습실에 따라서 다른 표 보여줘야 할듯. 물론 onchange에 상태 업데이트 하는 함수 쓸 때 validateSelection()도 같이 불러주기. -->
 						<select name="purpose">
-							<option>일반 사용</option>
-							<option>학생회 활동</option>
-							<option>집행부 활동</option>
-							<option>소모임 활동</option>
-							<option>팀프로젝트</option>
+							<option value=0>일반 사용</option>
+							<option value=1>학생회 활동</option>
+							<option value=2>집행부 활동</option>
+							<option value=3>소모임 활동</option>
+							<option value=4>팀프로젝트</option>
 						</select>
 					</td>
 					<td>
@@ -199,9 +200,6 @@
 						</select>
 					</td>
 					<td>
-						<input name="reservename" placeholder="신청자" size="10"></input>
-					</td>
-					<td>
 						<select name="groupsize">
 							<option>선택</option>
 							<option>1</option>
@@ -212,6 +210,12 @@
 							<option>6</option>
 							<option>7+</option>
 						</select>
+					</td>
+					<td>
+						<input name="reservename" placeholder="신청자" size="10"></input>
+					</td>
+					<td>
+						<input name="password" placeholder="비밀번호" size="6"></input>
 					</td>
 				</tr>
 			</table>

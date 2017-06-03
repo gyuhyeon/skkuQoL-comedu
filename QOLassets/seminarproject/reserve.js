@@ -129,8 +129,9 @@ $(document).ready(function() {
             'day'                : $('select[name="day"]').val(),
             'start_time'         : $('select[name="start_time"]').val(),
             'end_time'           : $('select[name="end_time"]').val(),
-            'reservename'        : $('input[name="reservename"]').val(),
-            'groupsize'          : $('select[name="groupsize"]').val()
+            'groupsize'          : $('select[name="groupsize"]').val(),
+			'reservename'        : $('input[name="reservename"]').val(),
+			'password'           : $('input[name="password"]').val()
         };
 
         // process the form
@@ -138,14 +139,17 @@ $(document).ready(function() {
             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url         : 'reserve.php', // the url where we want to POST
             data        : formData, // our data object
-            //dataType    : 'json', // what type of data do we expect back from the server
+            dataType    : 'json', // what type of data do we expect back from the server
                         encode          : true
         })
             // using the done promise callback
             .done(function(data) {
 
                 // log data to the console so we can see
-                console.log(data); 
+                //console.log(data); 
+
+				//show as alert
+				alert(data['response']);
 
                 // here we will handle errors and validation messages
             });
@@ -154,6 +158,8 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+	//placeholder
+	placeholdergenerator();
 });
 
 function getTableData(){
@@ -183,4 +189,15 @@ function getTableData(){
 function updateTableData(){
 	jsondata = getTableData();
 
+}
+
+//temporary function to test without fetching date info from server
+function placeholdergenerator(){
+	var day = new Date();
+	var formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
+	for(var i=1; i<=7; ++i){
+		$("select[name='day'] > .D"+i)[0].innerText = formattedDate;
+		day.setDate(day.getDate()+1);
+		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
+	}
 }
