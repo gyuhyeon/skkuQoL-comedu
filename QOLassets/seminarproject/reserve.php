@@ -34,8 +34,35 @@ $sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate = '$day' a
 //run mysql query
 $result = $conn->query($sql);
 
+$sanitization = TRUE;
+if(!(($purpose>=0)&&($purpose<=4))){
+    $sanitization = FALSE;
+}
+$date_regex ="/^((((19|[2-9]\d)\d{2})\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|(((19|[2-9]\d)\d{2})\-(0[13456789]|1[012])\-(0[1-9]|[12]\d|30))|(((19|[2-9]\d)\d{2})\-02\-(0[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))\-02\-29))$/g"
+if(!preg_match($date_regex, $day)){
+    $sanitization = FALSE;
+}
+if(!(($start_time>=10)&&($start_time<=22))){
+    $sanitization = FALSE;
+}
+if(!(($end_time>=10)&&($end_time<=22))){
+    $sanitization = FALSE;
+}
+if(strlen($groupsize)>2){
+    $sanitization = FALSE;
+}
+if(strlen($reservename)>13){
+    $sanitization = FALSE;
+}
+if(strlen($password)>20){
+    $sanitization = FALSE;
+}
+
+if($sanitization === FALSE){
+    $response = "ERROR : 미입력/오기한 항목이 있거나, 비밀번호/이름이 너무 깁니다.";
+}
 //if purpose is not personal yet the query finding non-personal(therefore official) use returned something, there's a conflict.
-if ($result->num_rows > 0 && $purpose!=0) {
+else if ($result->num_rows > 0 && $purpose!=0) {
     $response = "ERROR : CANNOT RESERVE AT SPECIFIED TIME";
 }
 else {
