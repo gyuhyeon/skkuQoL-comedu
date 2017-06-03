@@ -50,11 +50,11 @@ else if(!(($end_time>=10)&&($end_time<=22))){
 else if(strlen($groupsize)>2){
     $response = "ERROR : 사용인원 수를 선택해주세요.";
 }
-else if(strlen($reservename)>13){
-    $response = "ERROR : 이름은 10자 이내로 입력해주세요.";
+else if(strlen($reservename)>13 || strlen($reservename)<2){
+    $response = "ERROR : 이름은 2자 이상 10자 이내로 입력해주세요.";
 }
-else if(strlen($password)>15){
-    $response = "ERROR : 비밀번호는 10자 이내로 입력해주세요.";
+else if(strlen($password)>15 || strlen($password)<3){
+    $response = "ERROR : 비밀번호는 3자 이상 10자 이내로 입력해주세요.";
 }
 //if purpose is not personal yet the query finding non-personal(therefore official) use returned something, there's a conflict.
 else if ($result->num_rows > 0 && $purpose!=0) {
