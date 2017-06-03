@@ -21,7 +21,7 @@ if(!preg_match($date_regex, $currentdate)){
     die("날짜 양식 오류");
 }
 //set response header
-header('Content-type:application/json;charset=utf-8');
+//header('Content-type:application/json;charset=utf-8');
 
 //find all reservations til 6 days from now
 $sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD($currentdate, INTERVAL 6 DAY)))";
