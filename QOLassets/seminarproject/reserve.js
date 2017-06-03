@@ -150,9 +150,10 @@ $(document).ready(function() {
 
 				//show as alert
 				alert(data['response']);
-				//force client reload
-				location.reload();
-
+				//force client reload on success
+				if(data['response'].length()<10){
+					location.reload();
+				}
                 // here we will handle errors and validation messages
             });
 

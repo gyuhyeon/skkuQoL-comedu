@@ -34,32 +34,27 @@ $sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate = '$day' a
 //run mysql query
 $result = $conn->query($sql);
 
-$sanitization = TRUE;
 if(!(($purpose>=0)&&($purpose<=4))){
-    $sanitization = FALSE;
+     $response = "ERROR : 사용목적을 선택해주십시오.";
 }
 $date_regex ="/^((((19|[2-9]\d)\d{2})\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|(((19|[2-9]\d)\d{2})\-(0[13456789]|1[012])\-(0[1-9]|[12]\d|30))|(((19|[2-9]\d)\d{2})\-02\-(0[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))\-02\-29))$/g";
 if(!preg_match($date_regex, $day)){
-    $sanitization = FALSE;
+    $response = "ERROR : 날짜를 선택해주십시오.";
 }
-if(!(($start_time>=10)&&($start_time<=22))){
-    $sanitization = FALSE;
+else if(!(($start_time>=10)&&($start_time<=22))){
+   $response = "ERROR : 시작시간을 선택해주세요.";
 }
-if(!(($end_time>=10)&&($end_time<=22))){
-    $sanitization = FALSE;
+else if(!(($end_time>=10)&&($end_time<=22))){
+    $response = "ERROR : 종료시간을 선택해주세요.";
 }
-if(strlen($groupsize)>2){
-    $sanitization = FALSE;
+else if(strlen($groupsize)>2){
+    $response = "ERROR : 사용인원 수를 선택해주세요.";
 }
-if(strlen($reservename)>13){
-    $sanitization = FALSE;
+else if(strlen($reservename)>13){
+    $response = "ERROR : 이름은 10자 이내로 입력해주세요.";
 }
-if(strlen($password)>20){
-    $sanitization = FALSE;
-}
-
-if($sanitization === FALSE){
-    $response = "ERROR : 미입력/오기한 항목이 있거나, 비밀번호/이름이 너무 깁니다.";
+else if(strlen($password)>15){
+    $response = "ERROR : 비밀번호는 10자 이내로 입력해주세요.";
 }
 //if purpose is not personal yet the query finding non-personal(therefore official) use returned something, there's a conflict.
 else if ($result->num_rows > 0 && $purpose!=0) {
@@ -70,7 +65,7 @@ else {
     //insertion query
     $result = $conn->query($sql);
     if($result === TRUE){
-        $response = "Reservation success!";
+        $response = "예약 성공!";
     }
     else{
         $response = "ERROR : Something went wrong when inserting into database! $purpose,$reservename,$day,$start_time,$end_time,$groupsize,$password $conn->error";
