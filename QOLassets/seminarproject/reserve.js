@@ -199,8 +199,20 @@ function placeholdergenerator(){
 	var day = new Date();
 	var formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	for(var i=1; i<=7; ++i){
-		$("select[name='day'] > .D"+i)[0].innerText = formattedDate;
+		//표에 보여지는 날짜 포맷만 예쁘게 바꾸는 것 예시
+		//innerText는 사용자에게 보여지는 것인데, 실제로 위에서 json으로 보내는 부분에서 .val()을 할 때 value가 미설정일 경우 innerText값을 사용해버림
+		//현재 DB에는 0000-00-00 형태로 보내지며, 해당 형태에서 벗어날 경우 형식 미준수로 에러 발생
+		//만약 사용자에게 보여지는 것만 00-00 으로 해주고, 실제 보내는 것은 그대로 0000-00-00로 유지하려면, value와 innerText를 구분해줘야 함
+		//하단 코드 참고
+		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
+		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
+		//value는 그대로 유지!
+		$("select[name='day'] > .D"+i)[0].value = formattedDate;
+		$("th.D"+i)[0].value = formattedDate;
+
+		//하루 증가시킴(이건 placeholder generator라 있는 부분)
 		day.setDate(day.getDate()+1);
+		//format 준수. 날짜 포맷.
 		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	}
 }
