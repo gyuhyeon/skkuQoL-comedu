@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
     echo "<td>reservedate</td>";
     echo "<td>starttime</td>";
     echo "<td>endtime</td>";
-    echo "<td>groupname</td>";
+    echo "<td>groupsize</td>";
     echo "<td>studentname</td>";
     echo "<td>password</td>";
     echo "</tr>";
@@ -50,9 +50,9 @@ if ($result->num_rows > 0) {
         echo "<td>".$row["reserve_srl"]."</td>";
         echo "<td>".$row["purpose"]."</td>";
         echo "<td>".$row["reservedate"]."</td>";
-        echo "<td>".$row["startime"]."</td>";
+        echo "<td>".$row["starttime"]."</td>";
         echo "<td>".$row["endtime"]."</td>";
-        echo "<td>".$row["groupname"]."</td>";
+        echo "<td>".$row["groupsize"]."</td>";
         echo "<td>".$row["studentname"]."</td>";
         echo "<td>".$row["password"]."</td>";
         echo "</tr>";
