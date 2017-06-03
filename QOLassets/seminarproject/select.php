@@ -4,6 +4,9 @@ $dbusername = "root";
 $dbpassword = "insecurelocalpassword";
 $dbname = "admin";
 
+//if text html utf-8
+header('Content-Type: text/html; charset=utf-8');
+
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 // Check connection
@@ -24,7 +27,7 @@ if(!preg_match($date_regex, $currentdate)){
 //header('Content-type:application/json;charset=utf-8');
 
 //find all reservations til 6 days from now
-$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD($currentdate, INTERVAL 6 DAY)))";
+$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD('$currentdate', INTERVAL 6 DAY))";
 
 //run mysql query
 $result = $conn->query($sql);
