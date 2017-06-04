@@ -1,13 +1,13 @@
 /*!
- * jQuery JavaScript Library v3.2.1
- * https://jquery.com/
+ * noConflictQuery JavaScript Library v3.2.1
+ * https://noConflictQuery.com/
  *
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
- * https://jquery.org/license
+ * https://noConflictQuery.org/license
  *
  * Date: 2017-03-20T18:59Z
  */
@@ -18,17 +18,17 @@
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory and get jQuery.
+		// is present, execute the factory and get noConflictQuery.
 		// For environments that do not have a `window` with a `document`
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
-		// e.g. var jQuery = require("jquery")(window);
+		// e.g. var noConflictQuery = require("noConflictQuery")(window);
 		// See ticket #14549 for more info.
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
-					throw new Error( "jQuery requires a window with a document" );
+					throw new Error( "noConflictQuery requires a window with a document" );
 				}
 				return factory( w );
 			};
@@ -41,7 +41,7 @@
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
+// arguments.callee.caller (trac-13335). But as of noConflictQuery 3.0 (2016), strict mode should be common
 // enough that all such attempts are guarded in a try block.
 "use strict";
 
@@ -90,12 +90,12 @@ var support = {};
 var
 	version = "3.2.1",
 
-	// Define a local copy of jQuery
-	jQuery = function( selector, context ) {
+	// Define a local copy of noConflictQuery
+	noConflictQuery = function( selector, context ) {
 
-		// The jQuery object is actually just the init constructor 'enhanced'
-		// Need init if jQuery is called (just allow error to be thrown if not included)
-		return new jQuery.fn.init( selector, context );
+		// The noConflictQuery object is actually just the init constructor 'enhanced'
+		// Need init if noConflictQuery is called (just allow error to be thrown if not included)
+		return new noConflictQuery.fn.init( selector, context );
 	},
 
 	// Support: Android <=4.0 only
@@ -106,19 +106,19 @@ var
 	rmsPrefix = /^-ms-/,
 	rdashAlpha = /-([a-z])/g,
 
-	// Used by jQuery.camelCase as callback to replace()
+	// Used by noConflictQuery.camelCase as callback to replace()
 	fcamelCase = function( all, letter ) {
 		return letter.toUpperCase();
 	};
 
-jQuery.fn = jQuery.prototype = {
+noConflictQuery.fn = noConflictQuery.prototype = {
 
-	// The current version of jQuery being used
-	jquery: version,
+	// The current version of noConflictQuery being used
+	noConflictQuery: version,
 
-	constructor: jQuery,
+	constructor: noConflictQuery,
 
-	// The default length of a jQuery object is 0
+	// The default length of a noConflictQuery object is 0
 	length: 0,
 
 	toArray: function() {
@@ -142,8 +142,8 @@ jQuery.fn = jQuery.prototype = {
 	// (returning the new matched element set)
 	pushStack: function( elems ) {
 
-		// Build a new jQuery matched element set
-		var ret = jQuery.merge( this.constructor(), elems );
+		// Build a new noConflictQuery matched element set
+		var ret = noConflictQuery.merge( this.constructor(), elems );
 
 		// Add the old object onto the stack (as a reference)
 		ret.prevObject = this;
@@ -154,11 +154,11 @@ jQuery.fn = jQuery.prototype = {
 
 	// Execute a callback for every element in the matched set.
 	each: function( callback ) {
-		return jQuery.each( this, callback );
+		return noConflictQuery.each( this, callback );
 	},
 
 	map: function( callback ) {
-		return this.pushStack( jQuery.map( this, function( elem, i ) {
+		return this.pushStack( noConflictQuery.map( this, function( elem, i ) {
 			return callback.call( elem, i, elem );
 		} ) );
 	},
@@ -186,13 +186,13 @@ jQuery.fn = jQuery.prototype = {
 	},
 
 	// For internal use only.
-	// Behaves like an Array's method, not like a jQuery method.
+	// Behaves like an Array's method, not like a noConflictQuery method.
 	push: push,
 	sort: arr.sort,
 	splice: arr.splice
 };
 
-jQuery.extend = jQuery.fn.extend = function() {
+noConflictQuery.extend = noConflictQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
 		target = arguments[ 0 ] || {},
 		i = 1,
@@ -209,11 +209,11 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+	if ( typeof target !== "object" && !noConflictQuery.isFunction( target ) ) {
 		target = {};
 	}
 
-	// Extend jQuery itself if only one argument is passed
+	// Extend noConflictQuery itself if only one argument is passed
 	if ( i === length ) {
 		target = this;
 		i--;
@@ -235,7 +235,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 				}
 
 				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
+				if ( deep && copy && ( noConflictQuery.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
 
 					if ( copyIsArray ) {
@@ -243,11 +243,11 @@ jQuery.extend = jQuery.fn.extend = function() {
 						clone = src && Array.isArray( src ) ? src : [];
 
 					} else {
-						clone = src && jQuery.isPlainObject( src ) ? src : {};
+						clone = src && noConflictQuery.isPlainObject( src ) ? src : {};
 					}
 
 					// Never move original objects, clone them
-					target[ name ] = jQuery.extend( deep, clone, copy );
+					target[ name ] = noConflictQuery.extend( deep, clone, copy );
 
 				// Don't bring in undefined values
 				} else if ( copy !== undefined ) {
@@ -261,12 +261,12 @@ jQuery.extend = jQuery.fn.extend = function() {
 	return target;
 };
 
-jQuery.extend( {
+noConflictQuery.extend( {
 
-	// Unique for each copy of jQuery on the page
-	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
+	// Unique for each copy of noConflictQuery on the page
+	expando: "noConflictQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
-	// Assume jQuery is ready without the ready module
+	// Assume noConflictQuery is ready without the ready module
 	isReady: true,
 
 	error: function( msg ) {
@@ -276,7 +276,7 @@ jQuery.extend( {
 	noop: function() {},
 
 	isFunction: function( obj ) {
-		return jQuery.type( obj ) === "function";
+		return noConflictQuery.type( obj ) === "function";
 	},
 
 	isWindow: function( obj ) {
@@ -285,10 +285,10 @@ jQuery.extend( {
 
 	isNumeric: function( obj ) {
 
-		// As of jQuery 3.0, isNumeric is limited to
+		// As of noConflictQuery 3.0, isNumeric is limited to
 		// strings and numbers (primitives or objects)
 		// that can be coerced to finite numbers (gh-2662)
-		var type = jQuery.type( obj );
+		var type = noConflictQuery.type( obj );
 		return ( type === "number" || type === "string" ) &&
 
 			// parseFloat NaNs numeric-cast false positives ("")
@@ -301,7 +301,7 @@ jQuery.extend( {
 		var proto, Ctor;
 
 		// Detect obvious negatives
-		// Use toString instead of jQuery.type to catch host objects
+		// Use toString instead of noConflictQuery.type to catch host objects
 		if ( !obj || toString.call( obj ) !== "[object Object]" ) {
 			return false;
 		}
@@ -387,7 +387,7 @@ jQuery.extend( {
 
 		if ( arr != null ) {
 			if ( isArrayLike( Object( arr ) ) ) {
-				jQuery.merge( ret,
+				noConflictQuery.merge( ret,
 					typeof arr === "string" ?
 					[ arr ] : arr
 				);
@@ -486,7 +486,7 @@ jQuery.extend( {
 
 		// Quick check to determine if target is callable, in the spec
 		// this throws a TypeError, but we will just return undefined.
-		if ( !jQuery.isFunction( fn ) ) {
+		if ( !noConflictQuery.isFunction( fn ) ) {
 			return undefined;
 		}
 
@@ -497,24 +497,24 @@ jQuery.extend( {
 		};
 
 		// Set the guid of unique handler to the same of original handler, so it can be removed
-		proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+		proxy.guid = fn.guid = fn.guid || noConflictQuery.guid++;
 
 		return proxy;
 	},
 
 	now: Date.now,
 
-	// jQuery.support is not used in Core but other projects attach their
+	// noConflictQuery.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
 } );
 
 if ( typeof Symbol === "function" ) {
-	jQuery.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
+	noConflictQuery.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
 }
 
 // Populate the class2type map
-jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+noConflictQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
 function( i, name ) {
 	class2type[ "[object " + name + "]" ] = name.toLowerCase();
 } );
@@ -526,9 +526,9 @@ function isArrayLike( obj ) {
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
-		type = jQuery.type( obj );
+		type = noConflictQuery.type( obj );
 
-	if ( type === "function" || jQuery.isWindow( obj ) ) {
+	if ( type === "function" || noConflictQuery.isWindow( obj ) ) {
 		return false;
 	}
 
@@ -540,9 +540,9 @@ var Sizzle =
  * Sizzle CSS Selector Engine v2.3.3
  * https://sizzlejs.com/
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright noConflictQuery Foundation and other contributors
  * Released under the MIT license
- * http://jquery.org/license
+ * http://noConflictQuery.org/license
  *
  * Date: 2016-08-08
  */
@@ -1120,7 +1120,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	documentIsHTML = !isXML( document );
 
 	// Support: IE 9-11, Edge
-	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
+	// Accessing iframe documents after unload throws "permission denied" errors (noConflictQuery #13936)
 	if ( preferredDoc !== document &&
 		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
 
@@ -1272,7 +1272,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// We allow this because of a bug in IE8/9 that throws an error
 	// whenever `document.activeElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
-	// See https://bugs.jquery.com/ticket/13378
+	// See https://bugs.noConflictQuery.com/ticket/13378
 	rbuggyQSA = [];
 
 	if ( (support.qsa = rnative.test( document.querySelectorAll )) ) {
@@ -1283,7 +1283,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// This is to test IE's treatment of not explicitly
 			// setting a boolean content attribute,
 			// since its presence should be enough
-			// https://bugs.jquery.com/ticket/12359
+			// https://bugs.noConflictQuery.com/ticket/12359
 			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
 				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
 				"<option selected=''></option></select>";
@@ -1558,7 +1558,7 @@ Sizzle.attr = function( elem, name ) {
 	}
 
 	var fn = Expr.attrHandle[ name.toLowerCase() ],
-		// Don't get fooled by Object.prototype properties (jQuery #13807)
+		// Don't get fooled by Object.prototype properties (noConflictQuery #13807)
 		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
 			fn( elem, name, !documentIsHTML ) :
 			undefined;
@@ -1607,7 +1607,7 @@ Sizzle.uniqueSort = function( results ) {
 	}
 
 	// Clear input after sorting to release objects
-	// See https://github.com/jquery/sizzle/pull/225
+	// See https://github.com/noConflictQuery/sizzle/pull/225
 	sortInput = null;
 
 	return results;
@@ -1631,7 +1631,7 @@ getText = Sizzle.getText = function( elem ) {
 		}
 	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
 		// Use textContent for elements
-		// innerText usage removed for consistency of new lines (jQuery #11153)
+		// innerText usage removed for consistency of new lines (noConflictQuery #11153)
 		if ( typeof elem.textContent === "string" ) {
 			return elem.textContent;
 		} else {
@@ -1840,7 +1840,7 @@ Expr = Sizzle.selectors = {
 							outerCache = node[ expando ] || (node[ expando ] = {});
 
 							// Support: IE <9 only
-							// Defend against cloned attroperties (jQuery gh-1709)
+							// Defend against cloned attroperties (noConflictQuery gh-1709)
 							uniqueCache = outerCache[ node.uniqueID ] ||
 								(outerCache[ node.uniqueID ] = {});
 
@@ -1869,7 +1869,7 @@ Expr = Sizzle.selectors = {
 								outerCache = node[ expando ] || (node[ expando ] = {});
 
 								// Support: IE <9 only
-								// Defend against cloned attroperties (jQuery gh-1709)
+								// Defend against cloned attroperties (noConflictQuery gh-1709)
 								uniqueCache = outerCache[ node.uniqueID ] ||
 									(outerCache[ node.uniqueID ] = {});
 
@@ -1895,7 +1895,7 @@ Expr = Sizzle.selectors = {
 											outerCache = node[ expando ] || (node[ expando ] = {});
 
 											// Support: IE <9 only
-											// Defend against cloned attroperties (jQuery gh-1709)
+											// Defend against cloned attroperties (noConflictQuery gh-1709)
 											uniqueCache = outerCache[ node.uniqueID ] ||
 												(outerCache[ node.uniqueID ] = {});
 
@@ -2282,7 +2282,7 @@ function addCombinator( matcher, combinator, base ) {
 						outerCache = elem[ expando ] || (elem[ expando ] = {});
 
 						// Support: IE <9 only
-						// Defend against cloned attroperties (jQuery gh-1709)
+						// Defend against cloned attroperties (noConflictQuery gh-1709)
 						uniqueCache = outerCache[ elem.uniqueID ] || (outerCache[ elem.uniqueID ] = {});
 
 						if ( skip && skip === elem.nodeName.toLowerCase() ) {
@@ -2792,16 +2792,16 @@ return Sizzle;
 
 
 
-jQuery.find = Sizzle;
-jQuery.expr = Sizzle.selectors;
+noConflictQuery.find = Sizzle;
+noConflictQuery.expr = Sizzle.selectors;
 
 // Deprecated
-jQuery.expr[ ":" ] = jQuery.expr.pseudos;
-jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
-jQuery.text = Sizzle.getText;
-jQuery.isXMLDoc = Sizzle.isXML;
-jQuery.contains = Sizzle.contains;
-jQuery.escapeSelector = Sizzle.escape;
+noConflictQuery.expr[ ":" ] = noConflictQuery.expr.pseudos;
+noConflictQuery.uniqueSort = noConflictQuery.unique = Sizzle.uniqueSort;
+noConflictQuery.text = Sizzle.getText;
+noConflictQuery.isXMLDoc = Sizzle.isXML;
+noConflictQuery.contains = Sizzle.contains;
+noConflictQuery.escapeSelector = Sizzle.escape;
 
 
 
@@ -2812,7 +2812,7 @@ var dir = function( elem, dir, until ) {
 
 	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
 		if ( elem.nodeType === 1 ) {
-			if ( truncate && jQuery( elem ).is( until ) ) {
+			if ( truncate && noConflictQuery( elem ).is( until ) ) {
 				break;
 			}
 			matched.push( elem );
@@ -2835,7 +2835,7 @@ var siblings = function( n, elem ) {
 };
 
 
-var rneedsContext = jQuery.expr.match.needsContext;
+var rneedsContext = noConflictQuery.expr.match.needsContext;
 
 
 
@@ -2852,39 +2852,39 @@ var risSimple = /^.[^:#\[\.,]*$/;
 
 // Implement the identical functionality for filter and not
 function winnow( elements, qualifier, not ) {
-	if ( jQuery.isFunction( qualifier ) ) {
-		return jQuery.grep( elements, function( elem, i ) {
+	if ( noConflictQuery.isFunction( qualifier ) ) {
+		return noConflictQuery.grep( elements, function( elem, i ) {
 			return !!qualifier.call( elem, i, elem ) !== not;
 		} );
 	}
 
 	// Single element
 	if ( qualifier.nodeType ) {
-		return jQuery.grep( elements, function( elem ) {
+		return noConflictQuery.grep( elements, function( elem ) {
 			return ( elem === qualifier ) !== not;
 		} );
 	}
 
-	// Arraylike of elements (jQuery, arguments, Array)
+	// Arraylike of elements (noConflictQuery, arguments, Array)
 	if ( typeof qualifier !== "string" ) {
-		return jQuery.grep( elements, function( elem ) {
+		return noConflictQuery.grep( elements, function( elem ) {
 			return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
 		} );
 	}
 
 	// Simple selector that can be filtered directly, removing non-Elements
 	if ( risSimple.test( qualifier ) ) {
-		return jQuery.filter( qualifier, elements, not );
+		return noConflictQuery.filter( qualifier, elements, not );
 	}
 
 	// Complex selector, compare the two sets, removing non-Elements
-	qualifier = jQuery.filter( qualifier, elements );
-	return jQuery.grep( elements, function( elem ) {
+	qualifier = noConflictQuery.filter( qualifier, elements );
+	return noConflictQuery.grep( elements, function( elem ) {
 		return ( indexOf.call( qualifier, elem ) > -1 ) !== not && elem.nodeType === 1;
 	} );
 }
 
-jQuery.filter = function( expr, elems, not ) {
+noConflictQuery.filter = function( expr, elems, not ) {
 	var elem = elems[ 0 ];
 
 	if ( not ) {
@@ -2892,24 +2892,24 @@ jQuery.filter = function( expr, elems, not ) {
 	}
 
 	if ( elems.length === 1 && elem.nodeType === 1 ) {
-		return jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [];
+		return noConflictQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [];
 	}
 
-	return jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
+	return noConflictQuery.find.matches( expr, noConflictQuery.grep( elems, function( elem ) {
 		return elem.nodeType === 1;
 	} ) );
 };
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	find: function( selector ) {
 		var i, ret,
 			len = this.length,
 			self = this;
 
 		if ( typeof selector !== "string" ) {
-			return this.pushStack( jQuery( selector ).filter( function() {
+			return this.pushStack( noConflictQuery( selector ).filter( function() {
 				for ( i = 0; i < len; i++ ) {
-					if ( jQuery.contains( self[ i ], this ) ) {
+					if ( noConflictQuery.contains( self[ i ], this ) ) {
 						return true;
 					}
 				}
@@ -2919,10 +2919,10 @@ jQuery.fn.extend( {
 		ret = this.pushStack( [] );
 
 		for ( i = 0; i < len; i++ ) {
-			jQuery.find( selector, self[ i ], ret );
+			noConflictQuery.find( selector, self[ i ], ret );
 		}
 
-		return len > 1 ? jQuery.uniqueSort( ret ) : ret;
+		return len > 1 ? noConflictQuery.uniqueSort( ret ) : ret;
 	},
 	filter: function( selector ) {
 		return this.pushStack( winnow( this, selector || [], false ) );
@@ -2937,7 +2937,7 @@ jQuery.fn.extend( {
 			// If this is a positional/relative selector, check membership in the returned set
 			// so $("p:first").is("p:last") won't return true for a doc with two "p".
 			typeof selector === "string" && rneedsContext.test( selector ) ?
-				jQuery( selector ) :
+				noConflictQuery( selector ) :
 				selector || [],
 			false
 		).length;
@@ -2945,11 +2945,11 @@ jQuery.fn.extend( {
 } );
 
 
-// Initialize a jQuery object
+// Initialize a noConflictQuery object
 
 
-// A central reference to the root jQuery(document)
-var rootjQuery,
+// A central reference to the root noConflictQuery(document)
+var rootnoConflictQuery,
 
 	// A simple way to check for HTML strings
 	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
@@ -2957,7 +2957,7 @@ var rootjQuery,
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
-	init = jQuery.fn.init = function( selector, context, root ) {
+	init = noConflictQuery.fn.init = function( selector, context, root ) {
 		var match, elem;
 
 		// HANDLE: $(""), $(null), $(undefined), $(false)
@@ -2965,9 +2965,9 @@ var rootjQuery,
 			return this;
 		}
 
-		// Method init() accepts an alternate rootjQuery
-		// so migrate can support jQuery.sub (gh-2101)
-		root = root || rootjQuery;
+		// Method init() accepts an alternate rootnoConflictQuery
+		// so migrate can support noConflictQuery.sub (gh-2101)
+		root = root || rootnoConflictQuery;
 
 		// Handle HTML strings
 		if ( typeof selector === "string" ) {
@@ -2987,22 +2987,22 @@ var rootjQuery,
 
 				// HANDLE: $(html) -> $(array)
 				if ( match[ 1 ] ) {
-					context = context instanceof jQuery ? context[ 0 ] : context;
+					context = context instanceof noConflictQuery ? context[ 0 ] : context;
 
 					// Option to run scripts is true for back-compat
 					// Intentionally let the error be thrown if parseHTML is not present
-					jQuery.merge( this, jQuery.parseHTML(
+					noConflictQuery.merge( this, noConflictQuery.parseHTML(
 						match[ 1 ],
 						context && context.nodeType ? context.ownerDocument || context : document,
 						true
 					) );
 
 					// HANDLE: $(html, props)
-					if ( rsingleTag.test( match[ 1 ] ) && jQuery.isPlainObject( context ) ) {
+					if ( rsingleTag.test( match[ 1 ] ) && noConflictQuery.isPlainObject( context ) ) {
 						for ( match in context ) {
 
 							// Properties of context are called as methods if possible
-							if ( jQuery.isFunction( this[ match ] ) ) {
+							if ( noConflictQuery.isFunction( this[ match ] ) ) {
 								this[ match ]( context[ match ] );
 
 							// ...and otherwise set as attributes
@@ -3020,7 +3020,7 @@ var rootjQuery,
 
 					if ( elem ) {
 
-						// Inject the element directly into the jQuery object
+						// Inject the element directly into the noConflictQuery object
 						this[ 0 ] = elem;
 						this.length = 1;
 					}
@@ -3028,7 +3028,7 @@ var rootjQuery,
 				}
 
 			// HANDLE: $(expr, $(...))
-			} else if ( !context || context.jquery ) {
+			} else if ( !context || context.noConflictQuery ) {
 				return ( context || root ).find( selector );
 
 			// HANDLE: $(expr, context)
@@ -3045,22 +3045,22 @@ var rootjQuery,
 
 		// HANDLE: $(function)
 		// Shortcut for document ready
-		} else if ( jQuery.isFunction( selector ) ) {
+		} else if ( noConflictQuery.isFunction( selector ) ) {
 			return root.ready !== undefined ?
 				root.ready( selector ) :
 
 				// Execute immediately if ready is not present
-				selector( jQuery );
+				selector( noConflictQuery );
 		}
 
-		return jQuery.makeArray( selector, this );
+		return noConflictQuery.makeArray( selector, this );
 	};
 
-// Give the init function the jQuery prototype for later instantiation
-init.prototype = jQuery.fn;
+// Give the init function the noConflictQuery prototype for later instantiation
+init.prototype = noConflictQuery.fn;
 
 // Initialize central reference
-rootjQuery = jQuery( document );
+rootnoConflictQuery = noConflictQuery( document );
 
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
@@ -3073,15 +3073,15 @@ var rparentsprev = /^(?:parents|prev(?:Until|All))/,
 		prev: true
 	};
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	has: function( target ) {
-		var targets = jQuery( target, this ),
+		var targets = noConflictQuery( target, this ),
 			l = targets.length;
 
 		return this.filter( function() {
 			var i = 0;
 			for ( ; i < l; i++ ) {
-				if ( jQuery.contains( this, targets[ i ] ) ) {
+				if ( noConflictQuery.contains( this, targets[ i ] ) ) {
 					return true;
 				}
 			}
@@ -3093,7 +3093,7 @@ jQuery.fn.extend( {
 			i = 0,
 			l = this.length,
 			matched = [],
-			targets = typeof selectors !== "string" && jQuery( selectors );
+			targets = typeof selectors !== "string" && noConflictQuery( selectors );
 
 		// Positional selectors never match, since there's no _selection_ context
 		if ( !rneedsContext.test( selectors ) ) {
@@ -3106,7 +3106,7 @@ jQuery.fn.extend( {
 
 						// Don't pass non-elements to Sizzle
 						cur.nodeType === 1 &&
-							jQuery.find.matchesSelector( cur, selectors ) ) ) {
+							noConflictQuery.find.matchesSelector( cur, selectors ) ) ) {
 
 						matched.push( cur );
 						break;
@@ -3115,7 +3115,7 @@ jQuery.fn.extend( {
 			}
 		}
 
-		return this.pushStack( matched.length > 1 ? jQuery.uniqueSort( matched ) : matched );
+		return this.pushStack( matched.length > 1 ? noConflictQuery.uniqueSort( matched ) : matched );
 	},
 
 	// Determine the position of an element within the set
@@ -3128,21 +3128,21 @@ jQuery.fn.extend( {
 
 		// Index in selector
 		if ( typeof elem === "string" ) {
-			return indexOf.call( jQuery( elem ), this[ 0 ] );
+			return indexOf.call( noConflictQuery( elem ), this[ 0 ] );
 		}
 
 		// Locate the position of the desired element
 		return indexOf.call( this,
 
-			// If it receives a jQuery object, the first element is used
-			elem.jquery ? elem[ 0 ] : elem
+			// If it receives a noConflictQuery object, the first element is used
+			elem.noConflictQuery ? elem[ 0 ] : elem
 		);
 	},
 
 	add: function( selector, context ) {
 		return this.pushStack(
-			jQuery.uniqueSort(
-				jQuery.merge( this.get(), jQuery( selector, context ) )
+			noConflictQuery.uniqueSort(
+				noConflictQuery.merge( this.get(), noConflictQuery( selector, context ) )
 			)
 		);
 	},
@@ -3159,7 +3159,7 @@ function sibling( cur, dir ) {
 	return cur;
 }
 
-jQuery.each( {
+noConflictQuery.each( {
 	parent: function( elem ) {
 		var parent = elem.parentNode;
 		return parent && parent.nodeType !== 11 ? parent : null;
@@ -3206,25 +3206,25 @@ jQuery.each( {
             elem = elem.content || elem;
         }
 
-        return jQuery.merge( [], elem.childNodes );
+        return noConflictQuery.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
-	jQuery.fn[ name ] = function( until, selector ) {
-		var matched = jQuery.map( this, fn, until );
+	noConflictQuery.fn[ name ] = function( until, selector ) {
+		var matched = noConflictQuery.map( this, fn, until );
 
 		if ( name.slice( -5 ) !== "Until" ) {
 			selector = until;
 		}
 
 		if ( selector && typeof selector === "string" ) {
-			matched = jQuery.filter( selector, matched );
+			matched = noConflictQuery.filter( selector, matched );
 		}
 
 		if ( this.length > 1 ) {
 
 			// Remove duplicates
 			if ( !guaranteedUnique[ name ] ) {
-				jQuery.uniqueSort( matched );
+				noConflictQuery.uniqueSort( matched );
 			}
 
 			// Reverse order for parents* and prev-derivatives
@@ -3243,7 +3243,7 @@ var rnothtmlwhite = ( /[^\x20\t\r\n\f]+/g );
 // Convert String-formatted options into Object-formatted ones
 function createOptions( options ) {
 	var object = {};
-	jQuery.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
+	noConflictQuery.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
 		object[ flag ] = true;
 	} );
 	return object;
@@ -3271,13 +3271,13 @@ function createOptions( options ) {
  *	stopOnFalse:	interrupt callings when a callback returns false
  *
  */
-jQuery.Callbacks = function( options ) {
+noConflictQuery.Callbacks = function( options ) {
 
 	// Convert options from String-formatted to Object-formatted if needed
 	// (we check in cache first)
 	options = typeof options === "string" ?
 		createOptions( options ) :
-		jQuery.extend( {}, options );
+		noConflictQuery.extend( {}, options );
 
 	var // Flag to know if list is currently firing
 		firing,
@@ -3359,12 +3359,12 @@ jQuery.Callbacks = function( options ) {
 					}
 
 					( function add( args ) {
-						jQuery.each( args, function( _, arg ) {
-							if ( jQuery.isFunction( arg ) ) {
+						noConflictQuery.each( args, function( _, arg ) {
+							if ( noConflictQuery.isFunction( arg ) ) {
 								if ( !options.unique || !self.has( arg ) ) {
 									list.push( arg );
 								}
-							} else if ( arg && arg.length && jQuery.type( arg ) !== "string" ) {
+							} else if ( arg && arg.length && noConflictQuery.type( arg ) !== "string" ) {
 
 								// Inspect recursively
 								add( arg );
@@ -3381,9 +3381,9 @@ jQuery.Callbacks = function( options ) {
 
 			// Remove a callback from the list
 			remove: function() {
-				jQuery.each( arguments, function( _, arg ) {
+				noConflictQuery.each( arguments, function( _, arg ) {
 					var index;
-					while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
+					while ( ( index = noConflictQuery.inArray( arg, list, index ) ) > -1 ) {
 						list.splice( index, 1 );
 
 						// Handle firing indexes
@@ -3399,7 +3399,7 @@ jQuery.Callbacks = function( options ) {
 			// If no argument is given, return whether or not list has callbacks attached.
 			has: function( fn ) {
 				return fn ?
-					jQuery.inArray( fn, list ) > -1 :
+					noConflictQuery.inArray( fn, list ) > -1 :
 					list.length > 0;
 			},
 
@@ -3479,11 +3479,11 @@ function adoptValue( value, resolve, reject, noValue ) {
 	try {
 
 		// Check for promise aspect first to privilege synchronous behavior
-		if ( value && jQuery.isFunction( ( method = value.promise ) ) ) {
+		if ( value && noConflictQuery.isFunction( ( method = value.promise ) ) ) {
 			method.call( value ).done( resolve ).fail( reject );
 
 		// Other thenables
-		} else if ( value && jQuery.isFunction( ( method = value.then ) ) ) {
+		} else if ( value && noConflictQuery.isFunction( ( method = value.then ) ) ) {
 			method.call( value, resolve, reject );
 
 		// Other non-thenables
@@ -3496,7 +3496,7 @@ function adoptValue( value, resolve, reject, noValue ) {
 		}
 
 	// For Promises/A+, convert exceptions into rejections
-	// Since jQuery.when doesn't unwrap thenables, we can skip the extra checks appearing in
+	// Since noConflictQuery.when doesn't unwrap thenables, we can skip the extra checks appearing in
 	// Deferred#then to conditionally suppress rejection.
 	} catch ( value ) {
 
@@ -3506,19 +3506,19 @@ function adoptValue( value, resolve, reject, noValue ) {
 	}
 }
 
-jQuery.extend( {
+noConflictQuery.extend( {
 
 	Deferred: function( func ) {
 		var tuples = [
 
 				// action, add listener, callbacks,
 				// ... .then handlers, argument index, [final state]
-				[ "notify", "progress", jQuery.Callbacks( "memory" ),
-					jQuery.Callbacks( "memory" ), 2 ],
-				[ "resolve", "done", jQuery.Callbacks( "once memory" ),
-					jQuery.Callbacks( "once memory" ), 0, "resolved" ],
-				[ "reject", "fail", jQuery.Callbacks( "once memory" ),
-					jQuery.Callbacks( "once memory" ), 1, "rejected" ]
+				[ "notify", "progress", noConflictQuery.Callbacks( "memory" ),
+					noConflictQuery.Callbacks( "memory" ), 2 ],
+				[ "resolve", "done", noConflictQuery.Callbacks( "once memory" ),
+					noConflictQuery.Callbacks( "once memory" ), 0, "resolved" ],
+				[ "reject", "fail", noConflictQuery.Callbacks( "once memory" ),
+					noConflictQuery.Callbacks( "once memory" ), 1, "rejected" ]
 			],
 			state = "pending",
 			promise = {
@@ -3537,18 +3537,18 @@ jQuery.extend( {
 				pipe: function( /* fnDone, fnFail, fnProgress */ ) {
 					var fns = arguments;
 
-					return jQuery.Deferred( function( newDefer ) {
-						jQuery.each( tuples, function( i, tuple ) {
+					return noConflictQuery.Deferred( function( newDefer ) {
+						noConflictQuery.each( tuples, function( i, tuple ) {
 
 							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
-							var fn = jQuery.isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+							var fn = noConflictQuery.isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
 
 							// deferred.progress(function() { bind to newDefer or newDefer.notify })
 							// deferred.done(function() { bind to newDefer or newDefer.resolve })
 							// deferred.fail(function() { bind to newDefer or newDefer.reject })
 							deferred[ tuple[ 1 ] ]( function() {
 								var returned = fn && fn.apply( this, arguments );
-								if ( returned && jQuery.isFunction( returned.promise ) ) {
+								if ( returned && noConflictQuery.isFunction( returned.promise ) ) {
 									returned.promise()
 										.progress( newDefer.notify )
 										.done( newDefer.resolve )
@@ -3602,7 +3602,7 @@ jQuery.extend( {
 										returned.then;
 
 									// Handle a returned thenable
-									if ( jQuery.isFunction( then ) ) {
+									if ( noConflictQuery.isFunction( then ) ) {
 
 										// Special processors (notify) just wait for resolution
 										if ( special ) {
@@ -3651,8 +3651,8 @@ jQuery.extend( {
 											mightThrow();
 										} catch ( e ) {
 
-											if ( jQuery.Deferred.exceptionHook ) {
-												jQuery.Deferred.exceptionHook( e,
+											if ( noConflictQuery.Deferred.exceptionHook ) {
+												noConflictQuery.Deferred.exceptionHook( e,
 													process.stackTrace );
 											}
 
@@ -3683,22 +3683,22 @@ jQuery.extend( {
 
 								// Call an optional hook to record the stack, in case of exception
 								// since it's otherwise lost when execution goes async
-								if ( jQuery.Deferred.getStackHook ) {
-									process.stackTrace = jQuery.Deferred.getStackHook();
+								if ( noConflictQuery.Deferred.getStackHook ) {
+									process.stackTrace = noConflictQuery.Deferred.getStackHook();
 								}
 								window.setTimeout( process );
 							}
 						};
 					}
 
-					return jQuery.Deferred( function( newDefer ) {
+					return noConflictQuery.Deferred( function( newDefer ) {
 
 						// progress_handlers.add( ... )
 						tuples[ 0 ][ 3 ].add(
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onProgress ) ?
+								noConflictQuery.isFunction( onProgress ) ?
 									onProgress :
 									Identity,
 								newDefer.notifyWith
@@ -3710,7 +3710,7 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onFulfilled ) ?
+								noConflictQuery.isFunction( onFulfilled ) ?
 									onFulfilled :
 									Identity
 							)
@@ -3721,7 +3721,7 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onRejected ) ?
+								noConflictQuery.isFunction( onRejected ) ?
 									onRejected :
 									Thrower
 							)
@@ -3732,13 +3732,13 @@ jQuery.extend( {
 				// Get a promise for this deferred
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
-					return obj != null ? jQuery.extend( obj, promise ) : promise;
+					return obj != null ? noConflictQuery.extend( obj, promise ) : promise;
 				}
 			},
 			deferred = {};
 
 		// Add list-specific methods
-		jQuery.each( tuples, function( i, tuple ) {
+		noConflictQuery.each( tuples, function( i, tuple ) {
 			var list = tuple[ 2 ],
 				stateString = tuple[ 5 ];
 
@@ -3812,7 +3812,7 @@ jQuery.extend( {
 			resolveValues = slice.call( arguments ),
 
 			// the master Deferred
-			master = jQuery.Deferred(),
+			master = noConflictQuery.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
@@ -3832,7 +3832,7 @@ jQuery.extend( {
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( master.state() === "pending" ||
-				jQuery.isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+				noConflictQuery.isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
 
 				return master.then();
 			}
@@ -3852,19 +3852,19 @@ jQuery.extend( {
 // warn about them ASAP rather than swallowing them by default.
 var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
 
-jQuery.Deferred.exceptionHook = function( error, stack ) {
+noConflictQuery.Deferred.exceptionHook = function( error, stack ) {
 
 	// Support: IE 8 - 9 only
 	// Console exists when dev tools are open, which can happen at any time
 	if ( window.console && window.console.warn && error && rerrorNames.test( error.name ) ) {
-		window.console.warn( "jQuery.Deferred exception: " + error.message, error.stack, stack );
+		window.console.warn( "noConflictQuery.Deferred exception: " + error.message, error.stack, stack );
 	}
 };
 
 
 
 
-jQuery.readyException = function( error ) {
+noConflictQuery.readyException = function( error ) {
 	window.setTimeout( function() {
 		throw error;
 	} );
@@ -3874,24 +3874,24 @@ jQuery.readyException = function( error ) {
 
 
 // The deferred used on DOM ready
-var readyList = jQuery.Deferred();
+var readyList = noConflictQuery.Deferred();
 
-jQuery.fn.ready = function( fn ) {
+noConflictQuery.fn.ready = function( fn ) {
 
 	readyList
 		.then( fn )
 
-		// Wrap jQuery.readyException in a function so that the lookup
+		// Wrap noConflictQuery.readyException in a function so that the lookup
 		// happens at the time of error handling instead of callback
 		// registration.
 		.catch( function( error ) {
-			jQuery.readyException( error );
+			noConflictQuery.readyException( error );
 		} );
 
 	return this;
 };
 
-jQuery.extend( {
+noConflictQuery.extend( {
 
 	// Is the DOM ready to be used? Set to true once it occurs.
 	isReady: false,
@@ -3904,30 +3904,30 @@ jQuery.extend( {
 	ready: function( wait ) {
 
 		// Abort if there are pending holds or we're already ready
-		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+		if ( wait === true ? --noConflictQuery.readyWait : noConflictQuery.isReady ) {
 			return;
 		}
 
 		// Remember that the DOM is ready
-		jQuery.isReady = true;
+		noConflictQuery.isReady = true;
 
 		// If a normal DOM Ready event fired, decrement, and wait if need be
-		if ( wait !== true && --jQuery.readyWait > 0 ) {
+		if ( wait !== true && --noConflictQuery.readyWait > 0 ) {
 			return;
 		}
 
 		// If there are functions bound, to execute
-		readyList.resolveWith( document, [ jQuery ] );
+		readyList.resolveWith( document, [ noConflictQuery ] );
 	}
 } );
 
-jQuery.ready.then = readyList.then;
+noConflictQuery.ready.then = readyList.then;
 
 // The ready event handler and self cleanup method
 function completed() {
 	document.removeEventListener( "DOMContentLoaded", completed );
 	window.removeEventListener( "load", completed );
-	jQuery.ready();
+	noConflictQuery.ready();
 }
 
 // Catch cases where $(document).ready() is called
@@ -3938,7 +3938,7 @@ if ( document.readyState === "complete" ||
 	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
 	// Handle it asynchronously to allow scripts the opportunity to delay ready
-	window.setTimeout( jQuery.ready );
+	window.setTimeout( noConflictQuery.ready );
 
 } else {
 
@@ -3960,7 +3960,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		bulk = key == null;
 
 	// Sets many values
-	if ( jQuery.type( key ) === "object" ) {
+	if ( noConflictQuery.type( key ) === "object" ) {
 		chainable = true;
 		for ( i in key ) {
 			access( elems, fn, i, key[ i ], true, emptyGet, raw );
@@ -3970,7 +3970,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	} else if ( value !== undefined ) {
 		chainable = true;
 
-		if ( !jQuery.isFunction( value ) ) {
+		if ( !noConflictQuery.isFunction( value ) ) {
 			raw = true;
 		}
 
@@ -3985,7 +3985,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 			} else {
 				bulk = fn;
 				fn = function( elem, key, value ) {
-					return bulk.call( jQuery( elem ), value );
+					return bulk.call( noConflictQuery( elem ), value );
 				};
 			}
 		}
@@ -4027,7 +4027,7 @@ var acceptData = function( owner ) {
 
 
 function Data() {
-	this.expando = jQuery.expando + Data.uid++;
+	this.expando = noConflictQuery.expando + Data.uid++;
 }
 
 Data.uid = 1;
@@ -4074,14 +4074,14 @@ Data.prototype = {
 		// Handle: [ owner, key, value ] args
 		// Always use camelCase key (gh-2257)
 		if ( typeof data === "string" ) {
-			cache[ jQuery.camelCase( data ) ] = value;
+			cache[ noConflictQuery.camelCase( data ) ] = value;
 
 		// Handle: [ owner, { properties } ] args
 		} else {
 
 			// Copy the properties one-by-one to the cache object
 			for ( prop in data ) {
-				cache[ jQuery.camelCase( prop ) ] = data[ prop ];
+				cache[ noConflictQuery.camelCase( prop ) ] = data[ prop ];
 			}
 		}
 		return cache;
@@ -4091,7 +4091,7 @@ Data.prototype = {
 			this.cache( owner ) :
 
 			// Always use camelCase key (gh-2257)
-			owner[ this.expando ] && owner[ this.expando ][ jQuery.camelCase( key ) ];
+			owner[ this.expando ] && owner[ this.expando ][ noConflictQuery.camelCase( key ) ];
 	},
 	access: function( owner, key, value ) {
 
@@ -4139,9 +4139,9 @@ Data.prototype = {
 
 				// If key is an array of keys...
 				// We always set camelCase keys, so remove that.
-				key = key.map( jQuery.camelCase );
+				key = key.map( noConflictQuery.camelCase );
 			} else {
-				key = jQuery.camelCase( key );
+				key = noConflictQuery.camelCase( key );
 
 				// If a key with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace
@@ -4158,7 +4158,7 @@ Data.prototype = {
 		}
 
 		// Remove the expando if there's no more data
-		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
+		if ( key === undefined || noConflictQuery.isEmptyObject( cache ) ) {
 
 			// Support: Chrome <=35 - 45
 			// Webkit & Blink performance suffers when deleting properties
@@ -4173,7 +4173,7 @@ Data.prototype = {
 	},
 	hasData: function( owner ) {
 		var cache = owner[ this.expando ];
-		return cache !== undefined && !jQuery.isEmptyObject( cache );
+		return cache !== undefined && !noConflictQuery.isEmptyObject( cache );
 	}
 };
 var dataPriv = new Data();
@@ -4243,7 +4243,7 @@ function dataAttr( elem, key, data ) {
 	return data;
 }
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	hasData: function( elem ) {
 		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
 	},
@@ -4267,7 +4267,7 @@ jQuery.extend( {
 	}
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	data: function( key, value ) {
 		var i, name, data,
 			elem = this[ 0 ],
@@ -4287,7 +4287,7 @@ jQuery.fn.extend( {
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
-								name = jQuery.camelCase( name.slice( 5 ) );
+								name = noConflictQuery.camelCase( name.slice( 5 ) );
 								dataAttr( elem, name, data[ name ] );
 							}
 						}
@@ -4309,9 +4309,9 @@ jQuery.fn.extend( {
 		return access( this, function( value ) {
 			var data;
 
-			// The calling jQuery object (element matches) is not empty
+			// The calling noConflictQuery object (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
-			// `value` parameter was not undefined. An empty jQuery object
+			// `value` parameter was not undefined. An empty noConflictQuery object
 			// will result in `undefined` for elem = this[ 0 ] which will
 			// throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
@@ -4351,7 +4351,7 @@ jQuery.fn.extend( {
 } );
 
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	queue: function( elem, type, data ) {
 		var queue;
 
@@ -4362,7 +4362,7 @@ jQuery.extend( {
 			// Speed up dequeue by getting out quickly if this is just a lookup
 			if ( data ) {
 				if ( !queue || Array.isArray( data ) ) {
-					queue = dataPriv.access( elem, type, jQuery.makeArray( data ) );
+					queue = dataPriv.access( elem, type, noConflictQuery.makeArray( data ) );
 				} else {
 					queue.push( data );
 				}
@@ -4374,12 +4374,12 @@ jQuery.extend( {
 	dequeue: function( elem, type ) {
 		type = type || "fx";
 
-		var queue = jQuery.queue( elem, type ),
+		var queue = noConflictQuery.queue( elem, type ),
 			startLength = queue.length,
 			fn = queue.shift(),
-			hooks = jQuery._queueHooks( elem, type ),
+			hooks = noConflictQuery._queueHooks( elem, type ),
 			next = function() {
-				jQuery.dequeue( elem, type );
+				noConflictQuery.dequeue( elem, type );
 			};
 
 		// If the fx queue is dequeued, always remove the progress sentinel
@@ -4410,14 +4410,14 @@ jQuery.extend( {
 	_queueHooks: function( elem, type ) {
 		var key = type + "queueHooks";
 		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
-			empty: jQuery.Callbacks( "once memory" ).add( function() {
+			empty: noConflictQuery.Callbacks( "once memory" ).add( function() {
 				dataPriv.remove( elem, [ type + "queue", key ] );
 			} )
 		} );
 	}
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	queue: function( type, data ) {
 		var setter = 2;
 
@@ -4428,25 +4428,25 @@ jQuery.fn.extend( {
 		}
 
 		if ( arguments.length < setter ) {
-			return jQuery.queue( this[ 0 ], type );
+			return noConflictQuery.queue( this[ 0 ], type );
 		}
 
 		return data === undefined ?
 			this :
 			this.each( function() {
-				var queue = jQuery.queue( this, type, data );
+				var queue = noConflictQuery.queue( this, type, data );
 
 				// Ensure a hooks for this queue
-				jQuery._queueHooks( this, type );
+				noConflictQuery._queueHooks( this, type );
 
 				if ( type === "fx" && queue[ 0 ] !== "inprogress" ) {
-					jQuery.dequeue( this, type );
+					noConflictQuery.dequeue( this, type );
 				}
 			} );
 	},
 	dequeue: function( type ) {
 		return this.each( function() {
-			jQuery.dequeue( this, type );
+			noConflictQuery.dequeue( this, type );
 		} );
 	},
 	clearQueue: function( type ) {
@@ -4458,7 +4458,7 @@ jQuery.fn.extend( {
 	promise: function( type, obj ) {
 		var tmp,
 			count = 1,
-			defer = jQuery.Deferred(),
+			defer = noConflictQuery.Deferred(),
 			elements = this,
 			i = this.length,
 			resolve = function() {
@@ -4493,7 +4493,7 @@ var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
 
 var isHiddenWithinTree = function( elem, el ) {
 
-		// isHiddenWithinTree might be called from jQuery#filter function;
+		// isHiddenWithinTree might be called from noConflictQuery#filter function;
 		// in that case, element will be second argument
 		elem = el || elem;
 
@@ -4505,9 +4505,9 @@ var isHiddenWithinTree = function( elem, el ) {
 			// Support: Firefox <=43 - 45
 			// Disconnected elements can have computed display: none, so first confirm that elem is
 			// in the document.
-			jQuery.contains( elem.ownerDocument, elem ) &&
+			noConflictQuery.contains( elem.ownerDocument, elem ) &&
 
-			jQuery.css( elem, "display" ) === "none";
+			noConflictQuery.css( elem, "display" ) === "none";
 	};
 
 var swap = function( elem, options, callback, args ) {
@@ -4542,18 +4542,18 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 				return tween.cur();
 			} :
 			function() {
-				return jQuery.css( elem, prop, "" );
+				return noConflictQuery.css( elem, prop, "" );
 			},
 		initial = currentValue(),
-		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+		unit = valueParts && valueParts[ 3 ] || ( noConflictQuery.cssNumber[ prop ] ? "" : "px" ),
 
 		// Starting value computation is required for potential unit mismatches
-		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
-			rcssNum.exec( jQuery.css( elem, prop ) );
+		initialInUnit = ( noConflictQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssNum.exec( noConflictQuery.css( elem, prop ) );
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
-		// Trust units reported by jQuery.css
+		// Trust units reported by noConflictQuery.css
 		unit = unit || initialInUnit[ 3 ];
 
 		// Make sure we update the tween properties later on
@@ -4570,7 +4570,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 
 			// Adjust and apply
 			initialInUnit = initialInUnit / scale;
-			jQuery.style( elem, prop, initialInUnit + unit );
+			noConflictQuery.style( elem, prop, initialInUnit + unit );
 
 		// Update scale, tolerating zero or NaN from tween.cur()
 		// Break the loop if scale is unchanged or perfect, or if we've just had enough.
@@ -4609,7 +4609,7 @@ function getDefaultDisplay( elem ) {
 	}
 
 	temp = doc.body.appendChild( doc.createElement( nodeName ) );
-	display = jQuery.css( temp, "display" );
+	display = noConflictQuery.css( temp, "display" );
 
 	temp.parentNode.removeChild( temp );
 
@@ -4669,7 +4669,7 @@ function showHide( elements, show ) {
 	return elements;
 }
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	show: function() {
 		return showHide( this, true );
 	},
@@ -4683,9 +4683,9 @@ jQuery.fn.extend( {
 
 		return this.each( function() {
 			if ( isHiddenWithinTree( this ) ) {
-				jQuery( this ).show();
+				noConflictQuery( this ).show();
 			} else {
-				jQuery( this ).hide();
+				noConflictQuery( this ).hide();
 			}
 		} );
 	}
@@ -4739,7 +4739,7 @@ function getAll( context, tag ) {
 	}
 
 	if ( tag === undefined || tag && nodeName( context, tag ) ) {
-		return jQuery.merge( [ context ], ret );
+		return noConflictQuery.merge( [ context ], ret );
 	}
 
 	return ret;
@@ -4776,11 +4776,11 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		if ( elem || elem === 0 ) {
 
 			// Add nodes directly
-			if ( jQuery.type( elem ) === "object" ) {
+			if ( noConflictQuery.type( elem ) === "object" ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
-				jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
+				noConflictQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
 
 			// Convert non-html into a text node
 			} else if ( !rhtml.test( elem ) ) {
@@ -4793,7 +4793,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 				// Deserialize a standard representation
 				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
 				wrap = wrapMap[ tag ] || wrapMap._default;
-				tmp.innerHTML = wrap[ 1 ] + jQuery.htmlPrefilter( elem ) + wrap[ 2 ];
+				tmp.innerHTML = wrap[ 1 ] + noConflictQuery.htmlPrefilter( elem ) + wrap[ 2 ];
 
 				// Descend through wrappers to the right content
 				j = wrap[ 0 ];
@@ -4803,7 +4803,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
-				jQuery.merge( nodes, tmp.childNodes );
+				noConflictQuery.merge( nodes, tmp.childNodes );
 
 				// Remember the top-level container
 				tmp = fragment.firstChild;
@@ -4821,14 +4821,14 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	while ( ( elem = nodes[ i++ ] ) ) {
 
 		// Skip elements already in the context collection (trac-4087)
-		if ( selection && jQuery.inArray( elem, selection ) > -1 ) {
+		if ( selection && noConflictQuery.inArray( elem, selection ) > -1 ) {
 			if ( ignored ) {
 				ignored.push( elem );
 			}
 			continue;
 		}
 
-		contains = jQuery.contains( elem.ownerDocument, elem );
+		contains = noConflictQuery.contains( elem.ownerDocument, elem );
 
 		// Append to fragment
 		tmp = getAll( fragment.appendChild( elem ), "script" );
@@ -4951,15 +4951,15 @@ function on( elem, types, selector, data, fn, one ) {
 		fn = function( event ) {
 
 			// Can use an empty set, since event contains the info
-			jQuery().off( event );
+			noConflictQuery().off( event );
 			return origFn.apply( this, arguments );
 		};
 
 		// Use same guid so caller can remove using origFn
-		fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
+		fn.guid = origFn.guid || ( origFn.guid = noConflictQuery.guid++ );
 	}
 	return elem.each( function() {
-		jQuery.event.add( this, types, fn, data, selector );
+		noConflictQuery.event.add( this, types, fn, data, selector );
 	} );
 }
 
@@ -4967,7 +4967,7 @@ function on( elem, types, selector, data, fn, one ) {
  * Helper functions for managing events -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
-jQuery.event = {
+noConflictQuery.event = {
 
 	global: {},
 
@@ -4993,12 +4993,12 @@ jQuery.event = {
 		// Ensure that invalid selectors throw exceptions at attach time
 		// Evaluate against documentElement in case elem is a non-element node (e.g., document)
 		if ( selector ) {
-			jQuery.find.matchesSelector( documentElement, selector );
+			noConflictQuery.find.matchesSelector( documentElement, selector );
 		}
 
 		// Make sure that the handler has a unique ID, used to find/remove it later
 		if ( !handler.guid ) {
-			handler.guid = jQuery.guid++;
+			handler.guid = noConflictQuery.guid++;
 		}
 
 		// Init the element's event structure and main handler, if this is the first
@@ -5008,10 +5008,10 @@ jQuery.event = {
 		if ( !( eventHandle = elemData.handle ) ) {
 			eventHandle = elemData.handle = function( e ) {
 
-				// Discard the second event of a jQuery.event.trigger() and
+				// Discard the second event of a noConflictQuery.event.trigger() and
 				// when an event is called after a page has unloaded
-				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
-					jQuery.event.dispatch.apply( elem, arguments ) : undefined;
+				return typeof noConflictQuery !== "undefined" && noConflictQuery.event.triggered !== e.type ?
+					noConflictQuery.event.dispatch.apply( elem, arguments ) : undefined;
 			};
 		}
 
@@ -5029,23 +5029,23 @@ jQuery.event = {
 			}
 
 			// If event changes its type, use the special event handlers for the changed type
-			special = jQuery.event.special[ type ] || {};
+			special = noConflictQuery.event.special[ type ] || {};
 
 			// If selector defined, determine special event api type, otherwise given type
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 
 			// Update special based on newly reset type
-			special = jQuery.event.special[ type ] || {};
+			special = noConflictQuery.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
-			handleObj = jQuery.extend( {
+			handleObj = noConflictQuery.extend( {
 				type: type,
 				origType: origType,
 				data: data,
 				handler: handler,
 				guid: handler.guid,
 				selector: selector,
-				needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+				needsContext: selector && noConflictQuery.expr.match.needsContext.test( selector ),
 				namespace: namespaces.join( "." )
 			}, handleObjIn );
 
@@ -5080,7 +5080,7 @@ jQuery.event = {
 			}
 
 			// Keep track of which events have ever been used, for event optimization
-			jQuery.event.global[ type ] = true;
+			noConflictQuery.event.global[ type ] = true;
 		}
 
 	},
@@ -5108,12 +5108,12 @@ jQuery.event = {
 			// Unbind all events (on this namespace, if provided) for the element
 			if ( !type ) {
 				for ( type in events ) {
-					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
+					noConflictQuery.event.remove( elem, type + types[ t ], handler, selector, true );
 				}
 				continue;
 			}
 
-			special = jQuery.event.special[ type ] || {};
+			special = noConflictQuery.event.special[ type ] || {};
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 			handlers = events[ type ] || [];
 			tmp = tmp[ 2 ] &&
@@ -5146,7 +5146,7 @@ jQuery.event = {
 				if ( !special.teardown ||
 					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
 
-					jQuery.removeEvent( elem, type, elemData.handle );
+					noConflictQuery.removeEvent( elem, type, elemData.handle );
 				}
 
 				delete events[ type ];
@@ -5154,22 +5154,22 @@ jQuery.event = {
 		}
 
 		// Remove data and the expando if it's no longer used
-		if ( jQuery.isEmptyObject( events ) ) {
+		if ( noConflictQuery.isEmptyObject( events ) ) {
 			dataPriv.remove( elem, "handle events" );
 		}
 	},
 
 	dispatch: function( nativeEvent ) {
 
-		// Make a writable jQuery.Event from the native event object
-		var event = jQuery.event.fix( nativeEvent );
+		// Make a writable noConflictQuery.Event from the native event object
+		var event = noConflictQuery.event.fix( nativeEvent );
 
 		var i, j, ret, matched, handleObj, handlerQueue,
 			args = new Array( arguments.length ),
 			handlers = ( dataPriv.get( this, "events" ) || {} )[ event.type ] || [],
-			special = jQuery.event.special[ event.type ] || {};
+			special = noConflictQuery.event.special[ event.type ] || {};
 
-		// Use the fix-ed jQuery.Event rather than the (read-only) native event
+		// Use the fix-ed noConflictQuery.Event rather than the (read-only) native event
 		args[ 0 ] = event;
 
 		for ( i = 1; i < arguments.length; i++ ) {
@@ -5184,7 +5184,7 @@ jQuery.event = {
 		}
 
 		// Determine handlers
-		handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+		handlerQueue = noConflictQuery.event.handlers.call( this, event, handlers );
 
 		// Run delegates first; they may want to stop propagation beneath us
 		i = 0;
@@ -5202,7 +5202,7 @@ jQuery.event = {
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
 
-					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle ||
+					ret = ( ( noConflictQuery.event.special[ handleObj.origType ] || {} ).handle ||
 						handleObj.handler ).apply( matched.elem, args );
 
 					if ( ret !== undefined ) {
@@ -5258,8 +5258,8 @@ jQuery.event = {
 
 						if ( matchedSelectors[ sel ] === undefined ) {
 							matchedSelectors[ sel ] = handleObj.needsContext ?
-								jQuery( sel, this ).index( cur ) > -1 :
-								jQuery.find( sel, this, null, [ cur ] ).length;
+								noConflictQuery( sel, this ).index( cur ) > -1 :
+								noConflictQuery.find( sel, this, null, [ cur ] ).length;
 						}
 						if ( matchedSelectors[ sel ] ) {
 							matchedHandlers.push( handleObj );
@@ -5282,11 +5282,11 @@ jQuery.event = {
 	},
 
 	addProp: function( name, hook ) {
-		Object.defineProperty( jQuery.Event.prototype, name, {
+		Object.defineProperty( noConflictQuery.Event.prototype, name, {
 			enumerable: true,
 			configurable: true,
 
-			get: jQuery.isFunction( hook ) ?
+			get: noConflictQuery.isFunction( hook ) ?
 				function() {
 					if ( this.originalEvent ) {
 							return hook( this.originalEvent );
@@ -5310,9 +5310,9 @@ jQuery.event = {
 	},
 
 	fix: function( originalEvent ) {
-		return originalEvent[ jQuery.expando ] ?
+		return originalEvent[ noConflictQuery.expando ] ?
 			originalEvent :
-			new jQuery.Event( originalEvent );
+			new noConflictQuery.Event( originalEvent );
 	},
 
 	special: {
@@ -5370,7 +5370,7 @@ jQuery.event = {
 	}
 };
 
-jQuery.removeEvent = function( elem, type, handle ) {
+noConflictQuery.removeEvent = function( elem, type, handle ) {
 
 	// This "if" is needed for plain objects
 	if ( elem.removeEventListener ) {
@@ -5378,11 +5378,11 @@ jQuery.removeEvent = function( elem, type, handle ) {
 	}
 };
 
-jQuery.Event = function( src, props ) {
+noConflictQuery.Event = function( src, props ) {
 
 	// Allow instantiation without the 'new' keyword
-	if ( !( this instanceof jQuery.Event ) ) {
-		return new jQuery.Event( src, props );
+	if ( !( this instanceof noConflictQuery.Event ) ) {
+		return new noConflictQuery.Event( src, props );
 	}
 
 	// Event object
@@ -5417,20 +5417,20 @@ jQuery.Event = function( src, props ) {
 
 	// Put explicitly provided properties onto the event object
 	if ( props ) {
-		jQuery.extend( this, props );
+		noConflictQuery.extend( this, props );
 	}
 
 	// Create a timestamp if incoming event doesn't have one
-	this.timeStamp = src && src.timeStamp || jQuery.now();
+	this.timeStamp = src && src.timeStamp || noConflictQuery.now();
 
 	// Mark it as fixed
-	this[ jQuery.expando ] = true;
+	this[ noConflictQuery.expando ] = true;
 };
 
-// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+// noConflictQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
 // https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
-jQuery.Event.prototype = {
-	constructor: jQuery.Event,
+noConflictQuery.Event.prototype = {
+	constructor: noConflictQuery.Event,
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
@@ -5468,7 +5468,7 @@ jQuery.Event.prototype = {
 };
 
 // Includes all common event props including KeyEvent and MouseEvent specific props
-jQuery.each( {
+noConflictQuery.each( {
 	altKey: true,
 	bubbles: true,
 	cancelable: true,
@@ -5526,23 +5526,23 @@ jQuery.each( {
 
 		return event.which;
 	}
-}, jQuery.event.addProp );
+}, noConflictQuery.event.addProp );
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
-// so that event delegation works in jQuery.
+// so that event delegation works in noConflictQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
 // Support: Safari 7 only
 // Safari sends mouseenter too often; see:
 // https://bugs.chromium.org/p/chromium/issues/detail?id=470258
 // for the description of the bug (it existed in older Chrome versions as well).
-jQuery.each( {
+noConflictQuery.each( {
 	mouseenter: "mouseover",
 	mouseleave: "mouseout",
 	pointerenter: "pointerover",
 	pointerleave: "pointerout"
 }, function( orig, fix ) {
-	jQuery.event.special[ orig ] = {
+	noConflictQuery.event.special[ orig ] = {
 		delegateType: fix,
 		bindType: fix,
 
@@ -5554,7 +5554,7 @@ jQuery.each( {
 
 			// For mouseenter/leave call the handler if related is outside the target.
 			// NB: No relatedTarget if the mouse left/entered the browser window
-			if ( !related || ( related !== target && !jQuery.contains( target, related ) ) ) {
+			if ( !related || ( related !== target && !noConflictQuery.contains( target, related ) ) ) {
 				event.type = handleObj.origType;
 				ret = handleObj.handler.apply( this, arguments );
 				event.type = fix;
@@ -5564,7 +5564,7 @@ jQuery.each( {
 	};
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 
 	on: function( types, selector, data, fn ) {
 		return on( this, types, selector, data, fn );
@@ -5576,9 +5576,9 @@ jQuery.fn.extend( {
 		var handleObj, type;
 		if ( types && types.preventDefault && types.handleObj ) {
 
-			// ( event )  dispatched jQuery.Event
+			// ( event )  dispatched noConflictQuery.Event
 			handleObj = types.handleObj;
-			jQuery( types.delegateTarget ).off(
+			noConflictQuery( types.delegateTarget ).off(
 				handleObj.namespace ?
 					handleObj.origType + "." + handleObj.namespace :
 					handleObj.origType,
@@ -5605,7 +5605,7 @@ jQuery.fn.extend( {
 			fn = returnFalse;
 		}
 		return this.each( function() {
-			jQuery.event.remove( this, types, fn, selector );
+			noConflictQuery.event.remove( this, types, fn, selector );
 		} );
 	}
 } );
@@ -5635,7 +5635,7 @@ function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
-		return jQuery( ">tbody", elem )[ 0 ] || elem;
+		return noConflictQuery( ">tbody", elem )[ 0 ] || elem;
 	}
 
 	return elem;
@@ -5677,7 +5677,7 @@ function cloneCopyEvent( src, dest ) {
 
 			for ( type in events ) {
 				for ( i = 0, l = events[ type ].length; i < l; i++ ) {
-					jQuery.event.add( dest, type, events[ type ][ i ] );
+					noConflictQuery.event.add( dest, type, events[ type ][ i ] );
 				}
 			}
 		}
@@ -5686,7 +5686,7 @@ function cloneCopyEvent( src, dest ) {
 	// 2. Copy user data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
-		udataCur = jQuery.extend( {}, udataOld );
+		udataCur = noConflictQuery.extend( {}, udataOld );
 
 		dataUser.set( dest, udataCur );
 	}
@@ -5716,7 +5716,7 @@ function domManip( collection, args, callback, ignored ) {
 		l = collection.length,
 		iNoClone = l - 1,
 		value = args[ 0 ],
-		isFunction = jQuery.isFunction( value );
+		isFunction = noConflictQuery.isFunction( value );
 
 	// We can't cloneNode fragments that contain checked, in WebKit
 	if ( isFunction ||
@@ -5741,7 +5741,7 @@ function domManip( collection, args, callback, ignored ) {
 
 		// Require either new content or an interest in ignored elements to invoke the callback
 		if ( first || ignored ) {
-			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+			scripts = noConflictQuery.map( getAll( fragment, "script" ), disableScript );
 			hasScripts = scripts.length;
 
 			// Use the original fragment for the last item
@@ -5751,14 +5751,14 @@ function domManip( collection, args, callback, ignored ) {
 				node = fragment;
 
 				if ( i !== iNoClone ) {
-					node = jQuery.clone( node, true, true );
+					node = noConflictQuery.clone( node, true, true );
 
 					// Keep references to cloned scripts for later restoration
 					if ( hasScripts ) {
 
 						// Support: Android <=4.0 only, PhantomJS 1 only
 						// push.apply(_, arraylike) throws on ancient WebKit
-						jQuery.merge( scripts, getAll( node, "script" ) );
+						noConflictQuery.merge( scripts, getAll( node, "script" ) );
 					}
 				}
 
@@ -5769,20 +5769,20 @@ function domManip( collection, args, callback, ignored ) {
 				doc = scripts[ scripts.length - 1 ].ownerDocument;
 
 				// Reenable scripts
-				jQuery.map( scripts, restoreScript );
+				noConflictQuery.map( scripts, restoreScript );
 
 				// Evaluate executable scripts on first document insertion
 				for ( i = 0; i < hasScripts; i++ ) {
 					node = scripts[ i ];
 					if ( rscriptType.test( node.type || "" ) &&
 						!dataPriv.access( node, "globalEval" ) &&
-						jQuery.contains( doc, node ) ) {
+						noConflictQuery.contains( doc, node ) ) {
 
 						if ( node.src ) {
 
 							// Optional AJAX dependency, but won't run scripts if not present
-							if ( jQuery._evalUrl ) {
-								jQuery._evalUrl( node.src );
+							if ( noConflictQuery._evalUrl ) {
+								noConflictQuery._evalUrl( node.src );
 							}
 						} else {
 							DOMEval( node.textContent.replace( rcleanScript, "" ), doc );
@@ -5798,16 +5798,16 @@ function domManip( collection, args, callback, ignored ) {
 
 function remove( elem, selector, keepData ) {
 	var node,
-		nodes = selector ? jQuery.filter( selector, elem ) : elem,
+		nodes = selector ? noConflictQuery.filter( selector, elem ) : elem,
 		i = 0;
 
 	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
 		if ( !keepData && node.nodeType === 1 ) {
-			jQuery.cleanData( getAll( node ) );
+			noConflictQuery.cleanData( getAll( node ) );
 		}
 
 		if ( node.parentNode ) {
-			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+			if ( keepData && noConflictQuery.contains( node.ownerDocument, node ) ) {
 				setGlobalEval( getAll( node, "script" ) );
 			}
 			node.parentNode.removeChild( node );
@@ -5817,7 +5817,7 @@ function remove( elem, selector, keepData ) {
 	return elem;
 }
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	htmlPrefilter: function( html ) {
 		return html.replace( rxhtmlTag, "<$1></$2>" );
 	},
@@ -5825,11 +5825,11 @@ jQuery.extend( {
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 		var i, l, srcElements, destElements,
 			clone = elem.cloneNode( true ),
-			inPage = jQuery.contains( elem.ownerDocument, elem );
+			inPage = noConflictQuery.contains( elem.ownerDocument, elem );
 
 		// Fix IE cloning issues
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
-				!jQuery.isXMLDoc( elem ) ) {
+				!noConflictQuery.isXMLDoc( elem ) ) {
 
 			// We eschew Sizzle here for performance reasons: https://jsperf.com/getall-vs-sizzle/2
 			destElements = getAll( clone );
@@ -5866,7 +5866,7 @@ jQuery.extend( {
 
 	cleanData: function( elems ) {
 		var data, elem, type,
-			special = jQuery.event.special,
+			special = noConflictQuery.event.special,
 			i = 0;
 
 		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
@@ -5875,11 +5875,11 @@ jQuery.extend( {
 					if ( data.events ) {
 						for ( type in data.events ) {
 							if ( special[ type ] ) {
-								jQuery.event.remove( elem, type );
+								noConflictQuery.event.remove( elem, type );
 
-							// This is a shortcut to avoid jQuery.event.remove's overhead
+							// This is a shortcut to avoid noConflictQuery.event.remove's overhead
 							} else {
-								jQuery.removeEvent( elem, type, data.handle );
+								noConflictQuery.removeEvent( elem, type, data.handle );
 							}
 						}
 					}
@@ -5899,7 +5899,7 @@ jQuery.extend( {
 	}
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	detach: function( selector ) {
 		return remove( this, selector, true );
 	},
@@ -5911,7 +5911,7 @@ jQuery.fn.extend( {
 	text: function( value ) {
 		return access( this, function( value ) {
 			return value === undefined ?
-				jQuery.text( this ) :
+				noConflictQuery.text( this ) :
 				this.empty().each( function() {
 					if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
 						this.textContent = value;
@@ -5962,7 +5962,7 @@ jQuery.fn.extend( {
 			if ( elem.nodeType === 1 ) {
 
 				// Prevent memory leaks
-				jQuery.cleanData( getAll( elem, false ) );
+				noConflictQuery.cleanData( getAll( elem, false ) );
 
 				// Remove any remaining nodes
 				elem.textContent = "";
@@ -5977,7 +5977,7 @@ jQuery.fn.extend( {
 		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
 
 		return this.map( function() {
-			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
+			return noConflictQuery.clone( this, dataAndEvents, deepDataAndEvents );
 		} );
 	},
 
@@ -5995,7 +5995,7 @@ jQuery.fn.extend( {
 			if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
 				!wrapMap[ ( rtagName.exec( value ) || [ "", "" ] )[ 1 ].toLowerCase() ] ) {
 
-				value = jQuery.htmlPrefilter( value );
+				value = noConflictQuery.htmlPrefilter( value );
 
 				try {
 					for ( ; i < l; i++ ) {
@@ -6003,7 +6003,7 @@ jQuery.fn.extend( {
 
 						// Remove element nodes and prevent memory leaks
 						if ( elem.nodeType === 1 ) {
-							jQuery.cleanData( getAll( elem, false ) );
+							noConflictQuery.cleanData( getAll( elem, false ) );
 							elem.innerHTML = value;
 						}
 					}
@@ -6027,8 +6027,8 @@ jQuery.fn.extend( {
 		return domManip( this, arguments, function( elem ) {
 			var parent = this.parentNode;
 
-			if ( jQuery.inArray( this, ignored ) < 0 ) {
-				jQuery.cleanData( getAll( this ) );
+			if ( noConflictQuery.inArray( this, ignored ) < 0 ) {
+				noConflictQuery.cleanData( getAll( this ) );
 				if ( parent ) {
 					parent.replaceChild( elem, this );
 				}
@@ -6039,23 +6039,23 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.each( {
+noConflictQuery.each( {
 	appendTo: "append",
 	prependTo: "prepend",
 	insertBefore: "before",
 	insertAfter: "after",
 	replaceAll: "replaceWith"
 }, function( name, original ) {
-	jQuery.fn[ name ] = function( selector ) {
+	noConflictQuery.fn[ name ] = function( selector ) {
 		var elems,
 			ret = [],
-			insert = jQuery( selector ),
+			insert = noConflictQuery( selector ),
 			last = insert.length - 1,
 			i = 0;
 
 		for ( ; i <= last; i++ ) {
 			elems = i === last ? this : this.clone( true );
-			jQuery( insert[ i ] )[ original ]( elems );
+			noConflictQuery( insert[ i ] )[ original ]( elems );
 
 			// Support: Android <=4.0 only, PhantomJS 1 only
 			// .get() because push.apply(_, arraylike) throws on ancient WebKit
@@ -6142,7 +6142,7 @@ var getStyles = function( elem ) {
 		"padding:0;margin-top:1px;position:absolute";
 	container.appendChild( div );
 
-	jQuery.extend( support, {
+	noConflictQuery.extend( support, {
 		pixelPosition: function() {
 			computeStyleTests();
 			return pixelPositionVal;
@@ -6180,8 +6180,8 @@ function curCSS( elem, name, computed ) {
 	if ( computed ) {
 		ret = computed.getPropertyValue( name ) || computed[ name ];
 
-		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
-			ret = jQuery.style( elem, name );
+		if ( ret === "" && !noConflictQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = noConflictQuery.style( elem, name );
 		}
 
 		// A tribute to the "awesome hack by Dean Edwards"
@@ -6272,12 +6272,12 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a property mapped along what jQuery.cssProps suggests or to
+// Return a property mapped along what noConflictQuery.cssProps suggests or to
 // a vendor prefixed property.
 function finalPropName( name ) {
-	var ret = jQuery.cssProps[ name ];
+	var ret = noConflictQuery.cssProps[ name ];
 	if ( !ret ) {
-		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+		ret = noConflictQuery.cssProps[ name ] = vendorPropName( name ) || name;
 	}
 	return ret;
 }
@@ -6311,28 +6311,28 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 
 		// Both box models exclude margin, so add it if we want it
 		if ( extra === "margin" ) {
-			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
+			val += noConflictQuery.css( elem, extra + cssExpand[ i ], true, styles );
 		}
 
 		if ( isBorderBox ) {
 
 			// border-box includes padding, so remove it if we want content
 			if ( extra === "content" ) {
-				val -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+				val -= noConflictQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
 			}
 
 			// At this point, extra isn't border nor margin, so remove border
 			if ( extra !== "margin" ) {
-				val -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+				val -= noConflictQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 		} else {
 
 			// At this point, extra isn't content, so add padding
-			val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			val += noConflictQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
 
 			// At this point, extra isn't content nor padding, so add border
 			if ( extra !== "padding" ) {
-				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+				val += noConflictQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 		}
 	}
@@ -6346,7 +6346,7 @@ function getWidthOrHeight( elem, name, extra ) {
 	var valueIsBorderBox,
 		styles = getStyles( elem ),
 		val = curCSS( elem, name, styles ),
-		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+		isBorderBox = noConflictQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
 	// Computed unit is not pixels. Stop here and return.
 	if ( rnumnonpx.test( val ) ) {
@@ -6379,7 +6379,7 @@ function getWidthOrHeight( elem, name, extra ) {
 	) + "px";
 }
 
-jQuery.extend( {
+noConflictQuery.extend( {
 
 	// Add in style property hooks for overriding the default
 	// behavior of getting and setting a style property
@@ -6429,7 +6429,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name
 		var ret, type, hooks,
-			origName = jQuery.camelCase( name ),
+			origName = noConflictQuery.camelCase( name ),
 			isCustomProp = rcustomProp.test( name ),
 			style = elem.style;
 
@@ -6441,7 +6441,7 @@ jQuery.extend( {
 		}
 
 		// Gets hook for the prefixed version, then unprefixed version
-		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+		hooks = noConflictQuery.cssHooks[ name ] || noConflictQuery.cssHooks[ origName ];
 
 		// Check if we're setting a value
 		if ( value !== undefined ) {
@@ -6462,7 +6462,7 @@ jQuery.extend( {
 
 			// If a number was passed in, add the unit (except for certain CSS properties)
 			if ( type === "number" ) {
-				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
+				value += ret && ret[ 3 ] || ( noConflictQuery.cssNumber[ origName ] ? "" : "px" );
 			}
 
 			// background-* props affect original clone's values
@@ -6497,7 +6497,7 @@ jQuery.extend( {
 
 	css: function( elem, name, extra, styles ) {
 		var val, num, hooks,
-			origName = jQuery.camelCase( name ),
+			origName = noConflictQuery.camelCase( name ),
 			isCustomProp = rcustomProp.test( name );
 
 		// Make sure that we're working with the right name. We don't
@@ -6508,7 +6508,7 @@ jQuery.extend( {
 		}
 
 		// Try prefixed name followed by the unprefixed name
-		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+		hooks = noConflictQuery.cssHooks[ name ] || noConflictQuery.cssHooks[ origName ];
 
 		// If a hook was provided get the computed value from there
 		if ( hooks && "get" in hooks ) {
@@ -6535,14 +6535,14 @@ jQuery.extend( {
 	}
 } );
 
-jQuery.each( [ "height", "width" ], function( i, name ) {
-	jQuery.cssHooks[ name ] = {
+noConflictQuery.each( [ "height", "width" ], function( i, name ) {
+	noConflictQuery.cssHooks[ name ] = {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
 				// Certain elements can have dimension info if we invisibly show them
 				// but it must have a current display style that would benefit
-				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
+				return rdisplayswap.test( noConflictQuery.css( elem, "display" ) ) &&
 
 					// Support: Safari 8+
 					// Table columns in Safari have non-zero offsetWidth & zero
@@ -6565,7 +6565,7 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					elem,
 					name,
 					extra,
-					jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+					noConflictQuery.css( elem, "boxSizing", false, styles ) === "border-box",
 					styles
 				);
 
@@ -6574,7 +6574,7 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
 				elem.style[ name ] = value;
-				value = jQuery.css( elem, name );
+				value = noConflictQuery.css( elem, name );
 			}
 
 			return setPositiveNumber( elem, value, subtract );
@@ -6582,7 +6582,7 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 	};
 } );
 
-jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
+noConflictQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 	function( elem, computed ) {
 		if ( computed ) {
 			return ( parseFloat( curCSS( elem, "marginLeft" ) ) ||
@@ -6596,12 +6596,12 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 );
 
 // These hooks are used by animate to expand properties
-jQuery.each( {
+noConflictQuery.each( {
 	margin: "",
 	padding: "",
 	border: "Width"
 }, function( prefix, suffix ) {
-	jQuery.cssHooks[ prefix + suffix ] = {
+	noConflictQuery.cssHooks[ prefix + suffix ] = {
 		expand: function( value ) {
 			var i = 0,
 				expanded = {},
@@ -6619,11 +6619,11 @@ jQuery.each( {
 	};
 
 	if ( !rmargin.test( prefix ) ) {
-		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+		noConflictQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
 	}
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	css: function( name, value ) {
 		return access( this, function( elem, name, value ) {
 			var styles, len,
@@ -6635,15 +6635,15 @@ jQuery.fn.extend( {
 				len = name.length;
 
 				for ( ; i < len; i++ ) {
-					map[ name[ i ] ] = jQuery.css( elem, name[ i ], false, styles );
+					map[ name[ i ] ] = noConflictQuery.css( elem, name[ i ], false, styles );
 				}
 
 				return map;
 			}
 
 			return value !== undefined ?
-				jQuery.style( elem, name, value ) :
-				jQuery.css( elem, name );
+				noConflictQuery.style( elem, name, value ) :
+				noConflictQuery.css( elem, name );
 		}, name, value, arguments.length > 1 );
 	}
 } );
@@ -6652,18 +6652,18 @@ jQuery.fn.extend( {
 function Tween( elem, options, prop, end, easing ) {
 	return new Tween.prototype.init( elem, options, prop, end, easing );
 }
-jQuery.Tween = Tween;
+noConflictQuery.Tween = Tween;
 
 Tween.prototype = {
 	constructor: Tween,
 	init: function( elem, options, prop, end, easing, unit ) {
 		this.elem = elem;
 		this.prop = prop;
-		this.easing = easing || jQuery.easing._default;
+		this.easing = easing || noConflictQuery.easing._default;
 		this.options = options;
 		this.start = this.now = this.cur();
 		this.end = end;
-		this.unit = unit || ( jQuery.cssNumber[ prop ] ? "" : "px" );
+		this.unit = unit || ( noConflictQuery.cssNumber[ prop ] ? "" : "px" );
 	},
 	cur: function() {
 		var hooks = Tween.propHooks[ this.prop ];
@@ -6677,7 +6677,7 @@ Tween.prototype = {
 			hooks = Tween.propHooks[ this.prop ];
 
 		if ( this.options.duration ) {
-			this.pos = eased = jQuery.easing[ this.easing ](
+			this.pos = eased = noConflictQuery.easing[ this.easing ](
 				percent, this.options.duration * percent, 0, 1, this.options.duration
 			);
 		} else {
@@ -6716,7 +6716,7 @@ Tween.propHooks = {
 			// attempt a parseFloat and fallback to a string if the parse fails.
 			// Simple values such as "10px" are parsed to Float;
 			// complex values such as "rotate(1rad)" are returned as-is.
-			result = jQuery.css( tween.elem, tween.prop, "" );
+			result = noConflictQuery.css( tween.elem, tween.prop, "" );
 
 			// Empty strings, null, undefined and "auto" are converted to 0.
 			return !result || result === "auto" ? 0 : result;
@@ -6726,12 +6726,12 @@ Tween.propHooks = {
 			// Use step hook for back compat.
 			// Use cssHook if its there.
 			// Use .style if available and use plain properties where available.
-			if ( jQuery.fx.step[ tween.prop ] ) {
-				jQuery.fx.step[ tween.prop ]( tween );
+			if ( noConflictQuery.fx.step[ tween.prop ] ) {
+				noConflictQuery.fx.step[ tween.prop ]( tween );
 			} else if ( tween.elem.nodeType === 1 &&
-				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
-					jQuery.cssHooks[ tween.prop ] ) ) {
-				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
+				( tween.elem.style[ noConflictQuery.cssProps[ tween.prop ] ] != null ||
+					noConflictQuery.cssHooks[ tween.prop ] ) ) {
+				noConflictQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
 				tween.elem[ tween.prop ] = tween.now;
 			}
@@ -6749,7 +6749,7 @@ Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
 	}
 };
 
-jQuery.easing = {
+noConflictQuery.easing = {
 	linear: function( p ) {
 		return p;
 	},
@@ -6759,10 +6759,10 @@ jQuery.easing = {
 	_default: "swing"
 };
 
-jQuery.fx = Tween.prototype.init;
+noConflictQuery.fx = Tween.prototype.init;
 
 // Back compat <1.8 extension point
-jQuery.fx.step = {};
+noConflictQuery.fx.step = {};
 
 
 
@@ -6777,10 +6777,10 @@ function schedule() {
 		if ( document.hidden === false && window.requestAnimationFrame ) {
 			window.requestAnimationFrame( schedule );
 		} else {
-			window.setTimeout( schedule, jQuery.fx.interval );
+			window.setTimeout( schedule, noConflictQuery.fx.interval );
 		}
 
-		jQuery.fx.tick();
+		noConflictQuery.fx.tick();
 	}
 }
 
@@ -6789,7 +6789,7 @@ function createFxNow() {
 	window.setTimeout( function() {
 		fxNow = undefined;
 	} );
-	return ( fxNow = jQuery.now() );
+	return ( fxNow = noConflictQuery.now() );
 }
 
 // Generate parameters to create a standard animation
@@ -6838,7 +6838,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 	// Queue-skipping animations hijack the fx hooks
 	if ( !opts.queue ) {
-		hooks = jQuery._queueHooks( elem, "fx" );
+		hooks = noConflictQuery._queueHooks( elem, "fx" );
 		if ( hooks.unqueued == null ) {
 			hooks.unqueued = 0;
 			oldfire = hooks.empty.fire;
@@ -6855,7 +6855,7 @@ function defaultPrefilter( elem, props, opts ) {
 			// Ensure the complete handler is called before this completes
 			anim.always( function() {
 				hooks.unqueued--;
-				if ( !jQuery.queue( elem, "fx" ).length ) {
+				if ( !noConflictQuery.queue( elem, "fx" ).length ) {
 					hooks.empty.fire();
 				}
 			} );
@@ -6880,13 +6880,13 @@ function defaultPrefilter( elem, props, opts ) {
 					continue;
 				}
 			}
-			orig[ prop ] = dataShow && dataShow[ prop ] || jQuery.style( elem, prop );
+			orig[ prop ] = dataShow && dataShow[ prop ] || noConflictQuery.style( elem, prop );
 		}
 	}
 
 	// Bail out if this is a no-op like .hide().hide()
-	propTween = !jQuery.isEmptyObject( props );
-	if ( !propTween && jQuery.isEmptyObject( orig ) ) {
+	propTween = !noConflictQuery.isEmptyObject( props );
+	if ( !propTween && noConflictQuery.isEmptyObject( orig ) ) {
 		return;
 	}
 
@@ -6903,7 +6903,7 @@ function defaultPrefilter( elem, props, opts ) {
 		if ( restoreDisplay == null ) {
 			restoreDisplay = dataPriv.get( elem, "display" );
 		}
-		display = jQuery.css( elem, "display" );
+		display = noConflictQuery.css( elem, "display" );
 		if ( display === "none" ) {
 			if ( restoreDisplay ) {
 				display = restoreDisplay;
@@ -6912,14 +6912,14 @@ function defaultPrefilter( elem, props, opts ) {
 				// Get nonempty value(s) by temporarily forcing visibility
 				showHide( [ elem ], true );
 				restoreDisplay = elem.style.display || restoreDisplay;
-				display = jQuery.css( elem, "display" );
+				display = noConflictQuery.css( elem, "display" );
 				showHide( [ elem ] );
 			}
 		}
 
 		// Animate inline elements as inline-block
 		if ( display === "inline" || display === "inline-block" && restoreDisplay != null ) {
-			if ( jQuery.css( elem, "float" ) === "none" ) {
+			if ( noConflictQuery.css( elem, "float" ) === "none" ) {
 
 				// Restore the original display value at the end of pure show/hide animations
 				if ( !propTween ) {
@@ -6981,7 +6981,7 @@ function defaultPrefilter( elem, props, opts ) {
 				}
 				dataPriv.remove( elem, "fxshow" );
 				for ( prop in orig ) {
-					jQuery.style( elem, prop, orig[ prop ] );
+					noConflictQuery.style( elem, prop, orig[ prop ] );
 				}
 			} );
 		}
@@ -7003,7 +7003,7 @@ function propFilter( props, specialEasing ) {
 
 	// camelCase, specialEasing and expand cssHook pass
 	for ( index in props ) {
-		name = jQuery.camelCase( index );
+		name = noConflictQuery.camelCase( index );
 		easing = specialEasing[ name ];
 		value = props[ index ];
 		if ( Array.isArray( value ) ) {
@@ -7016,7 +7016,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ index ];
 		}
 
-		hooks = jQuery.cssHooks[ name ];
+		hooks = noConflictQuery.cssHooks[ name ];
 		if ( hooks && "expand" in hooks ) {
 			value = hooks.expand( value );
 			delete props[ name ];
@@ -7040,7 +7040,7 @@ function Animation( elem, properties, options ) {
 		stopped,
 		index = 0,
 		length = Animation.prefilters.length,
-		deferred = jQuery.Deferred().always( function() {
+		deferred = noConflictQuery.Deferred().always( function() {
 
 			// Don't match elem in the :animated selector
 			delete tick.elem;
@@ -7081,10 +7081,10 @@ function Animation( elem, properties, options ) {
 		},
 		animation = deferred.promise( {
 			elem: elem,
-			props: jQuery.extend( {}, properties ),
-			opts: jQuery.extend( true, {
+			props: noConflictQuery.extend( {}, properties ),
+			opts: noConflictQuery.extend( true, {
 				specialEasing: {},
-				easing: jQuery.easing._default
+				easing: noConflictQuery.easing._default
 			}, options ),
 			originalProperties: properties,
 			originalOptions: options,
@@ -7092,7 +7092,7 @@ function Animation( elem, properties, options ) {
 			duration: options.duration,
 			tweens: [],
 			createTween: function( prop, end ) {
-				var tween = jQuery.Tween( elem, animation.opts, prop, end,
+				var tween = noConflictQuery.Tween( elem, animation.opts, prop, end,
 						animation.opts.specialEasing[ prop ] || animation.opts.easing );
 				animation.tweens.push( tween );
 				return tween;
@@ -7128,17 +7128,17 @@ function Animation( elem, properties, options ) {
 	for ( ; index < length; index++ ) {
 		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
 		if ( result ) {
-			if ( jQuery.isFunction( result.stop ) ) {
-				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
-					jQuery.proxy( result.stop, result );
+			if ( noConflictQuery.isFunction( result.stop ) ) {
+				noConflictQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
+					noConflictQuery.proxy( result.stop, result );
 			}
 			return result;
 		}
 	}
 
-	jQuery.map( props, createTween, animation );
+	noConflictQuery.map( props, createTween, animation );
 
-	if ( jQuery.isFunction( animation.opts.start ) ) {
+	if ( noConflictQuery.isFunction( animation.opts.start ) ) {
 		animation.opts.start.call( elem, animation );
 	}
 
@@ -7149,8 +7149,8 @@ function Animation( elem, properties, options ) {
 		.fail( animation.opts.fail )
 		.always( animation.opts.always );
 
-	jQuery.fx.timer(
-		jQuery.extend( tick, {
+	noConflictQuery.fx.timer(
+		noConflictQuery.extend( tick, {
 			elem: elem,
 			anim: animation,
 			queue: animation.opts.queue
@@ -7160,7 +7160,7 @@ function Animation( elem, properties, options ) {
 	return animation;
 }
 
-jQuery.Animation = jQuery.extend( Animation, {
+noConflictQuery.Animation = noConflictQuery.extend( Animation, {
 
 	tweeners: {
 		"*": [ function( prop, value ) {
@@ -7171,7 +7171,7 @@ jQuery.Animation = jQuery.extend( Animation, {
 	},
 
 	tweener: function( props, callback ) {
-		if ( jQuery.isFunction( props ) ) {
+		if ( noConflictQuery.isFunction( props ) ) {
 			callback = props;
 			props = [ "*" ];
 		} else {
@@ -7200,25 +7200,25 @@ jQuery.Animation = jQuery.extend( Animation, {
 	}
 } );
 
-jQuery.speed = function( speed, easing, fn ) {
-	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
+noConflictQuery.speed = function( speed, easing, fn ) {
+	var opt = speed && typeof speed === "object" ? noConflictQuery.extend( {}, speed ) : {
 		complete: fn || !fn && easing ||
-			jQuery.isFunction( speed ) && speed,
+			noConflictQuery.isFunction( speed ) && speed,
 		duration: speed,
-		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
+		easing: fn && easing || easing && !noConflictQuery.isFunction( easing ) && easing
 	};
 
 	// Go to the end state if fx are off
-	if ( jQuery.fx.off ) {
+	if ( noConflictQuery.fx.off ) {
 		opt.duration = 0;
 
 	} else {
 		if ( typeof opt.duration !== "number" ) {
-			if ( opt.duration in jQuery.fx.speeds ) {
-				opt.duration = jQuery.fx.speeds[ opt.duration ];
+			if ( opt.duration in noConflictQuery.fx.speeds ) {
+				opt.duration = noConflictQuery.fx.speeds[ opt.duration ];
 
 			} else {
-				opt.duration = jQuery.fx.speeds._default;
+				opt.duration = noConflictQuery.fx.speeds._default;
 			}
 		}
 	}
@@ -7232,19 +7232,19 @@ jQuery.speed = function( speed, easing, fn ) {
 	opt.old = opt.complete;
 
 	opt.complete = function() {
-		if ( jQuery.isFunction( opt.old ) ) {
+		if ( noConflictQuery.isFunction( opt.old ) ) {
 			opt.old.call( this );
 		}
 
 		if ( opt.queue ) {
-			jQuery.dequeue( this, opt.queue );
+			noConflictQuery.dequeue( this, opt.queue );
 		}
 	};
 
 	return opt;
 };
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	fadeTo: function( speed, to, easing, callback ) {
 
 		// Show any hidden elements after setting opacity to 0
@@ -7254,12 +7254,12 @@ jQuery.fn.extend( {
 			.end().animate( { opacity: to }, speed, easing, callback );
 	},
 	animate: function( prop, speed, easing, callback ) {
-		var empty = jQuery.isEmptyObject( prop ),
-			optall = jQuery.speed( speed, easing, callback ),
+		var empty = noConflictQuery.isEmptyObject( prop ),
+			optall = noConflictQuery.speed( speed, easing, callback ),
 			doAnimation = function() {
 
 				// Operate on a copy of prop so per-property easing won't be lost
-				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
+				var anim = Animation( this, noConflictQuery.extend( {}, prop ), optall );
 
 				// Empty animations, or finishing resolves immediately
 				if ( empty || dataPriv.get( this, "finish" ) ) {
@@ -7291,7 +7291,7 @@ jQuery.fn.extend( {
 		return this.each( function() {
 			var dequeue = true,
 				index = type != null && type + "queueHooks",
-				timers = jQuery.timers,
+				timers = noConflictQuery.timers,
 				data = dataPriv.get( this );
 
 			if ( index ) {
@@ -7320,7 +7320,7 @@ jQuery.fn.extend( {
 			// Timers currently will call their complete callbacks, which
 			// will dequeue but only if they were gotoEnd.
 			if ( dequeue || !gotoEnd ) {
-				jQuery.dequeue( this, type );
+				noConflictQuery.dequeue( this, type );
 			}
 		} );
 	},
@@ -7333,14 +7333,14 @@ jQuery.fn.extend( {
 				data = dataPriv.get( this ),
 				queue = data[ type + "queue" ],
 				hooks = data[ type + "queueHooks" ],
-				timers = jQuery.timers,
+				timers = noConflictQuery.timers,
 				length = queue ? queue.length : 0;
 
 			// Enable finishing flag on private data
 			data.finish = true;
 
 			// Empty the queue first
-			jQuery.queue( this, type, [] );
+			noConflictQuery.queue( this, type, [] );
 
 			if ( hooks && hooks.stop ) {
 				hooks.stop.call( this, true );
@@ -7367,9 +7367,9 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.each( [ "toggle", "show", "hide" ], function( i, name ) {
-	var cssFn = jQuery.fn[ name ];
-	jQuery.fn[ name ] = function( speed, easing, callback ) {
+noConflictQuery.each( [ "toggle", "show", "hide" ], function( i, name ) {
+	var cssFn = noConflictQuery.fn[ name ];
+	noConflictQuery.fn[ name ] = function( speed, easing, callback ) {
 		return speed == null || typeof speed === "boolean" ?
 			cssFn.apply( this, arguments ) :
 			this.animate( genFx( name, true ), speed, easing, callback );
@@ -7377,7 +7377,7 @@ jQuery.each( [ "toggle", "show", "hide" ], function( i, name ) {
 } );
 
 // Generate shortcuts for custom animations
-jQuery.each( {
+noConflictQuery.each( {
 	slideDown: genFx( "show" ),
 	slideUp: genFx( "hide" ),
 	slideToggle: genFx( "toggle" ),
@@ -7385,18 +7385,18 @@ jQuery.each( {
 	fadeOut: { opacity: "hide" },
 	fadeToggle: { opacity: "toggle" }
 }, function( name, props ) {
-	jQuery.fn[ name ] = function( speed, easing, callback ) {
+	noConflictQuery.fn[ name ] = function( speed, easing, callback ) {
 		return this.animate( props, speed, easing, callback );
 	};
 } );
 
-jQuery.timers = [];
-jQuery.fx.tick = function() {
+noConflictQuery.timers = [];
+noConflictQuery.fx.tick = function() {
 	var timer,
 		i = 0,
-		timers = jQuery.timers;
+		timers = noConflictQuery.timers;
 
-	fxNow = jQuery.now();
+	fxNow = noConflictQuery.now();
 
 	for ( ; i < timers.length; i++ ) {
 		timer = timers[ i ];
@@ -7408,18 +7408,18 @@ jQuery.fx.tick = function() {
 	}
 
 	if ( !timers.length ) {
-		jQuery.fx.stop();
+		noConflictQuery.fx.stop();
 	}
 	fxNow = undefined;
 };
 
-jQuery.fx.timer = function( timer ) {
-	jQuery.timers.push( timer );
-	jQuery.fx.start();
+noConflictQuery.fx.timer = function( timer ) {
+	noConflictQuery.timers.push( timer );
+	noConflictQuery.fx.start();
 };
 
-jQuery.fx.interval = 13;
-jQuery.fx.start = function() {
+noConflictQuery.fx.interval = 13;
+noConflictQuery.fx.start = function() {
 	if ( inProgress ) {
 		return;
 	}
@@ -7428,11 +7428,11 @@ jQuery.fx.start = function() {
 	schedule();
 };
 
-jQuery.fx.stop = function() {
+noConflictQuery.fx.stop = function() {
 	inProgress = null;
 };
 
-jQuery.fx.speeds = {
+noConflictQuery.fx.speeds = {
 	slow: 600,
 	fast: 200,
 
@@ -7442,9 +7442,9 @@ jQuery.fx.speeds = {
 
 
 // Based off of the plugin by Clint Helfers, with permission.
-// https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
-jQuery.fn.delay = function( time, type ) {
-	time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
+// https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/noConflictQuery-delay/
+noConflictQuery.fn.delay = function( time, type ) {
+	time = noConflictQuery.fx ? noConflictQuery.fx.speeds[ time ] || time : time;
 	type = type || "fx";
 
 	return this.queue( type, function( next, hooks ) {
@@ -7481,21 +7481,21 @@ jQuery.fn.delay = function( time, type ) {
 
 
 var boolHook,
-	attrHandle = jQuery.expr.attrHandle;
+	attrHandle = noConflictQuery.expr.attrHandle;
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	attr: function( name, value ) {
-		return access( this, jQuery.attr, name, value, arguments.length > 1 );
+		return access( this, noConflictQuery.attr, name, value, arguments.length > 1 );
 	},
 
 	removeAttr: function( name ) {
 		return this.each( function() {
-			jQuery.removeAttr( this, name );
+			noConflictQuery.removeAttr( this, name );
 		} );
 	}
 } );
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	attr: function( elem, name, value ) {
 		var ret, hooks,
 			nType = elem.nodeType;
@@ -7507,19 +7507,19 @@ jQuery.extend( {
 
 		// Fallback to prop when attributes are not supported
 		if ( typeof elem.getAttribute === "undefined" ) {
-			return jQuery.prop( elem, name, value );
+			return noConflictQuery.prop( elem, name, value );
 		}
 
 		// Attribute hooks are determined by the lowercase version
 		// Grab necessary hook if one is defined
-		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
-			hooks = jQuery.attrHooks[ name.toLowerCase() ] ||
-				( jQuery.expr.match.bool.test( name ) ? boolHook : undefined );
+		if ( nType !== 1 || !noConflictQuery.isXMLDoc( elem ) ) {
+			hooks = noConflictQuery.attrHooks[ name.toLowerCase() ] ||
+				( noConflictQuery.expr.match.bool.test( name ) ? boolHook : undefined );
 		}
 
 		if ( value !== undefined ) {
 			if ( value === null ) {
-				jQuery.removeAttr( elem, name );
+				noConflictQuery.removeAttr( elem, name );
 				return;
 			}
 
@@ -7536,7 +7536,7 @@ jQuery.extend( {
 			return ret;
 		}
 
-		ret = jQuery.find.attr( elem, name );
+		ret = noConflictQuery.find.attr( elem, name );
 
 		// Non-existent attributes return null, we normalize to undefined
 		return ret == null ? undefined : ret;
@@ -7580,7 +7580,7 @@ boolHook = {
 		if ( value === false ) {
 
 			// Remove boolean attributes when set to false
-			jQuery.removeAttr( elem, name );
+			noConflictQuery.removeAttr( elem, name );
 		} else {
 			elem.setAttribute( name, name );
 		}
@@ -7588,8 +7588,8 @@ boolHook = {
 	}
 };
 
-jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
-	var getter = attrHandle[ name ] || jQuery.find.attr;
+noConflictQuery.each( noConflictQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
+	var getter = attrHandle[ name ] || noConflictQuery.find.attr;
 
 	attrHandle[ name ] = function( elem, name, isXML ) {
 		var ret, handle,
@@ -7615,19 +7615,19 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) 
 var rfocusable = /^(?:input|select|textarea|button)$/i,
 	rclickable = /^(?:a|area)$/i;
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	prop: function( name, value ) {
-		return access( this, jQuery.prop, name, value, arguments.length > 1 );
+		return access( this, noConflictQuery.prop, name, value, arguments.length > 1 );
 	},
 
 	removeProp: function( name ) {
 		return this.each( function() {
-			delete this[ jQuery.propFix[ name ] || name ];
+			delete this[ noConflictQuery.propFix[ name ] || name ];
 		} );
 	}
 } );
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	prop: function( elem, name, value ) {
 		var ret, hooks,
 			nType = elem.nodeType;
@@ -7637,11 +7637,11 @@ jQuery.extend( {
 			return;
 		}
 
-		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
+		if ( nType !== 1 || !noConflictQuery.isXMLDoc( elem ) ) {
 
 			// Fix name and attach hooks
-			name = jQuery.propFix[ name ] || name;
-			hooks = jQuery.propHooks[ name ];
+			name = noConflictQuery.propFix[ name ] || name;
+			hooks = noConflictQuery.propHooks[ name ];
 		}
 
 		if ( value !== undefined ) {
@@ -7669,7 +7669,7 @@ jQuery.extend( {
 				// correct value when it hasn't been explicitly set
 				// https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
 				// Use proper attribute retrieval(#12072)
-				var tabindex = jQuery.find.attr( elem, "tabindex" );
+				var tabindex = noConflictQuery.find.attr( elem, "tabindex" );
 
 				if ( tabindex ) {
 					return parseInt( tabindex, 10 );
@@ -7703,7 +7703,7 @@ jQuery.extend( {
 // eslint rule "no-unused-expressions" is disabled for this code
 // since it considers such accessions noop
 if ( !support.optSelected ) {
-	jQuery.propHooks.selected = {
+	noConflictQuery.propHooks.selected = {
 		get: function( elem ) {
 
 			/* eslint no-unused-expressions: "off" */
@@ -7730,7 +7730,7 @@ if ( !support.optSelected ) {
 	};
 }
 
-jQuery.each( [
+noConflictQuery.each( [
 	"tabIndex",
 	"readOnly",
 	"maxLength",
@@ -7742,7 +7742,7 @@ jQuery.each( [
 	"frameBorder",
 	"contentEditable"
 ], function() {
-	jQuery.propFix[ this.toLowerCase() ] = this;
+	noConflictQuery.propFix[ this.toLowerCase() ] = this;
 } );
 
 
@@ -7760,14 +7760,14 @@ function getClass( elem ) {
 	return elem.getAttribute && elem.getAttribute( "class" ) || "";
 }
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	addClass: function( value ) {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( noConflictQuery.isFunction( value ) ) {
 			return this.each( function( j ) {
-				jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
+				noConflictQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
@@ -7802,9 +7802,9 @@ jQuery.fn.extend( {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( noConflictQuery.isFunction( value ) ) {
 			return this.each( function( j ) {
-				jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
+				noConflictQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
@@ -7850,9 +7850,9 @@ jQuery.fn.extend( {
 			return stateVal ? this.addClass( value ) : this.removeClass( value );
 		}
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( noConflictQuery.isFunction( value ) ) {
 			return this.each( function( i ) {
-				jQuery( this ).toggleClass(
+				noConflictQuery( this ).toggleClass(
 					value.call( this, i, getClass( this ), stateVal ),
 					stateVal
 				);
@@ -7866,7 +7866,7 @@ jQuery.fn.extend( {
 
 				// Toggle individual class names
 				i = 0;
-				self = jQuery( this );
+				self = noConflictQuery( this );
 				classNames = value.match( rnothtmlwhite ) || [];
 
 				while ( ( className = classNames[ i++ ] ) ) {
@@ -7924,15 +7924,15 @@ jQuery.fn.extend( {
 
 var rreturn = /\r/g;
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	val: function( value ) {
 		var hooks, ret, isFunction,
 			elem = this[ 0 ];
 
 		if ( !arguments.length ) {
 			if ( elem ) {
-				hooks = jQuery.valHooks[ elem.type ] ||
-					jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+				hooks = noConflictQuery.valHooks[ elem.type ] ||
+					noConflictQuery.valHooks[ elem.nodeName.toLowerCase() ];
 
 				if ( hooks &&
 					"get" in hooks &&
@@ -7955,7 +7955,7 @@ jQuery.fn.extend( {
 			return;
 		}
 
-		isFunction = jQuery.isFunction( value );
+		isFunction = noConflictQuery.isFunction( value );
 
 		return this.each( function( i ) {
 			var val;
@@ -7965,7 +7965,7 @@ jQuery.fn.extend( {
 			}
 
 			if ( isFunction ) {
-				val = value.call( this, i, jQuery( this ).val() );
+				val = value.call( this, i, noConflictQuery( this ).val() );
 			} else {
 				val = value;
 			}
@@ -7978,12 +7978,12 @@ jQuery.fn.extend( {
 				val += "";
 
 			} else if ( Array.isArray( val ) ) {
-				val = jQuery.map( val, function( value ) {
+				val = noConflictQuery.map( val, function( value ) {
 					return value == null ? "" : value + "";
 				} );
 			}
 
-			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
+			hooks = noConflictQuery.valHooks[ this.type ] || noConflictQuery.valHooks[ this.nodeName.toLowerCase() ];
 
 			// If set returns undefined, fall back to normal setting
 			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
@@ -7993,12 +7993,12 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.extend( {
+noConflictQuery.extend( {
 	valHooks: {
 		option: {
 			get: function( elem ) {
 
-				var val = jQuery.find.attr( elem, "value" );
+				var val = noConflictQuery.find.attr( elem, "value" );
 				return val != null ?
 					val :
 
@@ -8006,7 +8006,7 @@ jQuery.extend( {
 					// option.text throws exceptions (#14686, #14858)
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-					stripAndCollapse( jQuery.text( elem ) );
+					stripAndCollapse( noConflictQuery.text( elem ) );
 			}
 		},
 		select: {
@@ -8039,7 +8039,7 @@ jQuery.extend( {
 								!nodeName( option.parentNode, "optgroup" ) ) ) {
 
 						// Get the specific value for the option
-						value = jQuery( option ).val();
+						value = noConflictQuery( option ).val();
 
 						// We don't need an array for one selects
 						if ( one ) {
@@ -8057,7 +8057,7 @@ jQuery.extend( {
 			set: function( elem, value ) {
 				var optionSet, option,
 					options = elem.options,
-					values = jQuery.makeArray( value ),
+					values = noConflictQuery.makeArray( value ),
 					i = options.length;
 
 				while ( i-- ) {
@@ -8066,7 +8066,7 @@ jQuery.extend( {
 					/* eslint-disable no-cond-assign */
 
 					if ( option.selected =
-						jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+						noConflictQuery.inArray( noConflictQuery.valHooks.option.get( option ), values ) > -1
 					) {
 						optionSet = true;
 					}
@@ -8085,16 +8085,16 @@ jQuery.extend( {
 } );
 
 // Radios and checkboxes getter/setter
-jQuery.each( [ "radio", "checkbox" ], function() {
-	jQuery.valHooks[ this ] = {
+noConflictQuery.each( [ "radio", "checkbox" ], function() {
+	noConflictQuery.valHooks[ this ] = {
 		set: function( elem, value ) {
 			if ( Array.isArray( value ) ) {
-				return ( elem.checked = jQuery.inArray( jQuery( elem ).val(), value ) > -1 );
+				return ( elem.checked = noConflictQuery.inArray( noConflictQuery( elem ).val(), value ) > -1 );
 			}
 		}
 	};
 	if ( !support.checkOn ) {
-		jQuery.valHooks[ this ].get = function( elem ) {
+		noConflictQuery.valHooks[ this ].get = function( elem ) {
 			return elem.getAttribute( "value" ) === null ? "on" : elem.value;
 		};
 	}
@@ -8103,12 +8103,12 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 
 
 
-// Return jQuery for attributes-only inclusion
+// Return noConflictQuery for attributes-only inclusion
 
 
 var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
 
-jQuery.extend( jQuery.event, {
+noConflictQuery.extend( noConflictQuery.event, {
 
 	trigger: function( event, data, elem, onlyHandlers ) {
 
@@ -8125,7 +8125,7 @@ jQuery.extend( jQuery.event, {
 		}
 
 		// focus/blur morphs to focusin/out; ensure we're not firing them right now
-		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
+		if ( rfocusMorph.test( type + noConflictQuery.event.triggered ) ) {
 			return;
 		}
 
@@ -8138,12 +8138,12 @@ jQuery.extend( jQuery.event, {
 		}
 		ontype = type.indexOf( ":" ) < 0 && "on" + type;
 
-		// Caller can pass in a jQuery.Event object, Object, or just an event type string
-		event = event[ jQuery.expando ] ?
+		// Caller can pass in a noConflictQuery.Event object, Object, or just an event type string
+		event = event[ noConflictQuery.expando ] ?
 			event :
-			new jQuery.Event( type, typeof event === "object" && event );
+			new noConflictQuery.Event( type, typeof event === "object" && event );
 
-		// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
+		// Trigger bitmask: & 1 for native handlers; & 2 for noConflictQuery (always true)
 		event.isTrigger = onlyHandlers ? 2 : 3;
 		event.namespace = namespaces.join( "." );
 		event.rnamespace = event.namespace ?
@@ -8159,17 +8159,17 @@ jQuery.extend( jQuery.event, {
 		// Clone any incoming data and prepend the event, creating the handler arg list
 		data = data == null ?
 			[ event ] :
-			jQuery.makeArray( data, [ event ] );
+			noConflictQuery.makeArray( data, [ event ] );
 
 		// Allow special events to draw outside the lines
-		special = jQuery.event.special[ type ] || {};
+		special = noConflictQuery.event.special[ type ] || {};
 		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
 		}
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
-		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+		if ( !onlyHandlers && !special.noBubble && !noConflictQuery.isWindow( elem ) ) {
 
 			bubbleType = special.delegateType || type;
 			if ( !rfocusMorph.test( bubbleType + type ) ) {
@@ -8194,7 +8194,7 @@ jQuery.extend( jQuery.event, {
 				bubbleType :
 				special.bindType || type;
 
-			// jQuery handler
+			// noConflictQuery handler
 			handle = ( dataPriv.get( cur, "events" ) || {} )[ event.type ] &&
 				dataPriv.get( cur, "handle" );
 			if ( handle ) {
@@ -8221,7 +8221,7 @@ jQuery.extend( jQuery.event, {
 
 				// Call a native DOM method on the target with the same name as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
-				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
+				if ( ontype && noConflictQuery.isFunction( elem[ type ] ) && !noConflictQuery.isWindow( elem ) ) {
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
 					tmp = elem[ ontype ];
@@ -8231,9 +8231,9 @@ jQuery.extend( jQuery.event, {
 					}
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
-					jQuery.event.triggered = type;
+					noConflictQuery.event.triggered = type;
 					elem[ type ]();
-					jQuery.event.triggered = undefined;
+					noConflictQuery.event.triggered = undefined;
 
 					if ( tmp ) {
 						elem[ ontype ] = tmp;
@@ -8248,8 +8248,8 @@ jQuery.extend( jQuery.event, {
 	// Piggyback on a donor event to simulate a different one
 	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
-		var e = jQuery.extend(
-			new jQuery.Event(),
+		var e = noConflictQuery.extend(
+			new noConflictQuery.Event(),
 			event,
 			{
 				type: type,
@@ -8257,41 +8257,41 @@ jQuery.extend( jQuery.event, {
 			}
 		);
 
-		jQuery.event.trigger( e, null, elem );
+		noConflictQuery.event.trigger( e, null, elem );
 	}
 
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 
 	trigger: function( type, data ) {
 		return this.each( function() {
-			jQuery.event.trigger( type, data, this );
+			noConflictQuery.event.trigger( type, data, this );
 		} );
 	},
 	triggerHandler: function( type, data ) {
 		var elem = this[ 0 ];
 		if ( elem ) {
-			return jQuery.event.trigger( type, data, elem, true );
+			return noConflictQuery.event.trigger( type, data, elem, true );
 		}
 	}
 } );
 
 
-jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+noConflictQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( i, name ) {
 
 	// Handle event binding
-	jQuery.fn[ name ] = function( data, fn ) {
+	noConflictQuery.fn[ name ] = function( data, fn ) {
 		return arguments.length > 0 ?
 			this.on( name, null, data, fn ) :
 			this.trigger( name );
 	};
 } );
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	hover: function( fnOver, fnOut ) {
 		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
 	}
@@ -8312,14 +8312,14 @@ support.focusin = "onfocusin" in window;
 // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
 // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
 if ( !support.focusin ) {
-	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+	noConflictQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
 		// Attach a single capturing handler on the document while someone wants focusin/focusout
 		var handler = function( event ) {
-			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
+			noConflictQuery.event.simulate( fix, event.target, noConflictQuery.event.fix( event ) );
 		};
 
-		jQuery.event.special[ fix ] = {
+		noConflictQuery.event.special[ fix ] = {
 			setup: function() {
 				var doc = this.ownerDocument || this,
 					attaches = dataPriv.access( doc, fix );
@@ -8346,14 +8346,14 @@ if ( !support.focusin ) {
 }
 var location = window.location;
 
-var nonce = jQuery.now();
+var nonce = noConflictQuery.now();
 
 var rquery = ( /\?/ );
 
 
 
 // Cross-browser xml parsing
-jQuery.parseXML = function( data ) {
+noConflictQuery.parseXML = function( data ) {
 	var xml;
 	if ( !data || typeof data !== "string" ) {
 		return null;
@@ -8368,7 +8368,7 @@ jQuery.parseXML = function( data ) {
 	}
 
 	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
-		jQuery.error( "Invalid XML: " + data );
+		noConflictQuery.error( "Invalid XML: " + data );
 	}
 	return xml;
 };
@@ -8386,7 +8386,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	if ( Array.isArray( obj ) ) {
 
 		// Serialize array item.
-		jQuery.each( obj, function( i, v ) {
+		noConflictQuery.each( obj, function( i, v ) {
 			if ( traditional || rbracket.test( prefix ) ) {
 
 				// Treat each array item as a scalar.
@@ -8404,7 +8404,7 @@ function buildParams( prefix, obj, traditional, add ) {
 			}
 		} );
 
-	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
+	} else if ( !traditional && noConflictQuery.type( obj ) === "object" ) {
 
 		// Serialize object item.
 		for ( name in obj ) {
@@ -8420,13 +8420,13 @@ function buildParams( prefix, obj, traditional, add ) {
 
 // Serialize an array of form elements or a set of
 // key/values into a query string
-jQuery.param = function( a, traditional ) {
+noConflictQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],
 		add = function( key, valueOrFunction ) {
 
 			// If value is a function, invoke it and use its return value
-			var value = jQuery.isFunction( valueOrFunction ) ?
+			var value = noConflictQuery.isFunction( valueOrFunction ) ?
 				valueOrFunction() :
 				valueOrFunction;
 
@@ -8435,10 +8435,10 @@ jQuery.param = function( a, traditional ) {
 		};
 
 	// If an array was passed in, assume that it is an array of form elements.
-	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+	if ( Array.isArray( a ) || ( a.noConflictQuery && !noConflictQuery.isPlainObject( a ) ) ) {
 
 		// Serialize the form elements
-		jQuery.each( a, function() {
+		noConflictQuery.each( a, function() {
 			add( this.name, this.value );
 		} );
 
@@ -8455,34 +8455,34 @@ jQuery.param = function( a, traditional ) {
 	return s.join( "&" );
 };
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	serialize: function() {
-		return jQuery.param( this.serializeArray() );
+		return noConflictQuery.param( this.serializeArray() );
 	},
 	serializeArray: function() {
 		return this.map( function() {
 
 			// Can add propHook for "elements" to filter or add form elements
-			var elements = jQuery.prop( this, "elements" );
-			return elements ? jQuery.makeArray( elements ) : this;
+			var elements = noConflictQuery.prop( this, "elements" );
+			return elements ? noConflictQuery.makeArray( elements ) : this;
 		} )
 		.filter( function() {
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
-			return this.name && !jQuery( this ).is( ":disabled" ) &&
+			return this.name && !noConflictQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
 		} )
 		.map( function( i, elem ) {
-			var val = jQuery( this ).val();
+			var val = noConflictQuery( this ).val();
 
 			if ( val == null ) {
 				return null;
 			}
 
 			if ( Array.isArray( val ) ) {
-				return jQuery.map( val, function( val ) {
+				return noConflictQuery.map( val, function( val ) {
 					return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
 				} );
 			}
@@ -8529,7 +8529,7 @@ var
 	originAnchor = document.createElement( "a" );
 	originAnchor.href = location.href;
 
-// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+// Base "constructor" for noConflictQuery.ajaxPrefilter and noConflictQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
 
 	// dataTypeExpression is optional and defaults to "*"
@@ -8544,7 +8544,7 @@ function addToPrefiltersOrTransports( structure ) {
 			i = 0,
 			dataTypes = dataTypeExpression.toLowerCase().match( rnothtmlwhite ) || [];
 
-		if ( jQuery.isFunction( func ) ) {
+		if ( noConflictQuery.isFunction( func ) ) {
 
 			// For each dataType in the dataTypeExpression
 			while ( ( dataType = dataTypes[ i++ ] ) ) {
@@ -8572,7 +8572,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 	function inspect( dataType ) {
 		var selected;
 		inspected[ dataType ] = true;
-		jQuery.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
+		noConflictQuery.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
 			var dataTypeOrTransport = prefilterOrFactory( options, originalOptions, jqXHR );
 			if ( typeof dataTypeOrTransport === "string" &&
 				!seekingTransport && !inspected[ dataTypeOrTransport ] ) {
@@ -8595,7 +8595,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 // Fixes #9887
 function ajaxExtend( target, src ) {
 	var key, deep,
-		flatOptions = jQuery.ajaxSettings.flatOptions || {};
+		flatOptions = noConflictQuery.ajaxSettings.flatOptions || {};
 
 	for ( key in src ) {
 		if ( src[ key ] !== undefined ) {
@@ -8603,7 +8603,7 @@ function ajaxExtend( target, src ) {
 		}
 	}
 	if ( deep ) {
-		jQuery.extend( true, target, deep );
+		noConflictQuery.extend( true, target, deep );
 	}
 
 	return target;
@@ -8767,7 +8767,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 	return { state: "success", data: response };
 }
 
-jQuery.extend( {
+noConflictQuery.extend( {
 
 	// Counter for holding the number of active queries
 	active: 0,
@@ -8831,7 +8831,7 @@ jQuery.extend( {
 			"text json": JSON.parse,
 
 			// Parse text as xml
-			"text xml": jQuery.parseXML
+			"text xml": noConflictQuery.parseXML
 		},
 
 		// For options that shouldn't be deep extended:
@@ -8851,10 +8851,10 @@ jQuery.extend( {
 		return settings ?
 
 			// Building a settings object
-			ajaxExtend( ajaxExtend( target, jQuery.ajaxSettings ), settings ) :
+			ajaxExtend( ajaxExtend( target, noConflictQuery.ajaxSettings ), settings ) :
 
 			// Extending ajaxSettings
-			ajaxExtend( jQuery.ajaxSettings, target );
+			ajaxExtend( noConflictQuery.ajaxSettings, target );
 	},
 
 	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
@@ -8900,20 +8900,20 @@ jQuery.extend( {
 			uncached,
 
 			// Create the final options object
-			s = jQuery.ajaxSetup( {}, options ),
+			s = noConflictQuery.ajaxSetup( {}, options ),
 
 			// Callbacks context
 			callbackContext = s.context || s,
 
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			// Context for global events is callbackContext if it is a DOM node or noConflictQuery collection
 			globalEventContext = s.context &&
-				( callbackContext.nodeType || callbackContext.jquery ) ?
-					jQuery( callbackContext ) :
-					jQuery.event,
+				( callbackContext.nodeType || callbackContext.noConflictQuery ) ?
+					noConflictQuery( callbackContext ) :
+					noConflictQuery.event,
 
 			// Deferreds
-			deferred = jQuery.Deferred(),
-			completeDeferred = jQuery.Callbacks( "once memory" ),
+			deferred = noConflictQuery.Deferred(),
+			completeDeferred = noConflictQuery.Callbacks( "once memory" ),
 
 			// Status-dependent callbacks
 			statusCode = s.statusCode || {},
@@ -9037,7 +9037,7 @@ jQuery.extend( {
 
 		// Convert data if not already a string
 		if ( s.data && s.processData && typeof s.data !== "string" ) {
-			s.data = jQuery.param( s.data, s.traditional );
+			s.data = noConflictQuery.param( s.data, s.traditional );
 		}
 
 		// Apply prefilters
@@ -9049,12 +9049,12 @@ jQuery.extend( {
 		}
 
 		// We can fire global events as of now if asked to
-		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
-		fireGlobals = jQuery.event && s.global;
+		// Don't fire events if noConflictQuery.event is undefined in an AMD-usage scenario (#15118)
+		fireGlobals = noConflictQuery.event && s.global;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
-			jQuery.event.trigger( "ajaxStart" );
+		if ( fireGlobals && noConflictQuery.active++ === 0 ) {
+			noConflictQuery.event.trigger( "ajaxStart" );
 		}
 
 		// Uppercase the type
@@ -9099,11 +9099,11 @@ jQuery.extend( {
 
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 		if ( s.ifModified ) {
-			if ( jQuery.lastModified[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
+			if ( noConflictQuery.lastModified[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-Modified-Since", noConflictQuery.lastModified[ cacheURL ] );
 			}
-			if ( jQuery.etag[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
+			if ( noConflictQuery.etag[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-None-Match", noConflictQuery.etag[ cacheURL ] );
 			}
 		}
 
@@ -9228,11 +9228,11 @@ jQuery.extend( {
 				if ( s.ifModified ) {
 					modified = jqXHR.getResponseHeader( "Last-Modified" );
 					if ( modified ) {
-						jQuery.lastModified[ cacheURL ] = modified;
+						noConflictQuery.lastModified[ cacheURL ] = modified;
 					}
 					modified = jqXHR.getResponseHeader( "etag" );
 					if ( modified ) {
-						jQuery.etag[ cacheURL ] = modified;
+						noConflictQuery.etag[ cacheURL ] = modified;
 					}
 				}
 
@@ -9290,8 +9290,8 @@ jQuery.extend( {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 
 				// Handle the global AJAX counter
-				if ( !( --jQuery.active ) ) {
-					jQuery.event.trigger( "ajaxStop" );
+				if ( !( --noConflictQuery.active ) ) {
+					noConflictQuery.event.trigger( "ajaxStop" );
 				}
 			}
 		}
@@ -9300,38 +9300,38 @@ jQuery.extend( {
 	},
 
 	getJSON: function( url, data, callback ) {
-		return jQuery.get( url, data, callback, "json" );
+		return noConflictQuery.get( url, data, callback, "json" );
 	},
 
 	getScript: function( url, callback ) {
-		return jQuery.get( url, undefined, callback, "script" );
+		return noConflictQuery.get( url, undefined, callback, "script" );
 	}
 } );
 
-jQuery.each( [ "get", "post" ], function( i, method ) {
-	jQuery[ method ] = function( url, data, callback, type ) {
+noConflictQuery.each( [ "get", "post" ], function( i, method ) {
+	noConflictQuery[ method ] = function( url, data, callback, type ) {
 
 		// Shift arguments if data argument was omitted
-		if ( jQuery.isFunction( data ) ) {
+		if ( noConflictQuery.isFunction( data ) ) {
 			type = type || callback;
 			callback = data;
 			data = undefined;
 		}
 
 		// The url can be an options object (which then must have .url)
-		return jQuery.ajax( jQuery.extend( {
+		return noConflictQuery.ajax( noConflictQuery.extend( {
 			url: url,
 			type: method,
 			dataType: type,
 			data: data,
 			success: callback
-		}, jQuery.isPlainObject( url ) && url ) );
+		}, noConflictQuery.isPlainObject( url ) && url ) );
 	};
 } );
 
 
-jQuery._evalUrl = function( url ) {
-	return jQuery.ajax( {
+noConflictQuery._evalUrl = function( url ) {
+	return noConflictQuery.ajax( {
 		url: url,
 
 		// Make this explicit, since user can override this through ajaxSetup (#11264)
@@ -9345,17 +9345,17 @@ jQuery._evalUrl = function( url ) {
 };
 
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	wrapAll: function( html ) {
 		var wrap;
 
 		if ( this[ 0 ] ) {
-			if ( jQuery.isFunction( html ) ) {
+			if ( noConflictQuery.isFunction( html ) ) {
 				html = html.call( this[ 0 ] );
 			}
 
 			// The elements to wrap the target around
-			wrap = jQuery( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
+			wrap = noConflictQuery( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
 
 			if ( this[ 0 ].parentNode ) {
 				wrap.insertBefore( this[ 0 ] );
@@ -9376,14 +9376,14 @@ jQuery.fn.extend( {
 	},
 
 	wrapInner: function( html ) {
-		if ( jQuery.isFunction( html ) ) {
+		if ( noConflictQuery.isFunction( html ) ) {
 			return this.each( function( i ) {
-				jQuery( this ).wrapInner( html.call( this, i ) );
+				noConflictQuery( this ).wrapInner( html.call( this, i ) );
 			} );
 		}
 
 		return this.each( function() {
-			var self = jQuery( this ),
+			var self = noConflictQuery( this ),
 				contents = self.contents();
 
 			if ( contents.length ) {
@@ -9396,33 +9396,33 @@ jQuery.fn.extend( {
 	},
 
 	wrap: function( html ) {
-		var isFunction = jQuery.isFunction( html );
+		var isFunction = noConflictQuery.isFunction( html );
 
 		return this.each( function( i ) {
-			jQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
+			noConflictQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
 		} );
 	},
 
 	unwrap: function( selector ) {
 		this.parent( selector ).not( "body" ).each( function() {
-			jQuery( this ).replaceWith( this.childNodes );
+			noConflictQuery( this ).replaceWith( this.childNodes );
 		} );
 		return this;
 	}
 } );
 
 
-jQuery.expr.pseudos.hidden = function( elem ) {
-	return !jQuery.expr.pseudos.visible( elem );
+noConflictQuery.expr.pseudos.hidden = function( elem ) {
+	return !noConflictQuery.expr.pseudos.visible( elem );
 };
-jQuery.expr.pseudos.visible = function( elem ) {
+noConflictQuery.expr.pseudos.visible = function( elem ) {
 	return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 };
 
 
 
 
-jQuery.ajaxSettings.xhr = function() {
+noConflictQuery.ajaxSettings.xhr = function() {
 	try {
 		return new window.XMLHttpRequest();
 	} catch ( e ) {}
@@ -9437,12 +9437,12 @@ var xhrSuccessStatus = {
 		// #1450: sometimes IE returns 1223 when it should be 204
 		1223: 204
 	},
-	xhrSupported = jQuery.ajaxSettings.xhr();
+	xhrSupported = noConflictQuery.ajaxSettings.xhr();
 
 support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
 support.ajax = xhrSupported = !!xhrSupported;
 
-jQuery.ajaxTransport( function( options ) {
+noConflictQuery.ajaxTransport( function( options ) {
 	var callback, errorCallback;
 
 	// Cross domain only allowed if supported through XMLHttpRequest
@@ -9586,14 +9586,14 @@ jQuery.ajaxTransport( function( options ) {
 
 
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
-jQuery.ajaxPrefilter( function( s ) {
+noConflictQuery.ajaxPrefilter( function( s ) {
 	if ( s.crossDomain ) {
 		s.contents.script = false;
 	}
 } );
 
 // Install script dataType
-jQuery.ajaxSetup( {
+noConflictQuery.ajaxSetup( {
 	accepts: {
 		script: "text/javascript, application/javascript, " +
 			"application/ecmascript, application/x-ecmascript"
@@ -9603,14 +9603,14 @@ jQuery.ajaxSetup( {
 	},
 	converters: {
 		"text script": function( text ) {
-			jQuery.globalEval( text );
+			noConflictQuery.globalEval( text );
 			return text;
 		}
 	}
 } );
 
 // Handle cache's special case and crossDomain
-jQuery.ajaxPrefilter( "script", function( s ) {
+noConflictQuery.ajaxPrefilter( "script", function( s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
 	}
@@ -9620,14 +9620,14 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 } );
 
 // Bind script tag hack transport
-jQuery.ajaxTransport( "script", function( s ) {
+noConflictQuery.ajaxTransport( "script", function( s ) {
 
 	// This transport only deals with cross domain requests
 	if ( s.crossDomain ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = jQuery( "<script>" ).prop( {
+				script = noConflictQuery( "<script>" ).prop( {
 					charset: s.scriptCharset,
 					src: s.url
 				} ).on(
@@ -9660,17 +9660,17 @@ var oldCallbacks = [],
 	rjsonp = /(=)\?(?=&|$)|\?\?/;
 
 // Default jsonp settings
-jQuery.ajaxSetup( {
+noConflictQuery.ajaxSetup( {
 	jsonp: "callback",
 	jsonpCallback: function() {
-		var callback = oldCallbacks.pop() || ( jQuery.expando + "_" + ( nonce++ ) );
+		var callback = oldCallbacks.pop() || ( noConflictQuery.expando + "_" + ( nonce++ ) );
 		this[ callback ] = true;
 		return callback;
 	}
 } );
 
 // Detect, normalize options and install callbacks for jsonp requests
-jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+noConflictQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 	var callbackName, overwritten, responseContainer,
 		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
@@ -9685,7 +9685,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
 
 		// Get callback name, remembering preexisting value associated with it
-		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
+		callbackName = s.jsonpCallback = noConflictQuery.isFunction( s.jsonpCallback ) ?
 			s.jsonpCallback() :
 			s.jsonpCallback;
 
@@ -9699,7 +9699,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 		// Use data converter to retrieve json after script execution
 		s.converters[ "script json" ] = function() {
 			if ( !responseContainer ) {
-				jQuery.error( callbackName + " was not called" );
+				noConflictQuery.error( callbackName + " was not called" );
 			}
 			return responseContainer[ 0 ];
 		};
@@ -9718,7 +9718,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 			// If previous value didn't exist - remove it
 			if ( overwritten === undefined ) {
-				jQuery( window ).removeProp( callbackName );
+				noConflictQuery( window ).removeProp( callbackName );
 
 			// Otherwise restore preexisting value
 			} else {
@@ -9736,7 +9736,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			}
 
 			// Call if it was a function and we have a response
-			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
+			if ( responseContainer && noConflictQuery.isFunction( overwritten ) ) {
 				overwritten( responseContainer[ 0 ] );
 			}
 
@@ -9767,7 +9767,7 @@ support.createHTMLDocument = ( function() {
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
 // keepScripts (optional): If true, will include scripts passed in the html string
-jQuery.parseHTML = function( data, context, keepScripts ) {
+noConflictQuery.parseHTML = function( data, context, keepScripts ) {
 	if ( typeof data !== "string" ) {
 		return [];
 	}
@@ -9807,17 +9807,17 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 	parsed = buildFragment( [ data ], context, scripts );
 
 	if ( scripts && scripts.length ) {
-		jQuery( scripts ).remove();
+		noConflictQuery( scripts ).remove();
 	}
 
-	return jQuery.merge( [], parsed.childNodes );
+	return noConflictQuery.merge( [], parsed.childNodes );
 };
 
 
 /**
  * Load a url into a page
  */
-jQuery.fn.load = function( url, params, callback ) {
+noConflictQuery.fn.load = function( url, params, callback ) {
 	var selector, type, response,
 		self = this,
 		off = url.indexOf( " " );
@@ -9828,7 +9828,7 @@ jQuery.fn.load = function( url, params, callback ) {
 	}
 
 	// If it's a function
-	if ( jQuery.isFunction( params ) ) {
+	if ( noConflictQuery.isFunction( params ) ) {
 
 		// We assume that it's the callback
 		callback = params;
@@ -9841,7 +9841,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 	// If we have elements to modify, make the request
 	if ( self.length > 0 ) {
-		jQuery.ajax( {
+		noConflictQuery.ajax( {
 			url: url,
 
 			// If "type" variable is undefined, then "GET" method will be used.
@@ -9859,7 +9859,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 				// If a selector was specified, locate the right elements in a dummy div
 				// Exclude scripts to avoid IE 'Permission Denied' errors
-				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
+				noConflictQuery( "<div>" ).append( noConflictQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
 				responseText );
@@ -9881,7 +9881,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 
 // Attach a bunch of functions for handling common AJAX events
-jQuery.each( [
+noConflictQuery.each( [
 	"ajaxStart",
 	"ajaxStop",
 	"ajaxComplete",
@@ -9889,7 +9889,7 @@ jQuery.each( [
 	"ajaxSuccess",
 	"ajaxSend"
 ], function( i, type ) {
-	jQuery.fn[ type ] = function( fn ) {
+	noConflictQuery.fn[ type ] = function( fn ) {
 		return this.on( type, fn );
 	};
 } );
@@ -9897,8 +9897,8 @@ jQuery.each( [
 
 
 
-jQuery.expr.pseudos.animated = function( elem ) {
-	return jQuery.grep( jQuery.timers, function( fn ) {
+noConflictQuery.expr.pseudos.animated = function( elem ) {
+	return noConflictQuery.grep( noConflictQuery.timers, function( fn ) {
 		return elem === fn.elem;
 	} ).length;
 };
@@ -9906,11 +9906,11 @@ jQuery.expr.pseudos.animated = function( elem ) {
 
 
 
-jQuery.offset = {
+noConflictQuery.offset = {
 	setOffset: function( elem, options, i ) {
 		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
-			position = jQuery.css( elem, "position" ),
-			curElem = jQuery( elem ),
+			position = noConflictQuery.css( elem, "position" ),
+			curElem = noConflictQuery( elem ),
 			props = {};
 
 		// Set position first, in-case top/left are set even on static elem
@@ -9919,8 +9919,8 @@ jQuery.offset = {
 		}
 
 		curOffset = curElem.offset();
-		curCSSTop = jQuery.css( elem, "top" );
-		curCSSLeft = jQuery.css( elem, "left" );
+		curCSSTop = noConflictQuery.css( elem, "top" );
+		curCSSLeft = noConflictQuery.css( elem, "left" );
 		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
 			( curCSSTop + curCSSLeft ).indexOf( "auto" ) > -1;
 
@@ -9936,10 +9936,10 @@ jQuery.offset = {
 			curLeft = parseFloat( curCSSLeft ) || 0;
 		}
 
-		if ( jQuery.isFunction( options ) ) {
+		if ( noConflictQuery.isFunction( options ) ) {
 
-			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
-			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
+			// Use noConflictQuery.extend here to allow modification of coordinates argument (gh-1848)
+			options = options.call( elem, i, noConflictQuery.extend( {}, curOffset ) );
 		}
 
 		if ( options.top != null ) {
@@ -9958,7 +9958,7 @@ jQuery.offset = {
 	}
 };
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 	offset: function( options ) {
 
 		// Preserve chaining for setter
@@ -9966,7 +9966,7 @@ jQuery.fn.extend( {
 			return options === undefined ?
 				this :
 				this.each( function( i ) {
-					jQuery.offset.setOffset( this, options, i );
+					noConflictQuery.offset.setOffset( this, options, i );
 				} );
 		}
 
@@ -10008,7 +10008,7 @@ jQuery.fn.extend( {
 
 		// Fixed elements are offset from window (parentOffset = {top:0, left: 0},
 		// because it is its only offset parent
-		if ( jQuery.css( elem, "position" ) === "fixed" ) {
+		if ( noConflictQuery.css( elem, "position" ) === "fixed" ) {
 
 			// Assume getBoundingClientRect is there when computed position is fixed
 			offset = elem.getBoundingClientRect();
@@ -10026,15 +10026,15 @@ jQuery.fn.extend( {
 
 			// Add offsetParent borders
 			parentOffset = {
-				top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
-				left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
+				top: parentOffset.top + noConflictQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
+				left: parentOffset.left + noConflictQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
 			};
 		}
 
 		// Subtract parent offsets and element margins
 		return {
-			top: offset.top - parentOffset.top - jQuery.css( elem, "marginTop", true ),
-			left: offset.left - parentOffset.left - jQuery.css( elem, "marginLeft", true )
+			top: offset.top - parentOffset.top - noConflictQuery.css( elem, "marginTop", true ),
+			left: offset.left - parentOffset.left - noConflictQuery.css( elem, "marginLeft", true )
 		};
 	},
 
@@ -10052,7 +10052,7 @@ jQuery.fn.extend( {
 		return this.map( function() {
 			var offsetParent = this.offsetParent;
 
-			while ( offsetParent && jQuery.css( offsetParent, "position" ) === "static" ) {
+			while ( offsetParent && noConflictQuery.css( offsetParent, "position" ) === "static" ) {
 				offsetParent = offsetParent.offsetParent;
 			}
 
@@ -10062,15 +10062,15 @@ jQuery.fn.extend( {
 } );
 
 // Create scrollLeft and scrollTop methods
-jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
+noConflictQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
 	var top = "pageYOffset" === prop;
 
-	jQuery.fn[ method ] = function( val ) {
+	noConflictQuery.fn[ method ] = function( val ) {
 		return access( this, function( elem, method, val ) {
 
 			// Coalesce documents and windows
 			var win;
-			if ( jQuery.isWindow( elem ) ) {
+			if ( noConflictQuery.isWindow( elem ) ) {
 				win = elem;
 			} else if ( elem.nodeType === 9 ) {
 				win = elem.defaultView;
@@ -10094,20 +10094,20 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 } );
 
 // Support: Safari <=7 - 9.1, Chrome <=37 - 49
-// Add the top/left cssHooks using jQuery.fn.position
+// Add the top/left cssHooks using noConflictQuery.fn.position
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
 // rather than make the css module depend on the offset module, just check for it here
-jQuery.each( [ "top", "left" ], function( i, prop ) {
-	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
+noConflictQuery.each( [ "top", "left" ], function( i, prop ) {
+	noConflictQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
 		function( elem, computed ) {
 			if ( computed ) {
 				computed = curCSS( elem, prop );
 
 				// If curCSS returns percentage, fallback to offset
 				return rnumnonpx.test( computed ) ?
-					jQuery( elem ).position()[ prop ] + "px" :
+					noConflictQuery( elem ).position()[ prop ] + "px" :
 					computed;
 			}
 		}
@@ -10116,19 +10116,19 @@ jQuery.each( [ "top", "left" ], function( i, prop ) {
 
 
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
-	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
+noConflictQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+	noConflictQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
 		function( defaultExtra, funcName ) {
 
 		// Margin is only for outerHeight, outerWidth
-		jQuery.fn[ funcName ] = function( margin, value ) {
+		noConflictQuery.fn[ funcName ] = function( margin, value ) {
 			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
 				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
 
 			return access( this, function( elem, type, value ) {
 				var doc;
 
-				if ( jQuery.isWindow( elem ) ) {
+				if ( noConflictQuery.isWindow( elem ) ) {
 
 					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
 					return funcName.indexOf( "outer" ) === 0 ?
@@ -10152,17 +10152,17 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				return value === undefined ?
 
 					// Get width or height on the element, requesting but not forcing parseFloat
-					jQuery.css( elem, type, extra ) :
+					noConflictQuery.css( elem, type, extra ) :
 
 					// Set width or height on the element
-					jQuery.style( elem, type, value, extra );
+					noConflictQuery.style( elem, type, value, extra );
 			}, type, chainable ? margin : undefined, chainable );
 		};
 	} );
 } );
 
 
-jQuery.fn.extend( {
+noConflictQuery.fn.extend( {
 
 	bind: function( types, data, fn ) {
 		return this.on( types, null, data, fn );
@@ -10183,36 +10183,36 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.holdReady = function( hold ) {
+noConflictQuery.holdReady = function( hold ) {
 	if ( hold ) {
-		jQuery.readyWait++;
+		noConflictQuery.readyWait++;
 	} else {
-		jQuery.ready( true );
+		noConflictQuery.ready( true );
 	}
 };
-jQuery.isArray = Array.isArray;
-jQuery.parseJSON = JSON.parse;
-jQuery.nodeName = nodeName;
+noConflictQuery.isArray = Array.isArray;
+noConflictQuery.parseJSON = JSON.parse;
+noConflictQuery.nodeName = nodeName;
 
 
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
+// Register as a named AMD module, since noConflictQuery can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
+// way to register. Lowercase noConflictQuery is used because AMD module names are
+// derived from file names, and noConflictQuery is normally delivered in a lowercase
 // file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of jQuery, it will work.
+// to call noConflict to hide this version of noConflictQuery, it will work.
 
-// Note that for maximum portability, libraries that are not jQuery should
+// Note that for maximum portability, libraries that are not noConflictQuery should
 // declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
+// AMD loader is present. noConflictQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( typeof define === "function" && define.amd ) {
-	define( "jquery", [], function() {
-		return jQuery;
+	define( "noConflictQuery", [], function() {
+		return noConflictQuery;
 	} );
 }
 
@@ -10221,33 +10221,33 @@ if ( typeof define === "function" && define.amd ) {
 
 var
 
-	// Map over jQuery in case of overwrite
-	_jQuery = window.jQuery,
+	// Map over noConflictQuery in case of overwrite
+	_noConflictQuery = window.noConflictQuery,
 
 	// Map over the $ in case of overwrite
 	_$ = window.$;
 
-jQuery.noConflict = function( deep ) {
-	if ( window.$ === jQuery ) {
+noConflictQuery.noConflict = function( deep ) {
+	if ( window.$ === noConflictQuery ) {
 		window.$ = _$;
 	}
 
-	if ( deep && window.jQuery === jQuery ) {
-		window.jQuery = _jQuery;
+	if ( deep && window.noConflictQuery === noConflictQuery ) {
+		window.noConflictQuery = _noConflictQuery;
 	}
 
-	return jQuery;
+	return noConflictQuery;
 };
 
-// Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+// Expose noConflictQuery and $ identifiers, even in AMD
+// (#7102#comment:10, https://github.com/noConflictQuery/noConflictQuery/pull/557)
 // and CommonJS for browser emulators (#13566)
 if ( !noGlobal ) {
-	window.jQuery = jQuery;
+	window.noConflictQuery = noConflictQuery;
 }
 
 
 
 
-return jQuery;
+return noConflictQuery;
 } );
