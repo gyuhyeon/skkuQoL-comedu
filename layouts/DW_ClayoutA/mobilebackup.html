@@ -1,0 +1,294 @@
+{@
+Context::addHtmlHeader('<meta name="viewport" content="width=device-width, user-scalable=yes">')
+}
+  <!--@if(file_exists('./common/js/jquery.min.js'))-->
+   {@ Context::addJsFile("./common/js/jquery.min.js", true, '', -10000011) }
+   <!--@elseif(file_exists('./common/js/jquery.js'))-->
+   {@ Context::addJsFile("./common/js/jquery.js", true, '', -10000011) }
+   <!--@end-->
+<load target="../../common/xeicon/xeicon.min.css" />
+<load target="./css/m.default.css" />
+<load target="./js/m.xe_official.js" />
+<load target="js/jquery.scrollUp.min.js" type="body" />
+<style>
+<block cond="$layout_info->border_basic">
+.header{border-color:{$layout_info->border_basic}}
+</block>
+<block cond="$layout_info->bg_basic">
+.breadclumb .last_breadclumb a{color:{$layout_info->bg_basic} !important}
+#scrollUp:hover{background-color:{$layout_info->bg_basic} !important}
+</block>
+<block cond="$layout_info->main_widget_bg1">
+.section1{background:{$layout_info->main_widget_bg1};}
+</block>
+<block cond="$layout_info->main_title_color1">
+.section1 h1{color:{$layout_info->main_title_color1};}
+.section1 h1:after{background:{$layout_info->main_title_color1};}
+</block>
+<block cond="$layout_info->main_text_color1">
+.section1 p{color:{$layout_info->main_text_color1};}
+</block>
+<block cond="$layout_info->main_widget_bg2">
+.section2{background:{$layout_info->main_widget_bg2};}
+.section1 .left_span{border-bottom:60px solid {$layout_info->main_widget_bg2};}
+.section1 .right_span{border-bottom:60px solid {$layout_info->main_widget_bg2};}
+</block>
+<block cond="$layout_info->main_widget_bg3">
+.section3,
+.section3 .owl-carousel .owl-item{background:{$layout_info->main_widget_bg3};}
+.section2 .left_span{border-bottom:60px solid {$layout_info->main_widget_bg3};}
+.section2 .right_span{border-bottom:60px solid {$layout_info->main_widget_bg3};}
+
+</block>
+<block cond="$layout_info->main_widget_bg4">
+.section4{background:{$layout_info->main_widget_bg4};}
+.section3 .left_span{border-bottom:60px solid {$layout_info->main_widget_bg4};}
+.section3 .right_span{border-bottom:60px solid {$layout_info->main_widget_bg4};}
+</block>
+<block cond="$layout_info->bg_up_breadclumb">
+.breadclumb_up{background:{$layout_info->bg_up_breadclumb}}
+</block>
+<block cond="$layout_info->color_up_breadclumb">
+.xe .breadclumb_up *,
+.xe .breadclumb_up .last_breadclumb a{color:{$layout_info->color_up_breadclumb} !important;}
+</block>
+<block cond="$layout_info->border_up_breadclumb">
+.breadclumb_up{border-color:{$layout_info->border_up_breadclumb} !important;}
+</block>
+</style>
+<div class="xe">
+	<!-- 헤더 시작 -->
+	<div class="wrap_header">
+		<div class="xe_width">
+			<div class="header">
+				<div class="middle_menu">
+					<div class="wrap_menu clearBoth">
+						<h1 class="large_logo">
+							<a href="{$layout_info->logo_url}"|cond="$layout_info->logo_url"  href="{getSiteUrl()}"|cond="!$layout_info->logo_url" cond="$layout_info->logo_image || $layout_info->m_logo_image" title="{$layout_info->logo_image_alt}">
+								<img cond="!$layout_info->m_logo_image" class="logo" src="{$layout_info->logo_image}" alt="{$layout_info->logo_image_alt}" border="0" />
+								<img cond="$layout_info->m_logo_image" class="logo" src="{$layout_info->m_logo_image}" alt="{$layout_info->logo_image_alt}" border="0" />
+							</a>
+							<a href="{getSiteUrl()}" cond="!$layout_info->logo_image && !$layout_info->m_logo_image" class="text_logo" title="Door of Web"><img class="logo" src="img/m.logo.png" border="0" alt="Door of Web"></a>
+						</h1>
+						<a href="#" class="first_a mobile_menu_act"><img src="img/menu.png" alt="menu" /></a>
+						<a href="#" class="first_a search_menu"><img src="img/login.png" alt="login" /></a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- 헤더 끝 -->
+
+	<div class="xe_width body">
+		<div class="wrap_slide" cond="$layout_info->main_slide">
+			<include target="slide/da-slider.html" />
+		</div>
+		<div class="mobile_breadclumb breadclumb_{$layout_info->breadclumb}" cond="$layout_info->breadclumb">
+			<div>
+				<!-- depth 1 -->
+				<block loop="$main_menu->list=>$key, $val" cond="$val['selected']">{@$menu_depth1 = $val}</block>
+				<!-- depth 2 -->
+				<block loop="$menu_depth1['list']=>$key, $val" cond="$val['selected'] && $menu_depth1">{@$menu_depth2 = $val}</block>
+				<!-- depth 3 -->
+				<block loop="$menu_depth2['list']=>$key, $val" cond="$val['selected'] && $menu_depth2">{@$menu_depth3 = $val}</block>
+				<div class="wrap_breadclumb clearBoth"  cond="$layout_info->breadclumb">
+					<div class="sub_title" cond="$layout_info->breadclumb=='up'">
+						<h2>
+							<a href="{$menu_depth1['href']}" cond="$menu_depth1&&!$menu_depth2">{$menu_depth1['link']}</a>
+							<a href="{$menu_depth2['href']}" cond="$menu_depth2">{$menu_depth2['link']}</a>
+						</h2>
+					</div>
+					<ul class="breadclumb" cond="$layout_info->breadclumb!=='up'">													
+						<li class="first_breadclumb png_bg">
+							<a href="{getSiteUrl()}">
+													홈
+							</a>
+						</li>
+						<li class="png_bg" cond="$menu_depth1">
+							<a class="Ccolor" href="{$menu_depth1['href']}">{$menu_depth1['text']}</a>
+						</li>
+						<li class="png_bg" cond="$menu_depth2">
+							<a class="Ccolor" href="{$menu_depth2['href']}">{$menu_depth2['text']}</a>
+						</li>
+					</ul>
+					<ul class="breadclumb" cond="$layout_info->breadclumb=='up'">													
+						<li class="first_breadclumb png_bg">
+							<a href="{getSiteUrl()}">홈</a>
+						</li>
+						<li class="png_bg" cond="$menu_depth1">
+							<i class="xi-angle-right"></i>	<a class="Ccolor" href="{$menu_depth1['href']}">{$menu_depth1['text']}</a>
+						</li>
+						<li class="png_bg" cond="$menu_depth2">
+							<i class="xi-angle-right"></i> <a class="Ccolor" href="{$menu_depth2['href']}">{$menu_depth2['text']}</a>
+						</li>
+					</ul>
+									
+				</div>	
+			</div>	
+		</div>
+		<div class="body_widget" cond="$content">
+			<div class="content xe_content" >
+				<div class="section wrap_section">
+					<div>
+						{$content}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<block cond="$layout_info->use_widget">
+			<include target="slide/use_widgetB.html" />
+		</block>
+		<div class="footer">
+			<p class="copylight">
+			<block cond="!$layout_info->FOOTER">
+			<span>주소 : </span>대한민국 서울특별시 영등포구 의사당대로 1<br /> 
+			<span>Tel : </span>+82 2-788-2114   <br />
+			<span>Fax : </span>000.000.0001 
+			</block>
+			<block cond="$layout_info->FOOTER">
+							{$layout_info->FOOTER}
+			</block>
+			</p>
+			<div class="foot_absolute clearBoth">
+				<ul class="foot_sns clearBoth" cond="$layout_info->use_footer_SNS">
+					<li cond="$layout_info->facebook"><a href="{$layout_info->facebook}" target="_blank"  title="Facebook 바로가기"><img src="img/facebook.png" alt="facebook" /></a></li>
+					<li cond="$layout_info->twitter"><a href="{$layout_info->twitter}" target="_blank" title="Twitter 바로가기"><img src="img/twitter.png" alt="twitter" /></a></li>
+					<li cond="$layout_info->instagram"><a href="{$layout_info->instagram}" target="_blank" title="Instagram 바로가기"><img src="img/instagram.png" alt="Instagram" /></a></li>
+					<li cond="$layout_info->google"><a href="{$layout_info->google}" target="_blank" title="Google 바로가기"><img src="img/google.png" alt="google" /></a></li>
+					<li cond="$layout_info->pinterest"><a href="{$layout_info->pinterest}" target="_blank" title="Pinterest 바로가기"><img src="img/pinterest.png" alt="pinterest" /></a></li>
+					<li cond="$layout_info->kakaostory"><a href="{$layout_info->kakaostory}" target="_blank" title="Kakaostory 바로가기"><img src="img/kakaostory.png" alt="kakaostory" /></a></li>
+					<li cond="$layout_info->band"><a href="{$layout_info->band}" target="_blank" title="Band 바로가기"><img src="img/band.png" alt="band" /></a></li>
+					<li cond="$layout_info->sns_image1"><a target="_blank" href="{$layout_info->sns_image_url1}"  title="{$layout_info->sns_image_alt1} 바로가기"><img src="{$layout_info->sns_image1}" alt="{$layout_info->sns_image_alt1}" title="{$layout_info->sns_image_alt1}" /></a></li>
+					<li cond="$layout_info->sns_image2"><a target="_blank" href="{$layout_info->sns_image_url2}"  title="{$layout_info->sns_image_alt2} 바로가기"><img src="{$layout_info->sns_image2}" alt="{$layout_info->sns_image_alt2}" title="{$layout_info->sns_image_alt2}" /></a></li>
+					<li cond="$layout_info->sns_image3"><a target="_blank" href="{$layout_info->sns_image_url3}"  title="{$layout_info->sns_image_alt3} 바로가기"><img src="{$layout_info->sns_image3}" alt="{$layout_info->sns_image_alt3}"  title="{$layout_info->sns_image_alt3}"/></a></li>
+					<li cond="$layout_info->sns_image4"><a target="_blank" href="{$layout_info->sns_image_url4}"  title="{$layout_info->sns_image_alt4} 바로가기"><img src="{$layout_info->sns_image4}" alt="{$layout_info->sns_image_alt4}" title="{$layout_info->sns_image_alt4}" /></a></li>
+				</ul>
+				<a href="http://doorweb.net/xe" target="_blank" class="ds_dw">Design by <span class="skin_by">DoorWeb</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+		<div class="fix_mobile">
+		</div>
+			<div class="mm_mobile_menu none_mobile_menu">
+				<div class="top-mm-menu">MENU<a href="#" class="mobile_menu_act in_mobile_act">CLOSE</a></div>
+				<nav id="mm-menu">
+					<ul class="mm-list">
+						<li class="mm-list-li" cond="$layout_info->use_language=='Y'">
+							<a class="mm_a mm_lang" href="#">Select language</a><button class="Nav_i hover"|cond="$val1['selected']"  class="Nav_i"|cond="!$val1['selected']"><i class="xi-plus-square"></i><i class="xi-minus-square"> </i></button>
+							<ul class="selectLang none_login">
+								<li loop="$lang_supported=>$key,$val" cond="$key!= $lang_type"><a href="#" onclick="doChangeLangType('{$key}');return false;">- {$val}</a></li>
+							</ul>
+						</li>
+						<li loop="$main_menu->list=>$key1,$val1" class="active mm-list-li"|cond="$val1['selected']" class="mm-list-li"|cond="!$val1['selected']"><a class="mm_a"|cond="!$val1['selected']" class="mm_a active_a"|cond="$val1['selected']" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['text']}</a><button class="Nav_i hover"|cond="$val1['selected']"  class="Nav_i"|cond="!$val1['selected']" cond="$val1['list']"><i class="xi-plus-square"></i><i class="xi-minus-square"> </i></button>
+							<ul cond="$val1['list']">
+								<li loop="$val1['list']=>$key2,$val2"><a class="active_a"|cond="$val2['selected']" href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">- {$val2['text']}</a>
+									<!-- <ul cond="$val2['list']">
+										<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']"><a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'"> {$val3['text']}</a></li>
+									</ul> -->
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="mm_search_menu none_search_menu mobile_menu">
+				<div class="top-mm-search"><a href="#" class="mobile_search search_menu">CLOSE</a>MEMBER</div>
+				<div class="wrap_lnb right_lnb">
+					<div class="login_widget">
+						<!--@if(!$is_logged)-->
+						<load target="./css/widget.login.css" />
+						<div class="signin">
+							<div class="login-body">
+								<form action="{getUrl()}" method="post" autocomplete="off">
+									<input type="hidden" name="act" value="procMemberLogin" />
+									<input type="hidden" name="success_return_url" value="{htmlspecialchars(getRequestUriByServerEnviroment(), ENT_COMPAT | ENT_HTML401, 'UTF-8', FALSE)}" />
+									<input type="hidden" name="xe_validator_id" value="layouts/Clayout_A/layout/1" />
+									<fieldset>
+										<legend class="blind">{$lang->cmd_login}</legend>
+										<div class="control-group">
+											<div class="group">
+												<input type="text" name="user_id" id="uemail" required="true" />
+												<span class="bar"></span>
+												<label class="info_label" for="uemail">{$lang->user_id}</label>
+											</div>
+											<div class="group">
+												<input type="password" name="password" id="upw" required="true" />
+												<span class="bar"></span>
+												<label class="info_label" for="upw">{$lang->password}</label>
+											</div>
+											<label class="chk_label" for="keepid_opt">
+												<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" />
+												<span class="checkbox"></span> {$lang->keep_signed}
+											</label>
+											<div class="control-submit">
+												<button type="submit" class="btn_submit">{$lang->cmd_login}</button>
+											</div>
+											<div class="wrap_warning">
+												<div id="warning">
+													<p style="text-align:right;"><i class="xi-close"></i></p>
+													<p>{str_replace('\n\n', '<br />', $lang->about_keep_signed)}</p>
+													<div class="edge"></div>
+												</div>
+											</div>
+										</div>
+										<div cond="$XE_VALIDATOR_ID == 'layouts/Clayout_A/layout/1' && $XE_VALIDATOR_MESSAGE" class="control-group">
+											<p class="error">{$XE_VALIDATOR_MESSAGE}</p>
+										</div>
+										
+									</fieldset>
+								</form>
+							</div>
+							<div class="login-footer" cond="$layout_info->use_sns">
+								{@ $oSocialxeModel = getModel('socialxe');}
+								<ul class="wrap_sns">
+									<li><a cond="$layout_info->naver_login" class="naver_login" href="{$oSocialxeModel->snsAuthUrl('naver', 'login')}"><img src="img/btn_naver.png" alt="Naver Login">Naver Login</a></li>
+									<li><a cond="$layout_info->kakao_login" class="kakao_login" href="{$oSocialxeModel->snsAuthUrl('kakao', 'login')}"><img src="img/btn_kakao.png" alt="kakao Login">Kakao Login</a></li>
+									<li><a cond="$layout_info->twitter_login" class="twitter_login" href="{$oSocialxeModel->snsAuthUrl('twitter', 'login')}"><img src="img/btn_twitter.png" alt="twitter Login">Twitter Login</a></li>
+									<li><a cond="$layout_info->facebook_login" class="facebook_login" href="{$oSocialxeModel->snsAuthUrl('facebook', 'login')}"><img src="img/btn_facebook.png" alt="facebook Login">Facebook Login</a></li>
+									<li><a cond="$layout_info->google_login" class="google_login" href="{$oSocialxeModel->snsAuthUrl('google', 'login')}"><img src="img/btn_google.png" alt="google Login">Google Login</a></li>
+								</ul>
+							</div>
+						</div>
+					<!--@end-->
+					<!--@if($is_logged)-->
+						<div class="uesr clearBoth">
+							<!-- after_login -->
+							<a href="{getUrl('act', 'dispMemberInfo')}" class="login_after">
+								<!--@if($logged_info->profile_image->src)-->
+									<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}" />
+								<!--@else-->
+									<img src="./img/user.gif" alt="{$logged_info->nick_name}" />
+								<!--@end-->
+							</a>
+							<ul class="wrap_Logout">
+								<li><a class="m_nick_name" href="{getUrl('act', 'dispMemberInfo')}">{$logged_info->nick_name}</a> 님</li>
+								<li><a class="m_logout" href="{getUrl('act', 'dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+									
+							</ul>
+						</div>
+						<div class="logged_info">
+							<ul>
+								<li cond="$logged_info->is_admin == 'Y'">
+									<a href="{getUrl('', 'module', 'admin')}" target="_blank">{$lang->cmd_management}</a>
+								</li>
+								<li loop="$logged_info->menu_list => $key, $val"><a href="{getUrl('act', $key, 'member_srl', '', 'page', '')}">{Context::getLang($val)}</a></li>
+									
+							</ul>
+							<span class="edge"></span>
+						</div>
+					<!--@end-->
+					</div>
+					
+				</div>
+			</div>
+			<script>
+
+				/* scrollUp Minimum setup */
+			jQuery(function($){
+					$.scrollUp();
+				});
+
+			</script>
