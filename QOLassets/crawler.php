@@ -142,7 +142,8 @@ $valid_url_regex = '/.*/';
 
 // ############################################################################
 
-$url = $_GET['url'];
+//$url = $_GET['url'];
+$url = "http://coe.skku.edu/coe/menu_6/data_01.jsp";
 
 if ( !$url ) {
   
