@@ -23,8 +23,8 @@ $date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
 if(!preg_match($date_regex, $currentdate)){
     die("날짜 양식 오류");
 }
-//set response header
-//header('Content-type:application/json;charset=utf-8');
+//set response header as json
+header('Content-type:application/json;charset=utf-8');
 
 //find all reservations til 6 days from now
 $sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD('$currentdate', INTERVAL 6 DAY))";
@@ -32,8 +32,14 @@ $sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$curren
 //run mysql query
 $result = $conn->query($sql);
 
+$jsonresponse=array();
 if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        //$jsonresponse[]=array("reserve_srl" => $row["reserve_srl"], "purpose" => $row["purpose"]);
+        $jsonresponse[]=$row;
+    }
     // output data of each row
+    /*
     echo "<table>";
     echo "<tr>";
     echo "<td>reserve_srl</td>";
@@ -59,10 +65,11 @@ if ($result->num_rows > 0) {
         
     }
     echo "</table>";
+    */
 } else {
-    echo "0 results";
+    $jsonresponse[]=array("result"=>"0");
 }
-
+echo json_encode($jsonresponse);
 
 //close connection
 $conn->close();
