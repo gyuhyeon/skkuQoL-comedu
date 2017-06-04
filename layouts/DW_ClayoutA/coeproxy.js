@@ -23,7 +23,7 @@ document.body.onload = function() {
     for(var i=0; i<5; ++i){
         var parent='section.section4 > div.in_section3 div.in_office3 > div.wrap_widgetA > div.DW_StA_normal > div > div > div > ul.widgetA > ';
          noConflictQuery(parent+'li.widgetA_li'+i+' > span')[0].innerHTML = noConflictQuery('table > tbody td', rh)[i*6+3].innerHTML.slice(-5);
-         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].href = "http://coe.skku.edu/coe/menu_6/data_01.jsp"+noConflictQuery('table > tbody td.title > a', rh)[i].href;
+         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].href = "http://coe.skku.edu/coe/menu_6/data_01.jsp"+noConflictQuery('table > tbody td.title > a', rh)[i].getAttribute("href");
          noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].innerHTML = noConflictQuery('table > tbody td.title > a', rh)[i].innerHTML;
     }
     
