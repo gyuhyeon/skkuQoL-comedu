@@ -1,4 +1,4 @@
-document.onload = function() {
+document.body.onload = function() {
     var result;
     noConflictQuery.ajax({
             type        : 'GET', // define the type of HTTP verb we want to use
@@ -22,9 +22,9 @@ document.onload = function() {
     noConflictQuery('section.section4 > div.in_section3 div.in_office3 > div.wrap_widgetA > div.DW_StA_normal > div > div > div > ul.widgetA')[0].innerHTML = '<li class="widgetA_li0 bg2"><span class="date"></span><a href="" class="title"></a></li><li class="widgetA_li1 bg1"><span class="date"></span><a href="" class="title"></a></li><li class="widgetA_li2 bg2"><span class="date"></span><a href="" class="title"></a></li><li class="widgetA_li3 bg1"><span class="date"></span><a href="" class="title"></a></li><li class="widgetA_li4 bg2"><span class="date"></span><a href="" class="title"></a></li>'; //리스트 초기화
     for(var i=0; i<5; ++i){
         var parent='section.section4 > div.in_section3 div.in_office3 > div.wrap_widgetA > div.DW_StA_normal > div > div > div > ul.widgetA > ';
-         noConflictQuery(parent+'li.widgetA_li'+i+' > span')[0].innerHTML = noConflictQuery('table > tbody > td')[i*6+3].innerHTML.slice(-5);
-         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].href = "http://coe.skku.edu/coe/menu_6/data_01.jsp"+noConflictQuery('table > tbody > td.title > a')[i].href;
-         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].innerHTML = noConflictQuery('table > tbody > td.title > a')[i].innerHTML;
+         noConflictQuery(parent+'li.widgetA_li'+i+' > span')[0].innerHTML = noConflictQuery('table > tbody > td', rh)[i*6+3].innerHTML.slice(-5);
+         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].href = "http://coe.skku.edu/coe/menu_6/data_01.jsp"+noConflictQuery('table > tbody > td.title > a', rh)[i].href;
+         noConflictQuery(parent+'li.widgetA_li'+i+' > a')[0].innerHTML = noConflictQuery('table > tbody > td.title > a', rh)[i].innerHTML;
     }
     
 }
