@@ -4,12 +4,12 @@ $dbusername = "root";
 $dbpassword = "insecurelocalpassword";
 $dbname = "admin";
 
-//if text html utf-8
-//header('Content-Type: text/html; charset=utf-8');
+//if text html utf-8 (for some reason, unicode display in json gets messed up unless it's sent as text/html...)
+header('Content-Type: text/html; charset=utf-8');
 //if json utf-8
 //header('Content-Type: application/json; charset=utf-8');
 //it is OKAY to only specify charset. If the client is expecting json by setting dataType as json at ajax, no need to specify(it may even break korean encoding if specified for some reason)
-header('Content-Type: charset=utf-8');
+//header('Content-Type: charset=utf-8');
 
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
@@ -71,7 +71,7 @@ if ($result->num_rows > 0) {
 } else {
     $jsonresponse[]=array("result"=>"0");
 }
-echo json_encode($jsonresponse);
+echo json_encode($jsonresponse, JSON_UNESCAPED_UNICODE);
 
 //close connection
 $conn->close();
