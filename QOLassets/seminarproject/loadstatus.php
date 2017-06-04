@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "insecurelocalpassword"; //root assigned for only localhost connection uses insecure password for github exposure.
+$dbservername = "localhost";
+$dbusername = "root";
+$dbpassword = "insecurelocalpassword"; //root assigned for only localhost connection uses insecure password for github exposure.
 $dbname = "admin";
 
 //header(even for json, text/html seems to give better results with encoding)

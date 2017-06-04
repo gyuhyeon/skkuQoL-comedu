@@ -165,6 +165,7 @@ $(document).ready(function() {
 	placeholdergenerator();
 });
 
+
 function getTableData(){
 	var currentDate = new Date();
 	var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
@@ -172,25 +173,29 @@ function getTableData(){
 	var formData = {
 		'currentdate'      : formattedDate
 	}
-
+	var tableData;
 		// process the form
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : 'loadstatus.php', // the url where we want to POST
         data        : formData,
         dataType    : 'json', // what type of data do we expect back from the server
-                        encode          : true
+                        encode          : true,
+		async       : false // set async as false so we can actually return the data to getTableData()
     })
             // using the done promise callback
         .done(function(data) {
-            return data;
-
+            // return data; return data doesn't work; ajax creates another thread, while getTableData() exits normally.
+			// however, workaround can be done by setting async false.
+			tabledata = data;
             // here we will handle errors and validation messages
         });
+	return tabledata;
 }
 
 function updateTableData(){
-	var jsondata = getTableData();
+	getTableData();
+	//use tableData from here.. however, one
 }
 
 //temporary function to test without fetching date info from server
