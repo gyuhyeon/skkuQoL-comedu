@@ -2,6 +2,7 @@
 $ch = curl_init();
 //here's your fucking header... you wasted 4 hours of my life.
 $header = array(
+    'Host : http://coe.skku.edu',
    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
     'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language: en-US,en;q=0.8,ko;q=0.6',
@@ -11,10 +12,11 @@ $header = array(
     'Cache-Control: max-age=0',
     'Connection: Close'
 );
-$agent;
+$agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
 // set URL and other appropriate options
 curl_setopt($ch, CURLOPT_URL, "http://coe.skku.edu/coe/menu_6/data_01.jsp");
 curl_setopt($ch, CURLOPT_HEADER, $header);
+curl_setopt($ch, CURLOPT_USERAGENT, $agent);
 curl_setopt($ch, CURLOPT_REFERER, 'http://www.google.com');
 curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -24,7 +26,6 @@ $urlContent = curl_exec($ch);
 if(!curl_errno($ch))
 {
    $info = curl_getinfo($ch);
-   header('Content-type: '.$info['content_type']);
    echo $urlContent;
 }
 else{
