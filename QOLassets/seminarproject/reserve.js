@@ -190,8 +190,7 @@ function getTableData(){
 }
 
 function updateTableData(){
-	jsondata = getTableData();
-
+	var jsondata = getTableData();
 }
 
 //temporary function to test without fetching date info from server
