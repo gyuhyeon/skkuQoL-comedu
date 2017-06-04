@@ -26,6 +26,7 @@ $urlContent = curl_exec($ch);
 if(!curl_errno($ch))
 {
    $info = curl_getinfo($ch);
+   header('Content-Type: text/html; charset=utf-8');
    echo $urlContent;
 }
 else{
