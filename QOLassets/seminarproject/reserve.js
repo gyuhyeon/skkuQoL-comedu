@@ -187,10 +187,10 @@ function getTableData(){
         .done(function(data) {
             // return data; return data doesn't work; ajax creates another thread, while getTableData() exits normally.
 			// however, workaround can be done by setting async false.
-			tabledata = data;
+			tableData = data;
             // here we will handle errors and validation messages
         });
-	return tabledata;
+	return tableData;
 }
 
 function updateTableData(){
