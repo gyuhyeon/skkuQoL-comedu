@@ -25,7 +25,7 @@ if(!preg_match($date_regex, $currentdate)){
     die("날짜 양식 오류(비정상적 사용입니다!)");
 }
 
-$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD('$currentdate', INTERVAL 6 DAY))";
+$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD('$currentdate', INTERVAL 6 DAY));";
 $result = $conn->query($sql);
 
 $jsonresponse=array();

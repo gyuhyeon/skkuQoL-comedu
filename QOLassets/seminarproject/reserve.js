@@ -197,6 +197,39 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+	$('#deletebutton').click(function(event){
+		// get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'name'                : $('select[name="deletename"]').val(),
+            'password'            : $('select[name="deletepassword"]').val(),
+			'g-recaptcha-response': grecaptcha.getResponse()
+        };
+
+        // process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'delete.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                //console.log(data); 
+
+				//show as alert
+				alert(data['response']);
+				//force client reload on success
+				if(data['response']=="예약 성공!"){
+					location.reload();
+				}
+                // here we will handle errors and validation messages
+            });
+	});
+
 	//placeholder
 	placeholdergenerator();
 	updateTableData();

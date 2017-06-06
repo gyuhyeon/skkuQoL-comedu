@@ -49,7 +49,7 @@ header('Content-type:application/json;charset=utf-8');
 $response='NULL';
 
 //find if there's already a reservation by purpose!=0(not personal use) and reservedate matches and time conflicts
-$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate = '$day' and purpose>0) and ((starttime<=$end_time) and (endtime>=$start_time))";
+$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE (reservedate = '$day' and purpose>0) and ((starttime<=$end_time) and (endtime>=$start_time));";
 
 //run mysql query
 $result = $conn->query($sql);
