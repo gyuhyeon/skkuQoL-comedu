@@ -27,9 +27,10 @@ function updateTableColor() {
 	for ( i = 0; i < data.length; ++i ){
 		if ( data[i].purpose==0 ){
 			for(var j=data[i].starttime; j<=data[i].endtime; ++j){
+				//이부분은 수정 필요. 공휴일일 때는 18부터가 아니라 그냥 무조건 표기해야 됨. 진한 분홍(lightcoral)이 조교님께 철야신청임을 보여줌.
 				if(j>=18){
 					for(var k=18; k<=22;++k){
-						$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=nightColor;
+						$("#"+data[i].reservedate.slice(-5)+" > td[name="+k+"]")[0].style.backgroundColor=nightColor;
 					}
 					break; //logic : if j is ever over 18, paint everything from there til the end.
 				}
