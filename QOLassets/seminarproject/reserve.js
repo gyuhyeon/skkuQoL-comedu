@@ -61,7 +61,7 @@ function clickToReserve(day, time) {
 
 	//refuse if the time is unavailable
 	if ($("[name='" + day + "'] > [name='" + time + "']")[0].innerText != "") {
-		alert("예약할 수 없는 시간입니다 :(");
+		alert("예약할 수 없는 시간입니다.");
 	}
 	// case when the click needs to register as start time
 	// conditions:
@@ -110,6 +110,14 @@ function validateSelection() {
 				alert("중간에 예약되어 있는 시간이 있습니다 :(");
 			}
 		}
+	}
+
+	var checkdate = new Date();
+	var formattedDate = checkdate.getFullYear()+"-"+("0"+(checkdate.getMonth()+1)).slice(-2)+"-"+("0"+checkdate.getDate()).slice(-2);
+
+	if (d.value == formattedDate){
+		alert("당일 예약은 불가합니다!");
+		d.value = "선택";		
 	}
 	updateTableColor();
 }
