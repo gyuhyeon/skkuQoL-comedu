@@ -163,6 +163,7 @@ $(document).ready(function() {
 
 	//placeholder
 	placeholdergenerator();
+	updateTableData();
 });
 
 
@@ -194,8 +195,20 @@ function getTableData(){
 }
 
 function updateTableData(){
-	getTableData();
+	data = getTableData();
 	//use tableData from here.. however, one
+
+	//purpose가 0이 아니면 이름 출력
+	for(var i =0; i<data.length ; i++)
+	{
+		if(data[i].purpose != 0)
+		{
+			for(var j=data[i].starttime; j<=data[i].endtime; j++)
+			{
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname
+			}
+		}
+	}
 }
 
 //temporary function to test without fetching date info from server
@@ -211,6 +224,9 @@ function placeholdergenerator(){
 		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
 		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
 		//value는 그대로 유지!
+
+		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);	//tr id 만들기
+
 		$("select[name='day'] > .D"+i)[0].value = formattedDate;
 		$("th.D"+i)[0].value = formattedDate;
 
@@ -219,4 +235,7 @@ function placeholdergenerator(){
 		//format 준수. 날짜 포맷.
 		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	}
+
+	
+
 }
