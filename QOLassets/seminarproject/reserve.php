@@ -4,29 +4,6 @@ $dbusername = "root";
 $dbpassword = "insecurelocalpassword";
 $dbname = "admin";
 
-//recaptcha
-if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
-			//your site secret key
-			$secret = '6LfOBR8UAAAAAKnuenB-aiDeUIBajjuAGiVel5li';
-    	    //get verify response data
-    	    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-			$responseData = json_decode($verifyResponse);
-			if(!($responseData->success)){
-				echo '<script type="text/javascript">';
-                echo 'alert("인증에 실패하였습니다.");';
-                echo 'history.back();';
-                echo '</script>';
-                die();
-			}
-		}
-else{
-	echo '<script type="text/javascript">';
-    echo 'alert("인증 완료 후 신청해주세요.");';
-    echo 'history.back();';
-    echo '</script>';
-    die();
-}
-
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 // Check connection
