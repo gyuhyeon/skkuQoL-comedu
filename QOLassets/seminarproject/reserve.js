@@ -223,7 +223,7 @@ $(document).ready(function() {
 				//show as alert
 				alert(data['response']);
 				//force client reload on success
-				if(data['response']=="예약 성공!"){
+				if(data['response']=="삭제 성공!"){
 					location.reload();
 				}
                 // here we will handle errors and validation messages
