@@ -1,4 +1,10 @@
 document.body.onload = function() {
+    try{
+        noConflictQuery('section.section4 > div.in_section3 div.in_office3 > div.wrap_widgetA > h2 > span')[0].innerText
+    }catch(e){
+        //loaded in wrong page, end it.
+        return;
+    }
     var result;
     noConflictQuery.ajax({
             type        : 'GET', // define the type of HTTP verb we want to use
