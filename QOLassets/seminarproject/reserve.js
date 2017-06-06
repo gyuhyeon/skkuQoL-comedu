@@ -1,8 +1,9 @@
-
+﻿
 //color settings
 var selectedColor = "orange";
 var occupiedColor = "gray";
 var freeColor = "white";
+var generalColor = "yellow";
 
 //table color update
 function updateTableColor() {
@@ -37,7 +38,6 @@ function updateTableColor() {
 window.onload = function() {
 
 	updateTableColor();
-
 }
 
 function clickToReserve(day, time) {
@@ -188,13 +188,14 @@ function getTableData(){
         .done(function(data) {
             // return data; return data doesn't work; ajax creates another thread, while getTableData() exits normally.
 			// however, workaround can be done by setting async false.
-			tabledata = data;
+			tableData = data;
             // here we will handle errors and validation messages
         });
-	return tabledata;
+	return tableData;
 }
 
 function updateTableData(){
+
 	data = getTableData();
 	//use tableData from here.. however, one
 
@@ -209,6 +210,14 @@ function updateTableData(){
 			}
 		}
 	}
+
+
+	// coloring 일반 users
+	for ( i = 0; i < data.length; ++i )
+		if ( data[i].purpose == 0 )
+			for(var j=10; j<21;++j)
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
+
 }
 
 //temporary function to test without fetching date info from server
@@ -223,6 +232,7 @@ function placeholdergenerator(){
 		//하단 코드 참고
 		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
 		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
+		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);
 		//value는 그대로 유지!
 
 		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);	//tr id 만들기
@@ -235,7 +245,5 @@ function placeholdergenerator(){
 		//format 준수. 날짜 포맷.
 		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	}
-
-	
 
 }
