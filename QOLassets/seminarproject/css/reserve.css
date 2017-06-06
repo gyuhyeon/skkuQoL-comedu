@@ -15,7 +15,7 @@ td
 {
 	padding: 5px 10px;
 	width: 50px;
-	font-size : 10px;
+	font-size : 12px;
 }
 
 th
@@ -24,6 +24,11 @@ th
 	color: white;
 	padding: 5px 10px;
 	width: 50px;
+}
+
+table.schedule th
+{
+	font-size:12px;
 }
 
 .schedule td:hover
