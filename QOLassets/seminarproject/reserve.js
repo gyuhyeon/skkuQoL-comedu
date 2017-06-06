@@ -25,7 +25,7 @@ function updateTableColor() {
 
 	// coloring 일반 users
 	for ( i = 0; i < data.length; ++i ){
-		if ( data[i].purpose==0 ){
+		if ( true ){
 			for(var j=data[i].starttime; j<=data[i].endtime; ++j){
 				//이부분은 수정 필요. 공휴일일 때는 18부터가 아니라 그냥 무조건 표기해야 됨. 진한 분홍(lightcoral)이 조교님께 철야신청임을 보여줌.
 				if(j>=18){
