@@ -11,15 +11,27 @@ function updateTableColor() {
 	var st = document.getElementsByName("start_time")[0];
 	var et = document.getElementsByName("end_time")[0];
 
-	//change background for cells with reservation
 	var td = document.getElementById('schedule').getElementsByTagName('td');
+
 	for (var i = 0; i < td.length; ++i) {
-		if (td[i].textContent != "") {
-			td[i].style.backgroundColor = occupiedColor;
-		} else {
+		if (td[i].textContent == "") {
 			td[i].style.backgroundColor = freeColor;
 		}
 	}
+
+	// coloring 일반 users
+	for ( i = 0; i < data.length; ++i )
+		if ( data[i].purpose == 0 )
+			for(var j=10; j<21;++j)
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
+
+	//change background for cells with reservation
+	for (var i = 0; i < td.length; ++i) {
+		if (td[i].textContent != "") {
+			td[i].style.backgroundColor = occupiedColor;
+		}
+	}
+
 	//change background for selected cells
 	if (d.value != "선택") {
 		if (st.value != "선택") {
@@ -210,13 +222,6 @@ function updateTableData(){
 			}
 		}
 	}
-
-
-	// coloring 일반 users
-	for ( i = 0; i < data.length; ++i )
-		if ( data[i].purpose == 0 )
-			for(var j=10; j<21;++j)
-				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
 
 }
 
