@@ -1,8 +1,9 @@
-
+﻿
 //color settings
 var selectedColor = "orange";
 var occupiedColor = "gray";
 var freeColor = "white";
+var generalColor = "yellow";
 
 //table color update
 function updateTableColor() {
@@ -37,7 +38,6 @@ function updateTableColor() {
 window.onload = function() {
 
 	updateTableColor();
-
 }
 
 function clickToReserve(day, time) {
@@ -163,6 +163,7 @@ $(document).ready(function() {
 
 	//placeholder
 	placeholdergenerator();
+	updateTableData();
 });
 
 
@@ -194,8 +195,14 @@ function getTableData(){
 }
 
 function updateTableData(){
-	getTableData();
+	var data = getTableData();
 	//use tableData from here.. however, one
+
+	// coloring 일반 users
+	for ( i = 0; i < data.length; ++i )
+		if ( data[i].purpose == 0 )
+			for(var j=10; j<21;++j)
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
 }
 
 //temporary function to test without fetching date info from server
@@ -210,6 +217,7 @@ function placeholdergenerator(){
 		//하단 코드 참고
 		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
 		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
+		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);
 		//value는 그대로 유지!
 		$("select[name='day'] > .D"+i)[0].value = formattedDate;
 		$("th.D"+i)[0].value = formattedDate;
@@ -219,4 +227,5 @@ function placeholdergenerator(){
 		//format 준수. 날짜 포맷.
 		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	}
+
 }
