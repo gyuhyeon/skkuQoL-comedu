@@ -176,6 +176,7 @@ $(document).ready(function() {
 	//placeholder
 	placeholdergenerator();
 	updateTableData();
+	updateTableColor();
 });
 
 
