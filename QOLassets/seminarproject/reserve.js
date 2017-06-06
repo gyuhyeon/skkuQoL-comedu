@@ -5,6 +5,8 @@ var occupiedColor = "gray";
 var freeColor = "white";
 var generalColor = "yellow";
 
+var data;
+
 //table color update
 function updateTableColor() {
 	var d = document.getElementsByName("day")[0];
@@ -22,7 +24,7 @@ function updateTableColor() {
 	// coloring 일반 users
 	for ( i = 0; i < data.length; ++i )
 		if ( data[i].purpose == 0 )
-			for(var j=10; j<21;++j)
+			for(var j=10; j<23;++j)
 				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
 
 	//change background for cells with reservation
