@@ -88,7 +88,7 @@ else{
 
 $sql = "";
 for($i=0; $i<count($todelete); ++$i){
-    $sql.="DELETE FROM admin.qol_seminarreservelist WHERE reserve_srl=".($todelete[i]=>reserve_srl).";";
+    $sql.="DELETE FROM admin.qol_seminarreservelist WHERE reserve_srl=".($todelete[i]['reserve_srl']).";";
 }
 
 $result = $conn->query($sql);
