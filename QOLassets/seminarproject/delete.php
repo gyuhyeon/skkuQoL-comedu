@@ -87,7 +87,7 @@ else{
 //normal execution
 
 $sql = "";
-for($i=0; $i<count($todelete); ++i){
+for($i=0; $i<count($todelete); ++$i){
     $sql.="DELETE FROM admin.qol_seminarreservelist WHERE reserve_srl=".$todelete[i].reserve_srl.";";
 }
 
