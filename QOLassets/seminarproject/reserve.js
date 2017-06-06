@@ -1,8 +1,9 @@
-
+﻿
 //color settings
 var selectedColor = "orange";
 var occupiedColor = "gray";
 var freeColor = "white";
+var generalColor = "yellow";
 
 //table color update
 function updateTableColor() {
@@ -10,15 +11,27 @@ function updateTableColor() {
 	var st = document.getElementsByName("start_time")[0];
 	var et = document.getElementsByName("end_time")[0];
 
-	//change background for cells with reservation
 	var td = document.getElementById('schedule').getElementsByTagName('td');
+
 	for (var i = 0; i < td.length; ++i) {
-		if (td[i].textContent != "") {
-			td[i].style.backgroundColor = occupiedColor;
-		} else {
+		if (td[i].textContent == "") {
 			td[i].style.backgroundColor = freeColor;
 		}
 	}
+
+	// coloring 일반 users
+	for ( i = 0; i < data.length; ++i )
+		if ( data[i].purpose == 0 )
+			for(var j=10; j<21;++j)
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
+
+	//change background for cells with reservation
+	for (var i = 0; i < td.length; ++i) {
+		if (td[i].textContent != "") {
+			td[i].style.backgroundColor = occupiedColor;
+		}
+	}
+
 	//change background for selected cells
 	if (d.value != "선택") {
 		if (st.value != "선택") {
@@ -37,7 +50,6 @@ function updateTableColor() {
 window.onload = function() {
 
 	updateTableColor();
-
 }
 
 function clickToReserve(day, time) {
@@ -171,6 +183,7 @@ $(document).ready(function() {
 
 	//placeholder
 	placeholdergenerator();
+	updateTableData();
 });
 
 
@@ -202,8 +215,22 @@ function getTableData(){
 }
 
 function updateTableData(){
-	getTableData();
+
+	data = getTableData();
 	//use tableData from here.. however, one
+
+	//purpose가 0이 아니면 이름 출력
+	for(var i =0; i<data.length ; i++)
+	{
+		if(data[i].purpose != 0)
+		{
+			for(var j=data[i].starttime; j<=data[i].endtime; j++)
+			{
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname
+			}
+		}
+	}
+
 }
 
 //temporary function to test without fetching date info from server
@@ -218,7 +245,11 @@ function placeholdergenerator(){
 		//하단 코드 참고
 		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
 		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
+		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);
 		//value는 그대로 유지!
+
+		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);	//tr id 만들기
+
 		$("select[name='day'] > .D"+i)[0].value = formattedDate;
 		$("th.D"+i)[0].value = formattedDate;
 
@@ -227,4 +258,5 @@ function placeholdergenerator(){
 		//format 준수. 날짜 포맷.
 		formattedDate = day.getFullYear()+"-"+("0"+(day.getMonth()+1)).slice(-2)+"-"+("0"+day.getDate()).slice(-2);
 	}
+
 }
