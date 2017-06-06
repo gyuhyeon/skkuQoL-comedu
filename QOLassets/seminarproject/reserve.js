@@ -201,8 +201,8 @@ $(document).ready(function() {
 		// get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
         var formData = {
-            'name'                : $('select[name="deletename"]').val(),
-            'password'            : $('select[name="deletepassword"]').val(),
+            'name'                : $('input[name="deletename"]').val(),
+            'password'            : $('input[name="deletepassword"]').val(),
 			'g-recaptcha-response': grecaptcha.getResponse()
         };
 
