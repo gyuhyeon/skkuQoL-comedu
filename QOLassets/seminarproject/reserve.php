@@ -12,20 +12,17 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
     	    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
 			$responseData = json_decode($verifyResponse);
 			if(!($responseData->success)){
-				echo '<script type="text/javascript">';
-                echo 'alert("인증에 실패하였습니다.");';
-                echo 'history.back();';
-                echo '</script>';
+				$response="인증에 실패하였습니다.";
+                echo json_encode(["response" => $response]);
                 die();
 			}
 		}
 else{
-	echo '<script type="text/javascript">';
-    echo 'alert("인증 완료 후 신청해주세요.");';
-    echo 'history.back();';
-    echo '</script>';
+	$response="인증 후 시도해주세요!";
+    echo json_encode(["response" => $response]);
     die();
 }
+//recaptcha passed without issues
 
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);

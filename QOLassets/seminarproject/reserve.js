@@ -151,7 +151,8 @@ $(document).ready(function() {
             'end_time'           : parseInt($('select[name="end_time"]')[0].value.slice(0,2)),
             'groupsize'          : $('select[name="groupsize"]').val(),
 			'reservename'        : $('input[name="reservename"]').val(),
-			'password'           : $('input[name="password"]').val()
+			'password'           : $('input[name="password"]').val(),
+			'g-recaptcha-response': grecaptcha.getResponse()
         };
 
         // process the form
