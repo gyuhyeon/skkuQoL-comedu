@@ -28,7 +28,7 @@ th
 
 table.schedule th
 {
-	font-size:12px;
+	font-size:15px;
 }
 
 .schedule td:hover
@@ -51,5 +51,5 @@ table.schedule th
 	font-size : 16px;
 	font-weight: bold;
 	margin : 4px 2px;
-	cursor : pointer; 
+	cursor : pointer;
 }
