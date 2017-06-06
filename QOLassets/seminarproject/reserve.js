@@ -3,7 +3,8 @@
 var selectedColor = "orange";
 var occupiedColor = "gray";
 var freeColor = "white";
-var generalColor = "yellow";
+var generalColor = "pink";
+var nightColor = "lightcoral";
 
 var data;
 
@@ -15,6 +16,7 @@ function updateTableColor() {
 
 	var td = document.getElementById('schedule').getElementsByTagName('td');
 
+	//color everything as white first
 	for (var i = 0; i < td.length; ++i) {
 		if (td[i].textContent == "") {
 			td[i].style.backgroundColor = freeColor;
@@ -22,11 +24,21 @@ function updateTableColor() {
 	}
 
 	// coloring 일반 users
-	for ( i = 0; i < data.length; ++i )
-		if ( data[i].purpose == 0 )
-			for(var j=10; j<23;++j)
-				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
-
+	for ( i = 0; i < data.length; ++i ){
+		if ( data[i].purpose==0 ){
+			for(var j=data[i].starttime; j<=data[i].endtime; ++j){
+				if(j>=18){
+					for(var k=18; k<=22;++k){
+						$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=nightColor;
+					}
+					break; //logic : if j is ever over 18, paint everything from there til the end.
+				}
+				else{
+					$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].style.backgroundColor=generalColor;
+				}
+			}
+		}
+	}
 	//change background for cells with reservation
 	for (var i = 0; i < td.length; ++i) {
 		if (td[i].textContent != "") {
@@ -221,7 +233,6 @@ function getTableData(){
 function updateTableData(){
 
 	data = getTableData();
-	//use tableData from here.. however, one
 
 	//purpose가 0이 아니면 이름 출력
 	for(var i =0; i<data.length ; i++)
@@ -230,8 +241,18 @@ function updateTableData(){
 		{
 			for(var j=data[i].starttime; j<=data[i].endtime; j++)
 			{
-				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname;
 			}
+		}
+		else
+		{
+			for(var j=data[i].starttime; j<=data[i].endtime; j++)
+			{
+				//purpose가 0, 즉 개인 목적이면 mouseovertext인 title로만 표기.
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].title += data[i].studentname+" ";
+			}
+
+
 		}
 	}
 
@@ -249,11 +270,10 @@ function placeholdergenerator(){
 		//하단 코드 참고
 		$("select[name='day'] > .D"+i)[0].innerText = formattedDate.slice(-5);
 		$("th.D"+i)[0].innerText = formattedDate.slice(-5);
-		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);
-		//value는 그대로 유지!
-
+		
 		$("tr[name=D"+i+"]")[0].id = formattedDate.slice(-5);	//tr id 만들기
 
+		//value는 그대로 유지!
 		$("select[name='day'] > .D"+i)[0].value = formattedDate;
 		$("th.D"+i)[0].value = formattedDate;
 
