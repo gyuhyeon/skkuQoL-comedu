@@ -228,6 +228,7 @@ $(document).ready(function() {
 				}
                 // here we will handle errors and validation messages
             });
+		event.preventDefault();
 	});
 
 	//placeholder
