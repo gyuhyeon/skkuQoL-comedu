@@ -63,7 +63,7 @@ if (!$conn->set_charset("utf8")) {
 
 
 //find all reserve_srl to delete
-$sql = "SELECT reserve_srl FROM admin.qol_seminarreservelist WHERE studentname='$name' and password='$password';";
+$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE studentname='$name' and password='$password';";
 
 //run mysql query
 $result = $conn->query($sql);
@@ -93,7 +93,7 @@ for($i=0; $i<count($todelete); ++$i){
 
 $result = $conn->query($sql);
 if($result === TRUE){
-        $response = "예약 성공!";
+        $response = "삭제 성공!";
     }
     else{
         $response = "ERROR : Something went wrong when deleting from database!";
