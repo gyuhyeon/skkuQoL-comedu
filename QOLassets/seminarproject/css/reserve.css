@@ -16,6 +16,10 @@ td
 	padding: 5px 10px;
 	width: 50px;
 	font-size : 12px;
+	max-width:150px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 
 th
