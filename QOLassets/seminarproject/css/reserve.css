@@ -26,8 +26,11 @@ th
 {
 	background: #064F7D;
 	color: white;
-	padding: 5px 10px;
+	padding: 0px 10px;
 	width: 50px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 
 table.schedule th
