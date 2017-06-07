@@ -8,6 +8,22 @@ $dbname = "admin";
 header('Content-type:application/json;charset=utf-8');
 $response='NULL';
 
+//note : $_POST indexes using "name" attributes from the form.
+$name = $_POST['name'];
+$password = $_POST['password'];
+
+//simple sanitization
+if(strlen($name)>13 || strlen($name)<2){
+    $response = "ERROR : 이름은 2자 이상 10자 이내로 입력해주세요.";
+    echo json_encode(["response" => $response]);
+    die();
+}
+else if(strlen($password)>15 || strlen($password)<3){
+    $response = "ERROR : 비밀번호는 3자 이상 10자 이내로 입력해주세요.";
+    echo json_encode(["response" => $response]);
+    die();
+}
+
 //recaptcha
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
 			//your site secret key
@@ -27,22 +43,6 @@ else{
     die();
 }
 //recaptcha passed without issues
-
-//note : $_POST indexes using "name" attributes from the form.
-$name = $_POST['name'];
-$password = $_POST['password'];
-
-//simple sanitization
-if(strlen($name)>13 || strlen($name)<2){
-    $response = "ERROR : 이름은 2자 이상 10자 이내로 입력해주세요.";
-    echo json_encode(["response" => $response]);
-    die();
-}
-else if(strlen($password)>15 || strlen($password)<3){
-    $response = "ERROR : 비밀번호는 3자 이상 10자 이내로 입력해주세요.";
-    echo json_encode(["response" => $response]);
-    die();
-}
 
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
