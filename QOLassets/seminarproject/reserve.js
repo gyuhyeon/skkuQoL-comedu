@@ -18,12 +18,11 @@ function updateTableColor() {
 
 	//color everything as white first
 	for (var i = 0; i < td.length; ++i) {
-		if (td[i].textContent == "") {
-			td[i].style.backgroundColor = freeColor;
-		}
+		td[i].style.backgroundColor = freeColor;
 	}
 
-	// coloring 일반 users
+	// coloring non-official(purpose==0) users & also official users which will be overwritten below at "occupied official".
+	// this is in order to make sure 21~22 is colored as "all-nighter activated" when 19~20 is reserved officially.
 	for ( i = 0; i < data.length; ++i ){
 		if ( true ){
 			for(var j=data[i].starttime; j<=data[i].endtime; ++j){
@@ -42,7 +41,7 @@ function updateTableColor() {
 	}
 	//change background for cells with reservation
 	for (var i = 0; i < td.length; ++i) {
-		if (td[i].textContent != "") {
+		if (td[i].className=="occupied_official") {
 			td[i].style.backgroundColor = occupiedColor;
 		}
 	}
@@ -75,7 +74,7 @@ function clickToReserve(day, time) {
 
 
 	//refuse if the time is unavailable
-	if ($("[name='" + day + "'] > [name='" + time + "']")[0].innerText != "") {
+	if ($("[name='" + day + "'] > [name='" + time + "']")[0].className == "occupied_official") {
 		alert("예약할 수 없는 시간입니다.");
 	}
 	// case when the click needs to register as start time
@@ -108,19 +107,19 @@ function validateSelection() {
 		alert("시작시간 이후의 종료시간을 선택해주세요 :(");
 	}
 	//day is set, and starttime is occupied
-	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + st.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && st.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + st.value.slice(0, 2) + "']")[0].className == "occupied_official") {
 		st.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
 	//day is set, and endtime is occupied
-	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + et.value.slice(0, 2) + "']")[0].innerText != "") {
+	else if (d.value != "선택" && et.value != "선택" && parseInt(st.value.slice(0, 2)) && $("[name='" + d.selectedOptions[0].className + "'] > [name='" + et.value.slice(0, 2) + "']")[0].className == "occupied_official") {
 		et.value = "선택";
 		alert("해당 시작시간은 이미 예약되어 있습니다 :(");
 	}
 	//day is set, both starttime and endtime is specified, which means we can safely loop within it. check if occupied.
 	else if (d.value != "선택" && st.value != "선택" && et.value != "선택") {
 		for (var i = parseInt(st.value.slice(0, 2)); i <= parseInt(et.value.slice(0, 2)); ++i) {
-			if ($("[name='" + d.selectedOptions[0].className + "'] > [name='" + i + "']")[0].innerText != "") {
+			if ($("[name='" + d.selectedOptions[0].className + "'] > [name='" + i + "']")[0].className == "occupied_official") {
 				et.value = "선택";
 				alert("중간에 예약되어 있는 시간이 있습니다 :(");
 			}
@@ -276,7 +275,9 @@ function updateTableData(){
 		{
 			for(var j=data[i].starttime; j<=data[i].endtime; j++)
 			{
+				//purpose가 0이 아닌, 즉 공식적 목적일 경우 직접 표기.
 				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname;
+				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].setAttribute('class', 'occupied_official');
 			}
 		}
 		else
@@ -284,6 +285,12 @@ function updateTableData(){
 			for(var j=data[i].starttime; j<=data[i].endtime; j++)
 			{
 				//purpose가 0, 즉 개인 목적이면 mouseovertext인 title로만 표기.
+				if($("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText==""){
+					$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText = data[i].studentname;
+				}
+				else if($("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText.slice(-1)!='+'){
+					$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].innerText += '+';
+				}
 				$("#"+data[i].reservedate.slice(-5)+" > td[name="+j+"]")[0].title += data[i].studentname+" ";
 			}
 
