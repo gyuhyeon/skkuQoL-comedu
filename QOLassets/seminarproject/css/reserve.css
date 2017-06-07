@@ -13,7 +13,7 @@ th,td
 
 td
 {
-	padding: 0px 7px;
+	padding: 3px 5px;
 	width: 50px;
 	font-size : 12px;
 	max-width:150px;
@@ -26,8 +26,8 @@ th
 {
 	background: #064F7D;
 	color: white;
-	padding: 0px 10px;
-	width: 50px;
+	padding: 5px 0px;
+	width: 60px;
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
