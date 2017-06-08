@@ -1,8 +1,14 @@
 <?php
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "insecurelocalpassword"; //root assigned for only localhost connection uses insecure password for github exposure.
-$dbname = "admin";
+require($_SERVER["DOCUMENT_ROOT"].'/../dbconfig.php');
+/*
+dbconfig.php file outside of webroot has the following variables setup globally
+
+$dbservername;
+$dbusername;
+$dbpassword;
+$dbname;
+
+*/
 
 //header(even for json, text/html seems to give better results with encoding)
 header('Content-Type: text/html; charset=utf-8');
