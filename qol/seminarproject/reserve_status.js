@@ -51,14 +51,16 @@ function getCustomDate(){
 		}
 		else if(response.length==1){
 			try{
-				var r = response.response;
-				alert(r);
+				if(response[0].response=="날짜형식오류"){
+					alert(response[0].response);
+				}
 			}
 			catch(e){
-
+				//do nothing
 			}
 		}
 		else{
+			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 			$('table.status')[0].innerHTML+="<tr>";
 			for(var i=0; i<response.length; ++i){
 				var td = "";
