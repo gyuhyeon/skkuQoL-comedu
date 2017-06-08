@@ -1,8 +1,15 @@
 <?php
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "insecurelocalpassword";
-$dbname = "admin";
+
+require($_SERVER["DOCUMENT_ROOT"].'/../dbconfig.php');
+/*
+dbconfig.php file outside of webroot has the following variables setup globally
+
+$dbservername;
+$dbusername;
+$dbpassword;
+$dbname;
+
+*/
 
 //set response header
 header('Content-type:application/json;charset=utf-8');
