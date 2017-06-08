@@ -13,6 +13,14 @@ $dbname;
 //header(even for json, text/html seems to give better results with encoding)
 header('Content-Type: text/html; charset=utf-8');
 
+$currentdate = $_POST['currentdate'];
+//basic sql injection prevention
+$date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
+if(!preg_match($date_regex, $currentdate)){
+    die("날짜 양식 오류(비정상적 사용입니다!)");
+}
+
+
 // Create connection
 $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 // Check connection
@@ -24,16 +32,10 @@ if (!$conn->set_charset("utf8")) {
 	die("utf8 문자 세트를 가져오다가 에러가 났습니다 :".$conn->error." 현재 문자 세트 : ".$conn->character_set_name());
 }
 
-$currentdate = $_POST['currentdate'];
-//basic sql injection prevention
-$date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
-if(!preg_match($date_regex, $currentdate)){
-    die("날짜 양식 오류(비정상적 사용입니다!)");
-}
-
-$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate <= DATE(DATE_ADD('$currentdate', INTERVAL 6 DAY));";
+$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate = '$currentdate'";
 $result = $conn->query($sql);
 
+//create associative array from query result
 $jsonresponse=array();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -43,10 +45,10 @@ if ($result->num_rows > 0) {
     }
 }
 else {
-    //used to give a "response" data, but perhaps it will be better to just give 0, since it might mess with reserve.js
     $jsonresponse=array();
 }
-//encode as json
+
+//encode as json to echo
 echo json_encode($jsonresponse, JSON_UNESCAPED_UNICODE);
 
 $conn->close();
