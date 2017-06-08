@@ -230,6 +230,38 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
+	$('#reservelistbutton').click(function(event){
+		// get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'loggedmembersrl'  : parseInt($('#currentmembersrl', top.document)[0].innerHTML)
+        };
+
+        // process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'secretlink.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                //console.log(data); 
+
+				if(data.response=="success"){
+					window.open(data.link);
+				}
+				else{
+					alert(data.response);
+				}
+                // here we will handle errors and validation messages
+            });
+		event.preventDefault();
+	});
+
 	//placeholder
 	placeholdergenerator();
 	updateTableData();

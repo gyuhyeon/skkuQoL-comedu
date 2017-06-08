@@ -27,7 +27,7 @@ if($auth===FALSE){
 else{
     $response="success";
     //also insecure
-    $link="http://comedu.co.kr/qol/seminarproject/reserve_status.html";
+    $link="http://comedu.co.kr/qol/labproject/reserve_status.html";
     echo json_encode(["response" => $response, "link" => $link]);
     die();
 }
