@@ -75,9 +75,9 @@ function updateTableData(){
 					purpose="팀프로젝트 사용";
 					break;
 			}
-			td += ("<td>"+data[i].starttime+":00 ~ "+(data[i].endtime+1)+":00"+"</td>");
+			td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
 			td += ("<td>"+data[i].studentname+"</td>");
-			td += ("<td>"+data[i].starttime+":00 ~ "+(data[i].endtime+1)+":00"+"</td>");
+			td += ("<td>"+data[i].password+"</td>");
 			td += ("<td>"+data[i].purpose+"</td>");
 			td += ("<td>세미나실</td>");
 			td += ("<td></td>");
