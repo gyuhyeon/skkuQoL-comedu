@@ -14,6 +14,9 @@ window.onload = function() {
 	//crappy security
 	var answer=prompt("관리자만 열람할 수 있습니다. 비밀번호 :");
 	if(answer=="comedu"){
+		var currentDate = new Date();
+		var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
+		$('#date')[0].innerHTML=formattedDate;
 		(function(){updateTableData();})();
 	}
 	else{
