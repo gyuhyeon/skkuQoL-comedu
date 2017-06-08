@@ -28,39 +28,103 @@ window.onload = function() {
 	
 }
 
+function getCustomDate(){
+	var date=prompt("조회할 일자를 1993-06-07 형식으로 입력해주세요(yyyy:mm:dd): ");
+	var formData = {
+		'currentdate'      : date
+	}
+	var tableData;
+	// process the form
+	$.ajax({
+		type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+		url         : 'reserve_status.php', // the url where we want to POST
+		data        : formData,
+		dataType    : 'json', // what type of data do we expect back from the server
+		encode          : true,
+		async       : true  // set async as true, we will use callback to update.
+	})
+	// using the done promise callback
+	.done(function(response) {
+		if(response.length==0){
+			//if there's nothing, show that there's nothing.
+			$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
+		}
+		else if(response.length==1){
+			try{
+				var r = response.response;
+				alert(r);
+			}
+			catch(e){
+				
+			}
+		}
+		else{
+			$('table.status')[0].innerHTML+="<tr>";
+			for(var i=0; i<response.length; ++i){
+				var td = "";
+				var purpose;
+				switch(parseInt(response[i].purpose)){
+					case 0:
+					purpose="일반 사용";
+					break;
+					case 1:
+					purpose="학생회 사용";
+					break;
+					case 2:
+					purpose="집행부 사용";
+					break;
+					case 3:
+					purpose="소모임 사용";
+					break;
+					case 4:
+					purpose="팀프로젝트 사용";
+					break;
+				}
+				td += ("<td>"+response[i].starttime+":00 ~ "+(parseInt(response[i].endtime)+1)+":00"+"</td>");
+				td += ("<td>"+response[i].studentname+"</td>");
+				td += ("<td>"+response[i].password+"</td>");
+				td += ("<td>"+purpose+"</td>");
+				td += ("<td>세미나실</td>");
+				td += ("<td></td>");
+			}
+			$('table.status')[0].innerHTML+=td+"</tr>";
+		}
+		// here we will handle errors and validation messages
+	});
+}
 
 function getTableData(){
 	//send today's date
 	var currentDate = new Date();
 	var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
-
+	
 	var formData = {
 		'currentdate'      : formattedDate
 	}
 	var tableData;
-		// process the form
-    $.ajax({
-        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'reserve_status.php', // the url where we want to POST
-        data        : formData,
-        dataType    : 'json', // what type of data do we expect back from the server
-                        encode          : true,
+	// process the form
+	$.ajax({
+		type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+		url         : 'reserve_status.php', // the url where we want to POST
+		data        : formData,
+		dataType    : 'json', // what type of data do we expect back from the server
+		encode          : true,
 		async       : false // set async as false so we can actually return the data to getTableData()
-    })
-            // using the done promise callback
-        .done(function(data) {
-            // return data; return data doesn't work; ajax creates another thread, while getTableData() exits normally.
-			// however, workaround can be done by setting async false.
-			tableData = data;
-            // here we will handle errors and validation messages
-        });
+	})
+	// using the done promise callback
+	.done(function(data) {
+		// return data; return data doesn't work; ajax creates another thread, while getTableData() exits normally.
+		// however, workaround can be done by setting async false.
+		tableData = data;
+		// here we will handle errors and validation messages
+	});
 	return tableData;
 }
 
 function updateTableData(){
-
+	
 	data = getTableData();
-
+	
 	if(data.length==0){
 		//if there's nothing, show that there's nothing.
 		$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
@@ -72,20 +136,20 @@ function updateTableData(){
 			var purpose;
 			switch(parseInt(data[i].purpose)){
 				case 0:
-					purpose="일반 사용";
-					break;
+				purpose="일반 사용";
+				break;
 				case 1:
-					purpose="학생회 사용";
-					break;
+				purpose="학생회 사용";
+				break;
 				case 2:
-					purpose="집행부 사용";
-					break;
+				purpose="집행부 사용";
+				break;
 				case 3:
-					purpose="소모임 사용";
-					break;
+				purpose="소모임 사용";
+				break;
 				case 4:
-					purpose="팀프로젝트 사용";
-					break;
+				purpose="팀프로젝트 사용";
+				break;
 			}
 			td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
 			td += ("<td>"+data[i].studentname+"</td>");
@@ -96,5 +160,5 @@ function updateTableData(){
 		}
 		$('table.status')[0].innerHTML+=td+"</tr>";
 	}
-
+	
 }
