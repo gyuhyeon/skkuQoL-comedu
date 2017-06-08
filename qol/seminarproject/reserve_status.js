@@ -78,7 +78,7 @@ function updateTableData(){
 			td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
 			td += ("<td>"+data[i].studentname+"</td>");
 			td += ("<td>"+data[i].password+"</td>");
-			td += ("<td>"+data[i].purpose+"</td>");
+			td += ("<td>"+purpose+"</td>");
 			td += ("<td>세미나실</td>");
 			td += ("<td></td>");
 		}
