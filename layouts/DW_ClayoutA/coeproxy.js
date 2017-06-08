@@ -8,7 +8,7 @@ document.body.onload = function() {
     var result;
     noConflictQuery.ajax({
             type        : 'GET', // define the type of HTTP verb we want to use
-            url         : '/QOLassets/proxy.php', // the url where we want to GET
+            url         : '/qol/proxy.php', // the url where we want to GET
             async       : false
         })
             // using the done promise callback
