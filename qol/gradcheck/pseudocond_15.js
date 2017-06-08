@@ -1,12 +1,12 @@
-[15ÇÐ¹ø ±âÁØ]
+[15í•™ë²ˆ ê¸°ì¤€]
 
 var not_selected = "not_selected";
-var direct_input = "Á÷Á¢ÀÔ·Â";
+var direct_input = "ì§ì ‘ìž…ë ¥";
 var subject_section = {
-	"Àü°øÇÙ½É":not_selected+",±âº»ÇÁ·Î±×·¡¹Ö,ÄÄÇ»ÅÍ±³À°°³·Ð,ÀÚ·á±¸Á¶,ÄÄÇ»ÅÍ±¸Á¶,µ¥ÀÌÅ¸º£ÀÌ½º,¿î¿µÃ¼Á¦,ÄÄÇ»ÅÍ³×Æ®¿öÅ©,ÇÁ·Î±×·¡¹Ö¾ð¾î·Ð",
-	"Àü°øÀÏ¹Ý":not_selected+",»ó¾÷Á¤º¸±³°ú³í¸®³í¼ú,ÄÄÇ»ÅÍ±³°ú±³À°·Ð,ÄÄÇ»ÅÍ±³Àç¿¬±¸¹×Áöµµ¹ý,"+direct_input,
-	"±³¾ç":not_selected+",ÀÎ¼º,¸®´õ½Ê,ÀÇ»ç¼ÒÅë,Ã¢ÀÇ¿Í»çÀ¯,±âº»¿µ¾î,Àü¹®¿µ¾î/±Û·Î¹ú¹®È­,±âÃÊÀÎ¹®»çÈ¸°úÇÐ,±âÃÊÀÚ¿¬°úÇÐ,ÀÎ°£¹®È­,»çÈ¸¿ª»ç,ÀÚ¿¬°úÇÐ±â¼ú,±âÅ¸±³¾ç",
-	"±³Á÷":not_selected+",Æ¯¼ö±³À°ÇÐ°³·Ð,ÇÐ±³Æø·Â¿¹¹æ¹×ÇÐ»ýÀÇÀÌÇØ,±³Á÷½Ç¹«,±³À°ºÀ»çÈ°µ¿,±³À°½Ç½À,"+direct_input
+	"ì „ê³µí•µì‹¬":not_selected+",ê¸°ë³¸í”„ë¡œê·¸ëž˜ë°,ì»´í“¨í„°êµìœ¡ê°œë¡ ,ìžë£Œêµ¬ì¡°,ì»´í“¨í„°êµ¬ì¡°,ë°ì´íƒ€ë² ì´ìŠ¤,ìš´ì˜ì²´ì œ,ì»´í“¨í„°ë„¤íŠ¸ì›Œí¬,í”„ë¡œê·¸ëž˜ë°ì–¸ì–´ë¡ ",
+	"ì „ê³µì¼ë°˜":not_selected+",ìƒì—…ì •ë³´êµê³¼ë…¼ë¦¬ë…¼ìˆ ,ì»´í“¨í„°êµê³¼êµìœ¡ë¡ ,ì»´í“¨í„°êµìž¬ì—°êµ¬ë°ì§€ë„ë²•,"+direct_input,
+	"êµì–‘":not_selected+",ì¸ì„±,ë¦¬ë”ì‹­,ì˜ì‚¬ì†Œí†µ,ì°½ì˜ì™€ì‚¬ìœ ,ê¸°ë³¸ì˜ì–´,ì „ë¬¸ì˜ì–´/ê¸€ë¡œë²Œë¬¸í™”,ê¸°ì´ˆì¸ë¬¸ì‚¬íšŒê³¼í•™,ê¸°ì´ˆìžì—°ê³¼í•™,ì¸ê°„ë¬¸í™”,ì‚¬íšŒì—­ì‚¬,ìžì—°ê³¼í•™ê¸°ìˆ ,ê¸°íƒ€êµì–‘",
+	"êµì§":not_selected+",íŠ¹ìˆ˜êµìœ¡í•™ê°œë¡ ,í•™êµí­ë ¥ì˜ˆë°©ë°í•™ìƒì˜ì´í•´,êµì§ì‹¤ë¬´,êµìœ¡ë´‰ì‚¬í™œë™,êµìœ¡ì‹¤ìŠµ,"+direct_input
 }; 
 
 var vals = [];
@@ -14,7 +14,7 @@ var table=[[[]]];
 var totalCredit, totalGrade;
 var able=true;
 
-//CountSubjects·Î µéÀº °ú¸ñ¼ö ¼¼±â
+//CountSubjectsë¡œ ë“¤ì€ ê³¼ëª©ìˆ˜ ì„¸ê¸°
 function numofSubjects() {
 var CountSubjects = 0;
 for(var i=0;i<10;i++)
@@ -29,7 +29,7 @@ CountSubjects += 1;
 return CountSubjects;
 }
 
-//ÃÑ µéÀº ÇÐÁ¡ÀÌ 140 ÇÐÁ¡ÀÌ ³Ñ´ÂÁö È®ÀÎ
+//ì´ ë“¤ì€ í•™ì ì´ 140 í•™ì ì´ ë„˜ëŠ”ì§€ í™•ì¸
 function totalCredit() {
 	var Credit=0;
 for(var i=0;i<10;i++)
@@ -41,7 +41,7 @@ if(Credit<140)
 able=false;
 }
 
-//ÇÐÁ¡ Æò±Õ °è»ê
+//í•™ì  í‰ê·  ê³„ì‚°
 function avgGrade() {
 	var Grade=0;
 for(var i=0;i<10;i++)
@@ -54,16 +54,16 @@ if(Grade<2.5)
 able=false;
 }
 
-//Àü°øÇÙ½É Ã¼Å©
+//ì „ê³µí•µì‹¬ ì²´í¬
 function checkCore(count)
 {
 	var check = true;
-	vals = subject_section.Àü°øÇÙ½É.split(",");
+	vals = subject_section.ì „ê³µí•µì‹¬.split(",");
 	
 	check(vals.length , vals);
 }
 
-//Àü°øÀÏ¹Ý(42ÇÐÁ¡ÀÎÁö) Ã¼Å©
+//ì „ê³µì¼ë°˜(42í•™ì ì¸ì§€) ì²´í¬
 function checkGeneral ()
 {
 	var credit=0;
@@ -71,7 +71,7 @@ function checkGeneral ()
 	{
 		for(var j=0; j<11 ; j++)
 		{
-			if( table[ i ][ j ][1] == ¡®Àü°øÀÏ¹Ý¡¯)
+			if( table[ i ][ j ][1] == â€˜ì „ê³µì¼ë°˜â€™)
 				credit += table[ i ][ j ][3];
 			foreignLang(table[i][j][2]);
 		}
@@ -81,10 +81,10 @@ function checkGeneral ()
 		able = false;
 }
 
-//±³¾ç°ú¸ñ Ã¼Å©
+//êµì–‘ê³¼ëª© ì²´í¬
 function checkCulture()
 {
-	vals = subject_section.±³¾ç.split(",");
+	vals = subject_section.êµì–‘.split(",");
 
 var count = 0;
 for(var k=1; k<vals.length-1; k++) {
@@ -93,14 +93,14 @@ for(var k=1; k<vals.length-1; k++) {
 	{
 		for(var j=0; j<11 ; j++)
 		{
-			if( table[ i ][ j ][1] == ¡®vals[k]¡¯)
+			if( table[ i ][ j ][1] == â€˜vals[k]â€™)
 				count +=1;	
 		}
 	}
-	if(vals[k]==¡¯±âº»¿µ¾î¡¯ || vals[k]==¡¯ÀÇ»ç¼ÒÅë¡¯ || vals[k]==¡¯±âÃÊÀÎ¹®»çÈ¸°úÇÐ¡¯)
+	if(vals[k]==â€™ê¸°ë³¸ì˜ì–´â€™ || vals[k]==â€™ì˜ì‚¬ì†Œí†µâ€™ || vals[k]==â€™ê¸°ì´ˆì¸ë¬¸ì‚¬íšŒê³¼í•™â€™)
 		if( count < 2)
 		able = false;
-	else if(vals[k]==¡¯±âÃÊÀÚ¿¬°úÇÐ¡¯)
+	else if(vals[k]==â€™ê¸°ì´ˆìžì—°ê³¼í•™â€™)
 		if( count < 4)
 		able = false;
 else
@@ -109,9 +109,9 @@ else
 }
 }
 
-//±³Á÷ÀÌ·Ð Ã¼Å©
+//êµì§ì´ë¡  ì²´í¬
 var cultures=[];
-cultures=[¡®±³À°ÇÐ°³·Ð¡¯, ¡®±³À°ÀÇ¿ª»çÃ¶ÇÐÀûÀÌÇØ¡¯, ¡®±³À°ÀÇ»çÈ¸ÇÐÀûÀÌÇØ¡¯, ¡®±³À°ÀÇ½É¸®ÇÐÀûÀÌÇØ¡¯, ¡®±³À°°úÁ¤¡¯,  ¡®±³À°Æò°¡¡¯,  ¡®±³À°¹æ¹ý¹×±³À°°øÇÐ¡¯,  ¡®±³À°ÇàÁ¤¹×±³À°°æ¿µ¡¯]
+cultures=[â€˜êµìœ¡í•™ê°œë¡ â€™, â€˜êµìœ¡ì˜ì—­ì‚¬ì² í•™ì ì´í•´â€™, â€˜êµìœ¡ì˜ì‚¬íšŒí•™ì ì´í•´â€™, â€˜êµìœ¡ì˜ì‹¬ë¦¬í•™ì ì´í•´â€™, â€˜êµìœ¡ê³¼ì •â€™,  â€˜êµìœ¡í‰ê°€â€™,  â€˜êµìœ¡ë°©ë²•ë°êµìœ¡ê³µí•™â€™,  â€˜êµìœ¡í–‰ì •ë°êµìœ¡ê²½ì˜â€™]
 function checkTeach()
 {
 	var count = 0;
@@ -124,15 +124,15 @@ if( table[i][j][1] == cultures[k] )
 	able = false;
 }
 
-//±³Á÷¼Ò¾ç & ±³Á÷ ½Ç½À Ã¼Å©
+//êµì§ì†Œì–‘ & êµì§ ì‹¤ìŠµ ì²´í¬
 function checkTeach2()
 {	
 	var check = true;
-	vals = subject_section.±³Á÷.split(",");
+	vals = subject_section.êµì§.split(",");
 	check( vals.length-1 , vals);
 }
 
-//°ú¸ñÀ» µé¾ú´ÂÁö ¾Èµé¾ú´ÂÁö¿¡ ´ëÇÑ ÇÔ¼ö
+//ê³¼ëª©ì„ ë“¤ì—ˆëŠ”ì§€ ì•ˆë“¤ì—ˆëŠ”ì§€ì— ëŒ€í•œ í•¨ìˆ˜
 function check (var len, var subs[])
 {
 for ( var k=1; k<len; k++) {
@@ -150,12 +150,12 @@ else check = false;
 }
 }
 
-//Àü°øÀÏ¹Ý°ú¸ñÁß ±¹Á¦¾î 1°ú¸ñÀÌ»ó µé¾ú´ÂÁö Ã¼Å©
+//ì „ê³µì¼ë°˜ê³¼ëª©ì¤‘ êµ­ì œì–´ 1ê³¼ëª©ì´ìƒ ë“¤ì—ˆëŠ”ì§€ ì²´í¬
 function foreignLang (var subject)
 {
 	var foreign=[];
 var count=0;
-foreign=[¡°ÄÄÇ»ÅÍ¼ö¾÷¼³°è¹×¿¬½À¡±,¡±°´Ã¼ÁöÇâÇÁ·Î±×·¡¹Ö¡±,¡±ÄÄÆÄÀÏ·¯¡±,¡±ÄÄÇ»ÅÍ±×·¡ÇÈ½º¡±,¡±³í¸®È¸·Î¡±,¡±ºñÁÖ¾óÇÁ·Î±×·¡¹Ö¡±,¡±±³À°¿ë¸ÖÆ¼¹Ìµð¾î¡±,¡±ÀÎÅÍ³Ý¼­¹ö±¸Ãà·Ð¡±,¡±ÄÄÇ»ÅÍº¸¾È¡±,¡±¾Ë°í¸®Áò¡±];
+foreign=[â€œì»´í“¨í„°ìˆ˜ì—…ì„¤ê³„ë°ì—°ìŠµâ€,â€ê°ì²´ì§€í–¥í”„ë¡œê·¸ëž˜ë°â€,â€ì»´íŒŒì¼ëŸ¬â€,â€ì»´í“¨í„°ê·¸ëž˜í”½ìŠ¤â€,â€ë…¼ë¦¬íšŒë¡œâ€,â€ë¹„ì£¼ì–¼í”„ë¡œê·¸ëž˜ë°â€,â€êµìœ¡ìš©ë©€í‹°ë¯¸ë””ì–´â€,â€ì¸í„°ë„·ì„œë²„êµ¬ì¶•ë¡ â€,â€ì»´í“¨í„°ë³´ì•ˆâ€,â€ì•Œê³ ë¦¬ì¦˜â€];
 
 for ( var k = 0 ; k < foreign.length ; k ++) {
 if(foreign[k]==subject)
@@ -168,11 +168,11 @@ if(foreign<1)
 
 
 
-////Ã¼Å©¹Ú½º////
-3Ç° Y/N
-½ÉÆó¼Ò»ý¼ú (ÀçÇÐÁß 2È¸ÀÌ»ó) Y/N
-±³Á÷Àû¼ºÀÎ¼º°Ë»ç (ÀçÇÐÁß 2È¸ ÀÌ»ó) Y/N
-ÀÚ°ÝÁõ Y/N
+////ì²´í¬ë°•ìŠ¤////
+3í’ˆ Y/N
+ì‹¬íì†Œìƒìˆ  (ìž¬í•™ì¤‘ 2íšŒì´ìƒ) Y/N
+êµì§ì ì„±ì¸ì„±ê²€ì‚¬ (ìž¬í•™ì¤‘ 2íšŒ ì´ìƒ) Y/N
+ìžê²©ì¦ Y/N
 
 
 
@@ -184,13 +184,13 @@ if(foreign<1)
 
 
 
-var subject_section = { µñ¼Å³Ê¸® };
+var subject_section = { ë”•ì…”ë„ˆë¦¬ };
 var vals = [];
 var table=[[[]]];
 var count = 0;
 var totalCredit, totalGrade;
 var able=true;
-vals = subject_section.Àü°øÇÙ½É.split(",");
+vals = subject_section.ì „ê³µí•µì‹¬.split(",");
 
 function numofSubjects()
 function totalCredit()
@@ -204,6 +204,3 @@ function checkTeach()
 function checkTeach2()
 function check(var len)
 function foreignLang()
-
-
-
