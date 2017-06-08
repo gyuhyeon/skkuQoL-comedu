@@ -158,7 +158,7 @@
 					<th>종료 시간</th>
 					<th>총 인원</th>
 					<th>신청자</th>
-					<th>비밀번호</th>
+					<th>대표자 학번</th>
 				</tr>
 				<tr>
 					<td>
@@ -232,25 +232,25 @@
 						</select>
 					</td>
 					<td>
-						<input name="reservename" placeholder="신청자" size="10"></input>
+						<input name="reservename" placeholder="신청자" size="8"></input>
 					</td>
 					<td>
-						<input name="password" placeholder="비밀번호" size="6"></input>
+						<input name="password" placeholder="학번" size="13"></input>
 					</td>
 				</tr>
 			</table>
 			<div align="right" style = "margin-right: 88px; margin-top: 15px;">
 				<input class = "button" type="submit" value= "신청하기" style = "width : 80px"/>
 				<input class = "button" type="reset" value="초기화"/>
-				<button class = "button" style="height: 30px;margin-top: 1px;width: 94px;padding-top: 4px;"
-					onclick= "window.location.href = 'http://comedu.co.kr/qol/seminarproject/reserve_status.html'">신청현황</button>
+				<button class = "button" style="height: 30px;margin-top: 1px;width: 94px"
+					onclick= "window.open('http://comedu.co.kr/qol/seminarproject/reserve_status.html')">신청현황</button>
 			</div>
 			<div align="right" style = "margin-right: 88px; margin-top: 15px;">
 				<div class="g-recaptcha" data-sitekey="6LfOBR8UAAAAABT02T91o9Hitoy7xMmCPVh5D7DA"></div>
 			</div>
 			<div align = "right" style = "margin-right: 88px; margin-top: 15px;">
-				<input name="deletename" placeholder="신청자" size="10"></input>
-				<input name="deletepassword" placeholder="비밀번호" size="6"></input>
+				<input name="deletename" placeholder="신청자" size="8"></input>
+				<input name="deletepassword" placeholder="학번" size="14"></input>
 				<button class = "button" id="deletebutton" style="width:110px">삭제(BETA)</button>
 			</div>
 	</div>

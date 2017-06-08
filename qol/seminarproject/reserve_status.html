@@ -8,31 +8,26 @@
 </head>
 <body>
     <div align = "center" class = "title", id = "title">
-        <font sytle = "font-family : arial" size = "14"> 세미나실 신청 현황</font>
+        <font size = "25px"> 세미나실 신청 현황 </font><br/>
+        <span size = "10px" id = "date"> </span>
+        <br/><br/>
     </div>
-    <div align = "left" class = "date", id = "date">
-            <script type ="text/javascript"> document.write(placeholdergenerator())</script>
+    
+            
     </div>
 
     <div align = "center" class = "content", id = "content">
         <font style = "font-family: arial" size = "8"></font>
         <table width="90%" align="center" class="status" id="status" >
                 <tr>
-                    <th>순번</th>
+                    <th>시간</th>
                     <th>성명</th>					
                     <th>학번</th>
-                    <th>내용</th>
+                    <th>목적</th>
                     <th>장소</th>
                     <th>서명</th>
                 </tr>
-                <tr>
-                    <td style = "height : 21px"> <table name="sequence"></table> </td>
-                    <td> <table name="name"></table> </td>
-                    <td> <table name="std_no"></table> </td>
-                    <td> <table name="content"></table> </td>
-                    <td> <table name="location"></table> </td>
-                    <td> <table name="signature"></table> </td>
-                </tr>
+                
 	</div>
 
 	</div>
@@ -41,6 +36,6 @@
 	<!-- SCRIPTS : jquery, reserve.js for page scripts -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
-	<script src="reserve.js"></script>
+	<script src="reserve_status.js"></script>
 
 </body>

@@ -1,0 +1,2 @@
+# graduationcheck
+check graduation validity
