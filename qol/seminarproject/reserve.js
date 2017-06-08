@@ -234,7 +234,7 @@ $(document).ready(function() {
 		// get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
         var formData = {
-            'loggedmembersrl'  : loggedmembersrl
+            'loggedmembersrl'  : parseInt($('#currentmembersrl', top.document)[0].innerHTML)
         };
 
         // process the form
