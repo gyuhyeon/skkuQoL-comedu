@@ -94,17 +94,25 @@ else{
 //normal execution
 
 $sql = '';
+$result = TRUE;
+$count = 0; // Var to count # of successful deletions
 for($i=0; $i<count($todelete); ++$i){
-    $sql.="DELETE FROM admin.qol_seminarreservelist WHERE reserve_srl=".($todelete[$i]['reserve_srl']).";";
+    $sql="DELETE FROM admin.qol_seminarreservelist WHERE reserve_srl=".($todelete[$i]['reserve_srl']).";";
+    if($conn->query($sql) === FALSE){
+        $result = FALSE;
+        # Upon any error, stop repetition and send Error Msg
+        break;
+    }
+    // Upon successful deletion, increment # of success
+    $count++;
+}
+if($result === TRUE){
+    $response = $count."건의 예약이 모두 취소되었습니다!";
+}
+else{
+    $response = "ERROR : DB 연산에 문제가 생겼습니다!"."총 ".count($todelete)."건 중 ".$count."건의 예약만이 취소되었습니다.";
 }
 
-$result = $conn->query($sql);
-if($result === TRUE){
-        $response = "삭제 성공!";
-    }
-    else{
-        $response = "ERROR : Something went wrong when deleting from database!";
-    }
 
 echo json_encode(["response" => $response]);
 
