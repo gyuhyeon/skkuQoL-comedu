@@ -57,48 +57,47 @@ function getCustomDate(){
 		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 		$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
 	}
-	else if(data.length==1){
-		try{
-			if(data[0].response=="날짜형식오류"){
-				alert(data[0].response);
-			}
-			else{
-				//data[0].response
-			}
+	else if(data[0].length==1){
+		if(data[0].response=="날짜형식오류"){
+			alert(data[0].response);
 		}
-		catch(e){
-			$('#date')[0].innerHTML=date;
-			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
-			$('table.status')[0].innerHTML+="<tr>";
-			for(var i=0; i<data.length; ++i){
-				var td = "";
-				var purpose;
-				switch(parseInt(data[i].purpose)){
-					case 0:
-					purpose="일반 사용";
-					break;
-					case 1:
-					purpose="학생회 사용";
-					break;
-					case 2:
-					purpose="집행부 사용";
-					break;
-					case 3:
-					purpose="소모임 사용";
-					break;
-					case 4:
-					purpose="팀프로젝트 사용";
-					break;
-				}
-				td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
-				td += ("<td>"+data[i].studentname+"</td>");
-				td += ("<td>"+data[i].password+"</td>");
-				td += ("<td>"+purpose+"</td>");
-				td += ("<td>세미나실</td>");
-				td += ("<td></td>");
-			}
-			$('table.status')[0].innerHTML+=td+"</tr>";
+		else{
+			//data[0].response does exist but it's not the error message? no case exists for this right now.
+			//better design in the future would be to always include response success somehow.
 		}
+	}
+	else{
+		$('#date')[0].innerHTML=date;
+		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
+		$('table.status')[0].innerHTML+="<tr>";
+		for(var i=0; i<data.length; ++i){
+			var td = "";
+			var purpose;
+			switch(parseInt(data[i].purpose)){
+				case 0:
+				purpose="일반 사용";
+				break;
+				case 1:
+				purpose="학생회 사용";
+				break;
+				case 2:
+				purpose="집행부 사용";
+				break;
+				case 3:
+				purpose="소모임 사용";
+				break;
+				case 4:
+				purpose="팀프로젝트 사용";
+				break;
+			}
+			td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
+			td += ("<td>"+data[i].studentname+"</td>");
+			td += ("<td>"+data[i].password+"</td>");
+			td += ("<td>"+purpose+"</td>");
+			td += ("<td>세미나실</td>");
+			td += ("<td></td>");
+		}
+		$('table.status')[0].innerHTML+=td+"</tr>";
 	}
 }
 
