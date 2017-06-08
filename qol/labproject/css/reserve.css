@@ -1,0 +1,62 @@
+body
+{
+	font-family: arial;
+}
+
+th,td
+{
+	margin: 0;
+	text-align: center;
+	border-collapse: collapse;
+	outline: 1px solid #e3e3e3;
+}
+
+td
+{
+	padding: 3px 5px;
+	width: 50px;
+	font-size : 12px;
+	max-width:150px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+th
+{
+	background: #064F7D;
+	color: white;
+	padding: 5px 0px;
+	width: 60px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+table.schedule th
+{
+	font-size:13px;
+}
+
+.schedule td:hover
+{
+	cursor: pointer;
+	background: lightgray;
+	color: white;
+}
+
+.button {
+	background-color : #064F7D;
+	border : none;
+	color : white;
+	width : 70px;
+	height : 30px;
+	padding : 5px 5px;
+	text-align : center;
+	text-decoration: none;
+	display :inline-block;
+	font-size : 16px;
+	font-weight: bold;
+	margin : 4px 2px;
+	cursor : pointer;
+}
