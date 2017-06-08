@@ -50,24 +50,23 @@ function getCustomDate(){
 		data=response;
 		// here we will handle errors and validation messages
 	});
-
+	
 	if(data.length==0){
-			//if there's nothing, show that there's nothing.
-			$('#date')[0].innerHTML=date;
-			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
-			$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
-		}
-		else if(data.length==1){
-			try{
-				if(data[0].response=="날짜형식오류"){
-					alert(data[0].response);
-				}
+		//if there's nothing, show that there's nothing.
+		$('#date')[0].innerHTML=date;
+		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
+		$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
+	}
+	else if(data.length==1){
+		try{
+			if(data[0].response=="날짜형식오류"){
+				alert(data[0].response);
 			}
-			catch(e){
-				//do nothing
+			else{
+				//data[0].response
 			}
 		}
-		else{
+		catch(e){
 			$('#date')[0].innerHTML=date;
 			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 			$('table.status')[0].innerHTML+="<tr>";
@@ -100,6 +99,7 @@ function getCustomDate(){
 			}
 			$('table.status')[0].innerHTML+=td+"</tr>";
 		}
+	}
 }
 
 function getTableData(){
