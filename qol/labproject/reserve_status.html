@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>실습실 예약현황</title>
+	<link rel="stylesheet" href="css/reserve.css" />
+
+</head>
+<body>
+    <div align = "center" class = "title", id = "title">
+        <font size = "25px"> 실습실 신청 현황 </font><br/>
+        <span size = "10px" id = "date"> </span>
+        <br/><br/>
+    </div>
+    
+            
+    </div>
+
+    <div align = "center" class = "content", id = "content">
+        <div align = "right" style = "margin-right: 81px; margin-top: 15px;">
+				<button type="button" class = "button" onclick="getCustomDate()" style="width:110px">타 일자 조회</button>
+		</div>
+        <table width="90%" align="center" class="status" id="status" >
+                <tr>
+                    <th>시간</th>
+                    <th>성명</th>					
+                    <th>학번</th>
+                    <th>목적</th>
+                    <th>장소</th>
+                    <th>서명</th>
+                </tr>
+        </table>
+        
+
+
+	<!-- SCRIPTS : jquery, reserve.js for page scripts -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script src="reserve_status.js"></script>
+
+</body>
