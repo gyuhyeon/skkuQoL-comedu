@@ -33,7 +33,7 @@ function getCustomDate(){
 	var formData = {
 		'currentdate'      : date
 	}
-	var tableData;
+	var data;
 	// process the form
 	$.ajax({
 		type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -41,18 +41,24 @@ function getCustomDate(){
 		data        : formData,
 		dataType    : 'json', // what type of data do we expect back from the server
 		encode          : true,
-		async       : true  // set async as true, we will use callback to update.
+		async       : false  // set async as true, we will use callback to update.
 	})
 	// using the done promise callback
 	.done(function(response) {
-		if(response.length==0){
+		data=response;
+		// here we will handle errors and validation messages
+	});
+
+	if(data.length==0){
 			//if there's nothing, show that there's nothing.
+			$('#date')[0].innerHTML=date;
+			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 			$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
 		}
-		else if(response.length==1){
+		else if(data.length==1){
 			try{
-				if(response[0].response=="날짜형식오류"){
-					alert(response[0].response);
+				if(data[0].response=="날짜형식오류"){
+					alert(data[0].response);
 				}
 			}
 			catch(e){
@@ -60,12 +66,13 @@ function getCustomDate(){
 			}
 		}
 		else{
+			$('#date')[0].innerHTML=date;
 			$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 			$('table.status')[0].innerHTML+="<tr>";
-			for(var i=0; i<response.length; ++i){
+			for(var i=0; i<data.length; ++i){
 				var td = "";
 				var purpose;
-				switch(parseInt(response[i].purpose)){
+				switch(parseInt(data[i].purpose)){
 					case 0:
 					purpose="일반 사용";
 					break;
@@ -82,17 +89,15 @@ function getCustomDate(){
 					purpose="팀프로젝트 사용";
 					break;
 				}
-				td += ("<td>"+response[i].starttime+":00 ~ "+(parseInt(response[i].endtime)+1)+":00"+"</td>");
-				td += ("<td>"+response[i].studentname+"</td>");
-				td += ("<td>"+response[i].password+"</td>");
+				td += ("<td>"+data[i].starttime+":00 ~ "+(parseInt(data[i].endtime)+1)+":00"+"</td>");
+				td += ("<td>"+data[i].studentname+"</td>");
+				td += ("<td>"+data[i].password+"</td>");
 				td += ("<td>"+purpose+"</td>");
 				td += ("<td>세미나실</td>");
 				td += ("<td></td>");
 			}
 			$('table.status')[0].innerHTML+=td+"</tr>";
 		}
-		// here we will handle errors and validation messages
-	});
 }
 
 function getTableData(){
