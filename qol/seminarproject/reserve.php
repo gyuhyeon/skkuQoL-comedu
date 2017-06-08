@@ -1,8 +1,14 @@
-<?php
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "insecurelocalpassword";
-$dbname = "admin";
+﻿<?php
+require($_SERVER["DOCUMENT_ROOT"].'/../dbconfig.php');
+/*
+dbconfig.php file outside of webroot has the following variables setup globally
+
+$dbservername;
+$dbusername;
+$dbpassword;
+$dbname;
+
+*/
 
 //note : $_POST indexes using "name" attributes from the form.
 $purpose = $_POST['purpose'];
