@@ -29,7 +29,7 @@ window.onload = function() {
 }
 
 function getCustomDate(){
-	var date=prompt("조회할 일자를 1993-06-07 형식으로 입력해주세요(yyyy:mm:dd): ");
+	var date=prompt("조회할 일자를 1993-06-07 형식으로 입력해주세요(yyyy-mm-dd): ");
 	var formData = {
 		'currentdate'      : date
 	}
@@ -55,7 +55,7 @@ function getCustomDate(){
 				alert(r);
 			}
 			catch(e){
-				
+
 			}
 		}
 		else{
