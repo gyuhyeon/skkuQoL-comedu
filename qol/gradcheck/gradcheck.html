@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8"> <!--This is to display korean characters correctly-->
+
+</head>
+
+<body>
+	<center> <!-- HTML5 태그가 아님 (style 태그로 수정하기) -->
+	<h3>졸업요건 계산 프로그램</h3>
+	<h4>13~15학번 기준</h4>
+	<div>
+		<!-- 기본적인 정보 입력 후 졸업요건 프로그램 시작 예정 -->
+		<p> 학기별로 수강한 과목을 입력하세요! </p>
+		<input id="INIT" type="button" value="졸업요건 계산하기">
+		<form id="SM0"> <!-- 학기 추가할 경우 SM1, SM2, ... SM8까지 해서 총 9개 학기(기본 8개 학기 + 기타학기(초과학기 및 계절학기 포함)) -->
+			<input type="button" value="과목 추가" onclick="addSubject(0)"> <br><br>
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="gradscript.js">
+	</script>
+	</center>
+</body>
+</html>
