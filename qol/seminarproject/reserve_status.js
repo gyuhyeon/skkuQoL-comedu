@@ -69,7 +69,6 @@ function getCustomDate(){
 	else{
 		$('#date')[0].innerHTML=date;
 		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
-		$('table.status')[0].innerHTML+="<tr>";
 		for(var i=0; i<data.length; ++i){
 			var td = "";
 			var purpose;
@@ -96,8 +95,9 @@ function getCustomDate(){
 			td += ("<td>"+purpose+"</td>");
 			td += ("<td>세미나실</td>");
 			td += ("<td></td>");
+			$('table.status')[0].innerHTML+="<tr>"+td+"</tr>";
 		}
-		$('table.status')[0].innerHTML+=td+"</tr>";
+		
 	}
 }
 
