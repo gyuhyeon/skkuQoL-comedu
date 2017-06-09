@@ -18,10 +18,11 @@ header('Content-Type: text/html; charset=utf-8');
 //this file should be invoked via crontab at 5pm. post request should contain TZ=":Asia/Seoul" date
 /*
 currentdate=$(TZ=":Asia/Seoul" date +%Y-%m-%d)
-curl -X POST http://comedu.co.kr/qol/reserve_notification.php --data '{"currentdate":"'"$currentdate"'"}'
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"  -d '{"currentdate":"'"$currentdate"'"}'  http://comedu.co.kr/qol/seminarproject/reserve_notification.php
 */
 
-$currentdate = $_POST['currentdate'];
+$currentdate = htmlspecialchars($_GET['currentdate']);
+//$currentdate = $_POST['currentdate'];
 //basic sql injection prevention
 $date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
 if(!preg_match($date_regex, $currentdate)){
