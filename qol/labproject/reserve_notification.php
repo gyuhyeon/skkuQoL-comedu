@@ -24,7 +24,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 ~~ cronjob.sh ~~
 currentdate=$(TZ=":Asia/Seoul" date +%Y-%m-%d)
-curl -X GET "http://comedu.co.kr/qol/seminarproject/reserve_notification.php?currentdate=${currentdate}"
+curl -X GET "http://comedu.co.kr/qol/labproject/reserve_notification.php?currentdate=${currentdate}"
 
 doesn't work(probably encoding issues) : curl -X POST -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"  -d '{"currentdate":"'"$currentdate"'"}'  http://comedu.co.kr/qol/seminarproject/reserve_notification.php
 
@@ -51,7 +51,7 @@ if (!$conn->set_charset("utf8")) {
 	die("utf8 문자 세트를 가져오다가 에러가 났습니다 :".$conn->error." 현재 문자 세트 : ".$conn->character_set_name());
 }
 
-$message="금일 세미나실 철야 신청자: ";
+$message="금일 실습실 철야 신청자: ";
 
 $interval=0;
 $dt=new DateTime("now", new DateTimeZone('Asia/Seoul'));
@@ -59,11 +59,11 @@ $dt->setTimestamp(time());
 if($dt->format('w')==5){
     //friday..
     $interval=2;
-    $message="금/토/일 세미나실 철야 신청자: ";
+    $message="금/토/일 실습실 철야 신청자: ";
 }
 
 
-$sql = "SELECT * FROM admin.qol_seminarreservelist WHERE reservedate >= '$currentdate' and reservedate<=DATE(DATE_ADD('$currentdate', INTERVAL '$interval' DAY)) and endtime>=18";
+$sql = "SELECT * FROM admin.qol_labreservelist WHERE reservedate >= '$currentdate' and reservedate<=DATE(DATE_ADD('$currentdate', INTERVAL '$interval' DAY)) and endtime>=18";
 $result = $conn->query($sql);
 
 //create associative array from query result
