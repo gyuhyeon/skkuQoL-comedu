@@ -132,10 +132,22 @@ function updateTableData(){
 	
 	if(data.length==0){
 		//if there's nothing, show that there's nothing.
+		$('#date')[0].innerHTML=date;
+		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 		$('table.status')[0].innerHTML+="<tr><td>신청자 없음</td><td></td><td></td><td></td><td></td><td></td></tr>"
 	}
+	else if(data[0].length==1){
+		if(data[0].response=="날짜형식오류"){
+			alert(data[0].response);
+		}
+		else{
+			//data[0].response does exist but it's not the error message? no case exists for this right now.
+			//better design in the future would be to always include response success somehow.
+		}
+	}
 	else{
-		$('table.status')[0].innerHTML+="<tr>";
+		$('#date')[0].innerHTML=date;
+		$('table.status')[0].innerHTML="<tr><th>시간</th><th>성명</th><th>학번</th><th>목적</th><th>장소</th><th>서명</th></tr>";
 		for(var i=0; i<data.length; ++i){
 			var td = "";
 			var purpose;
@@ -162,8 +174,9 @@ function updateTableData(){
 			td += ("<td>"+purpose+"</td>");
 			td += ("<td>실습실</td>");
 			td += ("<td></td>");
+			$('table.status')[0].innerHTML+="<tr>"+td+"</tr>";
 		}
-		$('table.status')[0].innerHTML+=td+"</tr>";
+		
 	}
 	
 }
