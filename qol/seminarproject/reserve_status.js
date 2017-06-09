@@ -13,9 +13,7 @@ var data;
 window.onload = function() {
 	
 	//populate table
-	var currentDate = new Date();
-	var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
-	$('#date')[0].innerHTML=formattedDate;
+	
 	(function(){updateTableData();})();
 	//question : will this prevent sync ajax raising alerts because it's on main thread?
 	
@@ -126,6 +124,9 @@ function getTableData(){
 function updateTableData(){
 	
 	data = getTableData();
+	var currentDate = new Date();
+	var formattedDate = currentDate.getFullYear()+"-"+("0"+(currentDate.getMonth()+1)).slice(-2)+"-"+("0"+currentDate.getDate()).slice(-2);
+	$('#date')[0].innerHTML=formattedDate;
 	
 	if(data.length==0){
 		//if there's nothing, show that there's nothing.
