@@ -1,4 +1,5 @@
 <?php
+ini_set('error_reporting', E_ALL);
 require($_SERVER["DOCUMENT_ROOT"].'/../dbconfig.php');
 require($_SERVER["DOCUMENT_ROOT"].'/../twilio-php/Twilio/autoload.php');
 require($_SERVER["DOCUMENT_ROOT"].'/../twilioconfig.php');
@@ -62,14 +63,14 @@ $conn->close();
 use Twilio\Rest\Client;
 $twclient = new Client($sid, $token);
 
-$people=array("+82-10-7248-1535" => "이규현");
+$people=array("+82-10-7248-1535" => "이규현", "+82-10-2614-5698" => "정윤석");
 $message="금일 철야 신청자: ";
 for($i=0; $i<count($jsonresponse); ++$i){
     $message.=($jsonresponse[$i]['신청자']." ");
 }
 foreach ($people as $number => $name){
     $sms = $twclient->account->messages->create(
-        $people,
+        $number,
 
         array(
             'from' => "+1 424-361-0119",
