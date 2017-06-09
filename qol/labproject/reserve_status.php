@@ -17,7 +17,7 @@ $currentdate = $_POST['currentdate'];
 //basic sql injection prevention
 $date_regex ="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
 if(!preg_match($date_regex, $currentdate)){
-    echo json_encode(array("response" => "날짜형식오류"), JSON_UNESCAPED_UNICODE);
+    echo json_encode(array(array("response" => "날짜형식오류")), JSON_UNESCAPED_UNICODE);
     die();
 }
 
