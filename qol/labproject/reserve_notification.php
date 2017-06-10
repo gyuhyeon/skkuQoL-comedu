@@ -61,6 +61,10 @@ if($dt->format('w')==5){
     $interval=2;
     $message="금/토/일 실습실 철야 신청자: ";
 }
+else if($dt->format('w')==6||$dt->format('w')==0){
+    echo json_encode(array("response" => "no sms on weekends"), JSON_UNESCAPED_UNICODE);
+    die();
+}
 
 
 $sql = "SELECT * FROM admin.qol_labreservelist WHERE reservedate >= '$currentdate' and reservedate<=DATE(DATE_ADD('$currentdate', INTERVAL '$interval' DAY)) and endtime>=18";
@@ -100,6 +104,9 @@ foreach ($people as $number => $name){
         )
     );
 }
+
+echo json_encode(array("response" => "success"), JSON_UNESCAPED_UNICODE);
+die();
 
 
 ?>
