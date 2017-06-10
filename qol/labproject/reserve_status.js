@@ -16,7 +16,8 @@ window.onload = function() {
 	
 	(function(){
 		var cD = new Date();
-		var fD = cD.getFullYear()+"-"+("0"+(cD.getMonth()+1)).slice(-2)+"-"+("0"+cD.getDate()).slice(-2);updateTableData(fD);
+		var fD = cD.getFullYear()+"-"+("0"+(cD.getMonth()+1)).slice(-2)+"-"+("0"+cD.getDate()).slice(-2);
+		updateTableData(fD);
 	})();
 	//question : will this prevent sync ajax raising alerts because it's on main thread?
 	
