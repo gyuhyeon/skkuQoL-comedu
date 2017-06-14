@@ -131,7 +131,11 @@ function validateSelection() {
 
 	if (d.value == formattedDate && checkdate.getHours()>=16){ //override해서 DB에 삽입해도 조교님께 알림이 가지 않으므로 현실에서는 신청되지 않습니다.
 		alert("오후 4시 이후의 당일 예약은 불가합니다!");
-		d.value = "선택";		
+		d.value = "선택";
+	}
+	else if (d.value == formattedDate && checkdate.getHours()<=st.value.slice(0,2)){ //override해서 DB에 삽입해도 조교님께 알림이 가지 않으므로 현실에서는 신청되지 않습니다.
+		alert("현재 시간보다 예약시간이 빠릅니다!");
+		d.value = "선택";
 	}
 	updateTableColor();
 }

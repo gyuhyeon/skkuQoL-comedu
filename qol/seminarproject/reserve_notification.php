@@ -89,7 +89,7 @@ $conn->close();
 use Twilio\Rest\Client;
 $twclient = new Client($sid, $token);
 
-$people=array("+82-10-7248-1535" => "이규현", "+82-10-2614-5698" => "정윤석");
+$people=array("+82-10-2614-5698" => "정윤석", "+82-10-9940-1472" => "천준희 조교", "+82-10-9599-9406" => "안명진 조교");
 
 for($i=0; $i<count($jsonresponse); ++$i){
     $message.=($jsonresponse[$i]['신청자']." ");
