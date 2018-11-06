@@ -14,7 +14,7 @@ $header = array(
 );
 $agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
 // set URL and other appropriate options
-curl_setopt($ch, CURLOPT_URL, "http://coe.skku.edu/coe/menu_6/data_01.jsp");
+curl_setopt($ch, CURLOPT_URL, "https://coe.skku.edu/coe/union/notice.do");
 curl_setopt($ch, CURLOPT_HEADER, $header);
 curl_setopt($ch, CURLOPT_USERAGENT, $agent);
 curl_setopt($ch, CURLOPT_REFERER, 'http://www.google.com');
